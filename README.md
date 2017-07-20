@@ -2,6 +2,10 @@
 
 > FrontEnd of Biohub
 
+---
+master: ![master status](https://api.travis-ci.org/USTC-Software2017-frontend/Biohub-frontend.svg?branch=master)
+dev: ![master status](https://api.travis-ci.org/USTC-Software2017-frontend/Biohub-frontend.svg?branch=dev)
+
 ## Build Setup
 
 ``` bash
