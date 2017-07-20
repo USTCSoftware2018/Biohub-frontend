@@ -4,7 +4,7 @@ body {
   background-color: whitesmoke;
 }
 .biohub-form {
-  background-color:rgba(0,0,0,0.5);
+  background-color:rgba(0,0,0,0);
   padding: 50px;
 
   .form-control {
@@ -15,10 +15,10 @@ body {
     border-color: transparent;
     &:focus {
       border-width: 1px;
-      border-color: $color-orange;
-      -webkit-box-shadow: 0 0 5px darken($color-orange,10%);
-      -moz-box-shadow: 0 0 5px darken($color-orange,10%);
-      box-shadow: 0 0 5px darken($color-orange,10%);
+      border-color: lighten($color-orange,20%);
+      -webkit-box-shadow: 0 0 5px lighten($color-orange,20%);
+      -moz-box-shadow: 0 0 5px lighten($color-orange,20%);
+      box-shadow: 0 0 5px lighten($color-orange,20%);
 
     }
     border-left-color:transparent;
