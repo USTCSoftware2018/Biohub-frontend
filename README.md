@@ -4,31 +4,32 @@
 
 ---
 master: ![master status](https://api.travis-ci.org/USTC-Software2017-frontend/Biohub-frontend.svg?branch=master)
-dev: ![master status](https://api.travis-ci.org/USTC-Software2017-frontend/Biohub-frontend.svg?branch=dev)
+dev: ![dev status](https://api.travis-ci.org/USTC-Software2017-frontend/Biohub-frontend.svg?branch=dev)
 
 ## Build Setup
 
 ``` bash
-# install dependencies
+# 安装依赖
+# 在开发过程中可能经常发生，所以在pull后可以马上运行一次
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
+# 编译项目，在每次pull后要运行一次
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# 在localhost:8080上运行开发测试
+npm run dev
 
-# run unit tests
+# 单元测试
 npm run unit
 
-# run e2e tests
+# 终端测试
 npm run e2e
 
-# run all tests
+# 运行所有测试
 npm test
+
+# 代码静态分析（风格与语法）
+npm run lint
 ```
 
 代码风格为`javascript standard`, 请去公告中查看
