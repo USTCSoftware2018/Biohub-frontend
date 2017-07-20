@@ -1,10 +1,13 @@
 var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
+var path = require('path')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
+
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
@@ -30,6 +33,13 @@ module.exports = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     }),
-    new FriendlyErrorsPlugin()
+    new FriendlyErrorsPlugin(),
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname,'../node_modules/bootstrap/dist'),
+      to: path.resolve(__dirname,'../static')
+    },{
+      from: path.resolve(__dirname,'../node_modules/jquery/dist'),
+      to: path.resolve(__dirname,'../static/js')
+    }])
   ]
 })

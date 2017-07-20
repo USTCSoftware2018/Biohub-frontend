@@ -21,3 +21,7 @@ export default {
   margin-top: 60px;
 }
 </style>
+
+<style lang="sass">
+  @import './assets/style.scss';
+</style>
