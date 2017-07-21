@@ -60,7 +60,7 @@
           console.log('password error')
           return
         }
-        axios.post('http://localhost:10800/api/users/login/', {
+        axios.post('/api/users/login/', {
           username: this.username,
           password: this.password
         }).then((response) => {
