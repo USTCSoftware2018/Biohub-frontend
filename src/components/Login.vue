@@ -16,6 +16,9 @@
               <input type="password" class="form-control" id="passwordInput" placeholder="Password" v-model="password">
             </div>
           </div>
+          <ul class="form-error" v-if="errorOccur">
+            <li> {{ errorMessage }} </li>
+          </ul>
           <button type="submit" class="btn btn-default btn-biohub" @click.prevent="Login">Sign in</button>
         </form>
       </div>
@@ -25,18 +28,38 @@
 </template>
 <script>
   import axios from 'axios'
+
+  let usernamePat = /^\w{4,15}$/
+  let userPwdPat = /(?=.*\d)(?=.*[a-zA-Z]).{6,20}/
+
   export default {
     name: 'login',
     data () {
       return {
         username: '',
-        password: ''
+        password: '',
+        errorOccur: false,
+        errorMessage: ''
       }
     },
     methods: {
       Login () {
         console.log(this.username)
         console.log(this.password)
+        var matchResult = this.username.match(usernamePat)
+        if (matchResult === null || !matchResult[0].length === this.username.length) {
+          this.errorOccur = true
+          this.errorMessage = 'Username should only contains a-z,A-Z,0-9, and _, and it\'s length should be between 4 and 15'
+          console.log('username error')
+          return
+        }
+        matchResult = this.password.match(userPwdPat)
+        if (matchResult === null || !matchResult[0].length === this.password.length) {
+          this.errorOccur = true
+          this.errorMessage = 'password should at least contain numbers and characters, and it\'s length should be between 6 and 20'
+          console.log('password error')
+          return
+        }
         axios.post('http://localhost:10800/api/users/login/', {
           username: this.username,
           password: this.password
