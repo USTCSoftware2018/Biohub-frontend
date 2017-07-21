@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container login">
     <div class="row">
       <div class="col-xs-4"></div>
       <div class="col-xs-4" style="padding-left:20px;padding-right:20px;">

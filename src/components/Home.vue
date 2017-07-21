@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="min-width:1200px;">
+  <div class="container home" style="min-width:1200px;">
     <div class="row">
       <div class="col-xs-4"></div>
       <div class="col-xs-4" style="padding-left:20px;padding-right:20px;">
@@ -28,10 +28,10 @@
           <button type="submit" class="btn btn-default btn-biohub" v-on:click.self.prevent="SignUp" v-if="needSignUp">
             Sign up
           </button>
-          <button type="submit" class="btn btn-default btn-biohub"
+          <button type="submit" name="join-button" class="btn btn-default btn-biohub"
                   v-on:click.self.once.prevent="needSignUp = !needSignUp" v-if="!needSignUp">Join Biohub Now!
           </button>
-          <button type="submit" class="btn btn-default btn-biohub btn-biohub-hello"
+          <button type="submit" name="login-button" class="btn btn-default btn-biohub btn-biohub-hello"
                   v-on:click.self.prevent="JumpToLogin"
                   v-if="!needSignUp">Log in
           </button>
