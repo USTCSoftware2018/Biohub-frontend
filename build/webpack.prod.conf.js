@@ -90,10 +90,10 @@ var webpackConfig = merge(baseWebpackConfig, {
     // copy custom static assets
     new CopyWebpackPlugin([{
       from: path.resolve(__dirname,'../node_modules/bootstrap/dist'),
-      to: path.resolve(__dirname,'../static')
+      to: path.resolve(__dirname,'../dist/static')
     },{
       from: path.resolve(__dirname,'../node_modules/jquery/dist'),
-      to: path.resolve(__dirname,'../static/js')
+      to: path.resolve(__dirname,'../dist/static/js')
     }])
   ]
 })

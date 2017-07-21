@@ -49,14 +49,14 @@
         var matchResult = this.username.match(usernamePat)
         if (matchResult === null || !matchResult[0].length === this.username.length) {
           this.errorOccur = true
-          this.errorMessage = 'Username should only contains a-z,A-Z,0-9, and _, and it\'s length should be between 4 and 15'
+          this.errorMessage = 'Username should only contain letters, numbers and underscore, and its length should be between 4 and 15.'
           console.log('username error')
           return
         }
         matchResult = this.password.match(userPwdPat)
         if (matchResult === null || !matchResult[0].length === this.password.length) {
           this.errorOccur = true
-          this.errorMessage = 'password should at least contain numbers and characters, and it\'s length should be between 6 and 20'
+          this.errorMessage = 'password should at least contain letters and numbers, and its length should be between 6 and 20'
           console.log('password error')
           return
         }
