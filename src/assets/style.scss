@@ -3,54 +3,69 @@
 body {
   background-color: whitesmoke;
 }
+
 .biohub-form {
-  background-color:rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   padding: 50px;
 
   .form-control {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    margin-left:-2px;
+    margin-left: -2px;
     border-color: transparent;
     &:focus {
       border-width: 1px;
-      border-color: lighten($color-orange,20%);
-      -webkit-box-shadow: 0 0 5px lighten($color-orange,20%);
-      -moz-box-shadow: 0 0 5px lighten($color-orange,20%);
-      box-shadow: 0 0 5px lighten($color-orange,20%);
+      border-color: lighten($color-orange, 20%);
+      -webkit-box-shadow: 0 0 5px lighten($color-orange, 20%);
+      -moz-box-shadow: 0 0 5px lighten($color-orange, 20%);
+      box-shadow: 0 0 5px lighten($color-orange, 20%);
 
     }
-    border-left-color:transparent;
+    border-left-color: transparent;
   }
 
-  .form-control,.input-group > .input-group-addon{
-    -webkit-border-top-left-radius:3px;
+  .form-control, .input-group > .input-group-addon {
+    -webkit-border-top-left-radius: 3px;
     -moz-border-radius-topleft: 3px;
-    -webkit-border-bottom-left-radius:3px;
+    -webkit-border-bottom-left-radius: 3px;
     -moz-border-radius-bottomleft: 3px;
-    border-top-left-radius:3px;
+    border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
     background-color: white;
     border-color: transparent;
   }
   .input-group > .input-group-addon {
-    border-right:0px;
+    border-right: 0px;
   }
-};
+}
+
+;
 
 .btn-biohub {
   background-color: $color-orange;
-  width           : 100%;
-  color           : $text-color;
-  -webkit-border-radius:0px;
-  -moz-border-radius:0px;
-  border-radius:0px;
+  width: 100%;
+  padding: 10px 0px 10px 0px;
+  color: $text-color;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
   border: 0px;
   &:hover {
-    background-color: darken($color-orange,1%);
+    background-color: darken($color-orange, 3%);
     color: $text-color;
   }
-};
+}
+
+.btn-biohub-hello {
+  color: $text-color-rev;
+  background-color: darken($color-light, 5%);
+  &:hover {
+      background-color: darken($color-light, 10%);
+      color: $text-color-rev
+  }
+}
+
+;
 
 

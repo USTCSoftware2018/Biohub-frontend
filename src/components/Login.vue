@@ -19,7 +19,7 @@
           <ul class="form-error" v-if="errorOccur">
             <li> {{ errorMessage }} </li>
           </ul>
-          <button type="submit" class="btn btn-default btn-biohub" @click.prevent="Login">Sign in</button>
+          <button type="submit" class="btn btn-default btn-biohub" v-on:click.self.prevent="Login">Sign in</button>
         </form>
       </div>
       <div class="col-xs-4"></div>
@@ -28,9 +28,6 @@
 </template>
 <script>
   import axios from 'axios'
-
-  let usernamePat = /^\w{4,15}$/
-  let userPwdPat = /(?=.*\d)(?=.*[a-zA-Z]).{6,20}/
 
   export default {
     name: 'login',
@@ -46,18 +43,14 @@
       Login () {
         console.log(this.username)
         console.log(this.password)
-        var matchResult = this.username.match(usernamePat)
-        if (matchResult === null || !matchResult[0].length === this.username.length) {
+        if (this.username === '') {
           this.errorOccur = true
-          this.errorMessage = 'Username should only contain letters, numbers and underscore, and its length should be between 4 and 15.'
-          console.log('username error')
+          this.errorMessage = 'Username cannot be empty'
           return
         }
-        matchResult = this.password.match(userPwdPat)
-        if (matchResult === null || !matchResult[0].length === this.password.length) {
+        if (this.password === '') {
           this.errorOccur = true
-          this.errorMessage = 'password should at least contain letters and numbers, and its length should be between 6 and 20'
-          console.log('password error')
+          this.errorMessage = 'Password cannot be empty'
           return
         }
         axios.post('/api/users/login/', {

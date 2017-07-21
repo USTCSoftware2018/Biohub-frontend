@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Login from '@/components/Login'
+import Home from '@/components/Home'
+
 Vue.use(Router)
 
 export default new Router({
@@ -9,6 +11,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/dev',
       name: 'Hello',
       component: Hello
     },
