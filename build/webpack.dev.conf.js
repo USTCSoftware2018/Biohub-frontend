@@ -40,6 +40,12 @@ module.exports = merge(baseWebpackConfig, {
     },{
       from: path.resolve(__dirname,'../node_modules/jquery/dist'),
       to: path.resolve(__dirname,'../static/js')
+    },{
+      from: path.resolve(__dirname,'../node_modules/font-awesome/css'),
+      to: path.resolve(__dirname,'../static/css')
+    },{
+      from: path.resolve(__dirname,'../node_modules/font-awesome/fonts'),
+      to: path.resolve(__dirname,'../static/fonts')
     }])
   ]
 })
