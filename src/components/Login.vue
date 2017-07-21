@@ -1,8 +1,8 @@
 <template>
   <div class="container login">
     <div class="row">
-      <div class="col-xs-4"></div>
-      <div class="col-xs-4">
+      <div class="col-xs-3"></div>
+      <div class="col-xs-6">
         <form style="margin-top:50px;" class="biohub-form">
           <div class="form-group">
             <div class="input-group">
@@ -16,13 +16,14 @@
               <input type="password" class="form-control" id="passwordInput" placeholder="Password" v-model="password">
             </div>
           </div>
-          <ul class="form-error" v-if="errorOccur">
-            <li> {{ errorMessage }} </li>
-          </ul>
-          <button type="submit" class="btn btn-default btn-biohub" v-on:click.self.prevent="Login">Sign in</button>
+          <div class="alert alert-danger form-error" v-if="errorOccur">
+            <button type="button" class="close"></button>
+            <strong>Error: </strong> {{ errorMessage }}
+          </div>
+          <button type="submit" class="btn btn-biohub" v-on:click.self.prevent="Login">Sign in</button>
         </form>
       </div>
-      <div class="col-xs-4"></div>
+      <div class="col-xs-3"></div>
     </div>
   </div>
 </template>
@@ -45,12 +46,12 @@
         console.log(this.password)
         if (this.username === '') {
           this.errorOccur = true
-          this.errorMessage = 'Username cannot be empty'
+          this.errorMessage = 'Username can\'t be blank'
           return
         }
         if (this.password === '') {
           this.errorOccur = true
-          this.errorMessage = 'Password cannot be empty'
+          this.errorMessage = 'Password can\'t be blank'
           return
         }
         axios.post('/api/users/login/', {

@@ -1,20 +1,20 @@
 <template>
   <div class="container home">
     <div class="row">
-      <div class="col-xs-4"></div>
-      <div class="col-xs-4" style="padding-left:20px;padding-right:20px;">
+      <div class="col-xs-3"></div>
+      <div class="col-xs-6" style="padding-left:20px;padding-right:20px;">
         <form style="margin-top:50px;" class="biohub-form">
-          <button type="submit" name="join-button" class="btn btn-default btn-biohub"
+          <button type="submit" name="join-button" class="btn btn-biohub"
                   v-on:click.self.prevent="JumpToSignup">
             Join Biohub Now!
           </button>
-          <button type="submit" name="login-button" class="btn btn-default btn-biohub btn-biohub-hello"
+          <button type="submit" name="login-button" class="btn btn-biohub btn-biohub-hello"
                   v-on:click.self.prevent="JumpToLogin">
             Log in
           </button>
         </form>
       </div>
-      <div class="col-xs-4"></div>
+      <div class="col-xs-3"></div>
     </div>
   </div>
 </template>
