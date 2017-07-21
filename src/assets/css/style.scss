@@ -1,4 +1,4 @@
-@import "./colors.scss";
+@import "colors";
 
 body {
   background-color: whitesmoke;
@@ -59,9 +59,9 @@ body {
 
 .btn-biohub-hello {
   color: $text-color-rev;
-  background-color: darken($color-light, 5%);
+  background-color: darken($color-light, 2%);
   &:hover {
-      background-color: darken($color-light, 10%);
+      background-color: darken($color-light, 5%);
       color: $text-color-rev
   }
 }

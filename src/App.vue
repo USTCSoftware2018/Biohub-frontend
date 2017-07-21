@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="center-block" id="app">
-        <img src="./assets/brand.png" width="400">
+        <img src="./assets/img/brand.png" width="400px">
         <router-view></router-view>
       </div>
     </div>
@@ -27,5 +27,5 @@ export default {
 </style>
 
 <style lang="sass">
-  @import './assets/style.scss'
+  @import 'assets/css/style.scss'
 </style>
