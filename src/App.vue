@@ -1,7 +1,11 @@
 <template>
-  <div id="app">
-    <img src="./assets/brand.png" width="500px" >
-    <router-view></router-view>
+  <div class="container">
+    <div class="row">
+      <div class="center-block" id="app">
+        <img src="./assets/brand.png" width="400">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,5 +27,5 @@ export default {
 </style>
 
 <style lang="sass">
-  @import './assets/style.scss';
+  @import './assets/style.scss'
 </style>
