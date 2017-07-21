@@ -84,7 +84,7 @@
         matchResult = this.username.match(usernameReg)
         if (matchResult === null || !matchResult[0].length === this.username.length) {
           this.errorOccur = true
-          this.errorMessage = 'Username should only contains alphanumeric characters, and single underscores, and it\'s length should be between 4 and 15'
+          this.errorMessage = 'Username should only contains alphanumeric characters, and single underscores, and its length should be between 4 and 15'
           console.log('username error')
           return
         }
@@ -96,7 +96,7 @@
         matchResult = this.password.match(userPwdReg)
         if (matchResult === null || !matchResult[0].length === this.password.length) {
           this.errorOccur = true
-          this.errorMessage = 'password should at least contain a number and  a character, and it\'s length should be between 6 and 20'
+          this.errorMessage = 'password should at least contain a number and  a character, and its length should be between 6 and 20'
           console.log('password error')
           return
         }
