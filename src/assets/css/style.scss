@@ -15,7 +15,7 @@ body {
     -moz-box-shadow: none;
     box-shadow: none;
     font-size:16px;
-    height: 40px;
+    height: 42px;
     margin-left: -2px;
     border-color: transparent;
     &:focus {
@@ -42,21 +42,25 @@ body {
   .input-group > .input-group-addon {
     border-right: 0px;
   }
+
+  .form-error {
+    font-size: 16px;
+  }
 }
 
 ;
 
 .btn-biohub {
   background-color: $color-orange;
-  font-size: 16px;
+  font-size: 17px;
   width: 100%;
-  padding: 10px 0px 10px 0px;
+  padding: 12px 0px 12px 0px;
   color: $text-color;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
   border: 0px;
-  &:hover {
+  &:hover, &:focus, &:active {
     background-color: darken($color-orange, 3%);
     color: $text-color;
   }
@@ -65,7 +69,7 @@ body {
 .btn-biohub-hello {
   color: $text-color-rev;
   background-color: darken($color-light, 2%);
-  &:hover {
+  &:hover, &:focus{
       background-color: darken($color-light, 5%);
       color: $text-color-rev
   }

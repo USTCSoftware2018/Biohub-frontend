@@ -22,12 +22,11 @@
               <input type="password" class="form-control" id="passwordInput" placeholder="Password" v-model="password">
             </div>
           </div>
-          <div class="alert alert-danger" role="alert" v-if="errorOccur">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-              aria-hidden="true">&times;</span></button>
+          <div class="alert alert-danger form-error" v-if="errorOccur">
+            <button type="button" class="close"></button>
             <strong>Error: </strong> {{ errorMessage }}
           </div>
-          <button type="submit" class="btn btn-default btn-biohub" v-on:click.self.prevent="SignUp">
+          <button type="submit" class="btn btn-biohub" v-on:click.self.prevent="SignUp">
             Sign up
           </button>
         </form>
