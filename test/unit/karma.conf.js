@@ -15,6 +15,10 @@ module.exports = function (config) {
     frameworks: ['mocha', 'sinon-chai', 'phantomjs-shim'],
     reporters: ['spec', 'coverage'],
     files: ['./index.js'],
+    exclude: [
+      'src/assets/css/bootstrap/*',
+      'src/assets/css/bootstrap/**/*'
+    ],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },
