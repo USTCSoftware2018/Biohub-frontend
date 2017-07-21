@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="center-block" id="app">
-        <img src="./assets/img/brand.png" width="400px">
+        <img src="./assets/img/brand.png" width="530px">
         <router-view></router-view>
       </div>
     </div>

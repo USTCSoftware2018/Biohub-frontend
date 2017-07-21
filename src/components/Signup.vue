@@ -1,8 +1,8 @@
 <template>
   <div class="container signup">
     <div class="row">
-      <div class="col-xs-4"></div>
-      <div class="col-xs-4" style="padding-left:20px;padding-right:20px;">
+      <div class="col-xs-3"></div>
+      <div class="col-xs-6" style="padding-left:20px;padding-right:20px;">
         <form style="margin-top:50px;" class="biohub-form">
           <div class="form-group">
             <div class="input-group">
@@ -22,15 +22,17 @@
               <input type="password" class="form-control" id="passwordInput" placeholder="Password" v-model="password">
             </div>
           </div>
-          <ul class="form-error" v-if="errorOccur">
-            <li> {{ errorMessage }} </li>
-          </ul>
+          <div class="alert alert-danger" role="alert" v-if="errorOccur">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+            <strong>Error: </strong> {{ errorMessage }}
+          </div>
           <button type="submit" class="btn btn-default btn-biohub" v-on:click.self.prevent="SignUp">
             Sign up
           </button>
         </form>
       </div>
-      <div class="col-xs-4"></div>
+      <div class="col-xs-3"></div>
     </div>
   </div>
 </template>
@@ -44,12 +46,13 @@
   let rfcEmailReg = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
 
   export default {
-    name: 'home',
+    name: 'Signup',
     data () {
       return {
         username: '',
         password: '',
         usermail: '',
+        errorOccur: false,
         errorMessage: ''
       }
     },
@@ -62,7 +65,7 @@
 
         if (this.usermail === '') {
           this.errorOccur = true
-          this.errorMessage = 'E-mail Address cannot be empty'
+          this.errorMessage = 'E-mail address can\'t be blank'
           return
         }
 
@@ -75,25 +78,25 @@
 
         if (this.username === '') {
           this.errorOccur = true
-          this.errorMessage = 'Username cannot be empty'
+          this.errorMessage = 'Username can\'t be blank'
           return
         }
         matchResult = this.username.match(usernameReg)
         if (matchResult === null || !matchResult[0].length === this.username.length) {
           this.errorOccur = true
-          this.errorMessage = 'Username should only contains a-z,A-Z,0-9, and _, and it\'s length should be between 4 and 15'
+          this.errorMessage = 'Username should only contains alphanumeric characters, and single underscores, and it\'s length should be between 4 and 15'
           console.log('username error')
           return
         }
         if (this.password === '') {
           this.errorOccur = true
-          this.errorMessage = 'Password cannot be empty'
+          this.errorMessage = 'Password can\'t be empty'
           return
         }
         matchResult = this.password.match(userPwdReg)
         if (matchResult === null || !matchResult[0].length === this.password.length) {
           this.errorOccur = true
-          this.errorMessage = 'password should at least contain numbers and characters, and it\'s length should be between 6 and 20'
+          this.errorMessage = 'password should at least contain a number and  a character, and it\'s length should be between 6 and 20'
           console.log('password error')
           return
         }
