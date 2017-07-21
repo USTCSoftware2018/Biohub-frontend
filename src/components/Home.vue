@@ -1,5 +1,5 @@
 <template>
-  <div class="container home" style="min-width:1200px;">
+  <div class="container home">
     <div class="row">
       <div class="col-xs-4"></div>
       <div class="col-xs-4" style="padding-left:20px;padding-right:20px;">

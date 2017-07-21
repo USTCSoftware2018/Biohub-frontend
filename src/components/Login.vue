@@ -2,7 +2,7 @@
   <div class="container login">
     <div class="row">
       <div class="col-xs-4"></div>
-      <div class="col-xs-4" style="padding-left:20px;padding-right:20px;">
+      <div class="col-xs-4">
         <form style="margin-top:50px;" class="biohub-form">
           <div class="form-group">
             <div class="input-group">

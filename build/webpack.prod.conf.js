@@ -88,19 +88,10 @@ var webpackConfig = merge(baseWebpackConfig, {
       chunks: ['vendor']
     }),
     // copy custom static assets
-    new CopyWebpackPlugin([{
-      from: path.resolve(__dirname,'../node_modules/bootstrap/dist'),
+    new CopyWebpackPlugin({
+      from: path.resolve(__dirname,'../static'),
       to: path.resolve(__dirname,'../dist/static')
-    },{
-      from: path.resolve(__dirname,'../node_modules/jquery/dist'),
-      to: path.resolve(__dirname,'../dist/static/js')
-    },{
-      from: path.resolve(__dirname,'../node_modules/font-awesome/css'),
-      to: path.resolve(__dirname,'../dist/static/css')
-    },{
-      from: path.resolve(__dirname,'../node_modules/font-awesome/fonts'),
-      to: path.resolve(__dirname,'../dist/static/fonts')
-    }])
+    })
   ]
 })
 
