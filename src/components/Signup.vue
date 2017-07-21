@@ -1,38 +1,41 @@
 <template>
-  <div class="container signup">
-    <div class="row">
-      <div class="col-xs-3"></div>
-      <div class="col-xs-6" style="padding-left:20px;padding-right:20px;">
-        <form style="margin-top:50px;" class="biohub-form">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-address-card fa-fw"></i></div>
-              <input type="text" class="form-control" id="emailInput" placeholder="E-mail Address" v-model="usermail">
-            </div>
+  <div>
+    <img src="../assets/img/brand.png" width="530px" style="padding-top: 10em;">
+      <div class="container signup">
+        <div class="row">
+          <div class="col-xs-3"></div>
+          <div class="col-xs-6" style="padding-left:20px;padding-right:20px;">
+            <form style="margin-top:50px;" class="biohub-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-address-card fa-fw"></i></div>
+                  <input type="text" class="form-control" id="emailInput" placeholder="E-mail Address" v-model="usermail">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
+                  <input type="text" class="form-control" id="usernameInput" placeholder="Username" v-model="username">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
+                  <input type="password" class="form-control" id="passwordInput" placeholder="Password" v-model="password">
+                </div>
+              </div>
+              <div class="alert alert-danger form-error" v-if="errorOccur">
+                <button type="button" class="close"></button>
+                <strong>Error: </strong> {{ errorMessage }}
+              </div>
+              <button type="submit" class="btn btn-biohub" v-on:click.self.prevent="SignUp">
+                Sign up
+              </button>
+            </form>
           </div>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
-              <input type="text" class="form-control" id="usernameInput" placeholder="Username" v-model="username">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
-              <input type="password" class="form-control" id="passwordInput" placeholder="Password" v-model="password">
-            </div>
-          </div>
-          <div class="alert alert-danger form-error" v-if="errorOccur">
-            <button type="button" class="close"></button>
-            <strong>Error: </strong> {{ errorMessage }}
-          </div>
-          <button type="submit" class="btn btn-biohub" v-on:click.self.prevent="SignUp">
-            Sign up
-          </button>
-        </form>
+          <div class="col-xs-3"></div>
+        </div>
       </div>
-      <div class="col-xs-3"></div>
-    </div>
   </div>
 </template>
 <script>

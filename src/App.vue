@@ -1,11 +1,7 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="center-block" id="app">
-        <img src="./assets/img/brand.png" width="530px" style="padding-top: 10em;">
-        <router-view></router-view>
-      </div>
-    </div>
+  <div class="center-block" id="app">
+
+    <router-view></router-view>
   </div>
 </template>
 

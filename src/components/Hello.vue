@@ -1,7 +1,10 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>USTCSoftware 2017</h2>
+  <div>
+    <img src="../assets/img/brand.png" width="530px" style="padding-top: 10em;">
+    <div class="hello">
+      <h1>{{ msg }}</h1>
+      <h2>USTCSoftware 2017</h2>
+    </div>
   </div>
 </template>
 

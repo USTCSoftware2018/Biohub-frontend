@@ -1,29 +1,32 @@
 <template>
-  <div class="container login">
-    <div class="row">
-      <div class="col-xs-3"></div>
-      <div class="col-xs-6">
-        <form style="margin-top:50px;" class="biohub-form">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
-              <input type="text" class="form-control" id="usernameInput" placeholder="Username" v-model="username">
+  <div>
+    <img src="../assets/img/brand.png" width="530px" style="padding-top: 10em;">
+    <div class="container login">
+      <div class="row">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6">
+          <form style="margin-top:50px;" class="biohub-form">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
+                <input type="text" class="form-control" id="usernameInput" placeholder="Username" v-model="username">
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
-              <input type="password" class="form-control" id="passwordInput" placeholder="Password" v-model="password">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
+                <input type="password" class="form-control" id="passwordInput" placeholder="Password" v-model="password">
+              </div>
             </div>
-          </div>
-          <div class="alert alert-danger form-error" v-if="errorOccur">
-            <button type="button" class="close"></button>
-            <strong>Error: </strong> {{ errorMessage }}
-          </div>
-          <button type="submit" class="btn btn-biohub" v-on:click.self.prevent="Login">Sign in</button>
-        </form>
+            <div class="alert alert-danger form-error" v-if="errorOccur">
+              <button type="button" class="close"></button>
+              <strong>Error: </strong> {{ errorMessage }}
+            </div>
+            <button type="submit" class="btn btn-biohub" v-on:click.self.prevent="Login">Sign in</button>
+          </form>
+        </div>
+        <div class="col-xs-3"></div>
       </div>
-      <div class="col-xs-3"></div>
     </div>
   </div>
 </template>
