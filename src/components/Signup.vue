@@ -39,7 +39,7 @@
                 <button type="button" class="close"></button>
                 <strong>Error: </strong> {{ errorMessage }}
               </div>
-              <button type="submit" class="btn btn-biohub" v-on:click.self.prevent="SignUp">
+              <button type="submit" class="btn btn-biohub full-width" v-on:click.self.prevent="SignUp">
                 Sign up
               </button>
             </div>
