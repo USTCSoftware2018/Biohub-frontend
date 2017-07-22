@@ -17,12 +17,12 @@
                 <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
                 <input type="password" class="form-control" ref="passwordInput" id="passwordInput" placeholder="Password" v-model="password">
               </div>
-              <div class="alert alert-danger form-error" v-if="errorOccur">
-                <button type="button" class="close"></button>
-                <strong>Error: </strong> {{ errorMessage }}
-              </div>
-              <button type="submit" class="btn btn-biohub" v-on:click.self.prevent="Login">Sign in</button>
             </div>
+            <div class="alert alert-danger form-error" v-if="errorOccur">
+              <button type="button" class="close"></button>
+              <strong>Error: </strong> {{ errorMessage }}
+            </div>
+            <button type="submit" class="btn btn-biohub" v-on:click.self.prevent="Login">Sign in</button>
           </form>
         </div>
         <div class="col-xs-3"></div>
