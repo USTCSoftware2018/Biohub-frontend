@@ -6,8 +6,12 @@
   &:focus {
     border-width: 1px;
     border-color: $color-orange;
-    -webkit-box-shadow: 0 0 5px lighten($color-orange, 20%);
-    -moz-box-shadow: 0 0 5px lighten($color-orange, 20%);
-    box-shadow: 0 0 5px lighten($color-orange, 20%);
   }
+}
+@mixin input-transition {
+  -webkit-transition: border-color ease-in-out 0.25s;
+  -moz-transition: border-color ease-in-out 0.25s;
+  -ms-transition: border-color ease-in-out 0.25s;
+  -o-transition: border-color ease-in-out 0.25s;
+  transition: border-color ease-in-out 0.25s;
 }

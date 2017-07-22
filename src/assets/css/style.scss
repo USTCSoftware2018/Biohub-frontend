@@ -17,6 +17,7 @@ body {
     margin-left: -2px;
     @include input-biohub;
     border-left-color: transparent;
+    @include input-transition;
   }
 
   .form-control, .input-group > .input-group-addon {
@@ -66,6 +67,7 @@ body {
 }
 
 .navbar-biohub {
+  margin-bottom:0px;
   border-radius: 0px;
   background-color: $color-blue-1;
   .nav a {
@@ -79,6 +81,14 @@ body {
   }
   .navbar-form input {
     @include input-biohub;
+    @include input-transition;
+    border-radius: 20px;
+    background-color: lighten($color-blue-1,5%);
+    border-color:lighten($color-blue-1,20%);
+    color:darken(white,11%);
+    &::placeholder {
+      color:darken(white,20%);
+    }
   }
   .navbar-form .btn-biohub-navbar {
     background-color: $color-orange;
@@ -90,4 +100,8 @@ body {
   }
 }
 
-// no responsive
+
+#subcontent {
+  height:200px;
+  background: lighten($color-blue-1,0%);
+}

@@ -1,5 +1,8 @@
 <template>
-  <top-navbar></top-navbar>
+  <div>
+    <top-navbar></top-navbar>
+    <div id="subcontent"></div>
+  </div>
 </template>
 
 <script>
