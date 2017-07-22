@@ -7,19 +7,19 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon"><i class="fa fa-address-card fa-fw"></i></div>
-              <input type="text" class="form-control" id="emailInput" placeholder="E-mail Address" v-model="usermail">
+              <input type="text" class="form-control" ref="emailInput" id="emailInput" placeholder="E-mail Address" v-model="usermail">
             </div>
           </div>
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
-              <input type="text" class="form-control" id="usernameInput" placeholder="Username" v-model="username">
+              <input type="text" class="form-control" ref="usernameInput" id="usernameInput" placeholder="Username" v-model="username">
             </div>
           </div>
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
-              <input type="password" class="form-control" id="passwordInput" placeholder="Password" v-model="password">
+              <input type="password" class="form-control" ref="passwordInput" id="passwordInput" placeholder="Password" v-model="password">
             </div>
           </div>
           <div class="alert alert-danger form-error" v-if="errorOccur">
@@ -46,6 +46,9 @@
 
   export default {
     name: 'Signup',
+    mounted () {
+      this.$refs.emailInput.focus()
+    },
     data () {
       return {
         username: '',
@@ -65,6 +68,7 @@
         if (this.usermail === '') {
           this.errorOccur = true
           this.errorMessage = 'E-mail address can\'t be blank'
+          this.$refs.emailInput.focus()
           return
         }
 
@@ -72,30 +76,35 @@
         if (matchResult === null || !matchResult[0].length === this.usermail.length) {
           this.errorOccur = true
           this.errorMessage = 'Invalid mail address!'
+          this.$refs.emailInput.focus()
           return
         }
 
         if (this.username === '') {
           this.errorOccur = true
           this.errorMessage = 'Username can\'t be blank'
+          this.$refs.usernameInput.focus()
           return
         }
         matchResult = this.username.match(usernameReg)
         if (matchResult === null || !matchResult[0].length === this.username.length) {
           this.errorOccur = true
           this.errorMessage = 'Username should only contains alphanumeric characters, and single underscores, and its length should be between 4 and 15'
+          this.$refs.usernameInput.focus()
           console.log('username error')
           return
         }
         if (this.password === '') {
           this.errorOccur = true
           this.errorMessage = 'Password can\'t be empty'
+          this.$refs.passwordInput.focus()
           return
         }
         matchResult = this.password.match(userPwdReg)
         if (matchResult === null || !matchResult[0].length === this.password.length) {
           this.errorOccur = true
           this.errorMessage = 'password should at least contain a number and  a character, and its length should be between 6 and 20'
+          this.$refs.passwordInput.focus()
           console.log('password error')
           return
         }
