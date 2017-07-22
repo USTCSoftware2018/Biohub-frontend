@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-reverse  navbar-biohub">
+  <nav class="navbar navbar-biohub">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -13,7 +13,7 @@
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search">
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" class="btn btn-biohub-navbar">Submit</button>
         </form>
       </div>
   </nav>

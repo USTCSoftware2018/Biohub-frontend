@@ -1,0 +1,13 @@
+@mixin input-biohub {
+  border-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  &:focus {
+    border-width: 1px;
+    border-color: $color-orange;
+    -webkit-box-shadow: 0 0 5px lighten($color-orange, 20%);
+    -moz-box-shadow: 0 0 5px lighten($color-orange, 20%);
+    box-shadow: 0 0 5px lighten($color-orange, 20%);
+  }
+}

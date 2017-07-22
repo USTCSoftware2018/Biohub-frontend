@@ -1,5 +1,6 @@
 @import "bootstrap/bootstrap";
 @import "colors";
+@import "mixins";
 
 
 body {
@@ -11,21 +12,10 @@ body {
   padding: 20px;
 
   .form-control {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
     font-size:16px;
     height: 42px;
     margin-left: -2px;
-    border-color: transparent;
-    &:focus {
-      border-width: 1px;
-      border-color: lighten($color-orange, 20%);
-      -webkit-box-shadow: 0 0 5px lighten($color-orange, 20%);
-      -moz-box-shadow: 0 0 5px lighten($color-orange, 20%);
-      box-shadow: 0 0 5px lighten($color-orange, 20%);
-
-    }
+    @include input-biohub;
     border-left-color: transparent;
   }
 
@@ -77,6 +67,27 @@ body {
 
 .navbar-biohub {
   border-radius: 0px;
+  background-color: $color-blue-1;
+  .nav a {
+    color: $color-light;
+    &:hover {
+      background-color: darken($color-blue-1,4%)!important;
+    }
+  }
+  .navbar-header a:hover {
+    color: $color-light;
+  }
+  .navbar-form input {
+    @include input-biohub;
+  }
+  .navbar-form .btn-biohub-navbar {
+    background-color: $color-orange;
+    color: $text-color;
+    &:hover, &:focus {
+      background-color: darken($color-orange,3%);
+      color: $text-color;
+    }
+  }
 }
 
 // no responsive
