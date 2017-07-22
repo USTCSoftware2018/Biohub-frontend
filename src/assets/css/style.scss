@@ -7,6 +7,12 @@ body {
   background-color: whitesmoke;
   min-width: 1020px;
 }
+
+.less-padding {
+  padding:10px 5px;
+}
+
+
 .biohub-form {
   background-color: rgba(0, 0, 0, 0);
   padding: 20px;
@@ -60,11 +66,25 @@ body {
   background-color:transparent;
   padding: 1rem 2rem;
   border-radius:4rem;
-  border:1px solid lighten($color-blue-1,10%);
+  border:1px solid $color-blue-3;
   margin-right:2rem;
   margin-left:2rem;
   &:hover,&:focus{
     background-color:darken($color-blue-1,4%);
+  }
+}
+
+.btn-biohub-community-welcome-notice {
+  color: $color-orange;
+  background-color:transparent;
+  padding: 1rem 2rem;
+  border-radius:4rem;
+  border:1px solid lighten($color-orange,5%);
+  margin-right:2rem;
+  margin-left:2rem;
+  &:hover, &:focus {
+    background-color:darken($color-blue-1,4%);
+    color: $color-orange;
   }
 }
 
@@ -99,7 +119,7 @@ body {
     @include input-transition;
     border-radius: 20px;
     background-color: lighten($color-blue-1,5%);
-    border-color:lighten($color-blue-1,20%);
+    border-color:$color-blue-3;
     color:darken(white,11%);
     &::placeholder {
       color:darken(white,20%);
@@ -116,11 +136,15 @@ body {
 }
 
 
-#subcontent {
-  padding: 20px 15px 20px 15px;
+.community-start {
+  padding: 60px 15px 80px 15px;
   background: lighten($color-blue-1,0%);
+  margin-bottom: 50px;
+  /*-webkit-box-shadow: 0px 1px 7px darken($color-blue-1,10%);
+  -moz-box-shadow: 0px 1px 7px darken($color-blue-1,10%);
+  box-shadow: 0px 1px 7px darken($color-blue-1,10%);*/
 }
-#subcontent-description p {
+.community-description p {
 
   padding-top:1rem;
   width:40%;
@@ -128,9 +152,10 @@ body {
   margin-left: auto;
   margin-right: auto;
   color: $text-color;
+  margin-bottom: 2rem;
 
 }
-#subcontent-description h1 {
+.community-description h1 {
   margin-top: 0px;
   padding-top: 1rem;
   font-size: 10em;
