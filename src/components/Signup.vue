@@ -9,28 +9,39 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-address-card fa-fw"></i></div>
-                <input type="text" class="form-control" ref="emailInput" id="emailInput" placeholder="E-mail Address" v-model="usermail">
+                <input type="text" class="form-control" ref="emailInput" id="emailInput" placeholder="E-mail Address"
+                       list="mail_list" v-model="usermail">
+                <datalist id="mail_list" v-model="mails">
+                  <dynamic-options v-for="mail in mails"
+                                   v-if="mail.text.match(usermail.split('@')[1]) !== null"
+                                   v-bind:text="usermail.split('@')[0] + mail.text"
+                                   v-bind:category="mail.type">
+                  </dynamic-options>
+                </datalist>
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
-                <input type="text" class="form-control" ref="usernameInput" id="usernameInput" placeholder="Username" v-model="username">
+                <input type="text" class="form-control" ref="usernameInput" id="usernameInput" placeholder="Username"
+                       v-model="username">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
-                <input type="password" class="form-control" ref="passwordInput" id="passwordInput" placeholder="Password" v-model="password">
+                <input type="password" class="form-control" ref="passwordInput" id="passwordInput"
+                       placeholder="Password"
+                       v-model="password">
               </div>
+              <div class="alert alert-danger form-error" v-if="errorOccur">
+                <button type="button" class="close"></button>
+                <strong>Error: </strong> {{ errorMessage }}
+              </div>
+              <button type="submit" class="btn btn-biohub" v-on:click.self.prevent="SignUp">
+                Sign up
+              </button>
             </div>
-            <div class="alert alert-danger form-error" v-if="errorOccur">
-              <button type="button" class="close"></button>
-              <strong>Error: </strong> {{ errorMessage }}
-            </div>
-            <button type="submit" class="btn btn-biohub" v-on:click.self.prevent="SignUp">
-              Sign up
-            </button>
           </form>
         </div>
       </div>
@@ -39,6 +50,7 @@
 </template>
 <script>
   import axios from 'axios'
+  import DynamicOptions from './utils/DynamicOptions.vue'
 
   let usernameReg = /^\w{4,15}$/
   let userPwdReg = /(?=.*\d)(?=.*[a-zA-Z]).{6,20}/
@@ -48,11 +60,37 @@
 
   export default {
     name: 'Signup',
+    components: {
+      DynamicOptions
+    },
     mounted () {
       this.$refs.emailInput.focus()
     },
     data () {
       return {
+        mails: [
+          {
+            text: '@gmail.com',
+            type: 'gmail'
+          }, {
+            text: '@outlook.com',
+            type: 'outlook'
+          }, {
+            text: '@hotmail.com',
+            type: 'hotmail'
+          }, {
+            text: '@yahoo.com',
+            type: 'yahoo'
+          }, {
+            text: '@msn.com',
+            type: 'msn'
+          }, {
+            text: '@163.com',
+            type: 'netease'
+          }, {
+            text: '@mail.ustc.edu.cn',
+            type: 'USTC'
+          }],
         username: '',
         password: '',
         usermail: '',
