@@ -12,7 +12,8 @@
                 <input type="text" class="form-control" ref="emailInput" id="emailInput" placeholder="E-mail Address"
                        list="mail_list" v-model="usermail">
                 <datalist id="mail_list" v-model="mails">
-                  <dynamic-options v-for="mail in mails"
+                  <dynamic-options v-for="(mail, index) in mails"
+                                   :key="index"
                                    v-if="mail.text.match(usermail.split('@')[1]) !== null"
                                    v-bind:text="usermail.split('@')[0] + mail.text"
                                    v-bind:category="mail.type">
