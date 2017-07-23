@@ -49,43 +49,42 @@ body {
   background-color: $color-orange;
   font-size: 17px;
   padding: 12px 6px;
-  color: $text-color;
+  color: $color-blue-1;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
   border: 0px;
   &:hover, &:focus, &:active {
     background-color: darken($color-orange, 3%);
-    color: $text-color;
+    color: $color-blue-1;
   }
 }
 
 .btn-biohub-community-welcome-default {
-  background-color: transparent;
+  background-color: white !important;
   padding: 1rem 2rem;
   border-radius: 4rem;
-  border: 2px solid $color-blue-3;
+  border: none;
   margin-right: 2rem;
   margin-left: 2rem;
-  &:hover, &:focus {
-    background-color: darken($color-blue-1, 4%);
-    outline: none;
-  }
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .btn-biohub-community-welcome-notice {
-  color: $color-orange;
-  background-color: transparent;
+  color: white !important;
+  background-color: $color-blue-2 !important;
   padding: 1rem 2rem;
   border-radius: 4rem;
-  border: 2px solid lighten($color-orange, 5%);
+  border: none;
   margin-right: 2rem;
   margin-left: 2rem;
-  &:hover, &:focus {
-    background-color: darken($color-blue-1, 4%);
-    outline: none;
-    color: $color-orange;
-  }
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .full-width {
@@ -106,24 +105,18 @@ body {
   border-radius: 0px;
   background-color: $color-blue-1;
   .nav a {
-    color: lighten($color-blue-2, 9%);
+    color: $color-light;
     &:hover {
       background-color: darken($color-blue-1, 4%) !important;
     }
     &:focus {
-      background-color: $color-blue-1;
+      background-color: $color-light;
       color: lighten($color-blue-2, 9%);
     }
   }
   .navbar-header {
     .navbar-brand {
-      color: lighten($color-blue-2, 9%);
-      &:hover, &:active {
-        color: $color-light;
-      }
-      &:focus {
-        color: lighten($color-blue-2, 9%);
-      }
+      color: $color-light !important;
     }
   }
 ;
