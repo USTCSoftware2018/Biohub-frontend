@@ -11,7 +11,7 @@
                 <div class="input-group-addon"><i class="fa fa-address-card fa-fw"></i></div>
                 <input type="text" class="form-control" ref="emailInput" id="emailInput" placeholder="E-mail Address"
                        list="mail_list" v-model="usermail">
-                <datalist id="mail_list" v-model="mails">
+                <datalist id="mail_list" v-model="mails" style="overflow-y: auto !important;">
                   <dynamic-options v-for="(mail, index) in mails"
                                    :key="index"
                                    v-if="mail.text.match(usermail.split('@')[1]) !== null"
@@ -35,6 +35,8 @@
                        placeholder="Password"
                        v-model="password">
               </div>
+            </div>
+            <div class="form-group">
               <div class="alert alert-danger form-error" v-if="errorOccur">
                 <button type="button" class="close"></button>
                 <strong>Error: </strong> {{ errorMessage }}
