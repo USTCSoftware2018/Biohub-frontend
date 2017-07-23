@@ -6,6 +6,13 @@
 master: ![master status](https://api.travis-ci.org/USTC-Software2017-frontend/Biohub-frontend.svg?branch=master)
 dev: ![dev status](https://api.travis-ci.org/USTC-Software2017-frontend/Biohub-frontend.svg?branch=dev)
 
+## 分支说明
+|分支名称|分支作用|
+|:-:|:-:|
+|master|稳定分支，只有在某个特定完成度或者版本更迭才推送上去|
+|dev|开发分支，开发主要在这个分支进行|
+|dev-2|不确定的，还需要进一步讨论的操作暂时存放在这个分支|
+
 ## Build Setup
 
 ``` bash

@@ -2,23 +2,21 @@
 @import "colors";
 @import "mixins";
 
-
 body {
   background-color: whitesmoke;
   min-width: 1020px;
 }
 
 .less-padding {
-  padding:10px 5px;
+  padding: 10px 5px;
 }
-
 
 .biohub-form {
   background-color: rgba(0, 0, 0, 0);
   padding: 20px;
 
   .form-control {
-    font-size:16px;
+    font-size: 16px;
     height: 42px;
     margin-left: -2px;
     @include input-biohub;
@@ -33,7 +31,7 @@ body {
     -moz-border-radius-bottomleft: 3px;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
-    background-color: white;
+    background-color: $color-light;
     border-color: transparent;
   }
   .input-group > .input-group-addon {
@@ -51,103 +49,114 @@ body {
   background-color: $color-orange;
   font-size: 17px;
   padding: 12px 6px;
-  color: $text-color;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
   border: 0px;
-  &:hover, &:focus, &:active {
-    background-color: darken($color-orange, 3%);
-    color: $text-color;
-  }
+
 }
 
 .btn-biohub-community-welcome-default {
-  background-color:transparent;
+  color: $color-blue-1 !important;
+  background-color: white !important;
   padding: 1rem 2rem;
-  border-radius:4rem;
-  border:1px solid $color-blue-3;
-  margin-right:2rem;
-  margin-left:2rem;
-  &:hover,&:focus,&:active{
-    background-color:darken($color-blue-1,4%);
-  }
+  border-radius: 4rem;
+  border: none;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .btn-biohub-community-welcome-notice {
-  color: $color-orange;
-  background-color:transparent;
+  color: white !important;
+  background-color: $color-blue-2 !important;
   padding: 1rem 2rem;
-  border-radius:4rem;
-  border:1px solid lighten($color-orange,5%);
-  margin-right:2rem;
-  margin-left:2rem;
-  &:hover, &:focus,&:active {
-    background-color:darken($color-blue-1,4%);
-    color: $color-orange;
-  }
+  border-radius: 4rem;
+  border: none;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .full-width {
-  width:100%;
+  width: 100%;
 }
 
-.btn-biohub-hello {
-  color: $text-color-rev;
+.btn-biohub-light {
   background-color: darken($color-light, 2%);
-  &:hover, &:focus{
-      background-color: darken($color-light, 5%);
-      color: $text-color-rev
+  &:hover, &:focus {
+    background-color: darken($color-light, 5%);
+    color: $text-color-rev
+  }
+}
+
+.btn-biohub-orange {
+  color: $color-light !important;
+  &:hover, &:focus, &:active {
+    background-color: darken($color-orange, 3%);
+    color: $color-blue-1;
   }
 }
 
 .navbar-biohub {
-  margin-bottom:0px;
+  margin-bottom: 0px;
   border-radius: 0px;
   background-color: $color-blue-1;
   .nav a {
     color: $color-light;
     &:hover {
-      background-color: darken($color-blue-1,4%)!important;
+      background-color: darken($color-blue-1, 4%) !important;
+    }
+    &:focus {
+      color: $color-light;
+      background-color: $color-blue-1;
     }
   }
-  .navbar-header a:hover {
-    color: $color-light;
+  .navbar-header {
+    .navbar-brand {
+      color: $color-light !important;
+    }
   }
+;
   .navbar-form input {
     @include input-biohub;
     @include input-transition;
     border-radius: 20px;
-    background-color: lighten($color-blue-1,5%);
-    border-color:$color-blue-3;
-    color:darken(white,11%);
+    background-color: lighten($color-blue-1, 5%);
+    color: darken(white, 11%);
     &::placeholder {
-      color:darken(white,20%);
+      color: darken(white, 20%);
     }
   }
   .navbar-form .btn-biohub-navbar {
     background-color: $color-orange;
     color: $text-color;
     &:hover, &:focus {
-      background-color: darken($color-orange,3%);
+      background-color: darken($color-orange, 3%);
       color: $text-color;
     }
   }
 }
 
-
 .community-start {
-  padding: 60px 15px 80px 15px;
-  background: lighten($color-blue-1,0%);
+  padding: 50px 15px 50px 15px;
+  background: lighten($color-blue-1, 0%);
   margin-bottom: 50px;
   /*-webkit-box-shadow: 0px 1px 7px darken($color-blue-1,10%);
   -moz-box-shadow: 0px 1px 7px darken($color-blue-1,10%);
   box-shadow: 0px 1px 7px darken($color-blue-1,10%);*/
 }
+
 .community-description p {
 
-  padding-top:1rem;
-  width:40%;
+  padding-top: 1rem;
+  width: 40%;
   min-width: 400px;
   margin-left: auto;
   margin-right: auto;
@@ -155,6 +164,7 @@ body {
   margin-bottom: 2rem;
 
 }
+
 .community-description h1 {
   margin-top: 0px;
   padding-top: 1rem;
