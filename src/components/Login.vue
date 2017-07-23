@@ -22,7 +22,7 @@
               <button type="button" class="close"></button>
               <strong>Error: </strong> {{ errorMessage }}
             </div>
-            <button type="submit" class="btn btn-biohub full-width" v-on:click.self.prevent="Login">Sign in</button>
+            <button type="submit" class="btn btn-biohub btn-biohub-orange full-width" v-on:click.self.prevent="Login">Sign in</button>
           </form>
         </div>
         <div class="col-xs-3"></div>
