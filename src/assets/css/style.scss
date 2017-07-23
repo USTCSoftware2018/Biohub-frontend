@@ -53,14 +53,11 @@ body {
   -moz-border-radius: 0px;
   border-radius: 0px;
   border: 0px;
-  &:hover, &:focus, &:active {
-    background-color: darken($color-orange, 3%);
-    color: $color-blue-1;
-  }
+
 }
 
 .btn-biohub-community-welcome-default {
-  color: $color-blue-1;
+  color: $color-blue-1 !important;
   background-color: white !important;
   padding: 1rem 2rem;
   border-radius: 4rem;
@@ -99,8 +96,12 @@ body {
   }
 }
 
-.btn-biohub-orange{
+.btn-biohub-orange {
   color: $color-light !important;
+  &:hover, &:focus, &:active {
+    background-color: darken($color-orange, 3%);
+    color: $color-blue-1;
+  }
 }
 
 .navbar-biohub {
@@ -113,8 +114,8 @@ body {
       background-color: darken($color-blue-1, 4%) !important;
     }
     &:focus {
-      background-color: $color-light;
-      color: lighten($color-blue-2, 9%);
+      color: $color-light;
+      background-color: $color-blue-1;
     }
   }
   .navbar-header {
