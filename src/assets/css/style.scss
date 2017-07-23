@@ -49,7 +49,6 @@ body {
   background-color: $color-orange;
   font-size: 17px;
   padding: 12px 6px;
-  color: $color-blue-1;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
@@ -61,6 +60,7 @@ body {
 }
 
 .btn-biohub-community-welcome-default {
+  color: $color-blue-1;
   background-color: white !important;
   padding: 1rem 2rem;
   border-radius: 4rem;
@@ -91,13 +91,16 @@ body {
   width: 100%;
 }
 
-.btn-biohub-hello {
-  color: $text-color-rev;
+.btn-biohub-light {
   background-color: darken($color-light, 2%);
   &:hover, &:focus {
     background-color: darken($color-light, 5%);
     color: $text-color-rev
   }
+}
+
+.btn-biohub-orange{
+  color: $color-light !important;
 }
 
 .navbar-biohub {
@@ -125,7 +128,6 @@ body {
     @include input-transition;
     border-radius: 20px;
     background-color: lighten($color-blue-1, 5%);
-    border-color: $color-blue-3;
     color: darken(white, 11%);
     &::placeholder {
       color: darken(white, 20%);
