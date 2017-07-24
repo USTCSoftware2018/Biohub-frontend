@@ -40,6 +40,11 @@ export default new Router({
       path: '/community/:author/:name',
       name: 'Repo',
       component: Repo
+    },
+    {
+      path: '/community/:user',
+      name: 'Profile',
+      component: Profile
     }
   ]
 })
