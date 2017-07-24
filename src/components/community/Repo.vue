@@ -7,6 +7,9 @@
   export default {
     components: {
       topNavbar
+    },
+    created () {
+      console.log(this.$route.params)
     }
   }
 </script>

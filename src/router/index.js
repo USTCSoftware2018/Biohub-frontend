@@ -5,7 +5,7 @@ import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Signup from '@/components/Signup'
 import communityHome from '@/components/community/Home'
-import Repo from '@/components/community/Repo.vue'
+import Repo from '@/components/community/Repo'
 Vue.use(Router)
 
 export default new Router({
@@ -39,7 +39,7 @@ export default new Router({
     {
       path: '/community/:author/:name',
       name: 'Repo',
-      components: Repo
+      component: Repo
     }
   ]
 })
