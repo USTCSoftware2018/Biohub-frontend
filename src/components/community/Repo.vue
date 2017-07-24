@@ -1,6 +1,5 @@
 <template>
   <div>
-    <top-navbar></top-navbar>
     <div class="row">
       <div class="container">
         <div class="col-md-9">
@@ -30,11 +29,7 @@
 </template>
 
 <script>
-  import topNavbar from '../topNavbar.vue'
   export default {
-    components: {
-      topNavbar
-    },
     created () {
       console.log(this.$route.params)
     }

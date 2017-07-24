@@ -1,14 +1,9 @@
 <template>
-  <div>
-    <top-navbar></top-navbar>
-  </div>
+  <p> {{ $route.params.author }} </p>
 </template>
 
 <script>
-  import TopNavbar from '../topNavbar.vue'
   export default {
-    components: {
-      TopNavbar
-    }
+
   }
 </script>

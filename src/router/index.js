@@ -6,6 +6,8 @@ import Home from '@/components/Home'
 import Signup from '@/components/Signup'
 import communityHome from '@/components/community/Home'
 import Repo from '@/components/community/Repo'
+import User from '@/components/community/User'
+import Profile from '@/components/community/Profile'
 Vue.use(Router)
 
 export default new Router({
@@ -36,15 +38,26 @@ export default new Router({
       name: 'Signup',
       component: Signup
     },
+    // {
+    //  path: '/community/:author/:name',
+    //  name: 'Repo',
+    //  component: Repo
+    // },
     {
-      path: '/community/:author/:name',
-      name: 'Repo',
-      component: Repo
-    },
-    {
-      path: '/community/:user',
-      name: 'Profile',
-      component: Profile
+      path: '/community/:author',
+      component: User,
+      children: [
+        {
+          path: '',
+          name: 'Profile',
+          component: Profile
+        },
+        {
+          path: ':repo',
+          name: 'Repo',
+          component: Repo
+        }
+      ]
     }
   ]
 })
