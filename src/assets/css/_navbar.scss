@@ -1,6 +1,7 @@
 .navbar-biohub {
   margin-bottom: 0px;
   border-radius: 0px;
+  border: none;
   background-color: darken($color-blue-1,2%);
   .nav a {
     border-bottom: 2px solid transparent;
@@ -8,11 +9,11 @@
     color: $color-light;
     &:hover {
       border-bottom: 2px solid $color-light;
-      background-color: $color-blue-1;
+      background-color: darken($color-blue-1,2%);
     }
     &:focus {
       color: $color-light;
-      background-color: $color-blue-1;
+      background-color: darken($color-blue-1,2%);
     }
   }
   .navbar-header {
