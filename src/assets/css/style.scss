@@ -65,9 +65,7 @@ body {
   margin-right: 2rem;
   margin-left: 2rem;
   outline: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
+  @include no-box-shadow;
 }
 
 .btn-biohub-community-welcome-notice {
@@ -79,9 +77,7 @@ body {
   margin-right: 2rem;
   margin-left: 2rem;
   outline: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
+  @include no-box-shadow;
 }
 
 .full-width {
@@ -109,9 +105,11 @@ body {
   border-radius: 0px;
   background-color: $color-blue-1;
   .nav a {
+    border-bottom: 1px solid transparent;
     color: $color-light;
     &:hover {
-      background-color: darken($color-blue-1, 4%) !important;
+      border-bottom: 1px solid $color-light;
+      background-color: $color-blue-1;
     }
     &:focus {
       color: $color-light;
