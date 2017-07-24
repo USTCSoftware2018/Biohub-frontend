@@ -1,0 +1,22 @@
+.community-start {
+  padding: 50px 15px 50px 15px;
+  background: lighten($color-blue-1, 0%);
+  margin-bottom: 50px;
+}
+
+.community-description p {
+
+  padding-top: 1rem;
+  width: 40%;
+  min-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  color: $text-color;
+  margin-bottom: 2rem;
+}
+
+.community-description h1 {
+  margin-top: 0px;
+  padding-top: 1rem;
+  font-size: 10em;
+}

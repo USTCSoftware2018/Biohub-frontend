@@ -14,10 +14,10 @@
   box-shadow: none;
 }
 
-@mixin input-transition {
-  -webkit-transition: border-color ease-in-out 0.25s;
-  -moz-transition: border-color ease-in-out 0.25s;
-  -ms-transition: border-color ease-in-out 0.25s;
-  -o-transition: border-color ease-in-out 0.25s;
-  transition: border-color ease-in-out 0.25s;
+@mixin transition($attribute) {
+  -webkit-transition: $attribute ease-in-out 0.25s;
+  -moz-transition: $attribute ease-in-out 0.25s;
+  -ms-transition: $attribute ease-in-out 0.25s;
+  -o-transition: $attribute ease-in-out 0.25s;
+  transition: $attribute ease-in-out 0.25s;
 }

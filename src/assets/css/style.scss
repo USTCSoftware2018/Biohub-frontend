@@ -2,6 +2,10 @@
 @import "colors";
 @import "mixins";
 
+@import "navbar";
+@import "community";
+@import "form";
+
 body {
   background-color: whitesmoke;
   min-width: 1020px;
@@ -11,160 +15,13 @@ body {
   padding: 10px 5px;
 }
 
-.biohub-form {
-  background-color: rgba(0, 0, 0, 0);
-  padding: 20px;
 
-  .form-control {
-    font-size: 16px;
-    height: 42px;
-    margin-left: -2px;
-    @include input-biohub;
-    border-left-color: transparent;
-    @include input-transition;
-  }
-
-  .form-control, .input-group > .input-group-addon {
-    -webkit-border-top-left-radius: 3px;
-    -moz-border-radius-topleft: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    -moz-border-radius-bottomleft: 3px;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    background-color: $input-color;
-    border-color: transparent;
-  }
-  .input-group > .input-group-addon {
-    border-right: 0px;
-  }
-
-  .form-error {
-    font-size: 16px;
-  }
-}
-
-;
-
-.btn-biohub {
-  background-color: $color-orange;
-  font-size: 17px;
-  padding: 12px 6px;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
-  border: 0px;
-
-}
-
-.btn-biohub-community-welcome-default {
-  color: $color-blue-1 !important;
-  background-color: white !important;
-  padding: 1rem 2rem;
-  border-radius: 4rem;
-  border: none;
-  margin-right: 2rem;
-  margin-left: 2rem;
-  outline: none !important;
-  @include no-box-shadow;
-}
-
-.btn-biohub-community-welcome-notice {
-  color: white !important;
-  background-color: $color-blue-2 !important;
-  padding: 1rem 2rem;
-  border-radius: 4rem;
-  border: none;
-  margin-right: 2rem;
-  margin-left: 2rem;
-  outline: none !important;
-  @include no-box-shadow;
-}
 
 .full-width {
   width: 100%;
 }
 
-.btn-biohub-light {
-  background-color: darken($color-light, 2%);
-  &:hover, &:focus {
-    background-color: darken($color-light, 5%);
-    color: $text-color-rev
-  }
-}
 
-.btn-biohub-orange {
-  color: $color-light !important;
-  &:hover, &:focus, &:active {
-    background-color: darken($color-orange, 3%);
-    color: $color-blue-1;
-  }
-}
 
-.navbar-biohub {
-  margin-bottom: 0px;
-  border-radius: 0px;
-  background-color: $color-blue-1;
-  .nav a {
-    border-bottom: 1px solid transparent;
-    color: $color-light;
-    &:hover {
-      border-bottom: 1px solid $color-light;
-      background-color: $color-blue-1;
-    }
-    &:focus {
-      color: $color-light;
-      background-color: $color-blue-1;
-    }
-  }
-  .navbar-header {
-    .navbar-brand {
-      color: $color-light !important;
-    }
-  }
-;
-  .navbar-form input {
-    @include input-biohub;
-    @include input-transition;
-    border-radius: 20px;
-    background-color: lighten($color-blue-1, 5%);
-    color: darken(white, 11%);
-    &::placeholder {
-      color: darken(white, 20%);
-    }
-  }
-  .navbar-form .btn-biohub-navbar {
-    background-color: $color-orange;
-    color: $text-color;
-    &:hover, &:focus {
-      background-color: darken($color-orange, 3%);
-      color: $text-color;
-    }
-  }
-}
 
-.community-start {
-  padding: 50px 15px 50px 15px;
-  background: lighten($color-blue-1, 0%);
-  margin-bottom: 50px;
-  /*-webkit-box-shadow: 0px 1px 7px darken($color-blue-1,10%);
-  -moz-box-shadow: 0px 1px 7px darken($color-blue-1,10%);
-  box-shadow: 0px 1px 7px darken($color-blue-1,10%);*/
-}
 
-.community-description p {
-
-  padding-top: 1rem;
-  width: 40%;
-  min-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  color: $text-color;
-  margin-bottom: 2rem;
-
-}
-
-.community-description h1 {
-  margin-top: 0px;
-  padding-top: 1rem;
-  font-size: 10em;
-}

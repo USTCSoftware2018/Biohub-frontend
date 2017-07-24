@@ -1,0 +1,42 @@
+.navbar-biohub {
+  margin-bottom: 0px;
+  border-radius: 0px;
+  background-color: $color-blue-1;
+  .nav a {
+    border-bottom: 2px solid transparent;
+    @include transition(border-color);
+    color: $color-light;
+    &:hover {
+      border-bottom: 2px solid $color-light;
+      background-color: $color-blue-1;
+    }
+    &:focus {
+      color: $color-light;
+      background-color: $color-blue-1;
+    }
+  }
+  .navbar-header {
+    .navbar-brand {
+      color: $color-light !important;
+    }
+  }
+;
+  .navbar-form input {
+    @include input-biohub;
+    @include transition(border-color);
+    border-radius: 20px;
+    background-color: lighten($color-blue-1, 5%);
+    color: darken(white, 11%);
+    &::placeholder {
+      color: darken(white, 20%);
+    }
+  }
+  .navbar-form .btn-biohub-navbar {
+    background-color: $color-orange;
+    color: $text-color;
+    &:hover, &:focus {
+      background-color: darken($color-orange, 3%);
+      color: $text-color;
+    }
+  }
+}
