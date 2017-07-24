@@ -1,10 +1,14 @@
 @import "bootstrap/bootstrap";
-@import "colors";
+@import "variables";
 @import "mixins";
 
 @import "navbar";
 @import "community";
 @import "form";
+
+html{
+  overflow-x: hidden;
+}
 
 body {
   background-color: whitesmoke;
@@ -14,8 +18,6 @@ body {
 .less-padding {
   padding: 10px 5px;
 }
-
-
 
 .full-width {
   width: 100%;

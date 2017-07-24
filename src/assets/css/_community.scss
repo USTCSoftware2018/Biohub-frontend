@@ -1,6 +1,6 @@
 .community-start {
   padding: 50px 15px 50px 15px;
-  background: lighten($color-blue-1, 0%);
+  background: darken($color-blue-1, 2%);
   margin-bottom: 50px;
 }
 
@@ -19,4 +19,26 @@
   margin-top: 0px;
   padding-top: 1rem;
   font-size: 10em;
+}
+
+.repo_home {
+  .list-group-header {
+    background-color: #f2f2f2;
+    border: 1px solid $list-group-border;
+    list-style: none;
+    text-align: left;
+    padding: 0.6rem 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+  }
+  .list-group-header + .list-group-item {
+    border-top: 0px;
+  }
+  .list-group-item {
+    text-align: left;
+    padding: 0.8rem 1rem;
+  }
+  .list-group-item a {
+    color: darken($color-blue-2,0%);
+  }
 }

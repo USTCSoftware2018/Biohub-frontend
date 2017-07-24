@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Signup from '@/components/Signup'
 import communityHome from '@/components/community/Home'
+import Repo from '@/components/community/Repo.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -34,6 +35,11 @@ export default new Router({
       path: '/signup',
       name: 'Signup',
       component: Signup
+    },
+    {
+      path: '/community/:author/:name',
+      name: 'Repo',
+      components: Repo
     }
   ]
 })

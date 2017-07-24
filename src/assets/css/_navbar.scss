@@ -1,7 +1,7 @@
 .navbar-biohub {
   margin-bottom: 0px;
   border-radius: 0px;
-  background-color: $color-blue-1;
+  background-color: darken($color-blue-1,2%);
   .nav a {
     border-bottom: 2px solid transparent;
     @include transition(border-color);
