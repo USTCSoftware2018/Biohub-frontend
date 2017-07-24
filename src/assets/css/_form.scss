@@ -6,7 +6,7 @@
     font-size: 16px;
     height: 42px;
     margin-left: -2px;
-    @include input-biohub;
+    @extend %input-biohub;
     border-left-color: transparent;
     @include transition(border-color);
   }
@@ -49,7 +49,7 @@
   margin-right: 2rem;
   margin-left: 2rem;
   outline: none !important;
-  @include no-box-shadow;
+  @extend %no-box-shadow;
 }
 
 .btn-biohub-community-welcome-notice {
@@ -61,7 +61,7 @@
   margin-right: 2rem;
   margin-left: 2rem;
   outline: none !important;
-  @include no-box-shadow;
+  @extend %no-box-shadow;
 }
 
 .btn-biohub-light {

@@ -23,7 +23,7 @@
   }
 ;
   .navbar-form input {
-    @include input-biohub;
+    @extend %input-biohub;
     @include transition(border-color);
     border-radius: 20px;
     background-color: lighten($color-blue-1, 5%);
@@ -39,5 +39,12 @@
       background-color: darken($color-orange, 3%);
       color: $text-color;
     }
+  }
+}
+
+.nav-repo {
+  margin-top: 2rem;
+  a {
+    color: $color-blue-2;
   }
 }

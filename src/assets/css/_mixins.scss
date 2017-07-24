@@ -1,5 +1,5 @@
-@mixin input-biohub {
-  @include no-box-shadow;
+%input-biohub {
+  @extend %no-box-shadow;
   border-color: transparent;
   border-width: 2px;
   &:focus {
@@ -8,7 +8,7 @@
   }
 }
 
-@mixin no-box-shadow {
+%no-box-shadow {
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
@@ -20,4 +20,14 @@
   -ms-transition: $attribute ease-in-out 0.25s;
   -o-transition: $attribute ease-in-out 0.25s;
   transition: $attribute ease-in-out 0.25s;
+}
+
+%list-biohub {
+  .list-group-item {
+    text-align: left;
+    padding: 0.8rem 1rem;
+  }
+  .list-group-item a {
+    color: darken($color-blue-2,0%);
+  }
 }
