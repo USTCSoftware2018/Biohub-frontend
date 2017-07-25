@@ -1,6 +1,6 @@
 .navbar-biohub {
-  margin-bottom: 0px;
-  border-radius: 0px;
+  margin-bottom: 0;
+  border-radius: 0;
   border: none;
   background-color: darken($color-blue-1,2%);
   .nav a {
@@ -44,7 +44,28 @@
 
 .nav-repo {
   margin-top: 2rem;
-  a {
+  li a {
+    @include transition(border-color);
+    border-bottom: 1px solid transparent;
     color: $color-blue-2;
+    border-left: none;
+    border-right: none;
+    &:hover {
+      background-color: whitesmoke!important;
+      border-color: whitesmoke!important;
+      border-bottom: 1px solid $color-orange!important;
+    }
+  }
+  .active {
+    a {
+      border-left: 1px solid $border-color;
+      border-right: 1px solid $border-color;
+      border-bottom: 1px solid white!important;
+      &:hover {
+        background-color: white!important;
+        border-color: $border-color!important;
+        border-bottom: 1px solid white!important;
+      }
+    }
   }
 }

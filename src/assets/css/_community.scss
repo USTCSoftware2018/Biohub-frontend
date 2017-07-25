@@ -65,6 +65,22 @@
 .repo-info-header {
   padding: 2rem 0rem;
   margin: 0rem 4rem 1rem 4rem;
-  font-size: 4rem;
+
   border-bottom: 1px solid $border-color;
+}
+
+.repo-info-addon {
+  a {
+    color: $color-blue-2;
+  }
+  color: #999;
+  font-size: 1.2rem;
+}
+
+.repo-info-name {
+  font-size: 4rem;
+}
+.repo-info-content {
+  background-color: white;
+  padding: 1rem 3rem;
 }

@@ -4,9 +4,10 @@
       <div class="container">
         <div class="col-md-9">
           <ul class="nav nav-tabs nav-repo">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">Profile</a></li>
-            <li role="presentation"><a href="#">Messages</a></li>
+            <li role="presentation" class="active"><a href="#">Summary</a></li>
+            <li role="presentation"><a href="#">Documents</a></li>
+            <li role="presentation"><a href="#">Laboratory Record</a></li>
+            <li role="presentation"><a href="#">Issues</a></li>
           </ul>
           <component v-bind:is="currentView"></component>
         </div>

@@ -2,7 +2,7 @@
   <div class="repo-list-wrapper" v-bind:class="{repo_home: insideHome, repo_profile: insideProfile}">
     <ul class="list-group">
       <li class="list-group-header">Your Parts & Devices</li>
-      <li class="list-group-item"><a href="#">Cras justo odio</a></li>
+      <li class="list-group-item"><a href="/community/1/1">test</a></li>
       <li class="list-group-item"><a href="#">Dapibus ac facilisis in</a></li>
     </ul>
   </div>
