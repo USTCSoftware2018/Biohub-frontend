@@ -8,16 +8,17 @@
             <li role="presentation"><a href="#">Profile</a></li>
             <li role="presentation"><a href="#">Messages</a></li>
           </ul>
+          <component v-bind:is="currentView"></component>
         </div>
         <div class="col-md-3">
-          <div class="panel panel-default panel-biohub">
+          <!--div class="panel panel-default panel-biohub">
             <div class="panel-heading">About the author</div>
             <div class="panel-body">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </div>
-          </div>
-          <ul class="list-group left-list">
-            <li class="list-group-header">Devices which use this part...</li>
+          </div-->
+          <ul class="list-group left-list" style="margin-top:2rem">
+            <li class="list-group-header">Devices which use this part</li>
             <li class="list-group-item"><a href="#">Lorem ipsum dolor sit amet</a></li>
             <li class="list-group-item"><a href="#">consectetur adipisicing elit</a></li>
             <li class="list-group-item"><a href="#">sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
@@ -29,7 +30,13 @@
 </template>
 
 <script>
+  import RepoInfo from './RepoInfo.vue'
   export default {
+    data () {
+      return {
+        currentView: RepoInfo
+      }
+    },
     created () {
       console.log(this.$route.params)
     }

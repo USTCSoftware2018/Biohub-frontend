@@ -54,3 +54,17 @@
 .panel-biohub {
   margin-top: 20px;
 }
+
+.repo-wrapper {
+  background-color: #FFF;
+  border: 1px solid $list-group-border;
+  border-top-width: 0px;
+
+}
+
+.repo-info-header {
+  padding: 2rem 0rem;
+  margin: 0rem 4rem 1rem 4rem;
+  font-size: 4rem;
+  border-bottom: 1px solid $border-color;
+}

@@ -38,11 +38,6 @@ export default new Router({
       name: 'Signup',
       component: Signup
     },
-    // {
-    //  path: '/community/:author/:name',
-    //  name: 'Repo',
-    //  component: Repo
-    // },
     {
       path: '/community/:author',
       component: User,

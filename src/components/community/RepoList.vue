@@ -1,5 +1,5 @@
 <template>
-  <div class="repo-wrapper" v-bind:class="{repo_home: insideHome, repo_profile: insideProfile}">
+  <div class="repo-list-wrapper" v-bind:class="{repo_home: insideHome, repo_profile: insideProfile}">
     <ul class="list-group">
       <li class="list-group-header">Your Parts & Devices</li>
       <li class="list-group-item"><a href="#">Cras justo odio</a></li>
