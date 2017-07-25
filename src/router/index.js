@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Signup from '@/components/Signup'
+import NotFound from '@/components/NotFound'
 import communityHome from '@/components/community/Home'
 import Repo from '@/components/community/Repo'
 import User from '@/components/community/User'
@@ -53,6 +54,11 @@ export default new Router({
           component: Repo
         }
       ]
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound
     }
   ]
 })
