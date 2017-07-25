@@ -40,6 +40,7 @@
   line-height: 1.5rem;
   font-weight: 500;
 }
+
 .list-group-header + .list-group-item {
   border-top: 0px;
 }
@@ -47,6 +48,7 @@
 .repo_home {
   @extend %list-biohub;
 }
+
 .left-list {
   @extend %list-biohub;
 }
@@ -67,4 +69,37 @@
   margin: 0rem 4rem 1rem 4rem;
   font-size: 4rem;
   border-bottom: 1px solid $border-color;
+}
+
+
+// for profile page
+.profile-avatar-container {
+  height:200px;
+  width:200px;
+  margin-top: 30%;
+  box-sizing: border-box;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+.profile-avatar {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 100%;
+  background: transparent;
+}
+
+.profile-avatar img {
+  -webkit-border-radius: 6px !important;
+  -moz-border-radius: 6px !important;
+  border-radius: 6px !important;
+}
+
+.profile-follower-num {
+  color: $color-orange !important;
+}
+
+.profile-follower {
+  color: $text-color-rev !important;
 }
