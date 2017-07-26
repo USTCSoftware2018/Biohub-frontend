@@ -30,7 +30,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/forum',
+      path: '/forums',
       name: 'Forum',
       component: forumHome
     },
@@ -40,7 +40,7 @@ export default new Router({
       component: Signup
     },
     {
-      path: '/forum/:author',
+      path: '/forums/:author',
       component: User,
       children: [
         {

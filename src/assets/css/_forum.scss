@@ -1,10 +1,10 @@
-.community-start {
+.forum-start {
   padding: 50px 15px 50px 15px;
   background: darken($color-blue-1, 2%);
   margin-bottom: 50px;
 }
 
-.community-description p {
+.forum-description p {
 
   padding-top: 1rem;
   width: 40%;
@@ -15,7 +15,7 @@
   margin-bottom: 2rem;
 }
 
-.community-description h1 {
+.forum-description h1 {
   margin-top: 0;
   padding-top: 1rem;
   font-size: 10em;
@@ -54,26 +54,33 @@
 }
 
 .panel-biohub {
-  margin-top: 20px;
+  margin-top: 5rem;
 }
 
 .repo-wrapper {
   background-color: #FFF;
   border: 1px solid $list-group-border;
-  border-top-width: 0;
-
+  margin-top: 5rem;
 }
 
 .repo-info-header {
   padding: 2rem 0;
   margin: 0 4rem 1rem 4rem;
-
+  position: relative;
   border-bottom: 1px solid $border-color;
 }
 
+.view-experiments {
+  font-size: 1.2rem!important;
+  position: absolute;
+  right: -2rem;
+  top: 3.8rem;
+  color: $color-orange;
+}
 .repo-info-addon {
   a {
     color: $color-blue-2;
+    font-size: 1.2rem;
   }
   color: #999;
   font-size: 1.2rem;

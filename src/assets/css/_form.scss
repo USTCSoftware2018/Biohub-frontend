@@ -29,7 +29,6 @@
     font-size: 16px;
   }
 }
-
 .btn-biohub {
   background-color: $color-orange;
   font-size: 17px;
@@ -40,7 +39,7 @@
   border: 0;
 }
 
-.btn-biohub-community-welcome-default {
+.btn-biohub-forum-welcome-default {
   color: $color-blue-1 !important;
   background-color: white !important;
   padding: 1rem 2rem;
@@ -52,7 +51,7 @@
   @extend %no-box-shadow;
 }
 
-.btn-biohub-community-welcome-notice {
+.btn-biohub-forum-welcome-notice {
   color: white !important;
   background-color: $color-blue-2 !important;
   padding: 1rem 2rem;

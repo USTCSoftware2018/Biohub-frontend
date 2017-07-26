@@ -3,21 +3,15 @@
     <div class="row">
       <div class="container">
         <div class="col-md-9">
-          <ul class="nav nav-tabs nav-repo">
-            <li role="presentation" class="active"><a href="#">Summary</a></li>
-            <li role="presentation"><a href="#">Documents</a></li>
-            <li role="presentation"><a href="#">Laboratory Record</a></li>
-            <li role="presentation"><a href="#">Issues</a></li>
-          </ul>
           <component v-bind:is="currentView"></component>
         </div>
         <div class="col-md-3">
-          <!--div class="panel panel-default panel-biohub">
+          <div class="panel panel-default panel-biohub">
             <div class="panel-heading">About the author</div>
             <div class="panel-body">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </div>
-          </div-->
+          </div>
           <ul class="list-group left-list" style="margin-top:2rem">
             <li class="list-group-header">Devices which use this part</li>
             <li class="list-group-item"><a href="#">Lorem ipsum dolor sit amet</a></li>
