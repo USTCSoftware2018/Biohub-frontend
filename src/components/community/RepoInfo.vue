@@ -5,7 +5,7 @@
         {{ $route.params.repo }}
       </div>
       <div class="repo-info-addon">
-        Uploaded by: <a href="/community/1">{{ $route.params.author }}</a> | Followers: <a href="#">Number</a>
+        Uploaded by: <router-link :to="{ name: 'Profile', params: { userID: $route.params.author }">{{ $route.params.author }}</a> | Followers: <a href="#">Number</a>
       </div>
     </div>
     <div class="repo-info-content">
@@ -21,8 +21,6 @@
 
 <script>
   export default {
-    mounted () {
-      console.log(this.$route.params)
-    }
+
   }
 </script>
