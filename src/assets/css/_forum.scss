@@ -98,7 +98,6 @@
 .profile-avatar-container {
   height:200px;
   width:200px;
-  margin-top: 30%;
   box-sizing: border-box;
   margin-left:auto;
   margin-right:auto;
@@ -116,12 +115,6 @@
   -webkit-border-radius: 6px !important;
   -moz-border-radius: 6px !important;
   border-radius: 6px !important;
+  height:100%;
 }
 
-.profile-follower-num {
-  color: $color-orange !important;
-}
-
-.profile-follower {
-  color: $text-color-rev !important;
-}

@@ -1,10 +1,9 @@
 %input-biohub {
-  @extend %no-box-shadow;
+  //@extend %no-box-shadow;
   border-color: transparent;
-  border-width: 2px;
+  border-width: 1px;
   &:focus {
-    border-width: 2px;
-    border-color: $color-orange;
+    border-color: $color-blue-2;
   }
 }
 
