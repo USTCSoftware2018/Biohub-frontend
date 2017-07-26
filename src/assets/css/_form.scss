@@ -22,7 +22,7 @@
     border-color: transparent;
   }
   .input-group > .input-group-addon {
-    border-right: 0px;
+    border-right: 0;
   }
 
   .form-error {
@@ -34,10 +34,10 @@
   background-color: $color-orange;
   font-size: 17px;
   padding: 12px 6px;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
-  border: 0px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border: 0;
 }
 
 .btn-biohub-community-welcome-default {
@@ -66,9 +66,10 @@
 
 .btn-biohub-light {
   background-color: darken($color-light, 2%);
-  &:hover, &:focus {
+  &:hover, &:focus, &:active {
     background-color: darken($color-light, 5%);
-    color: $text-color-rev
+    @extend %no-box-shadow;
+    color: $text-color-rev;
   }
 }
 
@@ -77,5 +78,6 @@
   &:hover, &:focus, &:active {
     background-color: darken($color-orange, 3%);
     color: $color-blue-1;
+    @extend %no-box-shadow;
   }
 }

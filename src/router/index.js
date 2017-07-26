@@ -5,10 +5,10 @@ import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Signup from '@/components/Signup'
 import NotFound from '@/components/NotFound'
-import communityHome from '@/components/community/Home'
-import Repo from '@/components/community/Repo'
-import User from '@/components/community/User'
-import Profile from '@/components/community/Profile'
+import forumHome from '@/components/forum/Home'
+import Repo from '@/components/forum/Repo'
+import User from '@/components/forum/User'
+import Profile from '@/components/forum/Profile'
 Vue.use(Router)
 
 export default new Router({
@@ -30,9 +30,9 @@ export default new Router({
       component: Login
     },
     {
-      path: '/community',
-      name: 'Community',
-      component: communityHome
+      path: '/forum',
+      name: 'Forum',
+      component: forumHome
     },
     {
       path: '/signup',
@@ -40,7 +40,7 @@ export default new Router({
       component: Signup
     },
     {
-      path: '/community/:author',
+      path: '/forum/:author',
       component: User,
       children: [
         {

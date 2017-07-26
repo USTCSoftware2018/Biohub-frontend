@@ -16,7 +16,7 @@
 }
 
 .community-description h1 {
-  margin-top: 0px;
+  margin-top: 0;
   padding-top: 1rem;
   font-size: 10em;
 }
@@ -42,7 +42,7 @@
 }
 
 .list-group-header + .list-group-item {
-  border-top: 0px;
+  border-top: 0;
 }
 
 .repo_home {
@@ -60,13 +60,13 @@
 .repo-wrapper {
   background-color: #FFF;
   border: 1px solid $list-group-border;
-  border-top-width: 0px;
+  border-top-width: 0;
 
 }
 
 .repo-info-header {
-  padding: 2rem 0rem;
-  margin: 0rem 4rem 1rem 4rem;
+  padding: 2rem 0;
+  margin: 0 4rem 1rem 4rem;
 
   border-bottom: 1px solid $border-color;
 }

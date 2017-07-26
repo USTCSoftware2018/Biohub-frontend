@@ -6,7 +6,7 @@
         <a class="navbar-brand" href="#">Brand</a>
       </div>
         <ul class="nav navbar-nav">
-          <li><a href="/community">Community</a></li>
+          <li><a href="/forum">Forums</a></li>
           <li><a href="#">Link 2</a></li>
         </ul>
         <form class="navbar-form navbar-left">
