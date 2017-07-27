@@ -18,8 +18,12 @@
               <p id="user-mail-content">{{ userMail }}</p>
             </span>
           </div>
-          <div id="follow-button">
-            <button class="btn btn-primary follow-button">Follow</button>
+          <div class="user-stars">
+            <span id="user-stars-num">666</span>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </div>
+          <div id="edit-button">
+            <button class="btn btn-primary follow-button">Edit Profile</button>
           </div>
         </div>
       </div>
@@ -45,6 +49,7 @@
 
 <script>
   import ProfileNavbar from './ProfileNavbar.vue'
+
   var biography = 'Lorem ipsum dolor sit amet, eos ei mnesarchum moderatius, ea qui aeque ridens graeci. Cum suas sale aliquando ex, mel latine sapientem cu, sumo iusto gloriatur qui an. In mel prima corpora delectus, quo periculis vituperata efficiantur ut, no usu simul soleat. No dicant tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     'Vis eu nibh omnis.'
   var userMail = 'gloit042@gmail.com'
@@ -63,6 +68,37 @@
 
 
 <style>
+
+  .user-stars {
+    margin-top: 5px;
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+    font-size: 22px;
+    font-weight: 900;
+    background-color: white;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+
+  #user-stars-num {
+    position: relative;
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .user-stars i {
+    margin-top: 5px;
+    margin-right: 6px;
+    display: inline;
+    float: right;
+    font-size: 17px;
+    color: gold;
+  }
 
   .user-info {
     text-align: left;
@@ -95,7 +131,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis !important;
-    margin:0;
+    margin: 0;
   }
 
   .profile-tab {
@@ -108,7 +144,6 @@
     border: 1px solid #ddd;
     border-bottom: 0px;
   }
-
 
   .profile-biography-frame {
     background: white;

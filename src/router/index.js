@@ -6,9 +6,9 @@ import Home from '@/components/Home'
 import Signup from '@/components/Signup'
 import NotFound from '@/components/NotFound'
 import forumHome from '@/components/forum/Home'
-import Repo from '@/components/forum/Repo'
+import Repo from '@/components/forum/Repo/Repo'
 import User from '@/components/forum/User'
-import Profile from '@/components/forum/Profile'
+import Profile from '@/components/forum/Profile/Profile'
 Vue.use(Router)
 
 export default new Router({

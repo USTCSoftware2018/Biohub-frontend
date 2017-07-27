@@ -33,7 +33,7 @@
 
 <script>
   import topNavbar from '../topNavbar.vue'
-  import RepoList from './RepoList.vue'
+  import RepoList from './Repo/RepoList.vue'
 
   export default {
     components: {

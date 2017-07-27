@@ -5,9 +5,9 @@
         <li role="presentation" class="active"><a href="#">activities</a></li>
         <li role="presentation"><a href="#">experiences</a></li>
         <li role="presentation"><a href="#">comments</a></li>
-        <li role="presentation"><a href="#">follower</a></li>
-        <li role="presentation"><a href="#">following</a></li>
-        <li role="presentation"><a href="#">thanks</a></li>
+        <li role="presentation"><a href="#">starring</a></li>
+        <li role="presentation"><a href="#">rating</a></li>
+        <li role="presentation"><a href="#">watching</a></li>
       </ul>
     </div>
 
