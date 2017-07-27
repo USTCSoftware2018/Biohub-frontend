@@ -3,7 +3,19 @@
     <div class="row">
       <div class="container">
         <div class="col-md-9">
-          <component v-bind:is="currentView"></component>
+          <div class="repo-wrapper">
+            <div class="repo-info-header">
+
+              <div class="repo-info-name">
+                {{ $route.params.repo }}
+              </div>
+              <div class="repo-info-addon">
+                Author: {{ $route.params.author }}
+                | Followers: <a href="#">Number</a> | <a href="javascript:;" class="view-experience" @click="changeView">View {{ anotherView }}</a>
+              </div>
+            </div>
+            <component v-bind:is="currentView"></component>
+          </div>
         </div>
         <div class="col-md-3">
           <div class="panel panel-default panel-biohub">
@@ -25,15 +37,27 @@
 </template>
 
 <script>
-  import RepoInfo from './RepoInfo.vue'
+  import Description from './RepoInfo.vue'
+  import Experience from './RepoReview.vue'
   export default {
     data () {
       return {
-        currentView: RepoInfo
+        currentView: 'Description',
+        anotherView: 'Experience'
       }
+    },
+    components: {
+      Description, Experience
     },
     created () {
       console.log(this.$route.params)
+    },
+    methods: {
+      changeView () {
+        let tmp = this.anotherView
+        this.anotherView = this.currentView
+        this.currentView = tmp
+      }
     }
   }
 </script>

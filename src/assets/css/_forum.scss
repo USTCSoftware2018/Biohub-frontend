@@ -70,12 +70,12 @@
   border-bottom: 1px solid $border-color;
 }
 
-.view-experiments {
+.view-experience {
   font-size: 1.2rem!important;
-  position: absolute;
-  right: -2rem;
-  top: 3.8rem;
-  color: $color-orange;
+  color: $color-orange!important;
+  &:hover {
+    text-decoration: none;
+  }
 }
 .repo-info-addon {
   a {
@@ -92,6 +92,12 @@
 .repo-info-content {
   background-color: white;
   padding: 1rem 3rem;
+}
+
+.repo-experience-content {
+  background-color: white;
+  padding: 1rem 3rem;
+  text-align: left;
 }
 
 // for profile page

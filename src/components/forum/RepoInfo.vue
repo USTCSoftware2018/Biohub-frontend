@@ -1,16 +1,4 @@
 <template>
-  <div class="repo-wrapper">
-    <div class="repo-info-header">
-      <a href="#" class="view-experiments">View Experiments</a>
-      <div class="repo-info-name">
-        {{ $route.params.repo }}
-      </div>
-      <div class="repo-info-addon">
-         Author: {{ $route.params.author }}
-        | Followers: <a href="#">Number</a>
-        <br>
-      </div>
-    </div>
     <div class="repo-info-content">
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
