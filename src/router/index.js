@@ -10,6 +10,7 @@ import Repo from '@/components/forum/Repo/Repo'
 import User from '@/components/forum/User'
 import Profile from '@/components/forum/Profile/Profile'
 import Plugins from '@/components/plugins/plugins'
+import SearchResult from '@/components/forum/Search/SearchResult'
 Vue.use(Router)
 
 export default new Router({
@@ -54,7 +55,13 @@ export default new Router({
           name: 'Repo',
           component: Repo
         }
+
       ]
+    },
+    {
+      path: '/search',
+      name: 'searchResult',
+      component: SearchResult
     },
     {
       path: '/plugins',
