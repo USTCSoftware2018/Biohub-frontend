@@ -1,3 +1,6 @@
+#app{
+  text-align: left;
+}
 .brand_b {
   font-size: 45px;
   color: #225378;
@@ -14,8 +17,9 @@
 }
 
 .search {
+  top: 35px;
   position: relative;
-  bottom: 16px;
+  font-size: 9.333px;
 }
 
 .search_button {
@@ -88,6 +92,7 @@
   left: 90%;
   height: 37px;
   width: 46px;
+  opacity: 0.3;
 }
 
 .lable_list_select {

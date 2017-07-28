@@ -1,9 +1,8 @@
 <template>
   <div>
-    <top-navbar></top-navbar>
     <div id="searchResult">
-      <div style="text-align: left; border-bottom: solid;border-color: #adadad;padding-bottom: 30px">
-        <img src="../../../assets/img/brand.png" style="margin-top: 80px;margin-left: 150px;height: 50px;width: auto">
+      <div style="text-align: left; border-bottom: solid;border-color: #adadad;padding-bottom: 30px;margin-top: 45px;">
+        <img src="../../../assets/img/brand.png" style="margin-top: 95px;margin-left: 400px;height: 80px;padding-bottom: 30px">
         <!-- <b style="" class="brand_b">Biohub</b> -->
         <input placeholder="Search..." class="search search_input">
         <button class="search_button search">Search</button>
