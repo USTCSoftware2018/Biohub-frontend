@@ -21,7 +21,6 @@
       color: $color-light !important;
     }
   }
-;
   .navbar-form input {
     @extend %input-biohub;
     @include transition(border-color);

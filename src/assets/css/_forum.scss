@@ -4,6 +4,8 @@
   margin-bottom: 50px;
 }
 
+
+
 .forum-description p {
 
   padding-top: 1rem;
@@ -124,3 +126,32 @@
   height:100%;
 }
 
+.experience-search {
+  @extend %input-biohub;
+  @extend %no-box-shadow;
+  @include transition(border-color);
+  border-radius: 20px;
+  background-color: white;
+  padding-left: 1rem;
+  color: #333;
+  &::placeholder {
+    color: darken(white, 20%);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+.list-experience {
+  .list-group-item {
+    border: none;
+    &:hover {
+      background-color: white;
+    }
+  }
+  .list-group-item + .list-group-item {
+    border-top: 1px solid $border-color;
+  }
+  h4 a {
+    color: $color-blue-2;
+  }
+}

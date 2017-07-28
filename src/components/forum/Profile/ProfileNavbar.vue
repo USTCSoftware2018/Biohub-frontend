@@ -14,7 +14,7 @@
   </nav>
 </template>
 
-<style>
+<style scoped>
 
   div.container-fluid {
     padding:0;
