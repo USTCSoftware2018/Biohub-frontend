@@ -85,7 +85,12 @@
   background-color: $color-blue-2;
   color: $text-color;
   margin-left: 0;
-
+  &:active {
+    @extend %no-box-shadow;
+  }
+  &:hover {
+    color: $text-color;
+  }
 }
 .experience-search {
   display: inline-block;

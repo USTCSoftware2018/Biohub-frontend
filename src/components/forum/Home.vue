@@ -9,7 +9,7 @@
           . Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <button class="btn btn-biohub btn-biohub-forum-welcome-default">Learn More</button>
-        <button class="btn btn-biohub btn-biohub-forum-welcome-notice">Upload Your Part</button>
+        <button class="btn btn-biohub btn-biohub-forum-welcome-notice">Start a Discussion</button>
       </div>
 
     </div>

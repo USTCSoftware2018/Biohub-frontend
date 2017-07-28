@@ -9,6 +9,7 @@ import forumHome from '@/components/forum/Home'
 import Repo from '@/components/forum/Repo/Repo'
 import User from '@/components/forum/User'
 import Profile from '@/components/forum/Profile/Profile'
+import Plugins from '@/components/plugins/plugins'
 Vue.use(Router)
 
 export default new Router({
@@ -54,6 +55,11 @@ export default new Router({
           component: Repo
         }
       ]
+    },
+    {
+      path: '/plugins',
+      name: 'Plugin',
+      component: Plugins
     },
     {
       path: '*',
