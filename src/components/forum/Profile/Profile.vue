@@ -29,15 +29,17 @@
       </div>
       <div class="col-md-1"></div>
       <div class="col-md-7 ">
-        <div class="profile-biography-frame" v-bind:title="'Biography'">
-          <div ref="profileBiography" class="profile-biography">
+        <div class="profile-biography-frame" v-bind:title="'Biography'"
+             v-bind:class="{'profile-biography-folded': isFolded}" v-on:click="foldStateChange">
+          <div ref="bioRef" class="profile-biography">
             <span class="arrow-l-int"></span>
             <span class="arrow-l-out"></span>
-            <p v-on:click="ifFoldThenUnfold">
+            <p>
               {{ biography }}
             </p>
           </div>
         </div>
+        <a v-if="hintShow" v-on:click="foldStateChange" style="cursor: pointer">click to unfold</a>
         <div class="profile-nav">
           <profile-navbar></profile-navbar>
         </div>
@@ -49,27 +51,36 @@
 <script>
   import ProfileNavbar from './ProfileNavbar.vue'
 
-  var biography = 'Lorem ipsum dolor sit amet, eos ei mnesarchum moderatius, ea qui aeque ridens graeci. Cum suas sale aliquando ex, mel latine sapientem cu, sumo iusto gloriatur qui an. In mel prima corpora delectus, quo periculis vituperata efficiantur ut, no usu simul soleat. No dicant tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
+  var biography = 't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
+    't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
+    't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     'Vis eu nibh omnis.'
   var userMail = 'gloit042@gmail.com'
   var userStar = 666
 
+  // var hint = 'click to show more'
+
   export default {
+    mounted () {
+      this.isOverflow = this.$refs.bioRef.offsetHeight < this.$refs.bioRef.scrollHeight
+      this.hintShow = this.isOverflow
+    },
     data () {
       return {
         biography: biography,
         userMail: userMail,
-        userStar: userStar
+        userStar: userStar,
+        isFolded: true,
+        isOverflow: false,
+        hintShow: false
       }
     },
     methods: {
-      ifFoldThenUnfold: function (e) {
-        this.$refs.profileBiography.style.height = 'auto'
-        this.$refs.profileBiography.style.minHeight = '6em'
-        this.$refs.profileBiography.style.overflow = 'inherit'
-        this.$refs.profileBiography.style.textOverflow = 'clip'
-        this.$refs.profileBiography.style.MsTextOverflow = 'clip'
-        this.$refs.profileBiography.style.display = 'block'
+      foldStateChange: function () {
+        if (this.isOverflow) {
+          this.isFolded = !this.isFolded
+          this.hintShow = !this.hintShow
+        }
       }
     },
     components: {
@@ -171,11 +182,15 @@
   .profile-biography {
     line-height: 1.5em;
     text-align: left;
-    min-height: 0em;
-    height: 6em;
+    min-height: 7.5em;
     overflow: hidden;
     word-wrap: break-word;
     -ms-word-wrap: break-word;
+
+  }
+
+  .profile-biography-folded {
+    height: 7.5em !important;
     display: -webkit-box;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
