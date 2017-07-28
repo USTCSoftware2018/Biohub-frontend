@@ -18,8 +18,8 @@
               <p id="user-mail-content">{{ userMail }}</p>
             </span>
           </div>
-          <div class="user-stars">
-            <span id="user-stars-num">666</span>
+          <div class="user-stars" v-bind:title="userStar + ' Stars'">
+            <span id="user-stars-num">{{ userStar }}</span>
             <i class="fa fa-star" aria-hidden="true"></i>
           </div>
           <div id="edit-button">
@@ -29,14 +29,13 @@
       </div>
       <div class="col-md-1"></div>
       <div class="col-md-7 ">
-        <div class="profile-tab">
-          About me
-        </div>
-        <div class="profile-biography-frame">
-          <div class="outer-container">
-            <div class="profile-biography">
+        <div class="profile-biography-frame" v-bind:title="'Biography'">
+          <div ref="profileBiography" class="profile-biography">
+            <span class="arrow-l-int"></span>
+            <span class="arrow-l-out"></span>
+            <p v-on:click="ifFoldThenUnfold">
               {{ biography }}
-            </div>
+            </p>
           </div>
         </div>
         <div class="profile-nav">
@@ -53,11 +52,24 @@
   var biography = 'Lorem ipsum dolor sit amet, eos ei mnesarchum moderatius, ea qui aeque ridens graeci. Cum suas sale aliquando ex, mel latine sapientem cu, sumo iusto gloriatur qui an. In mel prima corpora delectus, quo periculis vituperata efficiantur ut, no usu simul soleat. No dicant tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     'Vis eu nibh omnis.'
   var userMail = 'gloit042@gmail.com'
+  var userStar = 666
+
   export default {
     data () {
       return {
         biography: biography,
-        userMail: userMail
+        userMail: userMail,
+        userStar: userStar
+      }
+    },
+    methods: {
+      ifFoldThenUnfold: function (e) {
+        this.$refs.profileBiography.style.height = 'auto'
+        this.$refs.profileBiography.style.minHeight = '6em'
+        this.$refs.profileBiography.style.overflow = 'inherit'
+        this.$refs.profileBiography.style.textOverflow = 'clip'
+        this.$refs.profileBiography.style.MsTextOverflow = 'clip'
+        this.$refs.profileBiography.style.display = 'block'
       }
     },
     components: {
@@ -93,11 +105,11 @@
 
   .user-stars i {
     margin-top: 5px;
-    margin-right: 6px;
+    margin-right: 10px;
     display: inline;
     float: right;
     font-size: 17px;
-    color: gold;
+    color: darkorange;
   }
 
   .user-info {
@@ -147,33 +159,50 @@
 
   .profile-biography-frame {
     background: white;
+    height: 100%;
     padding: 10px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
     border: 1px solid #ddd;
+    margin-top: 5%;
   }
 
   .profile-biography {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: -17px;
-    font-size: 14px;
+    line-height: 1.5em;
     text-align: left;
-    overflow-y: scroll;
-  }
-
-  .outer-container {
-    height: 140px;
-    width: 100%;
+    min-height: 0em;
+    height: 6em;
     overflow: hidden;
-    position: relative;
+    word-wrap: break-word;
+    -ms-word-wrap: break-word;
+    display: -webkit-box;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 
-  .inner-container::-webkit-scrollbar {
-    display: none;
+  .arrow-l-int {
+    width: 0px;
+    height: 0px;
+    border-width: 15px;
+    border-style: solid;
+    border-color: transparent #ddd transparent transparent;
+    position: absolute;
+    top: 50px;
+    left: -15px;
+  }
+
+  .arrow-l-out {
+    width: 0px;
+    height: 0px;
+    border-width: 16px;
+    border-style: solid;
+    border-color: transparent white transparent transparent;
+    position: absolute;
+    top: 49px;
+    left: -14px;
   }
 
   .profile {
