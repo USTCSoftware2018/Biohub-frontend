@@ -25,6 +25,22 @@
           <div id="edit-button">
             <button class="btn btn-primary follow-button">Edit Profile</button>
           </div>
+          <div class="parting-line"></div>
+          <div id="personal-info">
+            <div :title="userLoc">
+              <i class="fa fa-location-arrow float-icon"></i>
+              <span>
+                <p class="omit">{{ userLoc }}</p>
+              </span>
+            </div>
+            <div :title="userLink">
+              <i class="fa fa-external-link float-icon"></i>
+              <a href="userLink">
+                <p class="omit">{{ userLink }}</p>
+              </a>
+            </div>
+          </div>
+          <div class="parting-line"></div>
         </div>
       </div>
       <div class="col-md-1"></div>
@@ -57,6 +73,8 @@
     'Vis eu nibh omnis.'
   var userMail = 'gloit042@gmail.com'
   var userStar = 666
+  var userLoc = 'University of Science and Technology of Hefei'
+  var userLink = 'http://home.ustc.edu.cn/~lijh2015'
 
   // var hint = 'click to show more'
 
@@ -70,6 +88,8 @@
         biography: biography,
         userMail: userMail,
         userStar: userStar,
+        userLink: userLink,
+        userLoc: userLoc,
         isFolded: true,
         isOverflow: false,
         hintShow: false
@@ -91,6 +111,18 @@
 
 
 <style>
+
+  #personal-info {
+    padding-top: 10px;
+  }
+
+  .parting-line {
+    width: 95%;
+    height: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid #ddd;
+  }
 
   .user-stars {
     margin-top: 5px;
@@ -129,6 +161,27 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis !important;
+  }
+
+  .personal-info div {
+    padding-bottom:5px;
+  }
+
+  .float-icon {
+    font-size:15px;
+    width: 18px;
+    height: 15px;
+    float: left;
+    margin-top: 3px;
+  }
+
+  .omit {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis !important;
+    margin: 0 auto;
   }
 
   .profile-nav {
