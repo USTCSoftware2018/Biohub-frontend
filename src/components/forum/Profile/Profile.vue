@@ -18,46 +18,68 @@
               <p id="user-mail-content">{{ userMail }}</p>
             </span>
           </div>
-          <div class="user-stars" v-bind:title="userStar + ' Stars'">
+          <div id="user-stars" v-bind:title="userStar + ' Stars'">
             <span id="user-stars-num">{{ userStar }}</span>
             <i class="fa fa-star" aria-hidden="true"></i>
           </div>
           <div id="edit-button">
             <button class="btn btn-primary follow-button">Edit Profile</button>
           </div>
-          <div class="parting-line"></div>
+          <div class="profile-parting-line"></div>
           <div id="personal-info">
             <div :title="userLoc">
               <i class="fa fa-location-arrow float-icon"></i>
               <span>
-                <p class="omit">{{ userLoc }}</p>
+                <p class="oneline-overflow">{{ userLoc }}</p>
               </span>
             </div>
             <div :title="userLink">
               <i class="fa fa-external-link float-icon"></i>
               <a href="userLink">
-                <p class="omit">{{ userLink }}</p>
+                <p class="oneline-overflow">{{ userLink }}</p>
               </a>
             </div>
           </div>
-          <div class="parting-line"></div>
+          <div class="profile-parting-line"></div>
         </div>
       </div>
-      <div class="col-md-1"></div>
-      <div class="col-md-7 ">
-        <div class="profile-biography-frame" v-bind:title="'Biography'"
-             v-bind:class="{'profile-biography-folded': isFolded}" v-on:click="foldStateChange">
-          <div ref="bioRef" class="profile-biography">
-            <span class="arrow-l-int"></span>
-            <span class="arrow-l-out"></span>
-            <p>
-              {{ biography }}
-            </p>
+      <div class="col-md-8">
+        <div class="col-md-10">
+          <div class="profile-biography-frame" v-bind:title="'Biography'"
+               v-bind:class="{'profile-biography-folded': isFolded}" v-on:click="foldStateChange">
+            <div ref="bioRef" class="profile-biography">
+              <span class="arrow-l-int"></span>
+              <span class="arrow-l-out"></span>
+              <p>
+                {{ biography }}
+              </p>
+            </div>
           </div>
+          <a v-if="hintShow" v-on:click="foldStateChange" style="cursor: pointer">click to unfold</a>
         </div>
-        <a v-if="hintShow" v-on:click="foldStateChange" style="cursor: pointer">click to unfold</a>
+      </div>
+      <div class="col-md-8">
         <div class="profile-nav">
-          <profile-navbar></profile-navbar>
+          <ul class="nav nav-tabs">
+            <li role="presentation" class="active" id="activities">
+              <a>activities</a>
+            </li>
+            <li role="presentation" id="experiences">
+              <a>experiences</a>
+            </li>
+            <li role="presentation" id="comments">
+              <a>comments</a>
+            </li>
+            <li role="presentation" id="stars">
+              <a>stars</a>
+            </li>
+            <li role="presentation" id="rating">
+              <a>rating</a>
+            </li>
+            <li role="presentation" id="watching">
+              <a>watching</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -108,173 +130,3 @@
     }
   }
 </script>
-
-
-<style>
-
-  #personal-info {
-    padding-top: 10px;
-  }
-
-  .parting-line {
-    width: 95%;
-    height: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .user-stars {
-    margin-top: 5px;
-    width: 100%;
-    height: 30px;
-    overflow: hidden;
-    font-size: 22px;
-    font-weight: 900;
-    background-color: white;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-  }
-
-  #user-stars-num {
-    position: relative;
-    float: left;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .user-stars i {
-    margin-top: 5px;
-    margin-right: 10px;
-    display: inline;
-    float: right;
-    font-size: 17px;
-    color: darkorange;
-  }
-
-  .user-info {
-    text-align: left;
-    word-wrap: break-word;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis !important;
-  }
-
-  .personal-info div {
-    padding-bottom:5px;
-  }
-
-  .float-icon {
-    font-size:15px;
-    width: 18px;
-    height: 15px;
-    float: left;
-    margin-top: 3px;
-  }
-
-  .omit {
-    -ms-word-wrap: break-word;
-    word-wrap: break-word;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis !important;
-    margin: 0 auto;
-  }
-
-  .profile-nav {
-    margin-top: 10%;
-  }
-
-  .follow-button {
-    margin-top: 10px;
-    width: 100%;
-    font-weight: 900;
-  }
-
-  #user-name {
-    font-size: 30px !important;
-  }
-
-  #user-mail {
-    color: gray;
-    font-size: 14px !important;
-  }
-
-  .user-info div span p {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis !important;
-    margin: 0;
-  }
-
-  .profile-tab {
-    margin-top: -6%;
-    width: 100px;
-    padding: 5px 0 5px 0;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    border: 1px solid #ddd;
-    border-bottom: 0px;
-  }
-
-  .profile-biography-frame {
-    background: white;
-    height: 100%;
-    padding: 10px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    border: 1px solid #ddd;
-    margin-top: 5%;
-  }
-
-  .profile-biography {
-    line-height: 1.5em;
-    text-align: left;
-    min-height: 7.5em;
-    overflow: hidden;
-    word-wrap: break-word;
-    -ms-word-wrap: break-word;
-
-  }
-
-  .profile-biography-folded {
-    height: 7.5em !important;
-    display: -webkit-box;
-    -ms-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-  }
-
-  .arrow-l-int {
-    width: 0px;
-    height: 0px;
-    border-width: 15px;
-    border-style: solid;
-    border-color: transparent #ddd transparent transparent;
-    position: absolute;
-    top: 50px;
-    left: -15px;
-  }
-
-  .arrow-l-out {
-    width: 0px;
-    height: 0px;
-    border-width: 16px;
-    border-style: solid;
-    border-color: transparent white transparent transparent;
-    position: absolute;
-    top: 49px;
-    left: -14px;
-  }
-
-  .profile {
-    margin-top: 5%;
-  }
-
-</style>

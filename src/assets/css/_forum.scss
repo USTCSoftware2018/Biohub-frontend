@@ -102,30 +102,6 @@
   text-align: left;
 }
 
-// for profile page
-.profile-avatar-container {
-  height:200px;
-  width:200px;
-  box-sizing: border-box;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-
-.profile-avatar {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  height: 100%;
-  background: transparent;
-}
-
-.profile-avatar img {
-  -webkit-border-radius: 6px !important;
-  -moz-border-radius: 6px !important;
-  border-radius: 6px !important;
-  height:100%;
-}
-
 .experience-search {
   @extend %input-biohub;
   @extend %no-box-shadow;
