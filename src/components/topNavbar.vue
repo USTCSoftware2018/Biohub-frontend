@@ -7,7 +7,7 @@
       </div>
         <ul class="nav navbar-nav">
           <li><a href="/forums">Forums</a></li>
-          <li><a href="#">Link 2</a></li>
+          <li><a href="/plugins">Plugins</a></li>
         </ul>
         <form class="navbar-form navbar-left">
           <div class="form-group">

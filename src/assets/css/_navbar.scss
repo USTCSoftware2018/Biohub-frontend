@@ -41,14 +41,17 @@
   }
 }
 
-.nav-repo {
-  margin-top: 2rem;
+.nav-plugin {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
   li a {
     @include transition(border-color);
     border-bottom: 1px solid transparent;
     color: $color-blue-2;
-    border-left: none;
-    border-right: none;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
     &:hover {
       background-color: whitesmoke!important;
       border-color: whitesmoke!important;

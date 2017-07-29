@@ -1,13 +1,11 @@
 <template>
   <div>
     <top-navbar></top-navbar>
-    <div class="pluginsNav">
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-tabs nav-plugin">
         <li role="presentation" class="active" id="ABACUS"><a href="javascript:;" v-on:click="changeView('ABACUS')">ABACUS</a></li>
         <li role="presentation" id="bbkManager"><a href="javascript:;" v-on:click="changeView('bbkManager')">Biobrick Manager</a></li>
         <li role="presentation"><a href="javascript:;">...</a></li>
       </ul>
-    </div>
     <component :is="currentPlugin"></component>
   </div>
 </template>
