@@ -9,6 +9,12 @@
     @extend %input-biohub;
     border-left-color: transparent;
     @include transition(border-color);
+    @extend %no-box-shadow;
+    &:focus {
+      -webkit-box-shadow: 0 0 3px $color-blue-2!important;
+      -moz-box-shadow: 0 0 3px $color-blue-2!important;
+      box-shadow: 0 0 3px $color-blue-2!important;
+    }
   }
 
   .form-control, .input-group > .input-group-addon {

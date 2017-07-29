@@ -65,8 +65,8 @@ export default new Router({
     },
     {
       path: '/plugins',
-      name: 'Plugin',
-      component: Plugins
+      component: Plugins,
+      name: 'PluginHome'
     },
     {
       path: '*',
