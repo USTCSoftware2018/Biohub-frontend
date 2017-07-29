@@ -27,7 +27,7 @@
       <div class="search-result-tab">
         <div>
           <b class="result-header">
-            <a href="#" class="name-a">{{name[0]}}</a>
+            <a href="#" class="repo-name-head">{{name[0]}}</a>
             <b class="grade">
               {{grade[0]}}
             </b>
@@ -46,7 +46,7 @@
       <div class="search-result-tab">
         <div>
           <b class="result-header">
-            <a href="#" class="name-a">{{name[1]}}</a>
+            <a href="#" class="repo-name-head">{{name[1]}}</a>
             <b class="grade">
               {{grade[1]}}
             </b>
@@ -65,7 +65,7 @@
       <div class="search-result-tab">
         <div>
           <b class="result-header">
-            <a href="#" class="name-a">{{name[2]}}</a>
+            <a href="#" class="repo-name-head">{{name[2]}}</a>
             <b class="grade">
               {{grade[2]}}
             </b>
@@ -84,7 +84,7 @@
       <div class="search-result-tab">
         <div>
           <b class="result-header">
-            <a href="#" class="name-a">{{name[3]}}</a>
+            <a href="#" class="repo-name-head">{{name[3]}}</a>
             <b class="grade">
               {{grade[3]}}
             </b>
@@ -103,7 +103,7 @@
       <div class="search-result-tab">
         <div>
           <b class="result-header">
-            <a href="#" class="name-a">{{name[4]}}</a>
+            <a href="#" class="repo-name-head">{{name[4]}}</a>
             <b class="grade">
               {{grade[4]}}
             </b>

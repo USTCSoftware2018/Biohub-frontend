@@ -61,16 +61,16 @@
       <div class="col-md-8">
         <div class="profile-nav">
           <ul class="nav nav-tabs">
-            <li role="presentation" class="active" id="activities">
+            <li role="presentation" class="active" id="activity">
               <a>activities</a>
             </li>
-            <li role="presentation" id="experiences">
+            <li role="presentation" id="experience">
               <a>experiences</a>
             </li>
-            <li role="presentation" id="comments">
+            <li role="presentation" id="comment">
               <a>comments</a>
             </li>
-            <li role="presentation" id="stars">
+            <li role="presentation" id="star">
               <a>stars</a>
             </li>
             <li role="presentation" id="rating">
@@ -81,13 +81,18 @@
             </li>
           </ul>
         </div>
+        <repo-view></repo-view>
+        <repo-view></repo-view>
+        <repo-view></repo-view>
+        <repo-view></repo-view>
+        <repo-view></repo-view>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import ProfileNavbar from './ProfileNavbar.vue'
+  import RepoView from '../Common/RepoView.vue'
 
   var biography = 't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
@@ -126,7 +131,7 @@
       }
     },
     components: {
-      ProfileNavbar
+      RepoView
     }
   }
 </script>
