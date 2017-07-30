@@ -61,38 +61,45 @@
       <div class="col-md-8">
         <div class="profile-nav">
           <ul class="nav nav-tabs">
-            <li role="presentation" class="active" id="activity">
-              <a>activities</a>
+            <li role="presentation" v-bind:class="{ 'active' : ('Activity' === currentPlugin) }"
+                v-on:click="currentPlugin = 'Activity'" id="activity">
+              <a href="#Activity">activities</a>
             </li>
-            <li role="presentation" id="experience">
-              <a>experiences</a>
+            <li role="presentation" v-bind:class="{ 'active' : ('Experience' === currentPlugin) }"
+                v-on:click="currentPlugin = 'Experience'" id="experience">
+              <a href="#Experience">experiences</a>
             </li>
-            <li role="presentation" id="comment">
-              <a>comments</a>
+            <li role="presentation" v-bind:class="{ 'active' : ('Comment' === currentPlugin) }"
+                v-on:click="currentPlugin = 'Comment'" id="comment">
+              <a href="#Comment">comments</a>
             </li>
-            <li role="presentation" id="star">
-              <a>stars</a>
+            <li role="presentation" v-bind:class="{ 'active' : ('Star' === currentPlugin) }"
+                v-on:click="currentPlugin = 'Star'" id="star">
+              <a href="#Star">stars</a>
             </li>
-            <li role="presentation" id="rating">
-              <a>rating</a>
+            <li role="presentation" v-bind:class="{ 'active' : ('Rating' === currentPlugin) }"
+                v-on:click="currentPlugin = 'Rating'" id="rating">
+              <a href="#Rating">rating</a>
             </li>
-            <li role="presentation" id="watching">
-              <a>watching</a>
+            <li role="presentation" v-bind:class="{ 'active' : ('Watching' === currentPlugin) }"
+                v-on:click="currentPlugin = 'Watching'" id="watching">
+              <a href="#Watching">watching</a>
             </li>
           </ul>
         </div>
-        <repo-view></repo-view>
-        <repo-view></repo-view>
-        <repo-view></repo-view>
-        <repo-view></repo-view>
-        <repo-view></repo-view>
+        <component :is="currentPlugin"></component>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import RepoView from '../Common/RepoView.vue'
+  import Activity from './Activity.vue'
+  import Experience from './Experience.vue'
+  import Comment from './Comment.vue'
+  import Star from './Star.vue'
+  import Rating from './Rating.vue'
+  import Watching from './Watching.vue'
 
   var biography = 't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
@@ -119,7 +126,8 @@
         userLoc: userLoc,
         isFolded: true,
         isOverflow: false,
-        hintShow: false
+        hintShow: false,
+        currentPlugin: 'Watching'
       }
     },
     methods: {
@@ -131,7 +139,12 @@
       }
     },
     components: {
-      RepoView
+      Activity,
+      Experience,
+      Comment,
+      Star,
+      Rating,
+      Watching
     }
   }
 </script>
