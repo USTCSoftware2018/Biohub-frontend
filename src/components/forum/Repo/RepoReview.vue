@@ -20,15 +20,19 @@
           <br>Hide Detail</p>
       </a>
     </div>
+    <editor></editor>
   </div>
 </template>
 
 <script>
+  import Editor from './Editor.vue'
   export default {
     data () {
       return {
-
       }
+    },
+    components: {
+      Editor
     }
   }
 </script>

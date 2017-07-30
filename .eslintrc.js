@@ -10,6 +10,10 @@ module.exports = {
     browser: true,
     es6: false
   },
+  globals: {
+    $: true,
+    editormd: true
+  },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: 'standard',
   // required to lint *.vue files
@@ -23,6 +27,7 @@ module.exports = {
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-unused-vars': 1,
   }
 }
