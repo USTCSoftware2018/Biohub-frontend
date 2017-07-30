@@ -74,5 +74,24 @@
   border-width: 0.5px;
   font-size: 14px;
   padding: 3px 10px 3px 10px;
-  font-family: 'Microsoft YaHei', sans-serif;
+}
+
+.activity-indicator {
+  color: gray;
+  padding-top: 10px;
+  font-size: 16px;
+  position: absolute;
+}
+
+.activity-content {
+  font-size:15px;
+  line-height:1.5em;
+  padding-top:8px;
+  margin-left:30px;
+  margin-bottom:auto;
+}
+
+.star-tab {
+  border-bottom:1px solid #ddd;
+  height:2.2em;
 }

@@ -88,7 +88,7 @@
           </ul>
         </div>
         <div class="white-box">
-          <component :is="currentPlugin"></component>
+          <component :is="currentPlugin" :user="$route.params.author"></component>
         </div>
       </div>
     </div>
