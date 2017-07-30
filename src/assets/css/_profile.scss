@@ -125,13 +125,17 @@
   border-radius: 2px;
   border: 1px solid #ddd;
   margin-top: 5%;
+
   .profile-biography {
-    line-height: 1.5em;
+    line-height: 1.5em !important;
     text-align: left;
-    min-height: 7.5em;
-    overflow: hidden;
+    min-height: 7.0em;
     word-wrap: break-word;
     -ms-word-wrap: break-word;
+
+    p {
+      margin: 0px;
+    }
 
     .arrow-l-int {
       width: 0px;
@@ -158,17 +162,14 @@
   }
 }
 
-.profile-biography-folded {
-  height: 7.5em !important;
-  display: -webkit-box;
-  -ms-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-}
-
 .profile-nav {
   margin-top: 5%;
+}
+
+.white-box {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-top: 0px;
 }
 
 .oneline-overflow {
@@ -178,5 +179,15 @@
   white-space: nowrap;
   text-overflow: ellipsis !important;
   margin: 0 auto;
+}
+
+.profile-biography-folded {
+  height: 7.0em !important;
+  display: -webkit-box;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 

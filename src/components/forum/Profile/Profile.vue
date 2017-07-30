@@ -87,7 +87,9 @@
             </li>
           </ul>
         </div>
-        <component :is="currentPlugin"></component>
+        <div class="white-box">
+          <component :is="currentPlugin"></component>
+        </div>
       </div>
     </div>
   </div>
@@ -103,19 +105,31 @@
 
   var biography = 't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
-    't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     'Vis eu nibh omnis.'
   var userMail = 'gloit042@gmail.com'
   var userStar = 666
   var userLoc = 'University of Science and Technology of Hefei'
   var userLink = 'http://home.ustc.edu.cn/~lijh2015'
 
-  // var hint = 'click to show more'
-
   export default {
     mounted () {
-      this.isOverflow = this.$refs.bioRef.offsetHeight < this.$refs.bioRef.scrollHeight
-      this.hintShow = this.isOverflow
+      var currentHeight = this.$refs.bioRef.offsetHeight
+      var currentLength = this.$refs.bioRef.className.length
+
+      console.log(this.$refs.bioRef.offsetHeight)
+      this.$refs.bioRef.className += ' profile-biography-folded'
+      console.log(currentHeight)
+      console.log(this.$refs.bioRef.offsetHeight)
+
+      if (currentHeight > this.$refs.bioRef.offsetHeight) {
+        this.$refs.bioRef.className = this.$refs.bioRef.className.slice(0, currentLength)
+        this.isOverflow = true
+        this.hintShow = true
+        this.isFolded = true
+      } else {
+        this.$refs.bioRef.className = this.$refs.bioRef.className.slice(0, currentLength)
+        this.isFolded = false
+      }
     },
     data () {
       return {
@@ -124,10 +138,10 @@
         userStar: userStar,
         userLink: userLink,
         userLoc: userLoc,
-        isFolded: true,
+        isFolded: false,
         isOverflow: false,
         hintShow: false,
-        currentPlugin: 'Watching'
+        currentPlugin: 'Activity'
       }
     },
     methods: {

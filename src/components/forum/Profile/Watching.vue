@@ -8,6 +8,12 @@
   </div>
 </template>
 
+<style scoped>
+  .search-result-tab {
+    border-bottom: 1px solid #ddd;
+  }
+</style>
+
 <script>
   import RepoView from '../Common/RepoView.vue'
 
@@ -34,6 +40,8 @@
           'label3'
         ],
         abstract: [
+          'It had been three years since King Zhuang of Chu ascended the throne, ' +
+          'It had been three years since King Zhuang of Chu ascended the throne, ' +
           'It had been three years since King Zhuang of Chu ascended the throne, ' +
           'but he had neither issued a decree nor dealt with any duanwenw.com state affairs.' +
           ' Furthermore, there no deeds worth mentioning. ',
