@@ -1,35 +1,29 @@
 <template>
-  <div class="star-box">
-    <div v-for="(repo, i) in starredRepos" :key="i" class="star-tab">
-      <i class="fa fa-star activity-indicator"></i>
-      <p class="activity-content">
-        <a href="/forums/gloit">{{ user }}</a>
-        starred
-        <a href="#">{{ repo }}</a>
-      </p>
-    </div>
+  <div class="-profile-activity-box">
+    <star-tab v-for="(p, i) in starredExps" :key="i"
+               :p="p" :user="params.user" :showIntro="params.showIntro" class="-profile-activity-tab">
+    </star-tab>
   </div>
 </template>
 
-<style scoped>
-  @import "../Common/Common.css";
-  .star-box {
-    padding-left: 20px;
-    padding-right: 20px;
-    text-align: left;
-  }
-</style>
-
 <script>
+  import StarTab from '../Common/StarTab.vue'
+
   export default {
-    props: ['user'],
+    props: ['params'],
+    mounted () {
+      console.log('Star mounted')
+    },
     data () {
       return {
-        starredRepos: [
-          'Repo A',
-          'Repo B'
+        starredExps: [
+          'Experience A',
+          'Experience B'
         ]
       }
+    },
+    components: {
+      StarTab
     }
   }
 </script>

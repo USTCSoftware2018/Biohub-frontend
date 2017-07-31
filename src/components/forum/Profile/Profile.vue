@@ -62,19 +62,19 @@
         <div class="profile-nav">
           <ul class="nav nav-tabs">
             <li role="presentation" v-bind:class="{ 'active' : ('Activity' === currentPlugin) }"
-                v-on:click="currentPlugin = 'Activity'" id="activity">
+                v-on:click="currentPlugin = 'Activity'; params.showIntro = false" id="activity">
               <a href="#Activity">activities</a>
             </li>
             <li role="presentation" v-bind:class="{ 'active' : ('Experience' === currentPlugin) }"
-                v-on:click="currentPlugin = 'Experience'" id="experience">
+                v-on:click="currentPlugin = 'Experience'; params.showIntro = true" id="experience">
               <a href="#Experience">experiences</a>
             </li>
             <li role="presentation" v-bind:class="{ 'active' : ('Comment' === currentPlugin) }"
-                v-on:click="currentPlugin = 'Comment'" id="comment">
+                v-on:click="currentPlugin = 'Comment'; params.showIntro = true" id="comment">
               <a href="#Comment">comments</a>
             </li>
             <li role="presentation" v-bind:class="{ 'active' : ('Star' === currentPlugin) }"
-                v-on:click="currentPlugin = 'Star'" id="star">
+                v-on:click="currentPlugin = 'Star'; params.showIntro = true" id="star">
               <a href="#Star">stars</a>
             </li>
             <li role="presentation" v-bind:class="{ 'active' : ('Rating' === currentPlugin) }"
@@ -88,12 +88,16 @@
           </ul>
         </div>
         <div class="white-box">
-          <component :is="currentPlugin" :user="$route.params.author"></component>
+          <component :is="currentPlugin" :params="params"></component>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+  @import "../Common/Common.css"
+</style>
 
 <script>
   import Activity from './Activity.vue'
@@ -113,13 +117,14 @@
 
   export default {
     mounted () {
+      this.params.user = this.$route.params.author
+
       var currentHeight = this.$refs.bioRef.offsetHeight
       var currentLength = this.$refs.bioRef.className.length
 
-      console.log(this.$refs.bioRef.offsetHeight)
+      // console.log(this.$refs.bioRef.offsetHeight)
       this.$refs.bioRef.className += ' profile-biography-folded'
-      console.log(currentHeight)
-      console.log(this.$refs.bioRef.offsetHeight)
+      // console.log(this.$refs.bioRef.offsetHeight)
 
       if (currentHeight > this.$refs.bioRef.offsetHeight) {
         this.$refs.bioRef.className = this.$refs.bioRef.className.slice(0, currentLength)
@@ -141,7 +146,11 @@
         isFolded: false,
         isOverflow: false,
         hintShow: false,
-        currentPlugin: 'Activity'
+        currentPlugin: 'Activity',
+        params: {
+          user: '',
+          showIntro: false
+        }
       }
     },
     methods: {

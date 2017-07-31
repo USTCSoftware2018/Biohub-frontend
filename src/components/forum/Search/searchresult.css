@@ -62,8 +62,8 @@
   overflow: hidden;
   width: 90%;
   height: 80px;
-  font-family: 'Microsoft YaHei', sans-serif;
   margin-top: 0px;
+  padding-left:20px;
 }
 
 .search-result-tab {

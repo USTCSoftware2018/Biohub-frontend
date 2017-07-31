@@ -1,6 +1,6 @@
 #available-label {
-  margin-top:10px;
-  margin-bottom:10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .result-header {
@@ -18,17 +18,18 @@
 
 .result-content {
   font-size: 14px;
-  line-height:1.3em;
+  line-height: 1.3em;
   height: 5.2em !important;
   overflow: hidden;
   width: 90%;
   display: -webkit-box;
   -ms-word-wrap: break-word;
   word-wrap: break-word;
- -ms-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
   text-overflow: ellipsis;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  padding-left: 20px;
 }
 
 .search-result-tab {
@@ -39,7 +40,7 @@
 
 .availabel-label {
   position: relative;
-  margin-top:20px;
+  margin-top: 20px;
 }
 
 .label-list {
@@ -78,20 +79,41 @@
 
 .activity-indicator {
   color: gray;
-  padding-top: 10px;
   font-size: 16px;
   position: absolute;
+  padding-top: 0.7em;
+  left: 23px;
 }
 
 .activity-content {
-  font-size:15px;
-  line-height:1.5em;
-  padding-top:8px;
-  margin-left:30px;
-  margin-bottom:auto;
+  font-size: 15px;
+  line-height: 2em;
+  padding-top: 4px;
+  margin-bottom: auto;
+  color: gray;
 }
 
-.star-tab {
-  border-bottom:1px solid #ddd;
-  height:2.2em;
+.-profile-activity-tab {
+  border-bottom: 1px solid #ddd;
+}
+
+.experience-brief-intro, .comment-brief-intro {
+  background-color: #f6f6f6;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  border: 2px solid #e5e5e5;
+  margin: 10px;
+  padding: 5px;
+}
+
+.experience-brief-intro p, .comment-brief-intro p {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.-profile-activity-box {
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: left;
 }
