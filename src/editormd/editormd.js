@@ -11,6 +11,16 @@
  */
 
 
+function contains(arr, obj) {
+  var i = arr.length;
+  while (i--) {
+    if (arr[i] === obj) {
+      return true;
+    }
+  }
+  return false;
+}
+
 ;(function(factory) {
     "use strict";
     
@@ -4117,9 +4127,12 @@
         };
 
         css.href   = fileName + ".css";
-        //if(document.getElementsByTagName("head")[0].hasChildNodes(css)) return;
-        if(into === "head") {
 
+        if(contains(editormd.loadFiles.css,fileName)) {
+            callback();
+            return;
+        }
+        if(into === "head") {
             document.getElementsByTagName("head")[0].appendChild(css);
         } else {
             document.body.appendChild(css);
@@ -4170,7 +4183,10 @@
                 callback();
             };
         }
-      //if(document.getElementsByTagName("head")[0].hasChildNodes(script)) return;
+      if(contains(editormd.loadFiles.js,fileName)) {
+        callback();
+        return;
+      }
         if (into === "head") {
             document.getElementsByTagName("head")[0].appendChild(script);
         } else {
