@@ -11,6 +11,7 @@ import User from '@/components/forum/User'
 import Profile from '@/components/forum/Profile/Profile'
 import Plugins from '@/components/plugins/plugins'
 import SearchResult from '@/components/forum/Search/SearchResult'
+import Settings from '@/components/Settings'
 Vue.use(Router)
 
 export default new Router({
@@ -67,6 +68,11 @@ export default new Router({
       path: '/plugins',
       component: Plugins,
       name: 'PluginHome'
+    },
+    {
+      path: '/settings',
+      component: Settings,
+      name: 'setting'
     },
     {
       path: '*',

@@ -1,0 +1,64 @@
+.settings-title {
+  margin-top: 5%;
+}
+
+.settings-right {
+  margin-top: 5%;
+  height: 280px;
+  .settings-text-info {
+    text-align: left;
+
+    .settings-option {
+      padding:5px;
+      h4 {
+        margin-top:10px;
+      }
+      input {
+        margin-top:10px;
+      }
+    }
+  }
+}
+
+.settings-left {
+  margin-top: 5%;
+  height: 280px;
+  .settings-avatar-container {
+    margin-left:auto;
+    margin-right:auto;
+    height: 200px;
+    width: 200px;
+    img {
+      height: 100%;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+    }
+  }
+  .settings-upload-image-button {
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+  }
+}
+
+.settings-biography {
+  h3 {
+    margin:0px;
+    font-size:22px;
+  }
+  textarea {
+    margin-top:20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding:8px;
+    width:100%;
+    line-height:1.3em;
+    height: 6.4em;
+  }
+}
+
+.settings-save {
+  margin-top:20px;
+}
