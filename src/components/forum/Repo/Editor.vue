@@ -14,7 +14,10 @@
           path: '/static/lib/',
           pluginPath: '/static/plugins',
           mode: 'markdown',
-          height: 300
+          autoHeight: true,
+          toolbarAutoFixed: false,
+          toolbarIcons: 'biohub',
+          htmlDecode: true
         })
       })
     }
