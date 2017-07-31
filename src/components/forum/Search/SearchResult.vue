@@ -24,110 +24,42 @@
           <span class="label-list">{{label[1]}}</span>
         </div>
       </div>
-      <div class="search-result-tab">
-        <div>
-          <b class="result-header">
-            <a href="#" class="repo-name-head">{{name[0]}}</a>
-            <b class="grade">
-              {{grade[0]}}
-            </b>
-          </b>
-          <p class="result-content">
-            {{abstract[0]}}
-          </p>
-        </div>
-        <div class="result-label">
-          <span class="label-list" v-if="lab[0]">{{label[0]}}</span>
-          <span class="label-list" v-if="lab[1]">{{label[1]}}</span>
-          <span class="label-list" v-if="lab[2]">{{label[2]}}</span>
-          <a href="#"><img src="../../../assets/img/mark.png" class="img-collect"></a>
-        </div>
-      </div>
-      <div class="search-result-tab">
-        <div>
-          <b class="result-header">
-            <a href="#" class="repo-name-head">{{name[1]}}</a>
-            <b class="grade">
-              {{grade[1]}}
-            </b>
-          </b>
-          <p class="result-content">
-            {{abstract[1]}}
-          </p>
-        </div>
-        <div class="result-label">
-          <span class="label-list" v-if="lab[0]">{{label[0]}}</span>
-          <span class="label-list" v-if="lab[1]">{{label[1]}}</span>
-          <span class="label-list" v-if="lab[2]">{{label[2]}}</span>
-          <a href="#"><img src="../../../assets/img/mark.png" class="img-collect"></a>
-        </div>
-      </div>
-      <div class="search-result-tab">
-        <div>
-          <b class="result-header">
-            <a href="#" class="repo-name-head">{{name[2]}}</a>
-            <b class="grade">
-              {{grade[2]}}
-            </b>
-          </b>
-          <p class="result-content">
-            {{abstract[2]}}
-          </p>
-        </div>
-        <div class="result-label">
-          <span class="label-list" v-if="lab[0]">{{label[0]}}</span>
-          <span class="label-list" v-if="lab[1]">{{label[1]}}</span>
-          <span class="label-list" v-if="lab[2]">{{label[2]}}</span>
-          <a href="#"><img src="../../../assets/img/mark.png" class="img-collect"></a>
-        </div>
-      </div>
-      <div class="search-result-tab">
-        <div>
-          <b class="result-header">
-            <a href="#" class="repo-name-head">{{name[3]}}</a>
-            <b class="grade">
-              {{grade[3]}}
-            </b>
-          </b>
-          <p class="result-content">
-            {{abstract[3]}}
-          </p>
-        </div>
-        <div class="result-label">
-          <span class="label-list" v-if="lab[0]">{{label[0]}}</span>
-          <span class="label-list" v-if="lab[1]">{{label[1]}}</span>
-          <span class="label-list" v-if="lab[2]">{{label[2]}}</span>
-          <a href="#"><img src="../../../assets/img/mark.png" class="img-collect"></a>
-        </div>
-      </div>
-      <div class="search-result-tab">
-        <div>
-          <b class="result-header">
-            <a href="#" class="repo-name-head">{{name[4]}}</a>
-            <b class="grade">
-              {{grade[4]}}
-            </b>
-          </b>
-          <p class="result-content">
-            {{abstract[4]}}
-          </p>
-        </div>
-        <div class="result-label">
-          <span class="label-list" v-if="lab[0]">{{label[0]}}</span>
-          <span class="label-list" v-if="lab[1]">{{label[1]}}</span>
-          <span class="label-list" v-if="lab[2]">{{label[2]}}</span>
-          <a href="#"><img src="../../../assets/img/mark.png" class="img-collect"></a>
-        </div>
-      </div>
+      <repo-view v-for="(n, i) in name"
+                 :name="n"
+                 :grade="grade[i]"
+                 :label="label"
+                 :abstract="abstract[i]" :key="i"></repo-view>
     </div>
   </div>
 </template>
-<style>
-  @import "searchresult.css";
+<style scoped>
+  * {
+    text-align: left;
+  }
+
+  .search-line {
+    height: 40px;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .search-result-tab {
+    box-shadow: 2px 2px 10px #cacaca;
+    width: 600px !important;
+    position: relative;
+    padding: 15px 15px 15px 15px;
+    margin-top: 60px;
+  }
+
 </style>
 <script>
+  import RepoView from '../Common/RepoView.vue'
+
   export default {
     name: 'searchresult',
+    components: {
+      RepoView
+    },
     data () {
       return {
         name: [
@@ -135,9 +67,7 @@
           'Another Head',
           'name3',
           'name4',
-          'name5',
-          'name6',
-          'name7'
+          'name5'
         ],
         grade: [
           4.8,
