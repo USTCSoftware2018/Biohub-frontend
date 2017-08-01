@@ -1,0 +1,19 @@
+.plugin-description {
+  padding-top: 3rem;
+}
+.plugin-header {
+  font-size: 3rem;
+  padding-bottom: 3rem;
+  margin: 1rem 3rem;
+  border-bottom: 1px solid $border-color;
+}
+.plugin-container {
+  text-align: left;
+  padding-top: 1rem;
+  p {
+    margin: 0.5rem 4rem;
+  }
+  .step {
+    font-weight: 700;
+  }
+}
