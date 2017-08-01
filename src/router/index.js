@@ -54,9 +54,11 @@ export default new Router({
         {
           path: ':repo',
           component: Repo,
+          name: 'Repo',
           children: [{
             path: 'experience',
-            component: Repo
+            component: Repo,
+            name: 'RepoExperienceList'
           },
           {
             path: 'experience/:id',

@@ -11,7 +11,9 @@
               </div>
               <div class="repo-info-addon">
                 Author: {{ $route.params.author }}
-                | Followers: <a href="#">Number</a> | <a href="#experience" class="view-experience" @click="changeView">View {{ anotherView }}</a>
+                | Followers: <a href="#">Number</a> | <router-link :to="{name:'RepoExperienceList'}"
+                v-if='currentView === "Description"' class="view-experience">View Experience</router-link>
+                <router-link :to="{name: 'Repo'}" v-if='currentView === "Experience"' class="view-experience">View Description</router-link>
               </div>
             </div>
             <component v-bind:is="currentView"></component>
@@ -48,12 +50,21 @@
         anotherView: 'Experience'
       }
     },
+    watch: {
+      '$route' (to, from) {
+        if (to.name === 'RepoExperienceList' || to.name === 'Repo') {
+          this.changeView()
+        }
+      }
+    },
     components: {
       Description, Experience, PageFooter
     },
     created () {
       console.log(this.$route.params)
-      if (window.location.hash === '#experience') {
+      var patt = new RegExp('experience')
+      if (patt.test(this.$route.fullPath)) {
+        console.log('yes')
         this.changeView()
       }
     },
