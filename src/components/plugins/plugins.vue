@@ -16,10 +16,16 @@
 
 <script>
   import topNavbar from '../topNavbar.vue'
-  import ABACUS from './ABACUS.vue'
-  import bbkManager from './bbkManager.vue'
   export default {
-    components: { topNavbar, ABACUS, bbkManager },
+    components: {
+      topNavbar,
+      ABACUS: function () {
+        return import('./ABACUS')
+      },
+      bbkManager: function () {
+        return import('./bbkManager')
+      }
+    },
     data () {
       return {
         currentPlugin: 'ABACUS'

@@ -100,13 +100,6 @@
 </style>
 
 <script>
-  import Activity from './Activity.vue'
-  import Experience from './Experience.vue'
-  import Comment from './Comment.vue'
-  import Star from './Star.vue'
-  import Rating from './Rating.vue'
-  import Watching from './Watching.vue'
-
   var biography = 't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     'Vis eu nibh omnis.'
@@ -162,12 +155,24 @@
       }
     },
     components: {
-      Activity,
-      Experience,
-      Comment,
-      Star,
-      Rating,
-      Watching
+      Activity: function () {
+        return import('./Activity')
+      },
+      Experience: function () {
+        return import('./Experience')
+      },
+      Comment: function () {
+        return import('./Comment')
+      },
+      Star: function () {
+        return import('./Star')
+      },
+      Rating: function () {
+        return import('./Rating')
+      },
+      Watching: function () {
+        return import('./Watching')
+      }
     }
   }
 </script>
