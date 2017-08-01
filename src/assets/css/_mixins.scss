@@ -1,16 +1,12 @@
-%input-biohub {
-  //@extend %no-box-shadow;
-  border-color: transparent;
-  border-width: 1px;
-  &:focus {
-    border-color: $color-blue-2;
-  }
+%input-with-box-shadow {
+  -webkit-box-shadow: 0 0 3px $color-blue-2;
+  -moz-box-shadow: 0 0 3px $color-blue-2;
+  box-shadow: 0 0 3px $color-blue-2;
 }
-
 %no-box-shadow {
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 %no-border-radius {
@@ -25,14 +21,4 @@
   -ms-transition: $attribute ease-in-out 0.25s;
   -o-transition: $attribute ease-in-out 0.25s;
   transition: $attribute ease-in-out 0.25s;
-}
-
-%list-biohub {
-  .list-group-item {
-    text-align: left;
-    padding: 0.8rem 1rem;
-  }
-  .list-group-item a {
-    color: darken($color-blue-2,0%);
-  }
 }

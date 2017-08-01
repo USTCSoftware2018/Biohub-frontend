@@ -1,0 +1,33 @@
+.plugin-description {
+  padding-top: 3rem;
+}
+.plugin-header {
+  font-size: 3rem;
+  padding-bottom: 3rem;
+  margin: 1rem 3rem;
+  border-bottom: 1px solid $border-color;
+}
+.plugin-container {
+  text-align: left;
+  padding-top: 1rem;
+  p {
+    margin: 1.5rem 4rem;
+    font-size: 1.6rem;
+  }
+  .steps {
+    font-size: 2rem;
+  }
+  .step {
+    font-weight: 700;
+  }
+}
+.biobrick-form {
+  margin: 4rem 4rem;
+  .form-control {
+    margin-left:auto;
+    margin-right: auto;
+    width: 40%;
+    @extend %input-biohub;
+    border-color: $border-color;
+  }
+}

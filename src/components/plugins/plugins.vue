@@ -1,12 +1,16 @@
 <template>
   <div>
     <top-navbar></top-navbar>
+    <div class="container">
       <ul class="nav nav-tabs nav-plugin">
-        <li role="presentation" class="active" id="ABACUS"><a href="javascript:;" v-on:click="changeView('ABACUS')">ABACUS</a></li>
-        <li role="presentation" id="bbkManager"><a href="javascript:;" v-on:click="changeView('bbkManager')">Biobrick Manager</a></li>
+        <li role="presentation" v-bind:class="{'active' : ('ABACUS' === currentPlugin)}" id="ABACUS"><a href="javascript:;"
+             v-on:click="currentPlugin = 'ABACUS' ; ">ABACUS</a></li>
+        <li role="presentation" v-bind:class="{'active' : ('bbkManager' === currentPlugin)}"><a href="javascript:;"
+             v-on:click="currentPlugin = 'bbkManager'">Biobrick Manager</a></li>
         <li role="presentation"><a href="javascript:;">...</a></li>
       </ul>
-    <component :is="currentPlugin"></component>
+      <component :is="currentPlugin"></component>
+    </div>
   </div>
 </template>
 
@@ -22,11 +26,6 @@
       }
     },
     methods: {
-      changeView (view) {
-        this.currentPlugin = view
-        document.getElementsByClassName('active')[0].classList.remove('active')
-        document.getElementById(view).classList.add('active')
-      }
     }
   }
 </script>

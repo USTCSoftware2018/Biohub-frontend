@@ -23,8 +23,8 @@
   }
   .navbar-form input {
     @extend %input-biohub;
-    @include transition(border-color);
     border-radius: 20px;
+    border-color: transparent;
     background-color: lighten($color-blue-1, 5%);
     color: darken(white, 11%);
     &::placeholder {
@@ -42,7 +42,6 @@
 }
 
 .nav-plugin {
-  width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;

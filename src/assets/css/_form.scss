@@ -3,17 +3,9 @@
   padding: 20px;
 
   .form-control {
-    font-size: 16px;
-    height: 42px;
-    margin-left: -2px;
     @extend %input-biohub;
-    border-left-color: transparent;
-    @include transition(border-color);
-    @extend %no-box-shadow;
     &:focus {
-      -webkit-box-shadow: 0 0 3px $color-blue-2!important;
-      -moz-box-shadow: 0 0 3px $color-blue-2!important;
-      box-shadow: 0 0 3px $color-blue-2!important;
+      @extend %input-with-box-shadow;
     }
   }
 
@@ -103,4 +95,16 @@
   height: 3.3rem;
   border: 1px solid #ccc;
   border-radius: 30px;
+}
+
+
+%input-biohub {
+  @extend %no-box-shadow;
+  border-width: 1px;
+  &:focus {
+    border-color: $color-blue-2;
+  }
+  font-size: 16px;
+  margin-left: -2px;
+  @include transition(border-color);
 }
