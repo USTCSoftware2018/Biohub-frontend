@@ -1,5 +1,5 @@
 <template>
-  <div class="-profile-activity-box">
+  <div>
     <star-tab v-for="(p, i) in starredExps" :key="i"
                :p="p" :user="params.user" :showIntro="params.showIntro" class="-profile-activity-tab">
     </star-tab>

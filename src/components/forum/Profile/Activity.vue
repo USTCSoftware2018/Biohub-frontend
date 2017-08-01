@@ -1,5 +1,5 @@
 <template>
-  <div class="-profile-activity-box">
+  <div>
     <component v-for="(mod, i) in allActivities" :key="i" :is="mod.type + 'Tab'"
                :p="mod.p" :user="params.user" :showIntro="params.showIntro" class="-profile-activity-tab">
     </component>
