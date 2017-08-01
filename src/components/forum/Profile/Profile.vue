@@ -63,27 +63,27 @@
           <ul class="nav nav-tabs">
             <li role="presentation" v-bind:class="{ 'active' : ('Activity' === currentPlugin) }"
                 v-on:click="currentPlugin = 'Activity'; params.showIntro = false" id="activity">
-              <a href="#Activity">activities</a>
+              <a href="javascript:;">activities</a>
             </li>
             <li role="presentation" v-bind:class="{ 'active' : ('Experience' === currentPlugin) }"
                 v-on:click="currentPlugin = 'Experience'; params.showIntro = true" id="experience">
-              <a href="#Experience">experiences</a>
+              <a href="javascript:;">experiences</a>
             </li>
             <li role="presentation" v-bind:class="{ 'active' : ('Comment' === currentPlugin) }"
                 v-on:click="currentPlugin = 'Comment'; params.showIntro = true" id="comment">
-              <a href="#Comment">comments</a>
+              <a href="javascript:;">comments</a>
             </li>
             <li role="presentation" v-bind:class="{ 'active' : ('Star' === currentPlugin) }"
                 v-on:click="currentPlugin = 'Star'; params.showIntro = true" id="star">
-              <a href="#Star">stars</a>
+              <a href="javascript:;">stars</a>
             </li>
             <li role="presentation" v-bind:class="{ 'active' : ('Rating' === currentPlugin) }"
                 v-on:click="currentPlugin = 'Rating'" id="rating">
-              <a href="#Rating">rating</a>
+              <a href="javascript:;">rating</a>
             </li>
             <li role="presentation" v-bind:class="{ 'active' : ('Watching' === currentPlugin) }"
                 v-on:click="currentPlugin = 'Watching'" id="watching">
-              <a href="#Watching">watching</a>
+              <a href="javascript:;">watching</a>
             </li>
           </ul>
         </div>
@@ -92,20 +92,16 @@
         </div>
       </div>
     </div>
+    <PageFooter></PageFooter>
   </div>
 </template>
 
 <style scoped>
-  @import "../Common/Common.css"
+  @import "../Common/Common.css";
 </style>
 
 <script>
-  import Activity from './Activity.vue'
-  import Experience from './Experience.vue'
-  import Comment from './Comment.vue'
-  import Star from './Star.vue'
-  import Rating from './Rating.vue'
-  import Watching from './Watching.vue'
+  import PageFooter from '../Common/PageFooter.vue'
 
   var biography = 't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
@@ -162,12 +158,25 @@
       }
     },
     components: {
-      Activity,
-      Experience,
-      Comment,
-      Star,
-      Rating,
-      Watching
+      PageFooter,
+      Activity: function () {
+        return import('./Activity')
+      },
+      Experience: function () {
+        return import('./Experience')
+      },
+      Comment: function () {
+        return import('./Comment')
+      },
+      Star: function () {
+        return import('./Star')
+      },
+      Rating: function () {
+        return import('./Rating')
+      },
+      Watching: function () {
+        return import('./Watching')
+      }
     }
   }
 </script>

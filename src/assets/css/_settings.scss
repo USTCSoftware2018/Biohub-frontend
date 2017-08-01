@@ -4,17 +4,17 @@
 
 .settings-right {
   margin-top: 5%;
-  height: 280px;
+  height: 440px;
   .settings-text-info {
     text-align: left;
 
     .settings-option {
-      padding:5px;
+      padding: 5px;
       h4 {
-        margin-top:10px;
+        margin-top: 10px;
       }
       input {
-        margin-top:10px;
+        margin-top: 10px;
       }
     }
   }
@@ -22,10 +22,10 @@
 
 .settings-left {
   margin-top: 5%;
-  height: 280px;
+  height: 440px;
   .settings-avatar-container {
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
     height: 200px;
     width: 200px;
     img {
@@ -36,29 +36,66 @@
     }
   }
   .settings-upload-image-button {
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
   }
 }
 
 .settings-biography {
   h3 {
-    margin:0px;
-    font-size:22px;
+    margin: 0px;
+    font-size: 22px;
   }
   textarea {
-    margin-top:20px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    padding:8px;
-    width:100%;
-    line-height:1.3em;
+    padding: 8px;
+    width: 100%;
+    line-height: 1.3em;
     height: 6.4em;
   }
 }
 
 .settings-save {
-  margin-top:20px;
+  margin-top: 20px;
+}
+
+.settings-plugins {
+  margin-top: 20px;
+  text-align: left;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .settings-plugins-add {
+    float: left;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    div {
+      width:30px;
+      height:30px;
+      margin:5px;
+      a {
+        color: $text-color-rev !important;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .settings-plugins-plugin {
+    float: left;
+    width: 40px;
+    height: 40px;
+    img {
+      margin: 5px;
+      width: 30px;
+      height: 30px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+    }
+  }
 }

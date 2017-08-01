@@ -1,5 +1,5 @@
 <template>
-  <div class="-profile-activity-box">
+  <div>
     <comment-tab v-for="(p, i) in starredRepos" :key="i"
                :p="p" :user="params.user" :showIntro="params.showIntro" class="-profile-activity-tab">
     </comment-tab>

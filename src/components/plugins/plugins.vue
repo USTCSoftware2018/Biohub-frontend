@@ -9,23 +9,33 @@
       </ul>
       <component :is="currentPlugin"></component>
     </div>
+    <PageFooter></PageFooter>
   </div>
 </template>
 
 <script>
+  import PageFooter from '../forum/Common/PageFooter.vue'
   import topNavbar from '../topNavbar.vue'
-  import ABACUS from './ABACUS.vue'
-  import bbkManager from './bbkManager.vue'
-  import add from './add.vue'
+  import add from './add'
   export default {
-    components: { topNavbar, ABACUS, bbkManager, add },
-    mounted () {
-      console.log(this.$route.params)
+    components: {
+      topNavbar,
+      PageFooter,
+      add,
+      ABACUS: function () {
+        return import('./ABACUS')
+      },
+      bbkManager: function () {
+        return import('./bbkManager')
+      }
     },
     data () {
       return {
         currentPlugin: this.$route.params.plugin ? this.$route.params.plugin : 'add'
       }
+    },
+    mounted () {
+      console.log(this.$route.params)
     },
     methods: {
     }
