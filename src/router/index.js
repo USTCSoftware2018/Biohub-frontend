@@ -53,10 +53,16 @@ export default new Router({
         },
         {
           path: ':repo',
-          name: 'Repo',
-          component: Repo
+          component: Repo,
+          children: [{
+            path: 'experience',
+            component: Repo
+          },
+          {
+            path: 'experience/:id',
+            component: Repo
+          }]
         }
-
       ]
     },
     {
@@ -67,7 +73,12 @@ export default new Router({
     {
       path: '/plugins',
       component: Plugins,
-      name: 'PluginHome'
+      name: 'Plugins'
+    },
+    {
+      path: '/plugins/:plugin',
+      component: Plugins,
+      name: 'Plugin'
     },
     {
       path: '/settings',
