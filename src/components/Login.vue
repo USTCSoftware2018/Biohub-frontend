@@ -3,8 +3,8 @@
     <img src="../assets/img/brand.png" width="530px" style="padding-top: 10em;">
     <div class="container login">
       <div class="row">
-        <div class="col-xs-3"></div>
-        <div class="col-xs-6">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
           <form style="margin-top:50px;" class="biohub-form">
             <div class="form-group">
               <div class="input-group">
@@ -25,7 +25,7 @@
             <button type="submit" class="btn btn-biohub btn-biohub-orange full-width" v-on:click.self.prevent="Login">Sign in</button>
           </form>
         </div>
-        <div class="col-xs-3"></div>
+        <div class="col-md-3"></div>
       </div>
     </div>
   </div>

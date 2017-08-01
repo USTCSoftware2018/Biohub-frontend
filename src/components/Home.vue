@@ -4,8 +4,8 @@
 
     <div class="container home">
       <div class="row">
-        <div class="col-xs-3"></div>
-        <div class="col-xs-6" style="padding-left:20px;padding-right:20px;">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="padding-left:20px;padding-right:20px;">
           <form style="margin-top:50px;" class="biohub-form">
             <button type="submit" name="join-button" class="btn btn-biohub btn-biohub-orange full-width"
                     v-on:click.self.prevent="JumpToSignup">
