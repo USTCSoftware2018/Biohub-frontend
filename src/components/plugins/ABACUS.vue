@@ -4,8 +4,8 @@
       <p class="plugin-header">Amino Acid Sequence Designer</p>
     </div>
     <div class="plugin-container">
-      <p>This is a plugin to design amino acid sequence automatically according to the .pdb files uploaded by its users.</p>
-      <p class="step">STEP 1.</p>
+      <p>This is a plugin to design amino acid sequence automatically according to the .pdb files uploaded by you.</p>
+      <p class="steps"><span class="step">STEP 1. </span>Upload your .pdb file</p>
     </div>
   </div>
 </template>

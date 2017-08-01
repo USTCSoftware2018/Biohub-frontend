@@ -11,7 +11,7 @@
               </div>
               <div class="repo-info-addon">
                 Author: {{ $route.params.author }}
-                | Followers: <a href="#">Number</a> | <a href="javascript:;" class="view-experience" @click="changeView">View {{ anotherView }}</a>
+                | Followers: <a href="#">Number</a> | <a href="#experience" class="view-experience" @click="changeView">View {{ anotherView }}</a>
               </div>
             </div>
             <component v-bind:is="currentView"></component>
@@ -51,6 +51,9 @@
     },
     created () {
       console.log(this.$route.params)
+      if (window.location.hash === '#experience') {
+        this.changeView()
+      }
     },
     methods: {
       changeView () {

@@ -102,10 +102,10 @@
   text-align: left;
 }
 
-.experience-search {
+.experience-header .experience-search {
   @extend %input-biohub;
-  @extend %no-box-shadow;
   @include transition(border-color);
+  border-color: $border-color;
   border-radius: 20px;
   background-color: white;
   padding-left: 1rem;
@@ -129,5 +129,15 @@
   }
   h4 a {
     color: $color-blue-2;
+  }
+}
+
+%list-biohub {
+  .list-group-item {
+    text-align: left;
+    padding: 0.8rem 1rem;
+  }
+  .list-group-item a {
+    color: darken($color-blue-2,0%);
   }
 }
