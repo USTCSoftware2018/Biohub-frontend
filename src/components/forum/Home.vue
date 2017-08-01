@@ -28,16 +28,18 @@
         </div>
       </div>
     </div>
+      <PageFooter ></PageFooter>
   </div>
 </template>
 
 <script>
   import topNavbar from '../topNavbar.vue'
   import RepoList from './Repo/RepoList.vue'
+  import PageFooter from './Common/PageFooter.vue'
 
   export default {
     components: {
-      topNavbar, RepoList
+      topNavbar, RepoList, PageFooter
     }
   }
 </script>

@@ -54,16 +54,18 @@
       </div>
     </div>
     <div class="col-md-3"></div>
+    <PageFooter></PageFooter>
   </div>
 </template>
 <style scoped>
 </style>
 <script>
   import topNavbar from './topNavbar.vue'
+  import PageFooter from './forum/Common/PageFooter.vue'
 
   export default {
     components: {
-      topNavbar
+      topNavbar, PageFooter
     }
   }
 

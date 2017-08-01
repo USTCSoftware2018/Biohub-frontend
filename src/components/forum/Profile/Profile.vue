@@ -92,14 +92,17 @@
         </div>
       </div>
     </div>
+    <PageFooter></PageFooter>
   </div>
 </template>
 
 <style scoped>
-  @import "../Common/Common.css"
+  @import "../Common/Common.css";
 </style>
 
 <script>
+  import PageFooter from '../Common/PageFooter.vue'
+
   var biography = 't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     'Vis eu nibh omnis.'
@@ -155,6 +158,7 @@
       }
     },
     components: {
+      PageFooter,
       Activity: function () {
         return import('./Activity')
       },

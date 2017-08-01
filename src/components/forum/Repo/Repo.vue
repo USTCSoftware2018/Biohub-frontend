@@ -33,12 +33,14 @@
         </div>
       </div>
     </div>
+    <PageFooter></PageFooter>
   </div>
 </template>
 
 <script>
   import Description from './RepoInfo.vue'
   import Experience from './RepoReview.vue'
+  import PageFooter from '../Common/PageFooter.vue'
   export default {
     data () {
       return {
@@ -47,7 +49,7 @@
       }
     },
     components: {
-      Description, Experience
+      Description, Experience, PageFooter
     },
     created () {
       console.log(this.$route.params)
