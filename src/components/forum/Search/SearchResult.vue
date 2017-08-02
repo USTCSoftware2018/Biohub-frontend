@@ -1,54 +1,57 @@
 <template>
   <div>
-      <div class="search-result" >
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-          <div class="search-table">
-            <div class="search-line">
-              <img src="../../../assets/img/brand.png"
-                   style="height: 30px;width: 100px;">
-              <input placeholder="Search..." class="search">
-              <button class="btn btn-forum search-button">Search</button>
-            </div>
-            <div id="available-label">
-              <span>Protable Lable:</span>
-              <span class="label-list-select" v-if="plab[0]">{{plabel[0]}}</span>
-              <span class="label-list-select" v-if="plab[1]">{{plabel[1]}}</span>
-              <span class="label-list-select" v-if="plab[2]">{{plabel[2]}}</span>
-              <span class="label-list-select" v-if="plab[0]">{{plabel[3]}}</span>
-              <span class="label-list-select" v-if="plab[1]">{{plabel[4]}}</span>
-              <span class="label-list-select" v-if="plab[2]">{{plabel[5]}}</span>
-            </div>
-            <div id="selected-label">
-              <span>Selected Lable:</span>
-              <span class="label-list">{{label[0]}}</span>
-              <span class="label-list">{{label[1]}}</span>
-            </div>
+    <top-navbar></top-navbar>
+    <div class="container search-result">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="search-table">
+          <div class="search-line">
+            <img src="../../../assets/img/brand.png"
+                 style="height: 30px;width: 100px;">
+            <input placeholder="Search..." class="search">
+            <button class="btn btn-forum search-button">Search</button>
           </div>
-          <repo-view v-for="(n, i) in name"
-                     :name="n"
-                     :grade="grade[i]"
-                     :label="label"
-                     :abstract="abstract[i]" :key="i"></repo-view>
+          <div id="available-label">
+            <span>Protable Lable:</span>
+            <span class="label-list-select" v-if="plab[0]">{{plabel[0]}}</span>
+            <span class="label-list-select" v-if="plab[1]">{{plabel[1]}}</span>
+            <span class="label-list-select" v-if="plab[2]">{{plabel[2]}}</span>
+            <span class="label-list-select" v-if="plab[0]">{{plabel[3]}}</span>
+            <span class="label-list-select" v-if="plab[1]">{{plabel[4]}}</span>
+            <span class="label-list-select" v-if="plab[2]">{{plabel[5]}}</span>
+          </div>
+          <div id="selected-label">
+            <span>Selected Lable:</span>
+            <span class="label-list">{{label[0]}}</span>
+            <span class="label-list">{{label[1]}}</span>
+          </div>
         </div>
+        <repo-view v-for="(n, i) in name"
+                   :name="n"
+                   :grade="grade[i]"
+                   :label="label"
+                   :abstract="abstract[i]" :key="i"></repo-view>
       </div>
-    <PageFooter></PageFooter>
+      <div class="col-md-2"></div>
+    </div>
+    <page-footer></page-footer>
   </div>
 </template>
 <style scoped>
-  * {
+  .search-result {
     text-align: left;
   }
 
   .search-line {
     height: 40px;
     font-size: 20px;
-    margin-bottom: 10px;
+    margin:0px;
+    padding-left:30px;
   }
 
   .search-result-tab {
     box-shadow: 2px 2px 10px #cacaca;
-    width: 600px !important;
+    width: 100% !important;
     position: relative;
     padding: 15px 15px 15px 15px;
     margin-top: 60px;
@@ -56,13 +59,14 @@
 
 </style>
 <script>
+  import topNavbar from '../../Common/topNavbar.vue'
   import RepoView from '../Common/RepoView.vue'
   import PageFooter from '../../Common/PageFooter.vue'
 
   export default {
     name: 'searchresult',
     components: {
-      RepoView, PageFooter
+      RepoView, PageFooter, topNavbar
     },
     data () {
       return {
