@@ -92,7 +92,7 @@
         </div>
       </div>
     </div>
-    <PageFooter></PageFooter>
+    <page-footer></page-footer>
   </div>
 </template>
 
@@ -101,7 +101,7 @@
 </style>
 
 <script>
-  import PageFooter from '../Common/PageFooter.vue'
+  import PageFooter from '../../Common/PageFooter.vue'
 
   var biography = 't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +

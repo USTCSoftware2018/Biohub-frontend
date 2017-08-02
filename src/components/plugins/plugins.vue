@@ -9,13 +9,13 @@
       </ul>
       <component :is="currentPlugin"></component>
     </div>
-    <PageFooter></PageFooter>
+    <page-footer></page-footer>
   </div>
 </template>
 
 <script>
-  import PageFooter from '../forum/Common/PageFooter.vue'
-  import topNavbar from '../topNavbar.vue'
+  import PageFooter from '../Common/PageFooter.vue'
+  import topNavbar from '../Common/topNavbar.vue'
   import add from './add'
   export default {
     components: {
