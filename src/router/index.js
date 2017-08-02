@@ -62,7 +62,8 @@ export default new Router({
           },
           {
             path: 'experience/:id',
-            component: Repo
+            component: Repo,
+            name: 'RepoExperience'
           }]
         }
       ]

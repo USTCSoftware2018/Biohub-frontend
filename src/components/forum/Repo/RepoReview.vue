@@ -6,7 +6,7 @@
     </div>
     <div class="divider" style="border-top: 1px solid #ddd;margin-top: 2rem;"></div>
     <div class="list-group list-experience">
-      <a href="#" class="list-group-item">
+      <a href="javascript:;" class="list-group-item" id="experience-1" @click="loadMoreOrCollapse(1)">
         <h4 class="list-group-item-heading">List group item heading<a href="#">@sdfg</a> <small>2017.1.1</small>
           <div class="pull-right list-group-item-addon">star:13423</div></h4>
         <p class="list-group-item-text">Lorem ipsum...<br>View Detail</p>
@@ -26,13 +26,31 @@
 
 <script>
   import Editor from './Editor.vue'
+  var opentext = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore'
+  var closetext = 'Lorem ipsum dolor sit amet'
   export default {
     data () {
       return {
+
       }
     },
     components: {
       Editor
+    },
+    methods: {
+      loadMoreOrCollapse: function (id) {
+        var ele = $('#experience-' + id + ' .list-group-item-text')
+        console.log(ele, ele[0].hasAttribute('on'))
+        if (!(ele[0].hasAttribute('on'))) {
+          ele.html(opentext + '<br>Hide Detail')
+          ele[0].setAttribute('on', '1')
+          console.log('1')
+        } else {
+          ele.html(closetext + '<br>Show Detail')
+          ele[0].removeAttribute('on')
+          console.log('2')
+        }
+      }
     }
   }
 </script>
