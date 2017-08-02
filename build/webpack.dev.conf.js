@@ -35,20 +35,20 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new FriendlyErrorsPlugin(),
     new CopyWebpackPlugin([{
-      from: path.resolve(__dirname,'../node_modules/bootstrap/dist/js'),
-      to: path.resolve(__dirname,'../static/js')
-    },{
-      from: path.resolve(__dirname,'../node_modules/jquery/dist'),
-      to: path.resolve(__dirname,'../static/js')
-    },{
       from: path.resolve(__dirname,'../node_modules/font-awesome/css'),
       to: path.resolve(__dirname,'../static/css')
     },{
       from: path.resolve(__dirname,'../node_modules/font-awesome/fonts'),
       to: path.resolve(__dirname,'../static/fonts')
     },{
-      from: path.resolve(__dirname,'../node_modules/bootstrap/dist/fonts'),
-      to: path.resolve(__dirname,'../static/fonts')
+     from: path.resolve(__dirname,'../src/assets/fonts'),
+     to: path.resolve(__dirname,'../static/fonts')
+    },{
+      from: path.resolve(__dirname,'../src/assets/lib'),
+      to: path.resolve(__dirname,'../static/lib')
+    },{
+      from: path.resolve(__dirname,'../src/assets/plugins'),
+      to: path.resolve(__dirname,'../static/plugins')
     }])
   ]
 })
