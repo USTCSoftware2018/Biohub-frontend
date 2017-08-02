@@ -38,6 +38,10 @@
   </div>
 </template>
 <style scoped>
+
+  .search-table {
+    margin-top:40px;
+  }
   .search-result {
     text-align: left;
   }

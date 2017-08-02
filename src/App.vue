@@ -23,7 +23,7 @@ export default {
     min-height:100%;
   }
   body {
-    margin: 0 0 100px !important;
+    margin: 0 0 150px !important;
   }
 
 </style>
