@@ -57,7 +57,7 @@
 </style>
 <script>
   import RepoView from '../Common/RepoView.vue'
-  import PageFooter from '../Common/PageFooter.vue'
+  import PageFooter from '../../Common/PageFooter.vue'
 
   export default {
     name: 'searchresult',

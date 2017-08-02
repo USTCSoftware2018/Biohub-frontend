@@ -1,6 +1,5 @@
 <template>
   <div class="center-block" id="app">
-
     <router-view></router-view>
   </div>
 </template>
@@ -19,6 +18,14 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+  html {
+    position: relative;
+    min-height:100%;
+  }
+  body {
+    margin: 0 0 100px !important;
+  }
+
 </style>
 
 <style lang="sass">

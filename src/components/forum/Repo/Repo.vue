@@ -35,14 +35,14 @@
         </div>
       </div>
     </div>
-    <PageFooter></PageFooter>
+    <page-footer></page-footer>
   </div>
 </template>
 
 <script>
   import Description from './RepoInfo.vue'
   import Experience from './RepoReview.vue'
-  import PageFooter from '../Common/PageFooter.vue'
+  import PageFooter from '../../Common/PageFooter.vue'
   export default {
     data () {
       return {
