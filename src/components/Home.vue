@@ -1,7 +1,6 @@
 <template>
   <div>
     <img src="../assets/img/brand.png" width="530px" style="padding-top: 15%;">
-
     <div class="container home">
       <div class="row">
         <div class="col-md-3"></div>
