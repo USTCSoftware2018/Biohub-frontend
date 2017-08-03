@@ -1,7 +1,10 @@
 <template>
   <div>
-    <component v-for="(mod, i) in allActivities" :key="i" :is="mod.type + 'Tab'"
-               :params="mod.params" :showIntro="showIntro" class="-profile-activity-tab">
+    <component v-for="(mod, i) in allActivities"
+               :key="i"
+               :is="mod.type + 'Tab'"
+               :params="mod.params"
+               :showIntro="showIntro" class="-profile-activity-tab">
     </component>
   </div>
 </template>
