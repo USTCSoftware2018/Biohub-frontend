@@ -4,12 +4,11 @@
     <router-view></router-view>
   </div>
 </template>
-
 <script>
-  import TopNavbar from '../Common/topNavbar.vue'
+  import topNavbar from '../Common/topNavbar.vue'
   export default {
     components: {
-      TopNavbar
+      topNavbar
     }
   }
 </script>

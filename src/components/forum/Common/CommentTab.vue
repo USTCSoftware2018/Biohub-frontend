@@ -2,13 +2,15 @@
   <div>
     <i class="fa fa-commenting activity-indicator"></i>
     <p class="activity-content">
-      <a href="/forums/gloit">{{ user }}</a>
-      commented on
-      <a href="#">{{ p }}</a>
+      <a :href="'/user/'+params.user">{{ params.user }}</a>
+      commented on an
+      <a :href="params.expLink">experience</a>
+      of
+      <a :href="'/forum/'+params.partName">{{ params.partName }}</a>
     </p>
     <div v-if="showIntro" class="experience-brief-intro">
       <p>
-        this is brief intros
+        {{ params.intro }}
       </p>
     </div>
   </div>
@@ -17,6 +19,6 @@
 
 <script>
   export default {
-    props: ['user', 'p', 'showIntro']
+    props: ['params', 'showIntro']
   }
 </script>

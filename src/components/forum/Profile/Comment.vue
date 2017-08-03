@@ -1,7 +1,7 @@
 <template>
   <div>
-    <comment-tab v-for="(p, i) in starredRepos" :key="i"
-               :p="p" :user="params.user" :showIntro="params.showIntro" class="-profile-activity-tab">
+    <comment-tab v-for="(p, i) in tempParams" :key="i"
+                 :params="p" :showIntro="showIntro" class="-profile-activity-tab">
     </comment-tab>
   </div>
 </template>
@@ -16,9 +16,13 @@
     },
     data () {
       return {
-        starredRepos: [
-          'Repo A',
-          'Repo B'
+        tempParams: [
+          {
+            user: 'Gloit',
+            expLink: '#',
+            partName: 'BBk_?',
+            intro: 'this is comment in brief'
+          }
         ]
       }
     },

@@ -2,17 +2,17 @@
   <div class="search-result-tab">
     <div>
       <b class="result-header">
-        <a href="#" class="repo-name-head">{{ name }}</a>
+        <a href="#" class="repo-name-head">{{ params.partName }}</a>
         <b class="grade">
-          {{ grade }}
+          {{ params.grade }}
         </b>
       </b>
       <p class="result-content">
-        {{ abstract }}
+        {{ params.intro }}
       </p>
     </div>
     <div class="result-label">
-      <span class="label-list" v-for="l in label">
+      <span class="label-list" v-for="l in params.label">
         {{ l }}
       </span>
       <a href="#"><img src="../../../assets/img/mark.png" class="img-collect"></a>
@@ -30,6 +30,6 @@
 <script>
   export default {
     name: 'RepoView',
-    props: ['name', 'grade', 'label', 'abstract']
+    props: ['params']
   }
 </script>

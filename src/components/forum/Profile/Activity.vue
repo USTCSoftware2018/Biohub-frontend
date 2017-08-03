@@ -1,7 +1,7 @@
 <template>
   <div>
     <component v-for="(mod, i) in allActivities" :key="i" :is="mod.type + 'Tab'"
-               :p="mod.p" :user="params.user" :showIntro="params.showIntro" class="-profile-activity-tab">
+               :params="mod.params" :showIntro="showIntro" class="-profile-activity-tab">
     </component>
   </div>
 </template>
@@ -12,33 +12,54 @@
   import StarTab from '../Common/StarTab.vue'
   import RatingTab from '../Common/RatingTab.vue'
   import WatchTab from '../Common/WatchTab.vue'
+
   export default {
-    props: ['params'],
+    props: ['params', 'showIntro'],
     data () {
       return {
         allActivities: [
           {
             type: 'Experience',
-            p: 'GoodRepo'
+            params: {
+              user: 'Gloit',
+              expLink: '#',
+              partName: '#',
+              intro: ''
+            }
           },
           {
             type: 'Comment',
-            p: 'GoodExperience'
+            params: {
+              user: 'Gloit',
+              expLink: '#',
+              partName: '#',
+              intro: ''
+            }
           },
           {
             type: 'Star',
-            p: 'GoodExperience'
+            params: {
+              user: 'Gloit',
+              expLink: '#',
+              partName: '#',
+              intro: ''
+            }
           },
           {
             type: 'Rating',
-            p: {
-              repo: 'BadRepo',
-              score: 1.1
+            params: {
+              user: 'Gloit',
+              expLink: '#',
+              score: 2.3,
+              partName: '#'
             }
           },
           {
             type: 'Watch',
-            p: 'ExcellentRepo'
+            params: {
+              user: 'Gloit',
+              partName: 'BBk'
+            }
           }
         ]
       }

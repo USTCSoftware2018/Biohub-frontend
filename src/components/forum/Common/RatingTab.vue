@@ -1,12 +1,12 @@
 <template>
   <div>
-    <i class="fa activity-indicator" :class="{ 'fa-thumbs-up' : (p.score >= 3), 'fa-thumbs-down' : (p.score < 3) }"></i>
+    <i class="fa activity-indicator" :class="{ 'fa-thumbs-up' : (params.score >= 3), 'fa-thumbs-down' : (params.score < 3) }"></i>
     <p class="activity-content">
-      <a href="/forums/gloit">{{ user }}</a>
+      <a :href="'/user'+params.user">{{ params.user }}</a>
       rated
-      <a href="#">{{ p.repo }}</a>
+      <a :href="'/forum/'+params.partName">{{ params.partName }}</a>
       for
-      <a class="-profile-repo-score">{{ p.score }}</a>
+      <a class="-profile-repo-score">{{ params.score }}</a>
     </p>
   </div>
 </template>
@@ -20,6 +20,6 @@
 
 <script>
   export default {
-    props: ['user', 'p', 'showIntro']
+    props: ['params']
   }
 </script>

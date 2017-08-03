@@ -1,7 +1,7 @@
 <template>
   <div>
     <star-tab v-for="(p, i) in starredExps" :key="i"
-               :p="p" :user="params.user" :showIntro="params.showIntro" class="-profile-activity-tab">
+               :params="p" class="-profile-activity-tab">
     </star-tab>
   </div>
 </template>
@@ -17,8 +17,12 @@
     data () {
       return {
         starredExps: [
-          'Experience A',
-          'Experience B'
+          {
+            user: 'Gloit',
+            expLink: '#',
+            partName: 'BBk_233',
+            intro: 'this is brief introduction'
+          }
         ]
       }
     },

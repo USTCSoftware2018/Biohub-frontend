@@ -27,10 +27,8 @@
           </div>
         </div>
         <repo-view v-for="(n, i) in name"
-                   :name="n"
-                   :grade="grade[i]"
-                   :label="label"
-                   :abstract="abstract[i]" :key="i"></repo-view>
+                   :params="{partName: n, grade: grade[i], label: label, intro: abstract[i]}"
+                   :key="i"></repo-view>
       </div>
       <div class="col-md-2"></div>
     </div>

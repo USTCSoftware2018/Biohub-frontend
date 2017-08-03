@@ -1,7 +1,7 @@
 <template>
   <div>
     <rating-tab v-for="(p, i) in starredExps" :key="i"
-                :p="p" :user="params.user" :showIntro="params.showIntro" class="-profile-activity-tab">
+                :params="p" class="-profile-activity-tab">
     </rating-tab>
   </div>
 </template>
@@ -18,11 +18,13 @@
       return {
         starredExps: [
           {
-            repo: 'Repo A',
+            user: 'Gloit',
+            partName: 'BBk_A',
             score: 4.4
           },
           {
-            repo: 'Repo B',
+            user: 'Gloit',
+            partName: 'BBk_B',
             score: 2.3
           }
         ]

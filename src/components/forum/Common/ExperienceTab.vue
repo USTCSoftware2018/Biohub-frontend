@@ -2,15 +2,15 @@
   <div>
     <i class="fa fa-bookmark activity-indicator"></i>
     <p class="activity-content">
-      <a href="/forums/gloit">{{ user }}</a>
+      <a href="/forums/gloit">{{ params.user }}</a>
       shared
-      <a href="#">experience</a>
+      <a :href="params.expLink">experience</a>
       on
-      <a href="#">{{ p }}</a>
+      <a href="#">{{ params.partName }}</a>
     </p>
     <div v-if="showIntro" class="experience-brief-intro">
       <p>
-        this is brief intros
+        {{ params.intro }}
       </p>
     </div>
   </div>
@@ -19,6 +19,6 @@
 
 <script>
   export default {
-    props: ['user', 'p', 'showIntro']
+    props: ['params', 'showIntro']
   }
 </script>
