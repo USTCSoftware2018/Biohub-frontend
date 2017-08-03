@@ -75,6 +75,11 @@ export default new Router({
               path: 'new',
               component: Editor,
               name: 'ExperienceNew'
+            },
+            {
+              path: ':id',
+              component: ExperienceList,
+              name: 'RepoExperience'
             }]
           }]
         }

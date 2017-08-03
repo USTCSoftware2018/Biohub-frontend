@@ -13,7 +13,8 @@
                 Author: {{ $route.params.author }}
                 | Followers: <a href="#">Number</a> | <router-link :to="{name:'ExperienceList'}"
                 v-if='$route.name === "RepoInfo"' class="view-experience">View Experience</router-link>
-                <router-link :to="{name: 'RepoInfo'}" v-if='($route.name === "ExperienceList") || ($route.name === "ExperienceNew")'
+                <router-link :to="{name: 'RepoInfo'}" v-if='($route.name === "ExperienceList") || ($route.name === "ExperienceNew")
+                || ($route.name === "RepoExperience")'
                              class="view-experience">View Description</router-link>
               </div>
             </div>

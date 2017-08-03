@@ -6,6 +6,7 @@
     <div class="plugin-container">
       <p>This is a plugin to design amino acid sequence automatically according to the .pdb files uploaded by you.</p>
       <p class="steps"><span class="step">STEP 1. </span>Upload your .pdb file</p>
+      <p class="steps"><span class="step">STEP 2. </span>Decide how many results you want to get</p>
     </div>
   </div>
 </template>
