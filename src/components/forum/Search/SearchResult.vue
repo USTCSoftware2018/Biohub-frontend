@@ -38,13 +38,9 @@
   </div>
 </template>
 <style scoped>
-<<<<<<< HEAD
-
   .search-table {
     margin-top:40px;
   }
-=======
->>>>>>> dev-2
   .search-result {
     text-align: left;
   }

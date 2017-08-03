@@ -2,18 +2,17 @@
   margin-bottom: 0;
   border-radius: 0;
   border: none;
-  background-color: darken($color-blue-1,2%);
-  .nav a {
+  background-color: $navbar-color !important;
+  .nav a, .nav li {
+    color: $color-light;
     border-bottom: 2px solid transparent;
     @include transition(border-color);
-    color: $color-light;
     &:hover {
       border-bottom: 2px solid $color-light;
-      background-color: darken($color-blue-1,2%);
+      background-color: $navbar-color !important;
     }
-    &:focus {
-      color: $color-light;
-      background-color: darken($color-blue-1,2%);
+    &:focus, &:visited, &:active {
+      background-color: $navbar-color !important;
     }
   }
   .navbar-header {
@@ -39,6 +38,38 @@
       color: $text-color;
     }
   }
+  .navbar-biohub-toggle {
+    margin-right: 20px;
+    a {
+      padding-top: 13px;
+      padding-bottom: 7px;
+    }
+    .navbar-avatar {
+      margin: 0px;
+      text-decoration: none !important;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      img {
+        height: 30px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+      }
+    }
+
+    .dropdown-menu, .open {
+      padding: 0px;
+      a, a:focus, a:visited, a:hover, a:active {
+        color: inherit;
+        background-color: $navbar-color !important;
+      }
+      li {
+        text-decoration: none !important;
+        border: 0px;
+      }
+    }
+  }
 }
 
 .nav-plugin {
@@ -52,20 +83,20 @@
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
     &:hover {
-      background-color: whitesmoke!important;
-      border-color: whitesmoke!important;
-      border-bottom: 1px solid $color-orange!important;
+      background-color: whitesmoke !important;
+      border-color: whitesmoke !important;
+      border-bottom: 1px solid $color-orange !important;
     }
   }
   .active {
     a {
       border-left: 1px solid $border-color;
       border-right: 1px solid $border-color;
-      border-bottom: 1px solid white!important;
+      border-bottom: 1px solid white !important;
       &:hover {
-        background-color: white!important;
-        border-color: $border-color!important;
-        border-bottom: 1px solid white!important;
+        background-color: white !important;
+        border-color: $border-color !important;
+        border-bottom: 1px solid white !important;
       }
     }
   }
