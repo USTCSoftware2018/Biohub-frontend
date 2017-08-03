@@ -19,6 +19,7 @@
           toolbarIcons: 'biohub',
           htmlDecode: true
         })
+        editor.unwatch()
       })
     }
   }

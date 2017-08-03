@@ -11,12 +11,13 @@
               </div>
               <div class="repo-info-addon">
                 Author: {{ $route.params.author }}
-                | Followers: <a href="#">Number</a> | <router-link :to="{name:'RepoExperienceList'}"
-                v-if='currentView === "Description"' class="view-experience">View Experience</router-link>
-                <router-link :to="{name: 'Repo'}" v-if='currentView === "Experience"' class="view-experience">View Description</router-link>
+                | Followers: <a href="#">Number</a> | <router-link :to="{name:'ExperienceList'}"
+                v-if='$route.name === "RepoInfo"' class="view-experience">View Experience</router-link>
+                <router-link :to="{name: 'RepoInfo'}" v-if='($route.name === "ExperienceList") || ($route.name === "ExperienceNew")'
+                             class="view-experience">View Description</router-link>
               </div>
             </div>
-            <component v-bind:is="currentView"></component>
+            <router-view></router-view>
           </div>
         </div>
         <div class="col-md-3">
