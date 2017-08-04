@@ -39,7 +39,6 @@ export default new Router({
     },
     {
       path: '/forum',
-      name: 'Forum',
       component: Forum,
       children: [
         {
