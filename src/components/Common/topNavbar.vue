@@ -39,9 +39,10 @@
 
 <script>
   export default {
-    props: ['userName'],
-    mounted () {
-      this.userName = 'Gloit'
+    computed: {
+      userName: function () {
+        return 'Gloit'
+      }
     }
   }
 </script>
