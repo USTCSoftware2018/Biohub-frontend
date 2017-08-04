@@ -8,22 +8,22 @@
           <div class="search-line">
             <img src="../../../assets/img/brand.png"
                  style="height: 30px;width: 100px;">
-            <input placeholder="Search..." class="search">
-            <button class="btn btn-forum search-button">Search</button>
+            <input placeholder="Search..." class=" search-input">
+            <button class="btn btn-forum search-button" style="background-color: #225378">Search</button>
           </div>
-          <div id="available-label">
+          <div id="available-label" style="margin-left: 28px">
             <span>Protable Lable:</span>
-            <span class="label-list-select" v-if="plab[0]">{{plabel[0]}}</span>
-            <span class="label-list-select" v-if="plab[1]">{{plabel[1]}}</span>
-            <span class="label-list-select" v-if="plab[2]">{{plabel[2]}}</span>
-            <span class="label-list-select" v-if="plab[0]">{{plabel[3]}}</span>
-            <span class="label-list-select" v-if="plab[1]">{{plabel[4]}}</span>
-            <span class="label-list-select" v-if="plab[2]">{{plabel[5]}}</span>
+            <span class="label-list-select search-lable" v-if="plab[0]">{{plabel[0]}}</span>
+            <span class="label-list-select search-lable" v-if="plab[1]">{{plabel[1]}}</span>
+            <span class="label-list-select search-lable" v-if="plab[2]">{{plabel[2]}}</span>
+            <span class="label-list-select search-lable" v-if="plab[0]">{{plabel[3]}}</span>
+            <span class="label-list-select search-lable" v-if="plab[1]">{{plabel[4]}}</span>
+            <span class="label-list-select search-lable" v-if="plab[2]">{{plabel[5]}}</span>
           </div>
-          <div id="selected-label">
+          <div id="selected-label" style="margin-left: 28px">
             <span>Selected Lable:</span>
-            <span class="label-list">{{label[0]}}</span>
-            <span class="label-list">{{label[1]}}</span>
+            <span class="label-list search-lable" style="background-color: #1695A3">{{label[0]}}</span>
+            <span class="label-list search-lable" style="background-color: #1695A3">{{label[1]}}</span>
           </div>
         </div>
         <repo-view v-for="(n, i) in name"
@@ -41,12 +41,26 @@
   }
   .search-result {
     text-align: left;
+    margin-top: 20px;
   }
-
+  .search-lable {
+    color: white;
+    background-color: #f1a751;
+    border-radius: 1px;
+    border: none;
+    font-size: 12px;
+  }
+  .search-input {
+    width: 352px;
+    color:#225378;
+    height: inherit;
+    font-size: 15px;
+    padding: 7px 10px 7px;
+  }
   .search-line {
     height: 40px;
     font-size: 20px;
-    margin:0px;
+    margin:0px 0px 20px;
     padding-left:30px;
   }
 
