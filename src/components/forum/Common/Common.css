@@ -114,3 +114,29 @@
   margin-top: auto;
   margin-bottom: auto;
 }
+.forum-activity-border {
+  margin: 5px 5px 5px 5px;
+  padding: 10px 10px 10px 10px;
+  width: 90% !important;
+  float: left;
+  height: 85px;
+  border:1px dashed #ccc;
+  box-shadow: 0 0 6px #ccc;
+  border-radius: 5px;
+}
+.forum-activity-content{
+  font-size: 15px;
+  color: gray;
+  overflow: hidden;
+  height :45px;
+  width: 100% !important;
+  word-wrap: break-word;
+  word-break: normal;
+}
+.forum-activity-label{
+  font-size: 10px;
+  padding-top: 4px;
+  margin-bottom: auto;
+  color:dodgerblue;
+  float:right;
+}
