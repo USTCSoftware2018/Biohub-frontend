@@ -47,11 +47,11 @@
 .label-list {
   position: relative;
   padding: 3px 10px 3px 10px;
-  color: #1695A3;
+  color: #18a4b3;
   font-size: 14px;
   border: solid;
   border-width: 1px;
-  border-color: #cecece;
+  border-color: #dddddd;
 }
 
 .repo-name-head {
