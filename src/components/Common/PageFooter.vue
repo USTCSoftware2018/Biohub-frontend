@@ -3,7 +3,7 @@
     <footer>
       <div class="footer-content">
         <p>
-          <a href="/forums" class="footer-link">Forum</a>
+          <a href="/forum" class="footer-link">Forum</a>
           <a href="/plugins" class="footer-link">Plugins</a>
           <a href="#" class="footer-link">Wiki</a>
         </p>
