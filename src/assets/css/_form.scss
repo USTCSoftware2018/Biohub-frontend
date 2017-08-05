@@ -68,6 +68,7 @@
     @extend %no-box-shadow;
     color: $text-color-rev;
   }
+  margin-bottom: 5px;
 }
 
 .btn-biohub-orange {
@@ -77,6 +78,7 @@
     color: $color-blue-1;
     @extend %no-box-shadow;
   }
+  margin-bottom: 5px;
 }
 .btn-forum {
   background-color: $color-blue-2;
