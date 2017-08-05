@@ -41,7 +41,8 @@
                 <button type="button" class="close"></button>
                 <strong>Error: </strong> {{ errorMessage }}
               </div>
-              <button type="submit" class="btn btn-biohub btn-biohub-orange full-width" v-on:click.self.prevent="SignUp">
+              <button type="submit" class="btn btn-biohub btn-biohub-orange full-width"
+                      v-on:click.self.prevent="SignUp">
                 Sign up
               </button>
             </div>
@@ -104,10 +105,6 @@
     methods: {
 
       SignUp () {
-        console.log(this.usermail)
-        console.log(this.username)
-        console.log(this.password)
-
         if (this.usermail === '') {
           this.errorOccur = true
           this.errorMessage = 'E-mail address can\'t be blank'
@@ -157,6 +154,15 @@
           password: this.password
         }).then((response) => {
           console.log(response)
+          if (response.statusText === 'OK') {
+            window.location.href = '/forum'
+          }
+        }).catch((e) => {
+          console.log(e.response.status)
+          if (e.response.status === 404) {
+            window.alert('Current User hasn\'t logged out')
+            window.location.href = '/forum'
+          }
         })
       }
     }

@@ -38,8 +38,10 @@
       color: $text-color;
     }
   }
+  .navbar-right {
+    margin-right:20px;
+  }
   .navbar-biohub-toggle {
-    margin-right: 20px;
     a {
       padding-top: 13px;
       padding-bottom: 7px;

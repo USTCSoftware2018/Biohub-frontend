@@ -9,20 +9,24 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
-                <input type="text" ref="usernameInput" class="form-control" id="usernameInput" placeholder="Username" v-model="username">
+                <input type="text" ref="usernameInput" class="form-control" id="usernameInput" placeholder="Username"
+                       v-model="username">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
-                <input type="password" class="form-control" ref="passwordInput" id="passwordInput" placeholder="Password" v-model="password">
+                <input type="password" class="form-control" ref="passwordInput" id="passwordInput"
+                       placeholder="Password" v-model="password">
               </div>
             </div>
             <div class="alert alert-danger form-error" v-if="errorOccur">
               <button type="button" class="close"></button>
               <strong>Error: </strong> {{ errorMessage }}
             </div>
-            <button type="submit" class="btn btn-biohub btn-biohub-orange full-width" v-on:click.self.prevent="Login">Sign in</button>
+            <button type="submit" class="btn btn-biohub btn-biohub-orange full-width" v-on:click.self.prevent="Login">
+              Sign in
+            </button>
           </form>
         </div>
         <div class="col-md-3"></div>
@@ -48,8 +52,6 @@
     },
     methods: {
       Login () {
-        console.log(this.username)
-        console.log(this.password)
         if (this.username === '') {
           this.errorOccur = true
           this.errorMessage = 'Username can\'t be blank'
@@ -68,6 +70,13 @@
           password: this.password
         }).then((response) => {
           console.log(response)
+          window.location.href = '/forum'
+        }).catch(e => {
+          if (e.response.status === 400) {
+            this.errorOccur = true
+            this.errorMessage = 'Wrong username or password'
+          }
+          console.log(e)
         })
       }
     }

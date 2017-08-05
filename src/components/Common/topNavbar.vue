@@ -14,7 +14,10 @@
           <input type="text" class="form-control" placeholder="Search">
         </div>
       </form>
-      <ul class="nav navbar-nav navbar-right navbar-biohub-toggle">
+      <ul v-if="!hasLogged" class="nav navbar-nav navbar-right">
+        <li><a href="/login">Login</a></li>
+      </ul>
+      <ul v-if="hasLogged" class="nav navbar-nav navbar-right navbar-biohub-toggle">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle"
              data-toggle="dropdown"
@@ -27,9 +30,9 @@
             {{ userName }}
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" style="border: 0px">
             <li><a href="#">Profile</a></li>
-            <li><a href="#">Log Out</a></li>
+            <li><a href="javascript:;" v-on:click="LogOut">Log Out</a></li>
           </ul>
         </li>
       </ul>
@@ -38,11 +41,33 @@
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
-    computed: {
-      userName: function () {
-        return 'Gloit'
+    data () {
+      return {
+        hasLogged: false,
+        userName: ''
       }
+    },
+    methods: {
+      LogOut () {
+        axios.get('/api/users/logout/').then((response) => {
+          window.location.href = '/forum'
+        }).catch((e) => {
+          window.alert('not logged in yet')
+        })
+      }
+    },
+    mounted () {
+      axios.get('/api/users/me/').then((response) => {
+        this.userName = response.data.username
+        this.hasLogged = true
+      }).catch((e) => {
+        if (e.response.state === 404) {
+          this.hasLogged = false
+        }
+      })
     }
   }
 </script>
