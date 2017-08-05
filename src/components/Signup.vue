@@ -92,6 +92,9 @@
             text: '@163.com',
             type: 'netease'
           }, {
+            text: '@qq.com',
+            type: 'QQ'
+          }, {
             text: '@mail.ustc.edu.cn',
             type: 'USTC'
           }],
