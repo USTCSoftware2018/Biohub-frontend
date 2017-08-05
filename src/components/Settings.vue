@@ -2,8 +2,7 @@
   <div>
     <top-navbar></top-navbar>
     <div class="container">
-      <div class="col-md-2"></div>
-      <div class="col-md-7">
+      <div class="col-md-12">
         <div class="settings-title">
           <h1>Settings</h1>
         </div>
@@ -54,7 +53,6 @@
           <button class="btn btn-primary settings-save">Save Profile</button>
         </div>
       </div>
-      <div class="col-md-3"></div>
     </div>
     <page-footer></page-footer>
   </div>

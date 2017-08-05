@@ -165,6 +165,9 @@
           if (e.response.status === 404) {
             window.alert('Current User hasn\'t logged out')
             window.location.href = '/forum'
+          } else if (e.response.status === 400) {
+            this.errorOccur = true
+            this.errorMessage = 'username has been used'
           }
         })
       }
