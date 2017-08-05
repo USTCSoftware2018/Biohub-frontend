@@ -37,6 +37,7 @@ export default new Router({
       name: 'Login',
       component: Login
     },
+
     {
       path: '/forum',
       component: Forum,
