@@ -25,7 +25,7 @@
               <strong>Error: </strong> {{ errorMessage }}
             </div>
             <button type="submit" class="btn btn-biohub btn-biohub-orange full-width" v-on:click.self.prevent="Login">Sign in</button>
-            <a class="btn btn-biohub btn-biohub-light full-width"  href="/reset">Forget ID/password</a>
+            <a class="btn btn-biohub btn-biohub-light full-width"  href="/reset">Forget Password</a>
           </form>
         </div>
         <div class="col-md-3"></div>
