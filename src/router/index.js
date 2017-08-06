@@ -16,6 +16,7 @@ import RepoInfo from '@/components/forum/Repo/RepoInfo'
 import RepoReview from '@/components/forum/Repo/RepoReview'
 import Editor from '@/components/forum/Repo/Editor'
 import ExperienceList from '@/components/forum/Repo/ExperienceList'
+import Reset from '@/components/reset'
 
 Vue.use(Router)
 
@@ -31,6 +32,11 @@ export default new Router({
       path: '/dev',
       name: 'Hello',
       component: Hello
+    },
+    {
+      path: '/reset',
+      name: 'Reset',
+      component: Reset
     },
     {
       path: '/login',
