@@ -31,7 +31,7 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" style="border: 0px">
-            <li><a href="#">Profile</a></li>
+            <li><a :href="'/user/'+userName">Profile</a></li>
             <li><a href="javascript:;" v-on:click="LogOut">Log Out</a></li>
           </ul>
         </li>

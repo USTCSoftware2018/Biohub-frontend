@@ -38,6 +38,11 @@
 
   export default {
     name: 'login',
+    beforeCreate () {
+      axios.get('/api/users/me/').then((response) => {
+        window.location.href = '/forum'
+      })
+    },
     mounted () {
       this.$refs.usernameInput.focus()
     },
