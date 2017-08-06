@@ -3,7 +3,6 @@
     <div class="repo-experience-content">
       <div class="experience-header">
         <button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button>
-        <input class="experience-search" placeholder="search">
       </div>
       <div class="divider" style="border-top: 1px solid #ddd;margin-top: 2rem;"></div>
       <div class="list-group list-experience">

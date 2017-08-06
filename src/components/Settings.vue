@@ -33,7 +33,7 @@
           <div class="settings-text-info">
               <div class="settings-option">
                 <h4>Public Email Address:</h4>
-                <input class="form-control" id="settingInputEmail" placeholder="Your E-mail Address">
+                <input class="input-biohub form-control" id="settingInputEmail" placeholder="Your E-mail Address">
               </div>
               <div class="settings-option">
                 <h4>Public Locating:</h4>

@@ -10,7 +10,7 @@ import forumHome from '@/components/forum/Home'
 import Repo from '@/components/forum/Repo/Repo'
 import Profile from '@/components/forum/Profile/Profile'
 import Plugins from '@/components/plugins/plugins'
-import SearchResult from '@/components/forum/Search/SearchResult'
+import Search from '@/components/forum/Search/Search'
 import Settings from '@/components/Settings'
 import RepoInfo from '@/components/forum/Repo/RepoInfo'
 import RepoReview from '@/components/forum/Repo/RepoReview'
@@ -98,8 +98,8 @@ export default new Router({
     },
     {
       path: '/search',
-      name: 'searchResult',
-      component: SearchResult
+      name: 'Search',
+      component: Search
     },
     {
       path: '/plugins',

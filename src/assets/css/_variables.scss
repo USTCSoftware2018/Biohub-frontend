@@ -7,6 +7,7 @@ $color-orange:#EB7F00;
 $text-color  :lighten($color-light, 4%);
 $text-color-rev: darken($color-blue-1, 8%);
 $text-color-highlight: darken($color-orange, 4%);
+
 $navbar-color: darken($color-blue-1, 2%);
 
 $color-another-blue: #1395BA;
@@ -15,3 +16,5 @@ $input-color: white;
 
 $border-color: #ddd;
 $list-border-color: $border-color;
+
+$search-header-color: $navbar-color;

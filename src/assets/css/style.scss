@@ -8,6 +8,7 @@
 @import "plugins";
 @import "profile";
 @import "settings";
+@import "search";
 
 html{
   overflow-x: hidden;
@@ -25,13 +26,3 @@ body {
 .full-width {
   width: 100%;
 }
-
-xmp {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  white-space: inherit;
-}
-
-
-
-
-

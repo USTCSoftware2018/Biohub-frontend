@@ -9,7 +9,7 @@
         <li><a href="/forum">Forum</a></li>
         <li><a href="/plugins">Plugins</a></li>
       </ul>
-      <form class="navbar-form navbar-left">
+      <form class="navbar-form navbar-left" v-if="!($route.name === 'Search')">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
