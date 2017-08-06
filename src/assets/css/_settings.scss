@@ -17,6 +17,19 @@
         margin-top: 10px;
       }
     }
+
+    input {
+      @extend %input-biohub;
+      height: 4rem;
+    }
+
+    textarea {
+      &:focus {
+        outline: none;
+        border-color: $color-blue-2;
+        @include transition(border-color);
+      }
+    }
   }
 }
 

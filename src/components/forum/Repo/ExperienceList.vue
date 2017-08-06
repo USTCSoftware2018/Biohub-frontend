@@ -10,7 +10,8 @@
         <router-link :to="{name: 'RepoExperience', params:{id: 1}}" class="list-group-item" id="experience-1">
           <h4 class="list-group-item-heading">List group item heading<a href="#">@sdfg</a> <small>2017.1.1</small>
           <div class="pull-right list-group-item-addon">star:13423</div></h4>
-          <p class="list-group-item-text"># TEST <br> Lorem ipsum...<br> View Detail</p>
+          [Log] <p><a href="http://wfefdf.c" title="werw"><img src="asdf" alt="werw" title="werw"></a>### Hello Editor.md !<br>fsdfh23uhlslcpvwpe</p>
+          <h2 id="h2-2hfjl-2"><a name="2hfjl 2" class="reference-link"></a><span class="header-link octicon octicon-link"></span>2hfjl 2</h2><p>s<a href="http://sdfsd.c" title="23fdsf">23fdsf</a></p>
         </router-link>
         <router-link :to="{name: 'RepoExperience', params:{id: 2}}" class="list-group-item" id="experience-2">
           <h4 class="list-group-item-heading">List group item heading<a href="#">@sdfg</a></h4>
@@ -26,6 +27,7 @@
 </template>
 
 <script>
+  import '../../../assets/css/editormd.css'
   var opentext = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore'
   var closetext = 'Lorem ipsum dolor sit amet'
   export default {

@@ -100,7 +100,6 @@ function contains(arr, obj) {
         biohub : [
           "undo", "redo",
           "bold", "del", "italic", "quote", "uppercase", "lowercase",
-          "h1", "h2", "h3", "h4",
           "list-ul", "list-ol", "hr",
           "link", "reference-link", "image"
         ]
