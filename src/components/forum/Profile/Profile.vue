@@ -25,7 +25,7 @@
               <i class="fa fa-star" aria-hidden="true"></i>
             </div>
             <div id="edit-button">
-              <button class="btn btn-primary follow-button">Edit Profile</button>
+              <button class="btn btn-primary follow-button" v-on:click="ToSetting">Edit Profile</button>
             </div>
             <div class="profile-parting-line"></div>
             <div id="personal-info">
@@ -106,6 +106,7 @@
 <script>
   import topNavbar from '../../Common/topNavbar.vue'
   import PageFooter from '../../Common/PageFooter.vue'
+  import axios from 'axios'
 
   var biography = 't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
     't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
@@ -116,6 +117,10 @@
   var userLink = 'http://home.ustc.edu.cn/~lijh2015'
 
   export default {
+    beforeCreated () {
+      // API not sure
+      // axios.get('/api/users/'+)
+    },
     mounted () {
       this.params.user = this.$route.params.author
 
@@ -159,6 +164,9 @@
           this.isFolded = !this.isFolded
           this.hintShow = !this.hintShow
         }
+      },
+      ToSetting: function () {
+        window.location.href = '/settings'
       }
     },
     components: {

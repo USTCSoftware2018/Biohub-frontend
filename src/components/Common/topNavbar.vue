@@ -25,7 +25,7 @@
              aria-haspopup="true"
              aria-expanded="false">
             <span class="navbar-avatar">
-              <img src="https://www.gravatar.com/avatar/d8cc2ce518e0df9a75316d124c2fc057?s=328&r=g&d=identicon">
+              <img :src="avatarURL">
             </span>
             {{ userName }}
             <span class="caret"></span>
@@ -47,7 +47,8 @@
     data () {
       return {
         hasLogged: false,
-        userName: ''
+        userName: '',
+        avatarURL: ''
       }
     },
     methods: {
@@ -61,7 +62,9 @@
     },
     mounted () {
       axios.get('/api/users/me/').then((response) => {
+        console.log(response)
         this.userName = response.data.username
+        this.avatarURL = response.data.avatar_url
         this.hasLogged = true
       }).catch((e) => {
         if (e.response.state === 404) {

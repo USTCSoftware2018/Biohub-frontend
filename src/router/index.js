@@ -16,7 +16,7 @@ import RepoInfo from '@/components/forum/Repo/RepoInfo'
 import RepoReview from '@/components/forum/Repo/RepoReview'
 import Editor from '@/components/forum/Repo/Editor'
 import ExperienceList from '@/components/forum/Repo/ExperienceList'
-import Reset from '@/components/reset'
+import Reset from '@/components/Reset'
 
 Vue.use(Router)
 
