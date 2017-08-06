@@ -1,6 +1,6 @@
 <template>
 <div>
-   <img src="../assets/img/brand.png" width="530px" style="padding-top: 5em;">
+   <img src="../assets/img/brand.png" width="530px" style="padding-top: 10em;">
    <div class="container">
      <div class="row">
          <div class="col-md-3"></div>
@@ -12,7 +12,21 @@
                        list="mail_list" v-model="usermail">
                 
               </div>
-              <button style="margin-top: 10px">Send Verification Code</button>
+              <button style="margin: 10px 10px 10px 10px">Send Verification Code</button>
+              <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
+                <input type="text" class="form-control"  placeholder="Verification Code">
+              </div>
+            </div>
+              <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
+                <input type="password" class="form-control" ref="passwordInput" id="passwordInput"
+                       placeholder="NewPassword" v-model="password">
+              </div>
+              <button type="submit" class="btn btn-biohub btn-biohub-orange full-width" style="margin-top:10px">Submit</button>
+            </div>
              </form>
          </div>
      </div>
