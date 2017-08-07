@@ -63,10 +63,17 @@
 <script>
   import topNavbar from './Common/topNavbar.vue'
   import PageFooter from './Common/PageFooter.vue'
+  import axios from 'axios'
 
   export default {
+    beforeCreate () {
+      axios.get('/api/users/me/').catch((e) => {
+        window.location.href = '/notfound'
+      })
+    },
     components: {
-      topNavbar, PageFooter
+      topNavbar,
+      PageFooter
     }
   }
 

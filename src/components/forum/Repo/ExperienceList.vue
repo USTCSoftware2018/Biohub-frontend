@@ -9,16 +9,18 @@
         <router-link :to="{name: 'RepoExperience', params:{id: 1}}" class="list-group-item" id="experience-1">
           <h4 class="list-group-item-heading">List group item heading<a href="#">@sdfg</a> <small>2017.1.1</small>
           <div class="pull-right list-group-item-addon">star:13423</div></h4>
-          [Log] <p><a href="http://wfefdf.c" title="werw"><img src="asdf" alt="werw" title="werw"></a>### Hello Editor.md !<br>fsdfh23uhlslcpvwpe</p>
+          <div class="list-group-item-text"><p>
+          [Log] <a href="http://wfefdf.c" title="werw"><img src="asdf" alt="werw" title="werw"></a>### Hello Editor.md !<br>fsdfh23uhlslcpvwpe</>
           <h2 id="h2-2hfjl-2"><a name="2hfjl 2" class="reference-link"></a><span class="header-link octicon octicon-link"></span>2hfjl 2</h2><p>s<a href="http://sdfsd.c" title="23fdsf">23fdsf</a></p>
+          </div>
         </router-link>
         <router-link :to="{name: 'RepoExperience', params:{id: 2}}" class="list-group-item" id="experience-2">
           <h4 class="list-group-item-heading">List group item heading<a href="#">@sdfg</a></h4>
-          <p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+          <div class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
             incididunt ut labore et doloremagna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
         . Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            <br>Hide Detail</p>
+            <br>Hide Detail</div>
         </router-link>
       </div>
     </div>

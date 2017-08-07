@@ -6,15 +6,16 @@
         <b class="grade">
           {{ params.grade }}
         </b>
+        <span class="label-list" v-for="l in params.label">
+        {{ l }}
+      </span>
       </b>
       <p class="result-content">
         {{ params.intro }}
       </p>
     </div>
     <div class="result-label">
-      <span class="label-list" v-for="l in params.label">
-        {{ l }}
-      </span>
+
       <a href="#"><img src="../../../assets/img/mark.png" class="img-collect"></a>
     </div>
   </div>

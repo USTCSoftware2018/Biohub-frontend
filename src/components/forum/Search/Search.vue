@@ -3,33 +3,16 @@
     <top-navbar></top-navbar>
     <div class="search-head">
       <form class="biohub-form">
-        <input placeholder="Anything you interest in ..." class="search-input">
+        <input placeholder="Anything you interest in ..." class="search-input" v-model="searchKeyword" @click="$route.push
+                ({name: 'Search',params:{ keyword: searchKeyword}})">
         <button class="btn-search">Search</button>
       </form>
     </div>
     <div class="container search-result">
-      <div class="row">
-
-      </div>
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <div class="search-table">
-
-          <div id="available-label" style="margin-left: 28px">
-            <span>Protable Lable:</span>
-            <span class="label-list-select search-lable" v-if="plab[0]">{{plabel[0]}}</span>
-            <span class="label-list-select search-lable" v-if="plab[1]">{{plabel[1]}}</span>
-            <span class="label-list-select search-lable" v-if="plab[2]">{{plabel[2]}}</span>
-            <span class="label-list-select search-lable" v-if="plab[0]">{{plabel[3]}}</span>
-            <span class="label-list-select search-lable" v-if="plab[1]">{{plabel[4]}}</span>
-            <span class="label-list-select search-lable" v-if="plab[2]">{{plabel[5]}}</span>
-          </div>
-          <div id="selected-label" style="margin-left: 28px">
-            <span>Selected Lable:</span>
-            <span class="label-list search-lable" style="background-color: #1695A3">{{label[0]}}</span>
-            <span class="label-list search-lable" style="background-color: #1695A3">{{label[1]}}</span>
-          </div>
-        </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <search-result></search-result>
+        <search-result></search-result>
         <repo-view v-for="(n, i) in name"
                    :params="{partName: n, grade: grade[i], label: label, intro: abstract[i]}"
                    :key="i"></repo-view>
@@ -40,13 +23,6 @@
   </div>
 </template>
 <style scoped>
-  .search-table {
-    margin-top:40px;
-  }
-  .search-result {
-    text-align: left;
-    margin-top: 20px;
-  }
   .search-lable {
     color: white;
     background-color: #f1a751;
@@ -75,14 +51,20 @@
   import topNavbar from '../../Common/topNavbar.vue'
   import RepoView from '../Common/RepoView.vue'
   import PageFooter from '../../Common/PageFooter.vue'
-
+  import SearchResult from './SearchResult.vue'
   export default {
-    name: 'searchresult',
     components: {
-      RepoView, PageFooter, topNavbar
+      RepoView, PageFooter, topNavbar, SearchResult
+    },
+    mounted () {
+      if (this.$route.params.keyword) {
+        this.searchKeyword = this.$route.params.keyword
+        console.log('keyword detected')
+      }
     },
     data () {
       return {
+        searchKeyword: '',
         name: [
           'Head one',
           'Another Head',

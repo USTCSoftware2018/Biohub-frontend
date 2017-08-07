@@ -98,8 +98,17 @@ export default new Router({
     },
     {
       path: '/search',
-      name: 'Search',
-      component: Search
+      component: Search,
+      children: [{
+        path: '',
+        name: 'SearchHome',
+        component: Search
+      },
+      {
+        path: ':keyword',
+        name: 'Search',
+        component: Search
+      }]
     },
     {
       path: '/plugins',
@@ -114,7 +123,7 @@ export default new Router({
     {
       path: '/settings',
       component: Settings,
-      name: 'setting'
+      name: 'settings'
     },
     {
       path: '*',
