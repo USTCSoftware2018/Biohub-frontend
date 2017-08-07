@@ -17,6 +17,9 @@
       <ul v-if="!hasLogged" class="nav navbar-nav navbar-right">
         <li><a href="/login">Login</a></li>
       </ul>
+      <ul v-if="!hasLogged" class="nav navbar-nav navbar-right">
+        <li><a href="/signup">Signup</a></li>
+      </ul>
       <ul v-if="hasLogged" class="nav navbar-nav navbar-right navbar-biohub-toggle">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle"

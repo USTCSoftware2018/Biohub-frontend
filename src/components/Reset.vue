@@ -14,7 +14,7 @@
               <div class="button-send">Send Verification Code</div>
               <div class="form-group">
               <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
+                <div class="input-group-addon"><i class=" fa fa-fw fa-question-circle"></i></div>
                 <input type="text" class="form-control"  placeholder="Verification Code">
               </div>
             </div>
