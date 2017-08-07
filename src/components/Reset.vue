@@ -8,10 +8,9 @@
              <form style="margin-top:50px;" class="biohub-form">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-address-card fa-fw"></i></div>
-                <input type="text" class="form-control" ref="emailInput" id="emailInput" placeholder="E-mail Address"
-                       list="mail_list" v-model="usermail">
+                <input type="text" class="form-control" ref="emailInput" id="emailInput" placeholder="E-mail Address" v-model="usermail">
                 </div>
-              <div class="button-send">Send Verification Code</div>
+              <button class="btn btn-success btn-reset">Send Verification Code</button>
               <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class=" fa fa-fw fa-question-circle"></i></div>
@@ -37,4 +36,9 @@
 </script>
 <style scoped>
 @import  "forum/Common/Common.css";
+
+  .btn-reset {
+    margin-top:10px;
+    margin-bottom:10px;
+  }
 </style>
