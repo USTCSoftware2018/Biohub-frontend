@@ -5,9 +5,10 @@
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  window.jQuery = $
+  export default {
+    name: 'app'
+  }
 </script>
 
 <style>
