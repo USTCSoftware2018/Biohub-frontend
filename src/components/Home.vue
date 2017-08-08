@@ -22,8 +22,14 @@
   </div>
 </template>
 <script>
+  import axios from 'axios'
   export default {
     name: 'home',
+    beforeCreate () {
+      axios.get('/api/users/me/').then((_) => {
+        window.location.href = '/forum'
+      })
+    },
     methods: {
       JumpToLogin () {
         window.location.href = 'login'

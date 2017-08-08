@@ -123,6 +123,9 @@
       }).catch((_) => {
         window.location.href = '/notfound'
       })
+    },
+    mounted () {
+      // It must be done after html elements are created and be watched by vue
       axios.get('/api/users/me/').then((response) => {
         if (response.data.username === this.params.user) {
           this.isSelf = true
