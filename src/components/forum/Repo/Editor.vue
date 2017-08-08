@@ -24,7 +24,7 @@
         console.log(this)
         editor = editormd('editormd', {
           path: '/static/lib/',
-          pluginPath: '/static/plugins',
+          pluginPath: '/static/plugins/',
           mode: 'markdown',
           autoHeight: true,
           toolbarAutoFixed: false,

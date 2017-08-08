@@ -3,34 +3,12 @@
   margin-bottom: 10px;
 }
 
-.result-header {
-  position: relative;
-  bottom: 8px;
-  color: #23313f;
-  font-size: 33px;
-}
-
 .grade {
   color: #d1930d;
   font-size: 25px;
   float: right;
 }
 
-.result-content {
-  font-size: 14px;
-  line-height: 1.3em;
-  height: 5.2em !important;
-  overflow: hidden;
-  width: 90%;
-  display: -webkit-box;
-  -ms-word-wrap: break-word;
-  word-wrap: break-word;
-  -ms-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  padding-left: 20px;
-}
 
 .search-result-tab {
   width: 100%;

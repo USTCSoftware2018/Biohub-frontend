@@ -92,16 +92,10 @@
     color: $text-color;
   }
 }
-.experience-search {
-  display: inline-block;
-  height: 3.3rem;
-  border: 1px solid #ccc;
-  border-radius: 30px;
-}
-
 
 %input-biohub {
   @extend %no-box-shadow;
+  border-style: solid;
   border-width: 1px;
   &:focus {
     border-color: $color-blue-2;

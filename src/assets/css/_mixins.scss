@@ -3,10 +3,11 @@
   -moz-box-shadow: 0 0 3px $color-blue-2;
   box-shadow: 0 0 3px $color-blue-2;
 }
+
 %no-box-shadow {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 %no-border-radius {

@@ -101,22 +101,6 @@
   padding: 1rem 3rem;
   text-align: left;
 }
-
-.experience-header .experience-search {
-  @extend %input-biohub;
-  @include transition(border-color);
-  border-color: $border-color;
-  border-radius: 20px;
-  background-color: white;
-  padding-left: 1rem;
-  color: #333;
-  &::placeholder {
-    color: darken(white, 20%);
-  }
-  &:focus {
-    outline: none;
-  }
-}
 .list-experience {
   .list-group-item {
     border: none;
