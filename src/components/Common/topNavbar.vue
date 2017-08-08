@@ -11,7 +11,8 @@
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" v-on:keydown.enter.prevent="intoSearch" ref="Search"
+                 placeholder="Search">
         </div>
       </form>
       <ul v-if="!hasLogged" class="nav navbar-nav navbar-right">
@@ -22,7 +23,7 @@
       </ul>
       <ul v-if="hasLogged" class="nav navbar-nav navbar-right navbar-biohub-toggle">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle"
+          <a href="javascript:;" class="dropdown-toggle"
              data-toggle="dropdown"
              role="button"
              aria-haspopup="true"
@@ -61,6 +62,9 @@
         }).catch((e) => {
           window.alert('not logged in yet')
         })
+      },
+      intoSearch (e) {
+        window.location.href = '/search/' + this.$refs.Search.value
       }
     },
     mounted () {

@@ -11,8 +11,8 @@
           </div>
           <div class="user-info">
             <div id="user-name">
-            <span v-bind:title="$route.params.author">
-              <p>{{ $route.params.author }}</p>
+            <span v-bind:title="params.user">
+              <p>{{ params.user }}</p>
             </span>
             </div>
             <div id="user-mail">
