@@ -6,7 +6,7 @@
         <div class="col-md-3 profile-left">
           <div class="profile-avatar-container">
             <div class="profile-avatar">
-              <img src="https://www.gravatar.com/avatar/d8cc2ce518e0df9a75316d124c2fc057?s=328&r=g&d=identicon">
+              <img :src="userAvatar">
             </div>
           </div>
           <div class="user-info">
@@ -24,8 +24,8 @@
               <span id="user-stars-num">{{ userStar }}</span>
               <i class="fa fa-star" aria-hidden="true"></i>
             </div>
-            <div id="edit-button">
-              <button class="btn btn-primary follow-button">Edit Profile</button>
+            <div id="edit-button" v-if="isSelf">
+              <button class="btn btn-primary follow-button" v-on:click="ToSetting">Edit Profile</button>
             </div>
             <div class="profile-parting-line"></div>
             <div id="personal-info">
@@ -106,47 +106,47 @@
 <script>
   import topNavbar from '../../Common/topNavbar.vue'
   import PageFooter from '../../Common/PageFooter.vue'
+  import axios from 'axios'
 
-  var biography = 't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
-    't tantas hendrerit pro, cum ei mandamus elaboraret, sint salutandi vituperatoribus vim an.\n' +
-    'Vis eu nibh omnis.'
-  var userMail = 'gloit042@gmail.com'
   var userStar = 666
-  var userLoc = 'University of Science and Technology of Hefei'
-  var userLink = 'http://home.ustc.edu.cn/~lijh2015'
 
   export default {
-    mounted () {
-      this.params.user = this.$route.params.author
-
-      var currentHeight = this.$refs.bioRef.offsetHeight
-      var currentLength = this.$refs.bioRef.className.length
-
-      // console.log(this.$refs.bioRef.offsetHeight)
-      this.$refs.bioRef.className += ' profile-biography-folded'
-      // console.log(this.$refs.bioRef.offsetHeight)
-
-      if (currentHeight > this.$refs.bioRef.offsetHeight) {
-        this.$refs.bioRef.className = this.$refs.bioRef.className.slice(0, currentLength)
-        this.isOverflow = true
-        this.hintShow = true
-        this.isFolded = true
-      } else {
-        this.$refs.bioRef.className = this.$refs.bioRef.className.slice(0, currentLength)
-        this.isFolded = false
-      }
+    beforeCreate () {
+      axios.get('/api/users/n:' + this.$route.params.author + '/').then((response) => {
+        this.params.user = response.data.username
+        this.userMail = response.data.email
+        this.userLoc = response.data.address
+        this.userLink = response.data.site_url
+        this.userAvatar = response.data.avatar_url
+        this.biography = response.data.description
+        setTimeout(this.foldStateCheck, 1)
+      }).catch((_) => {
+        window.location.href = '/notfound'
+      })
+      axios.get('/api/users/me/').then((response) => {
+        if (response.data.username === this.params.user) {
+          this.isSelf = true
+        } else {
+          this.isSelf = false
+        }
+      }).catch((_) => {
+        this.isSelf = false
+      })
     },
     data () {
       return {
-        biography: biography,
-        userMail: userMail,
+        biography: '',
+        userMail: '',
         userStar: userStar,
-        userLink: userLink,
-        userLoc: userLoc,
+        userLink: '',
+        userLoc: '',
+        userAvatar: '',
         isFolded: false,
         isOverflow: false,
+        isSelf: false,
         hintShow: false,
         currentPlugin: 'Activity',
+        once: false,
         params: {
           user: '',
           showIntro: false
@@ -154,11 +154,29 @@
       }
     },
     methods: {
+      foldStateCheck: function () {
+        var currentHeight = this.$refs.bioRef.offsetHeight
+        var currentLength = this.$refs.bioRef.className.length
+
+        this.$refs.bioRef.className += ' profile-biography-folded'
+        if (currentHeight > this.$refs.bioRef.offsetHeight) {
+          this.$refs.bioRef.className = this.$refs.bioRef.className.slice(0, currentLength)
+          this.isOverflow = true
+          this.hintShow = true
+          this.isFolded = true
+        } else {
+          this.$refs.bioRef.className = this.$refs.bioRef.className.slice(0, currentLength)
+          this.isFolded = false
+        }
+      },
       foldStateChange: function () {
         if (this.isOverflow) {
           this.isFolded = !this.isFolded
           this.hintShow = !this.hintShow
         }
+      },
+      ToSetting: function () {
+        window.location.href = '/settings'
       }
     },
     components: {
