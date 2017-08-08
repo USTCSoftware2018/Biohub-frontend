@@ -65,10 +65,6 @@
   import axios from 'axios'
 
   export default {
-<<<<<<< HEAD
-    beforeCreate () {
-      axios.get('/api/users/me/').catch((e) => {
-=======
     methods: {
       UpdateProfile () {
         axios.patch('/api/users/me/', {
@@ -103,7 +99,6 @@
         this.userLoc = response.data.address
         this.userBio = response.data.description
       }).catch((e) => {
->>>>>>> dev
         window.location.href = '/notfound'
       })
     },
