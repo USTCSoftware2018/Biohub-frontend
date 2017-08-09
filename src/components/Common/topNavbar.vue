@@ -64,7 +64,13 @@
         })
       },
       intoSearch (e) {
-        window.location.href = '/search/' + this.$refs.Search.value
+        let sValue = this.$refs.Search.value
+        this.$router.push({
+          name: 'Search',
+          params: {
+            keyword: sValue
+          }
+        })
       }
     },
     mounted () {

@@ -3,9 +3,19 @@
     <top-navbar></top-navbar>
     <div class="search-head">
       <form class="biohub-form">
-        <input placeholder="Anything you interest in ..." class="search-input" v-model="searchKeyword" @click="$route.push
-                ({name: 'Search',params:{ keyword: searchKeyword}})">
-        <button class="btn-search">Search</button>
+        <input placeholder="Anything you interest in ..." class="search-input" v-model="searchKeyword" v-on:keydown.enter.prevent="intoSearch">
+        <button class="btn-search" @click.prevent="intoSearch">Search</button>
+        <div class="label-container">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+          </label>
+        </div>
       </form>
     </div>
     <div class="container search-result">
@@ -53,13 +63,23 @@
   import PageFooter from '../../Common/PageFooter.vue'
   import SearchResult from './SearchResult.vue'
   export default {
+    methods: {
+      intoSearch () {
+        let _this = this
+        this.$router.push({
+          name: 'Search',
+          params: {
+            keyword: _this.searchKeyword
+          }
+        })
+      }
+    },
     components: {
       RepoView, PageFooter, topNavbar, SearchResult
     },
     mounted () {
       if (this.$route.params.keyword) {
         this.searchKeyword = this.$route.params.keyword
-        console.log('keyword detected')
       }
     },
     data () {

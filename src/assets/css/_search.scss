@@ -49,11 +49,36 @@
   }
 }
 
+.label-container {
+  padding-bottom: 3rem;
+  width: 76%;
+  margin-left: auto;
+  margin-right: auto;
+  .checkbox-inline {
+    float: left;
+    color: $text-color;
+  }
+}
+
 .result-label {
   background-color: #ccc;
   font-size: 1.2rem;
   padding: 0.3rem 1rem;
   border-radius: 0.5rem;
+}
+
+.result-label-person {
+  background-color: $color-blue-3;
+  color: $text-color-rev;
+}
+.result-label-parts {
+  background-color: $color-orange;
+  color: $text-color;
+}
+
+.result-label-device {
+  background-color: $color-light;
+  color: $text-color-rev;
 }
 
 .result-content {

@@ -1,6 +1,8 @@
 <template>
   <div class="search-result">
-    <div class="result-header"><a href="#">Result1</a><span class="result-label">Label1</span><div class="pull-right" id="star"></div></div>
+    <div class="result-header"><a href="#">Result1</a><span class="result-label result-label-person">Person</span>
+      <span class="result-label result-label-parts">Parts</span><span class="result-label result-label-device">Device</span>
+      <div class="pull-right" id="star"></div></div>
     <p class="result-content">Lorem ipsum dolor sit amet,
       consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
@@ -14,7 +16,8 @@
   import '../../../utils/theme.min'
   export default {
     mounted () {
-      $('#star').rating({theme: 'krajee-svg', size: 'xxs', containerClass: 'pull-right', showCaption: false, showClear: false})
+      $('#star').rating({theme: 'krajee-svg', size: 'xxs', containerClass: 'pull-right', showCaption: false, showClear: false, displayOnly: true})
+      $('#star').rating('update', 3)
       console.log($.fn)
     }
   }
