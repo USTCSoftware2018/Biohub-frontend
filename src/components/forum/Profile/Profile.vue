@@ -37,7 +37,7 @@
               </div>
               <div :title="userLink">
                 <i class="fa fa-external-link float-icon"></i>
-                <a href="userLink">
+                <a :href="userLink">
                   <p class="oneline-overflow">{{ userLink }}</p>
                 </a>
               </div>
@@ -60,32 +60,32 @@
             <a v-if="hintShow" v-on:click="foldStateChange" style="cursor: pointer">click to unfold</a>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
           <div class="profile-nav">
-            <ul class="nav nav-tabs">
+            <ul class="p-nav p-nav-tabs">
               <li role="presentation" v-bind:class="{ 'active' : ('Activity' === currentPlugin) }"
                   v-on:click="currentPlugin = 'Activity'; params.showIntro = false" id="activity">
-                <a href="javascript:;">activities</a>
+                <a href="javascript:;">Activity</a>
               </li>
               <li role="presentation" v-bind:class="{ 'active' : ('Experience' === currentPlugin) }"
                   v-on:click="currentPlugin = 'Experience'; params.showIntro = true" id="experience">
-                <a href="javascript:;">experiences</a>
+                <a href="javascript:;">Experience</a>
               </li>
               <li role="presentation" v-bind:class="{ 'active' : ('Comment' === currentPlugin) }"
                   v-on:click="currentPlugin = 'Comment'; params.showIntro = true" id="comment">
-                <a href="javascript:;">comments</a>
+                <a href="javascript:;">Comment</a>
               </li>
               <li role="presentation" v-bind:class="{ 'active' : ('Star' === currentPlugin) }"
                   v-on:click="currentPlugin = 'Star'; params.showIntro = true" id="star">
-                <a href="javascript:;">stars</a>
+                <a href="javascript:;">Star</a>
               </li>
               <li role="presentation" v-bind:class="{ 'active' : ('Rating' === currentPlugin) }"
                   v-on:click="currentPlugin = 'Rating'" id="rating">
-                <a href="javascript:;">rating</a>
+                <a href="javascript:;">Rate</a>
               </li>
               <li role="presentation" v-bind:class="{ 'active' : ('Watching' === currentPlugin) }"
                   v-on:click="currentPlugin = 'Watching'" id="watching">
-                <a href="javascript:;">watching</a>
+                <a href="javascript:;">Watching</a>
               </li>
             </ul>
           </div>
