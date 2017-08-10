@@ -20,7 +20,7 @@
 
     input {
       @extend %input-biohub;
-      height: 4rem;
+      height: 0.4rem;
     }
 
     textarea {
@@ -66,8 +66,8 @@
     border-radius: 5px;
     padding: 8px;
     width: 100%;
-    line-height: 1.3em;
-    height: 6.4em;
+    line-height: 0.13em;
+    height: 0.64em;
   }
 }
 

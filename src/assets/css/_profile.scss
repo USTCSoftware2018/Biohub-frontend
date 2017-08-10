@@ -128,9 +128,9 @@
   margin-top: 5%;
 
   .profile-biography {
-    line-height: 1.5em !important;
+    line-height: 0.15rem !important;
     text-align: left;
-    min-height: 7.0em;
+    min-height: 0.7rem;
     word-wrap: break-word;
     -ms-word-wrap: break-word;
 
@@ -139,8 +139,8 @@
     }
 
     .arrow-l-int {
-      width: 0px;
-      height: 0px;
+      width: 0;
+      height: 0;
       border-width: 15px;
       border-style: solid;
       border-color: transparent #ddd transparent transparent;
@@ -183,7 +183,7 @@
 }
 
 .profile-biography-folded {
-  height: 7.0em !important;
+  height: 0.7rem !important;
   display: -webkit-box;
   -ms-text-overflow: ellipsis;
   text-overflow: ellipsis;
