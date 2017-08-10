@@ -21,13 +21,7 @@
     components: {
       topNavbar,
       PageFooter,
-      add,
-      ABACUS: function () {
-        return import('./ABACUS')
-      },
-      bbkManager: function () {
-        return import('./bbkManager')
-      }
+      add
     },
     data () {
       return {
