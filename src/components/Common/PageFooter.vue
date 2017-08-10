@@ -19,14 +19,21 @@
     left: 0;
     bottom: 0;
     right: 0;
-    height: 150px;
   }
 
   .footer-content {
+    height: 150px;
+    background-color: #ececec;
     margin-top: 50px;
     padding-top: 20px;
-    border-top: 1px solid #d5d5d5;
-    color: darkgray;
+    padding-bottom:20px;
+    color: #b5b5b5;
+    height:100%;
+  }
+
+  .footer-content a {
+    color: #333 !important;
+    text-decoration: none;
   }
 
   .footer-link {
