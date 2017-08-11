@@ -4,9 +4,10 @@
 }
 
 .grade {
-  color: #d1930d;
+  color: #F5710C;
   font-size: 25px;
   float: right;
+  text-shadow: 4px 2px 8px #9F7615;
 }
 
 
@@ -15,6 +16,7 @@
   position: relative;
   padding: 15px 15px 15px 15px;
   box-shadow: none;
+  background-color: #FCFEFF;
 }
 
 .availabel-label {

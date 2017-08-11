@@ -3,6 +3,8 @@
     <top-navbar></top-navbar>
     <div class="search-head">
       <form class="biohub-form">
+      <img src="../../../assets/img/icon.png"
+                 class="snailicon" />
         <input placeholder="Anything you interest in ..." class="search-input" v-model="searchKeyword" v-on:keydown.enter.prevent="intoSearch">
         <button class="btn-search" @click.prevent="intoSearch">Search</button>
         <div class="label-container">

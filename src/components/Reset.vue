@@ -23,7 +23,7 @@
                 <input type="password" class="form-control" ref="passwordInput" id="passwordInput"
                        placeholder="NewPassword" v-model="password">
               </div>
-              <button type="submit" class="btn btn-biohub btn-biohub-orange full-width" style="margin-top:10px">Submit</button>
+              <button type="submit" class="btn btn-biohub btn-biohub-blue full-width" style="margin-top:10px">Submit</button>
             </div>
              </form>
          </div>

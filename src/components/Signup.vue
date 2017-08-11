@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/img/brand.png" width="530px" style="padding-top: 10em;">
+    <img src="../assets/img/bioLogo.png" width="530px" style="padding-top: 10em;">
     <div class="container signup">
       <div class="row">
         <div class="col-md-3"></div>
@@ -41,7 +41,7 @@
                 <button type="button" class="close"></button>
                 <strong>Error: </strong> {{ errorMessage }}
               </div>
-              <button type="submit" class="btn btn-biohub btn-biohub-orange full-width"
+              <button type="submit" class="btn btn-biohub btn-biohub-blue full-width"
                       v-on:click.self.prevent="SignUp">
                 Sign up
               </button>
