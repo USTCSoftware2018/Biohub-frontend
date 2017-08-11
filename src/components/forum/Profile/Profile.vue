@@ -89,7 +89,7 @@
               </li>
             </ul>
           </div>
-          <div class="white-box">
+          <div class="profile-box">
             <component :is="currentPlugin" :params="params"></component>
           </div>
         </div>

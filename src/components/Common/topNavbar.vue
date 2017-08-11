@@ -12,7 +12,7 @@
       <form class="navbar-form navbar-left" v-if="!($route.name === 'Search')">
         <div class="form-group">
           <input type="text" class="form-control" v-on:keydown.enter.prevent="intoSearch" ref="Search"
-                 placeholder="Search">
+                 placeholder="Search" style="font-size: 15px;">
         </div>
       </form>
       <ul v-if="!hasLogged" class="nav navbar-nav navbar-right">

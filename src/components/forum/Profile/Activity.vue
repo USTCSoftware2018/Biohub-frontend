@@ -4,7 +4,7 @@
                :key="i"
                :is="mod.type + 'Tab'"
                :params="mod.params"
-               :showIntro="showIntro" class="-profile-activity-tab">
+               :showIntro="params.showIntro" class="-profile-activity-tab">
     </component>
   </div>
 </template>

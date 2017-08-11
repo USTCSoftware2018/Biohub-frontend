@@ -1,7 +1,9 @@
 <template>
   <div>
     <star-tab v-for="(p, i) in starredExps" :key="i"
-               :params="p" class="-profile-activity-tab">
+              :params="p"
+              :showIntro="params.showIntro"
+              class="-profile-activity-tab">
     </star-tab>
   </div>
 </template>

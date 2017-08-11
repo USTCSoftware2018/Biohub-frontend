@@ -1,7 +1,7 @@
 <template>
   <div>
     <comment-tab v-for="(p, i) in tempParams" :key="i"
-                 :params="p" :showIntro="showIntro" class="-profile-activity-tab">
+                 :params="p" :showIntro="params.showIntro" class="-profile-activity-tab">
     </comment-tab>
   </div>
 </template>

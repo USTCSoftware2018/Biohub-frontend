@@ -1,7 +1,7 @@
 <template>
   <div>
     <experience-tab v-for="(p, i) in tempParams" :key="i"
-               :params="p" :showIntro="showIntro" class="-profile-activity-tab">
+               :params="p" :showIntro="params.showIntro" class="-profile-activity-tab">
     </experience-tab>
   </div>
 </template>
@@ -10,7 +10,7 @@
   import ExperienceTab from '../Common/ExperienceTab.vue'
 
   export default {
-    props: ['params', 'showIntro'],
+    props: ['params'],
     mounted () {
       console.log('Star mounted')
     },

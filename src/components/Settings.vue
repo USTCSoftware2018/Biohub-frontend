@@ -57,8 +57,6 @@
     <page-footer></page-footer>
   </div>
 </template>
-<style scoped>
-</style>
 <script>
   import topNavbar from './Common/topNavbar.vue'
   import PageFooter from './Common/PageFooter.vue'
