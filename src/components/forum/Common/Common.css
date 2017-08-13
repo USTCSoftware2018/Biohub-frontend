@@ -95,12 +95,12 @@
   margin-bottom: auto;
 }
 .forum-activity-border {
-  margin: 5px 5px 5px 5px;
+  margin: 0px 5px 15px 5px;
   padding: 10px 10px 10px 10px;
   width: 90% !important;
   float: left;
   height: 85px;
-  border:1px dashed #ccc;
+  border:1px  #ccc;
   box-shadow: 0 0 6px #ccc;
   border-radius: 5px;
 }

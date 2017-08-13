@@ -1,6 +1,6 @@
 <template>
 <div>
-   <img src="../assets/img/brand.png" width="530px" style="padding-top: 10em;">
+  <img src="../assets/img/bioLogo.png" width="530px" style="padding-top: 10em;">
    <div class="container">
      <div class="row">
          <div class="col-md-3"></div>
