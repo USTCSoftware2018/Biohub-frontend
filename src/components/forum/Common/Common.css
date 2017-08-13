@@ -7,7 +7,6 @@
   color: #F5710C;
   font-size: 25px;
   float: right;
-  text-shadow: 4px 2px 8px #9F7615;
 }
 
 
@@ -82,7 +81,7 @@
 }
 
 .experience-brief-intro, .comment-brief-intro {
-  background-color: #f6f6f6;
+  background-color: rgba(246,246,246,0.3);
   -webkit-border-radius: 1px;
   -moz-border-radius: 1px;
   border-radius: 1px;

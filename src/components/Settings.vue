@@ -49,8 +49,9 @@
             </div>
           </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 setting-buttons">
           <button class="btn btn-primary settings-save" v-on:click="UpdateProfile">Save Profile</button>
+          <button class="btn btn-default settings-cancel" v-on:click="Cancel">Cancel</button>
         </div>
       </div>
     </div>
@@ -76,6 +77,9 @@
         }).catch((e) => {
           console.log(e)
         })
+      },
+      Cancel () {
+        window.location.href = '/user/' + this.userName
       }
     },
     data () {

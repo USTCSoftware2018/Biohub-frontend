@@ -25,7 +25,7 @@
               <i class="fa fa-star" aria-hidden="true"></i>
             </div>
             <div id="edit-button" v-if="isSelf">
-              <button class="btn btn-primary follow-button" v-on:click="ToSetting">Edit Profile</button>
+              <button class="btn btn-primary follow-button" v-on:click="ToSetting">Setting</button>
             </div>
             <div class="profile-parting-line"></div>
             <div id="personal-info">

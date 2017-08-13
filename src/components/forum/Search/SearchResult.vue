@@ -1,8 +1,10 @@
 <template>
   <div class="search-result">
     <div class="result-header"><a href="#">Result1</a><span class="result-label result-label-person">Person</span>
-      <span class="result-label result-label-parts">Parts</span><span class="result-label result-label-device">Device</span>
-      <div class="pull-right" id="star"></div></div>
+      <span class="result-label result-label-parts">Parts</span><span
+        class="result-label result-label-device">Device</span>
+      <div class="pull-right" id="star" ref="star"></div>
+    </div>
     <p class="result-content">Lorem ipsum dolor sit amet,
       consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
@@ -14,11 +16,32 @@
   import '../../../utils/star-rating'
   import '../../../assets/css/star-theme.css'
   import '../../../utils/theme.min'
+
   export default {
     mounted () {
-      $('#star').rating({theme: 'krajee-svg', size: 'xxs', containerClass: 'pull-right', showCaption: false, showClear: false, displayOnly: true})
-      $('#star').rating('update', 3)
-      console.log($.fn)
+      console.log(this.$refs.star.style)
+      setTimeout(
+        this.$refs.star.rating({
+          theme: 'krajee-svg',
+          size: 'xxs',
+          min: 0,
+          max: 5,
+          step: 0.5,
+          containerClass: 'pull-right',
+          showCaption: false,
+          showClear: false,
+          displayOnly: false
+        }), 1
+      )
+
+      $('#star').rating('update', 3.2)
+      $('#star').on('rating.change', this.Rate)
+      console.log(this.$res.star)
+    },
+    methods: {
+      Rate (event, value, caption) {
+        $('#star').rating('refresh', {displayOnly: true})
+      }
     }
   }
 </script>
