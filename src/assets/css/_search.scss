@@ -77,7 +77,7 @@
 }
 
 .result-label-device {
-  background-color: $color-light;
+  background-color: darken($color-light,5%);
   color: $text-color-rev;
 }
 

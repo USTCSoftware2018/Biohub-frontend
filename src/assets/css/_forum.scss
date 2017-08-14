@@ -115,7 +115,9 @@
     color: $color-blue-2;
   }
 }
-
+.editormd, .CodeMirror, .CodeMirror-gutters, .CodeMirror-scroll {
+  min-height: 300px;
+}
 %list-biohub {
   .list-group-item {
     text-align: left;

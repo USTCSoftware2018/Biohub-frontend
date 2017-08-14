@@ -25,9 +25,6 @@
       <div class="col-md-10">
         <search-result></search-result>
         <search-result></search-result>
-        <repo-view v-for="(n, i) in name"
-                   :params="{partName: n, grade: grade[i], label: label, intro: abstract[i]}"
-                   :key="i"></repo-view>
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -61,7 +58,6 @@
 </style>
 <script>
   import topNavbar from '../../Common/topNavbar.vue'
-  import RepoView from '../Common/RepoView.vue'
   import PageFooter from '../../Common/PageFooter.vue'
   import SearchResult from './SearchResult.vue'
   export default {
@@ -77,7 +73,7 @@
       }
     },
     components: {
-      RepoView, PageFooter, topNavbar, SearchResult
+      PageFooter, topNavbar, SearchResult
     },
     mounted () {
       if (this.$route.params.keyword) {

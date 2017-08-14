@@ -28,7 +28,7 @@
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </div>
           </div>
-          <ul class="list-group left-list" style="margin-top:2rem">
+          <ul class="list-group left-list" style="margin-top:0.2rem">
             <li class="list-group-header">Devices which use this part</li>
             <li class="list-group-item"><a href="#">Lorem ipsum dolor sit amet</a></li>
             <li class="list-group-item"><a href="#">consectetur adipisicing elit</a></li>

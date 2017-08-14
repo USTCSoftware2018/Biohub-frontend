@@ -22,8 +22,9 @@
   }
 
   .footer-content {
+    border-top: 1px solid #ddd;
     height: 150px;
-    background-color: #ececec;
+    background-color: transparent;
     margin-top: 50px;
     padding-top: 20px;
     padding-bottom:20px;
