@@ -4,7 +4,7 @@
       <div class="experience-header">
         <button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button>
       </div>
-      <div class="divider" style="border-top: 1px solid #ddd;margin-top: 2rem;"></div>
+      <div class="divider" style="border-top: 1px solid #ddd;margin-top: 0.2rem;"></div>
       <div class="list-group list-experience">
         <router-link :to="{name: 'RepoExperience', params:{id: 1}}" class="list-group-item" id="experience-1">
           <h4 class="list-group-item-heading">List group item heading<a href="#">@sdfg</a> <small>2017.1.1</small>
