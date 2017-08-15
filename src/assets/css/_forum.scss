@@ -118,6 +118,17 @@
 .editormd, .CodeMirror, .CodeMirror-gutters, .CodeMirror-scroll {
   min-height: 300px;
 }
+.OfficialResult {
+  background-color: white;
+  margin: 0.1rem 1.5rem 0 1.5rem;
+  border: 1px solid $border-color;
+  border-radius: 0.05rem;
+  padding: 0.2rem 0;
+}
+.OfficialResultHead {
+  font-size: 0.2rem;
+}
+
 %list-biohub {
   .list-group-item {
     text-align: left;

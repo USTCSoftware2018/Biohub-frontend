@@ -9,7 +9,9 @@
         <span class="fa fa-exclamation-circle" style="vertical-align: middle" v-show="stateNotFound"></span>
       </div>
     </form>
-    <div class="OfficialResult">sdfsdf</div>
+    <div class="OfficialResult" v-if="stateFound">
+      <div class="OfficialResultHead">{{findResult.name}}</div>
+    </div>
   </div>
 </template>
 
@@ -36,10 +38,13 @@
         if (timer) { clearTimeout(timer) }
         timer = setTimeout(() => {
           this.stateLoad = true
+          this.stateFind = false
+          this.stateNotFound = false
           axios.get('/api/forum/bricks/' + name + '/').then((response) => {
             this.stateLoad = false
             if (response.status === 200) {
               this.findResult = response.data
+              this.stateFound = true
             }
             console.log(response)
           }).catch((error) => {
