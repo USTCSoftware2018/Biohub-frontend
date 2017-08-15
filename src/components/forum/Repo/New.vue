@@ -2,7 +2,7 @@
   <div>
     <form class="biohub-form forum-new-form">
       <div class="form-group">
-        <label style="margin-right: 20px;vertical-align: middle;">Part Name:</label>
+        <div style="vertical-align: middle;text-align: justify; padding-left: 2.31rem;margin-bottom: 0.05rem;font-size: 0.2rem;">Part Name</div>
         <input class="form-control" placeholder="name" v-model="newPartName" style="display: inline-block;vertical-align: middle;">
         <span class="fa fa-spinner fa-spin fa-fw" style="vertical-align: middle" v-show="stateLoad"></span>
         <span class="fa fa-check-circle" style="vertical-align: middle" v-show="stateFound"></span>
@@ -11,6 +11,12 @@
     </form>
     <div class="OfficialResult" v-if="stateFound">
       <div class="OfficialResultHead">{{findResult.name}}</div>
+      <div class="divider"></div>
+      <div class="OfficialResultInfo">{{findResult.name}}<br>{{findResult.designer}}<br>
+        {{findResult.part_type}}<br>{{findResult.sequence_a}}<br>
+      </div>
+      <div class="divider"></div>
+      <div class="OfficialFooter">Is that you need?<button class="btn btn-forum">Yes</button></div>
     </div>
   </div>
 </template>
