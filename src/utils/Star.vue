@@ -67,7 +67,7 @@
 </style>
 <script>
   export default {
-    props: ['isEnable'],
+    props: ['isEnable','initial'],
     data () {
       return {
         canChange: this.isEnable,
@@ -75,6 +75,10 @@
       }
     },
     mounted () {
+      if (this.initial) {
+        this.changeValue(this.initial)
+        this.canChange = false
+      }
     },
     methods: {
       calcMouse (e) {
@@ -84,6 +88,9 @@
       },
       submit () {
         this.canChange = false
+      },
+      changeValue (value) {
+        this.wSize = value * 20
       }
     }
   }

@@ -5,7 +5,6 @@
 </template>
 
 <script>
-  window.jQuery = $
   export default {
     name: 'app'
   }

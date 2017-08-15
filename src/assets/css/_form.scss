@@ -102,7 +102,13 @@
     color: $text-color;
   }
 }
-
+.forum-new-form {
+  margin: 0.1rem 0.2rem 0 0.2rem;
+  .form-control {
+    border-color: $border-color;
+    width: 60%;
+  }
+}
 %input-biohub {
   @extend %no-box-shadow;
   border-style: solid;

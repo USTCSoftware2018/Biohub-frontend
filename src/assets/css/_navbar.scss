@@ -78,10 +78,13 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 0.3rem;
+  li {
+    width: 100%;
+  }
   li a {
     @include transition(border-color);
     border-bottom: 1px solid transparent;
-    color: $color-blue-2;
+    color: $color-light;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
     &:hover {

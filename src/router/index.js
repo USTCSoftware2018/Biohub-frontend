@@ -17,6 +17,7 @@ import RepoReview from '@/components/forum/Repo/RepoReview'
 import Editor from '@/components/forum/Repo/Editor'
 import ExperienceList from '@/components/forum/Repo/ExperienceList'
 import Reset from '@/components/Reset'
+import RepoNew from '@/components/forum/Repo/New'
 
 Vue.use(Router)
 
@@ -51,6 +52,10 @@ export default new Router({
         {
           path: '',
           component: forumHome
+        },
+        {
+          path: 'new',
+          component: RepoNew
         },
         {
           path: ':repo',
