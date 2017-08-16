@@ -10,8 +10,8 @@
                 {{ $route.params.repo }}
               </div>
               <div class="repo-info-addon">
-                Author: {{ $route.params.author }}
-                | Followers: <a href="#">Number</a> | <router-link :to="{name:'ExperienceList'}"
+                Author: {{ rResult.designer }}
+                | Followers: <a href="#">{{rResult.watch_users.length}}</a> | <router-link :to="{name:'ExperienceList'}"
                 v-if='$route.name === "RepoInfo"' class="view-experience">View Experience</router-link>
                 <router-link :to="{name: 'RepoInfo'}" v-if='($route.name === "ExperienceList") || ($route.name === "ExperienceNew")
                 || ($route.name === "RepoExperience")'
@@ -25,7 +25,7 @@
           <div class="panel panel-default panel-biohub">
             <div class="panel-heading">About the author</div>
             <div class="panel-body">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              {{rResult.text}}
             </div>
           </div>
           <ul class="list-group left-list" style="margin-top:0.2rem">
@@ -45,11 +45,13 @@
   import Description from './RepoInfo.vue'
   import Experience from './RepoReview.vue'
   import PageFooter from '../../Common/PageFooter.vue'
+  import axios from 'axios'
   export default {
     data () {
       return {
         currentView: 'Description',
-        anotherView: 'Experience'
+        anotherView: 'Experience',
+        rResult: null
       }
     },
     watch: {
@@ -64,11 +66,14 @@
     },
     created () {
       console.log(this.$route.params)
-      var patt = new RegExp('experience')
-      if (patt.test(this.$route.fullPath)) {
-        console.log('yes')
-        this.changeView()
-      }
+      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/').then((response) => {
+        this.rResult = response.data
+        console.log(response, '1')
+      }).catch((error) => {
+        console.log(error, '2')
+      }).get(this.rResult.api_url).then((response) => {
+        console.log(response)
+      })
     },
     methods: {
       changeView () {

@@ -8,7 +8,7 @@
           . Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <button class="btn btn-biohub btn-biohub-forum-welcome-default">Learn More</button>
-        <button class="btn btn-biohub btn-biohub-forum-welcome-notice">Start a Discussion</button>
+        <button class="btn btn-biohub btn-biohub-forum-welcome-notice" @click="$router.push({name:'newDiscussion'})">Start a Discussion</button>
       </div>
 
     </div>

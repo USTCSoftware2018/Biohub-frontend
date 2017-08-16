@@ -138,6 +138,17 @@
   text-align: left;
   padding: 0 0.4rem;
   font-size: 0.2rem;
+  button:first-child {
+    margin-left: 0.2rem;
+  }
+}
+
+.UploadFile {
+  @extend .OfficialResult;
+}
+
+.UploadFileNotice {
+  @extend .OfficialResultHead;
 }
 %list-biohub {
   .list-group-item {

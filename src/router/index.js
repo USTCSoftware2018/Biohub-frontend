@@ -55,7 +55,8 @@ export default new Router({
         },
         {
           path: 'new',
-          component: RepoNew
+          component: RepoNew,
+          name: 'newDiscussion'
         },
         {
           path: ':repo',
