@@ -27,7 +27,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   let timer = null
   export default {
     watch: {

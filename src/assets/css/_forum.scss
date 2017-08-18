@@ -94,6 +94,8 @@
 .repo-info-content {
   background-color: white;
   padding: 0.1rem 0.3rem;
+  text-align: left;
+  text-indent: 2em;
 }
 
 .repo-experience-content {
@@ -107,6 +109,7 @@
     &:hover {
       background-color: white;
     }
+    cursor: pointer;
   }
   .list-group-item + .list-group-item {
     border-top: 1px solid $border-color;

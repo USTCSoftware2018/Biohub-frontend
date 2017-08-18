@@ -53,7 +53,6 @@
   </div>
 </template>
 <script>
-  import axios from 'axios'
   import DynamicOptions from './utils/DynamicOptions.vue'
 
   let usernameReg = /^\w{4,15}$/

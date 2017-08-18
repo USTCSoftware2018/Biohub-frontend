@@ -18,7 +18,7 @@
                              class="view-experience">View Description</router-link>
               </div>
             </div>
-            <router-view></router-view>
+            <router-view :content="rResult.document"></router-view>
           </div>
         </div>
         <div class="col-md-3">
@@ -45,7 +45,6 @@
   import Description from './RepoInfo.vue'
   import Experience from './RepoReview.vue'
   import PageFooter from '../../Common/PageFooter.vue'
-  import axios from 'axios'
   export default {
     data () {
       return {

@@ -1,27 +1,19 @@
 <template>
   <div>
     <div class="repo-experience-content">
-      <div class="experience-header">
-        <button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button>
+      <div v-if="!ExperienceDetail">
+        <div class="experience-header">
+          <button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button>
+        </div>
+        <div class="divider" style="border-top: 1px solid #ddd;margin: 0.2rem 0 0rem 0;"></div>
+        <div class="list-group list-experience">
+          <li v-for="item in lResult.results" class="list-group-item" :id="'experience'+item.id" @click="expandExperience(item.id)">
+            <h4 class="list-group-item-heading">{{item.title}}<a href="#">@{{item.author_name}}</a></h4>
+            <div class="list-group-item-text">{{item.content}}</div>
+          </li>
+        </div>
       </div>
-      <div class="divider" style="border-top: 1px solid #ddd;margin-top: 0.2rem;"></div>
-      <div class="list-group list-experience">
-        <router-link :to="{name: 'RepoExperience', params:{id: 1}}" class="list-group-item" id="experience-1">
-          <h4 class="list-group-item-heading">List group item heading<a href="#">@sdfg</a> <small>2017.1.1</small>
-          <div class="pull-right list-group-item-addon">star:13423</div></h4>
-          <div class="list-group-item-text"><p>
-          [Log] <a href="http://wfefdf.c" title="werw"><img src="asdf" alt="werw" title="werw"></a>### Hello Editor.md !<br>fsdfh23uhlslcpvwpe</>
-          <h2 id="h2-2hfjl-2"><a name="2hfjl 2" class="reference-link"></a><span class="header-link octicon octicon-link"></span>2hfjl 2</h2><p>s<a href="http://sdfsd.c" title="23fdsf">23fdsf</a></p>
-          </div>
-        </router-link>
-        <router-link :to="{name: 'RepoExperience', params:{id: 2}}" class="list-group-item" id="experience-2">
-          <h4 class="list-group-item-heading">List group item heading<a href="#">@sdfg</a></h4>
-          <div class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et doloremagna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-        . Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            <br>Hide Detail</div>
-        </router-link>
+      <div v-if="ExperienceDetail" v-html="eResult.content.text">
       </div>
     </div>
   </div>
@@ -29,23 +21,56 @@
 
 <script>
   import '../../../assets/css/editormd.css'
-  var opentext = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore'
-  var closetext = 'Lorem ipsum dolor sit amet'
+  import marked from 'marked'
   export default {
+    data () {
+      return {
+        ExperienceDetail: false,
+        eResult: null,
+        lResult: {}
+      }
+    },
     mounted () {
+      if (this.$route.params.id) {
+        this.loadExperience(this.$route.params.id)
+      } else {
+        this.loadExperienceList()
+      }
     },
     watch: {
-      '$route' (to, from) {
+      '$route.params' (to, from) {
         console.log(to, from)
-        if (to.params.id) {
-          var eleT = $('#experience-' + to.params.id + ' .list-group-item-text')
-          eleT.html(opentext + '<br>Hide Detail')
-          eleT[0].setAttribute('on', '1')
+        if (to.id || from.id) {
+
         }
-        if (from.params.id) {
-          var eleF = $('#experience-' + from.params.id + ' .list-group-item-text')
-          eleF.html(closetext + '<br>Show Detail')
-          eleF[0].removeAttribute('on')
+      }
+    },
+    methods: {
+      loadExperience (id) {
+        axios.get(`/api/forum/experiences/${id}/`).then((response) => {
+          console.log(response)
+          this.ExperienceDetail = true
+          this.eResult = response.data
+          this.eResult.content.text = marked(this.eResult.content.text)
+        }).catch((error) => {
+          console.log(error)
+        })
+      },
+      loadExperienceList () {
+        axios.get(`/api/forum/bricks/${this.$route.params.repo}/experiences/?short=true`).then((response) => {
+          console.log(response)
+          this.lResult = response.data
+          this.ExperienceDetail = false
+        }).catch((error) => {
+          console.log(error)
+        })
+      },
+      expandExperience (id) {
+        let item = null
+        for (item in this.lResult.results) {
+          if (this.lResult.results[item].id === id) {
+            console.log('id' + id + 'clicked.')
+          }
         }
       }
     }

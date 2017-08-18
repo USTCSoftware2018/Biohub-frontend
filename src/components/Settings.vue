@@ -61,7 +61,6 @@
 <script>
   import topNavbar from './Common/topNavbar.vue'
   import PageFooter from './Common/PageFooter.vue'
-  import axios from 'axios'
 
   export default {
     methods: {

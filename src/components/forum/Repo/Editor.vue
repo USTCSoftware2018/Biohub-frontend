@@ -21,7 +21,6 @@
     mounted () {
       let _this = this
       $(function () {
-        console.log(this)
         editor = editormd('editormd', {
           path: '/static/lib/',
           pluginPath: '/static/plugins/',
@@ -38,6 +37,19 @@
     methods: {
       submit () {
         console.log(editor.getHTML())
+        axios.post('/api/forum/experiences/', {
+          brick_id: this.$route.params.repo,
+          content_data: {
+            text: editor.getHTML(),
+            file_ids: []
+          },
+          title: ''
+        }).then((response) => {
+          console.log(response)
+          this.$router.push({name: 'RepoExperience', params: { id: response.data.id }})
+        }).catch((error) => {
+          console.log(error)
+        })
       }
     }
   }
