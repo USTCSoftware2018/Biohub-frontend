@@ -47,6 +47,14 @@
   border-top: 0;
 }
 
+.list-group-item-text {
+  -webkit-transition: height 0.2s;
+  -moz-transition: height 0.2s;
+  -ms-transition: height 0.2s;
+  -o-transition: height 0.2s;
+  transition: height 0.2s;
+}
+
 .repo_home {
   @extend %list-biohub;
 }
