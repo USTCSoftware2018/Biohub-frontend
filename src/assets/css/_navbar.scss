@@ -3,12 +3,17 @@
   border-radius: 0;
   border: none;
   background-color: $navbar-color !important;
+
+  .nav .open > a {
+    border-color: transparent !important;
+  }
+
   .nav a, .nav li {
     color: $color-light;
     border-bottom: 2px solid transparent;
     @include transition(border-color);
     &:hover {
-      border-bottom: 2px solid $color-light;
+      border-bottom: 2px solid white;
       background-color: $navbar-color !important;
     }
     &:focus, &:visited, &:active {
