@@ -170,3 +170,8 @@
     color: darken($color-blue-2,0%);
   }
 }
+.repo-experience-content {
+  form > input.form-control {
+    border-color: $border-color;
+  }
+}

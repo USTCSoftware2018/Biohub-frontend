@@ -13,13 +13,14 @@ module.exports = {
   globals: {
     $: true,
     editormd: true,
-    axios: true
+    axios: true,
+    Promise: true
   },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: 'standard',
   // required to lint *.vue files
   plugins: [
-    'html'
+    'html','promise'
   ],
   // add your custom rules here
   'rules': {

@@ -1,5 +1,7 @@
 <template>
   <div class="repo-experience-content">
+    <form class="biohub-form" style="padding-left:0;padding-right:0;"><input
+      class="form-control " placeholder="Title here..." v-model="title"></form>
     <div id="editormd">
       <textarea style="display:none;">### Hello Editor.md !</textarea>
     </div>
@@ -15,7 +17,8 @@
   export default {
     data () {
       return {
-        experienceHTML: ''
+        experienceHTML: '',
+        title: ''
       }
     },
     mounted () {

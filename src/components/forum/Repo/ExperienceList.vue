@@ -22,9 +22,10 @@
           <button class="btn btn-forum" @click.prevent="submitPost">Submit Your Post</button>
           <textarea v-model="postContent"></textarea>
         </form>
-        <div class="postContainer" v-for="item in eResult.post_set">
-          <div>{{item}}</div>
+        <div class="postContainer" v-for="item in loadedPost">
+          <div>{{item.content}}@{{item.author.username}}</div>
         </div>
+        <a href="javascript:;" @click="page++;loadPost()" v-if="!postNoMore">More</a>
       </div>
     </div>
   </div>
@@ -39,7 +40,11 @@
         ExperienceDetail: false,
         eResult: null,
         lResult: {},
-        postContent: ''
+        postContent: '',
+        loadedPost: [],
+        page: 0,
+        count: 5,
+        postNoMore: false
       }
     },
     mounted () {
@@ -62,7 +67,7 @@
           this.ExperienceDetail = true
           this.eResult = response.data
           this.eResult.content.text = marked(this.eResult.content.text)
-          this.loadPost(0, 5)
+          this.loadPost(this.page, 5)
         }).catch((error) => {
           console.log(error)
         })
@@ -88,17 +93,27 @@
           content: this.postContent
         }).then((response) => {
           console.log(response)
+          this.loadedPost.push(response.data)
+          this.postContent = ''
         })
       },
-      loadPost (page, count) {
+      loadPost () {
         let waitForLoad = []
-        let i = page * count
+        let i = this.page * this.count
         let postCount = this.eResult.post_set.length
-        while ((i < (page + 1) * count) && (i < postCount)) {
+        let j = 0
+        while ((i < (this.page + 1) * this.count) && (i < postCount)) {
           waitForLoad.push(axios.get(this.eResult.post_set[i]))
           i++
         }
-        console.log(waitForLoad)
+        Promise.all(waitForLoad).then((values) => {
+          for (j in values) {
+            this.loadedPost.push(values[j].data)
+          }
+          if (values.length < this.count) {
+            this.postNoMore = true
+          }
+        })
       }
     }
   }
