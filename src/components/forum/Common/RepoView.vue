@@ -1,36 +1,22 @@
 <template>
-  <div class="search-result-tab">
-    <div>
-      <b class="result-header">
-        <a href="#" class="repo-name-head">{{ params.partName }}</a>
-        <b class="grade">
-          {{ params.grade }}
-        </b>
-        <span class="label-list" v-for="l in params.label">
-        {{ l }}
-      </span>
-      </b>
-      <p class="result-content">
-        {{ params.intro }}
-      </p>
+  <div class="search-result">
+    <div class="result-header">
+      <a href="#">{{ params.partName }}</a>
+      <span class="result-label result-label-person">Person</span>
+      <span class="result-label result-label-parts">Parts</span>
+      <span class="result-label result-label-device">Device</span>
+      <div class="profile-repo-score">
+        <p>{{ params.grade }}</p>
+      </div>
     </div>
-    <div class="result-label">
-
-      <a href="#"><img src="../../../assets/img/mark.png" class="img-collect"></a>
-    </div>
+    <p class="result-content">{{ params.intro }}</p>
   </div>
 </template>
-
-<style scoped>
-  @import 'Common.css';
-  * {
-    text-align: left;
-  }
-</style>
-
 <script>
   export default {
-    name: 'RepoView',
-    props: ['params']
+    props: ['params'],
+    mounted () {
+    },
+    methods: {}
   }
 </script>
