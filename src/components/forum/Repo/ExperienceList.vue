@@ -14,18 +14,18 @@
         </div>
         <button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button>
       </div>
-      <router-link :to="{name:'ExperienceList'}" v-if="ExperienceDetail">Back</router-link>
+      <router-link :to="{name:'ExperienceList'}" v-if="ExperienceDetail" class="biohub-a"><i class="fa fa-angle-left"></i> Back</router-link>
       <div v-if="ExperienceDetail" v-html="eResult.content.text">
       </div>
       <div v-if="ExperienceDetail">
-        <form>
+        <form class="postForm">
+          <div v-model="postContent" class="textarea" contenteditable="true" id="postContent"></div>
           <button class="btn btn-forum" @click.prevent="submitPost">Submit Your Post</button>
-          <textarea v-model="postContent"></textarea>
         </form>
         <div class="postContainer" v-for="item in loadedPost">
           <div>{{item.content}}@{{item.author.username}}</div>
         </div>
-        <a href="javascript:;" @click="page++;loadPost()" v-if="!postNoMore">More</a>
+        <a href="javascript:;" @click="page++;loadPost()" v-if="!postNoMore" class="biohub-a">More <i class="fa fa-angle-double-down"></i></a>
       </div>
     </div>
   </div>
@@ -88,13 +88,15 @@
         })
       },
       submitPost () {
+        this.postContent = document.querySelector('#postContent').innerText
+        console.log(this.postContent)
         axios.post('/api/forum/posts/', {
           experience_id: this.$route.params.id,
           content: this.postContent
         }).then((response) => {
           console.log(response)
-          this.loadedPost.push(response.data)
-          this.postContent = ''
+          this.loadedPost.splice(0, 0, response.data)
+          document.querySelector('#postContent').innerText = ''
         })
       },
       loadPost () {
@@ -103,7 +105,7 @@
         let postCount = this.eResult.post_set.length
         let j = 0
         while ((i < (this.page + 1) * this.count) && (i < postCount)) {
-          waitForLoad.push(axios.get(this.eResult.post_set[i]))
+          waitForLoad.push(axios.get(this.eResult.post_set[postCount - i - 1]))
           i++
         }
         Promise.all(waitForLoad).then((values) => {

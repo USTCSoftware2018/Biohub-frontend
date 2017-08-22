@@ -32,3 +32,10 @@ body {
   border-top: 1px solid $border-color;
   margin: 0.2rem 0.4rem;
 }
+
+.biohub-a {
+  color: $color-blue-2;
+  &:hover {
+    color: $color-blue-2;
+  }
+}

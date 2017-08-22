@@ -75,7 +75,7 @@
 
 .repo-info-header {
   padding: 0.2rem 0;
-  margin: 0 0.4rem 0.1rem 0.4rem;
+  margin: 0 0.3rem 0.1rem 0.3rem;
   position: relative;
   border-bottom: 1px solid $border-color;
 }
@@ -174,4 +174,28 @@
   form > input.form-control {
     border-color: $border-color;
   }
+}
+
+.postForm {
+  .textarea {
+    margin-top: 0.1rem;
+    display: block;
+    width: 100%;
+    resize: none;
+    border: 1px solid darken($border-color,5%);
+    min-height: 0.4rem;
+    border-radius: 0.05rem;
+    padding: 0.02rem 0.03rem;
+    @include transition(border-color);
+    &:focus {
+      outline:none;
+      border-color: $color-blue-2;
+    }
+  }
+  button {
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+  }
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
 }
