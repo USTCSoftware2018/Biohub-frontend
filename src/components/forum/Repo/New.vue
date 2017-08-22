@@ -43,21 +43,18 @@
         this.stateLoad = true
         this.stateFind = false
         this.stateNotFound = false
-        if (timer) { clearTimeout(timer) }
-        timer = setTimeout(() => {
-          axios.get('/api/forum/bricks/' + name + '/').then((response) => {
-            this.stateLoad = false
-            if (response.status === 200) {
-              this.findResult = response.data
-              this.stateFound = true
-            }
-            console.log(response)
-          }).catch((error) => {
-            this.stateLoad = false
-            this.stateNotFound = true
-            console.log(error, this.stateLoad)
-          })
-        }, 1000)
+        axios.get('/api/forum/bricks/' + name + '/').then((response) => {
+          this.stateLoad = false
+          if (response.status === 200) {
+            this.findResult = response.data
+            this.stateFound = true
+          }
+          console.log(response)
+        }).catch((error) => {
+          this.stateLoad = false
+          this.stateNotFound = true
+          console.log(error, this.stateLoad)
+        })
       }
     }
   }
