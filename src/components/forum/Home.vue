@@ -55,5 +55,5 @@
   }
 </script>
 <style scoped>
-  @import "../forum/Common/Common.css";
+  @import "Common/Common.scss";
 </style>

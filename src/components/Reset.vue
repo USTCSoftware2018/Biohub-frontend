@@ -35,7 +35,7 @@
 
 </script>
 <style scoped>
-@import  "forum/Common/Common.css";
+@import "forum/Common/Common.scss";
 
   .btn-reset {
     margin-top:10px;

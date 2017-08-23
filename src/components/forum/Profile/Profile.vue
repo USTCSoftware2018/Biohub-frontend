@@ -28,21 +28,21 @@
               <button class="btn btn-primary follow-button" v-on:click="ToSetting">Setting</button>
             </div>
             <div class="profile-parting-line"></div>
-            <div id="personal-info">
-              <div :title="userLoc">
+            <div id="personal-info" v-if="userLoc !== '' || userLink !== ''">
+              <div :title="userLoc" class="personal-info-line" v-if="userLoc !== ''">
                 <i class="fa fa-location-arrow float-icon"></i>
                 <span>
                 <p class="oneline-overflow">{{ userLoc }}</p>
               </span>
               </div>
-              <div :title="userLink">
+              <div :title="userLink" class="personal-info-line" v-if="userLink !== ''">
                 <i class="fa fa-external-link float-icon"></i>
                 <a :href="userLink">
                   <p class="oneline-overflow">{{ userLink }}</p>
                 </a>
               </div>
+              <div class="profile-parting-line"></div>
             </div>
-            <div class="profile-parting-line"></div>
           </div>
         </div>
         <div class="col-md-8">
@@ -100,7 +100,7 @@
 </template>
 
 <style scoped>
-  @import "../Common/Common.css";
+  @import "../Common/Common.scss";
 </style>
 
 <script>
