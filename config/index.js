@@ -34,6 +34,13 @@ module.exports = {
         pathRewrite: {
           '^/api': '/api'
         }
+      },
+      '/media': {
+        target: 'http://120.25.250.211:8080',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/media': '/media'
+        }
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

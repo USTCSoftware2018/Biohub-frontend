@@ -51,7 +51,7 @@
           'It had been three years since King Zhuang of Chu ascended the throne, ' +
           'but he had neither issued a decree nor dealt with any duanwenw.com state affairs.' +
           ' Furthermore, there no deeds worth mentioning. ',
-          ' '
+          ''
         ]
       }
     },

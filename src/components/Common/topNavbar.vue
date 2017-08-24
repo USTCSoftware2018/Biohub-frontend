@@ -76,7 +76,6 @@
     },
     mounted () {
       axios.get('/api/users/me/').then((response) => {
-        console.log(response)
         this.userName = response.data.username
         this.avatarURL = response.data.avatar_url
         this.hasLogged = true

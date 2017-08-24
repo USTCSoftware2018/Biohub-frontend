@@ -5,35 +5,11 @@
 .settings-right {
   margin-top: 5%;
   height: 440px;
-  .settings-text-info {
-    text-align: left;
 
-    .settings-option {
-      padding: 5px;
-      h4 {
-        margin-top: 10px;
-      }
-      input {
-        margin-top: 10px;
-      }
-    }
-
-    input {
-      @extend %input-biohub;
-      height: 0.4rem;
-    }
-
-    textarea {
-      &:focus {
-        outline: none;
-        border-color: $color-blue-2;
-        @include transition(border-color);
-      }
-    }
-  }
 }
 
 .settings-left {
+  text-align: center;
   margin-top: 5%;
   height: 440px;
   .settings-avatar-container {
@@ -55,9 +31,34 @@
   }
 }
 
+.settings-text-info {
+  .settings-option {
+    padding: 5px;
+    h4 {
+      margin-top: 10px;
+    }
+    input {
+      margin-top: 10px;
+    }
+  }
+
+  input {
+    @extend %input-biohub;
+    height: 0.4rem;
+  }
+
+  textarea {
+    &:focus {
+      outline: none;
+      border-color: $color-blue-2;
+      @include transition(border-color);
+    }
+  }
+}
+
 .settings-biography {
   h3 {
-    margin: 0px;
+    margin: 0;
     font-size: 22px;
   }
   textarea {
@@ -71,10 +72,10 @@
   }
 }
 
-.setting-buttons {
+.settings-buttons {
   margin-top: 30px;
+  text-align: center;
 }
-
 
 .settings-plugins {
   margin-top: 20px;
@@ -89,9 +90,9 @@
     width: 40px;
     height: 40px;
     div {
-      width:30px;
-      height:30px;
-      margin:5px;
+      width: 30px;
+      height: 30px;
+      margin: 5px;
       a {
         color: $text-color-rev !important;
         text-decoration: none;
