@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div class="postContainer" v-for="item in displayPost">
-      <div>{{item.content}}@{{item.author.username}}</div>
+    <div class="postContainer">
+      <div class="post" v-for="item in displayPost">{{item.content}}<span class="pull-right">@{{item.author.username}}</span></div>
     </div>
     <a @click="load" v-if="hasMore" class="biohub-a">Load More<i class="fa fa-angle-double-down"></i></a>
   </div>
 </template>
 
 <script>
+  import Bus from '../../../utils/bus'
   export default {
     props: ['id'],
     data () {
@@ -39,6 +40,13 @@
         console.log(this.startPoint, this.loadedData)
         this.load()
       })
+      Bus.$on('newPost', (newPost) => {
+        this.displayPost.splice(0, 0, newPost)
+      })
     }
   }
 </script>
+
+<style>
+
+</style>

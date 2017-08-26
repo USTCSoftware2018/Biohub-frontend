@@ -24,10 +24,7 @@
           <div v-model="postContent" class="textarea" contenteditable="true" id="postContent"></div>
           <button class="btn btn-forum" @click.prevent="submitPost">Submit Your Post</button>
         </form>
-        <div class="postContainer" v-for="item in loadedPost">
-          <div>{{item.content}}@{{item.author.username}}</div>
-        </div>
-        <a href="javascript:;" @click="page++;loadPost()" v-if="!postNoMore" class="biohub-a">More <i class="fa fa-angle-double-down"></i></a>
+        <post-list :id="$route.params.id"></post-list>
       </div>
     </div>
   </div>
@@ -37,6 +34,7 @@
   import '../../../assets/css/editormd.css'
   import marked from 'marked'
   import PostList from './PostsList.vue'
+  import Bus from '../../../utils/bus'
   export default {
     data () {
       return {
@@ -103,8 +101,8 @@
           content: this.postContent
         }).then((response) => {
           console.log(response)
-          this.loadedPost.splice(0, 0, response.data)
-          document.querySelector('#postContent').innerText = ''
+          Bus.$emit('newPost', response.data)
+          this.postContent = ''
         })
       },
       showPost (id) {

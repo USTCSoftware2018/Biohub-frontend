@@ -199,3 +199,11 @@
   border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
 }
+.postContainer {
+  padding-top: 0.1rem;
+}
+.post {
+  margin-bottom: 0.1rem;
+  padding-bottom: 0.1rem;
+  border-bottom: 1px solid $border-color;
+}
