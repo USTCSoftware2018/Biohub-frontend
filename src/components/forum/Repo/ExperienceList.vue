@@ -102,6 +102,7 @@
         }).then((response) => {
           console.log(response)
           Bus.$emit('newPost', response.data)
+          document.querySelector('#postContent').innerText = ''
           this.postContent = ''
         })
       },
