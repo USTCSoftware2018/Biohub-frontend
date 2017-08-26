@@ -10,6 +10,8 @@
           <li v-for="item in lResult.results" class="list-group-item" :id="'experience'+item.id" @click="expandExperience(item.id)">
             <h4 class="list-group-item-heading">{{item.title}}<router-link :to="{name: 'Profile',params:{author: item.author_name}}">@{{item.author_name}}</router-link></h4>
             <div class="list-group-item-text">{{item.content}}</div>
+            <a v-show="expandedExperience['key' + item.id]" @click="showPosts['key' + item.id] = true">Show Posts</a>
+            <post-list :id="item.id" v-if="showPosts['key' + item.id]"></post-list>
           </li>
         </div>
         <button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button>
@@ -34,6 +36,7 @@
 <script>
   import '../../../assets/css/editormd.css'
   import marked from 'marked'
+  import PostList from './PostsList.vue'
   export default {
     data () {
       return {
@@ -44,8 +47,13 @@
         loadedPost: [],
         page: 0,
         count: 5,
-        postNoMore: false
+        postNoMore: false,
+        showPosts: {},
+        expandedExperience: {}
       }
+    },
+    components: {
+      PostList
     },
     mounted () {
       if (this.$route.params.id) {
@@ -67,7 +75,6 @@
           this.ExperienceDetail = true
           this.eResult = response.data
           this.eResult.content.text = marked(this.eResult.content.text)
-          this.loadPost(this.page, 5)
         }).catch((error) => {
           console.log(error)
         })
@@ -82,10 +89,11 @@
         })
       },
       expandExperience (id) {
-        let item = null
         axios.get(`/api/forum/experiences/${id}/`).then((response) => {
           document.querySelector('#experience' + id + ' .list-group-item-text').innerHTML = marked(response.data.content.text)
         })
+        this.$set(this.expandedExperience, 'key' + id, true)
+        console.log(this.$data)
       },
       submitPost () {
         this.postContent = document.querySelector('#postContent').innerText
@@ -97,24 +105,6 @@
           console.log(response)
           this.loadedPost.splice(0, 0, response.data)
           document.querySelector('#postContent').innerText = ''
-        })
-      },
-      loadPost () {
-        let waitForLoad = []
-        let i = this.page * this.count
-        let postCount = this.eResult.post_set.length
-        let j = 0
-        while ((i < (this.page + 1) * this.count) && (i < postCount)) {
-          waitForLoad.push(axios.get(this.eResult.post_set[postCount - i - 1]))
-          i++
-        }
-        Promise.all(waitForLoad).then((values) => {
-          for (j in values) {
-            this.loadedPost.push(values[j].data)
-          }
-          if (values.length < this.count) {
-            this.postNoMore = true
-          }
         })
       }
     }

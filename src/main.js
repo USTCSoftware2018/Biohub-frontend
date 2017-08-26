@@ -8,6 +8,11 @@ import axios from 'axios'
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 
 Vue.config.productionTip = false
+
+Vue.prototype.eval1 = (fn) => {
+  var Fn = Function
+  return new Fn('return ' + fn)()
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
