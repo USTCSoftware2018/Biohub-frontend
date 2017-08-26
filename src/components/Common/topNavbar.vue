@@ -13,7 +13,6 @@
         <div class="form-group">
           <input type="text" class="form-control" v-on:keydown.enter.prevent="intoSearch" ref="Search"
                  placeholder="Search" style="font-size: 15px;">
-          <a style="padding-left: 5px; color: #F3FFE2;position:relative; top:1px">Search</a>
         </div>
       </form>
       <ul v-if="!hasLogged" class="nav navbar-nav navbar-right">
