@@ -23,12 +23,12 @@
     display: inline-block;
   }
   .star-container-empty {
-    z-index: 1;
+    z-index: -1;
     width: auto;
     height: auto;
   }
   .star-container-full {
-    z-index: -1;
+    z-index: 1;
     position: absolute;
     top: 0;
     margin: auto;

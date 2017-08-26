@@ -23,9 +23,9 @@
         </div>
         <div class="col-md-3">
           <div class="panel panel-default panel-biohub">
-            <div class="panel-heading">About the author</div>
+            <div class="panel-heading">Rate</div>
             <div class="panel-body">
-              {{rResult.text}}
+              <star :isEnable="true"></star>
             </div>
           </div>
           <ul class="list-group left-list" style="margin-top:0.2rem">
@@ -45,6 +45,7 @@
   import Description from './RepoInfo.vue'
   import Experience from './RepoReview.vue'
   import PageFooter from '../../Common/PageFooter.vue'
+  import Star from '../../../utils/Star.vue'
   export default {
     data () {
       return {
@@ -61,7 +62,7 @@
       }
     },
     components: {
-      Description, Experience, PageFooter
+      Description, Experience, PageFooter, Star
     },
     created () {
       console.log(this.$route.params)
