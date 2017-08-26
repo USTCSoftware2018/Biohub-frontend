@@ -10,7 +10,7 @@
           <li v-for="item in lResult.results" class="list-group-item" :id="'experience'+item.id" @click="expandExperience(item.id)">
             <h4 class="list-group-item-heading">{{item.title}}<router-link :to="{name: 'Profile',params:{author: item.author_name}}">@{{item.author_name}}</router-link></h4>
             <div class="list-group-item-text">{{item.content}}</div>
-            <a v-show="expandedExperience['key' + item.id]" @click="$set('showPosts', 'key' + item.id, true)">Show Posts</a>
+            <a v-show="expandedExperience['key' + item.id]" @click="showPost(item.id)">Show Posts</a>
             <post-list :id="item.id" v-if="showPosts['key' + item.id]"></post-list>
           </li>
         </div>
@@ -106,6 +106,9 @@
           this.loadedPost.splice(0, 0, response.data)
           document.querySelector('#postContent').innerText = ''
         })
+      },
+      showPost (id) {
+        this.$set(this.showPosts, 'key' + id, true)
       }
     }
   }
