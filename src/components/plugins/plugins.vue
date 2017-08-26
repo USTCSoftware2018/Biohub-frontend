@@ -3,7 +3,7 @@
     <top-navbar></top-navbar>
     <div class="col-md-2">
       <ul class="nav nav-pills nav-plugin">
-        <li role="presentation" v-bind:class="{'active' : ('ABACUS' === currentPlugin)}" id="ABACUS"><a href="/plugins/ABACUS">ABACUS</a></li>
+        <li role="presentation" v-bind:class="{'active' : ('ABACUS' === currentPlugin)}" style= "position:relative; left:1.5px;" id="ABACUS"><a href="/plugins/ABACUS">ABACUS</a></li>
         <li role="presentation" v-bind:class="{'active' : ('bbkManager' === currentPlugin)}"><a href="/plugins/bbkManager">Biobrick Manager</a></li>
         <li role="presentation"><a href="javascript:;">...</a></li>
       </ul>

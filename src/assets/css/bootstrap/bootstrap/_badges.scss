@@ -59,10 +59,14 @@
 
 // Hover state, but only for links
 a.badge {
-  &:hover,
+  &:hover,{
+    opacity:0.4;
+  }
   &:focus {
     color: $badge-link-hover-color;
     text-decoration: none;
     cursor: pointer;
+    opacity:0.4;
+
   }
 }
