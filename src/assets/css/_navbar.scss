@@ -88,6 +88,7 @@
     width: 100%;
   }
   li a {
+    margin-top: 2px;
     @include transition(border-color);
     border-bottom: 1px solid transparent;
     color: $color-light;
@@ -95,19 +96,16 @@
     border-right: 1px solid transparent;
     &:hover {
       background-color: #2d66a0 !important;
-      box-shadow: 1px 1px 1px #444444 !important;
+      box-shadow: 2px 2px 1px #343434 !important;
     }
   }
   .active {
     a {
-      box-shadow: 1px 1px 1px #444444 !important;
+      box-shadow: 1px 1px 1px #343434 !important;
       background-color: #337ab7 !important;
       &:hover {
-
-
-        box-shadow: 1px 1px 1px #444444 !important;
+        box-shadow: 2px 2px 1px #343434!important;
         background-color: #2d66a0 !important;
-
       }
     }
   }
