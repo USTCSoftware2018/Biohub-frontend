@@ -42,11 +42,11 @@
         console.log(editor.getHTML())
         axios.post('/api/forum/experiences/', {
           brick_id: this.$route.params.repo,
-          content_data: {
+          content: {
             text: editor.getHTML(),
             file_ids: []
           },
-          title: ''
+          title: this.title
         }).then((response) => {
           console.log(response)
           this.$router.push({name: 'RepoExperience', params: { id: response.data.id }})
