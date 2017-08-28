@@ -10,7 +10,7 @@
           <li v-for="item in lResult.results" class="list-group-item" :id="'experience'+item.id" @click="expandExperience(item.id)">
             <h4 class="list-group-item-heading">{{item.title}}<router-link :to="{name: 'Profile',params:{author: item.author_name}}">@{{item.author_name}}</router-link></h4>
             <div class="list-group-item-text">{{item.content}}</div>
-            <a class='biohub-a' v-show="expandedExperience['key' + item.id]" @click="showPost(item.id)">Show Posts</a>
+            <a class='biohub-a' v-show="expandedExperience['key' + item.id]" @click="showPost(item.id)" :id="'postSwitch' + item.id">Show Posts</a>
             <post-list :id="item.id" v-if="showPosts['key' + item.id]"></post-list>
           </li>
         </div>
@@ -107,7 +107,13 @@
         })
       },
       showPost (id) {
-        this.$set(this.showPosts, 'key' + id, true)
+        if (this.showPosts['key' + id]) {
+          this.$set(this.showPosts, 'key' + id, false)
+          document.querySelector('#postSwitch' + id).innerHTML = 'Show Posts'
+        } else {
+          this.$set(this.showPosts, 'key' + id, true)
+          document.querySelector('#postSwitch' + id).innerHTML = 'Hide Posts'
+        }
       }
     }
   }
