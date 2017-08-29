@@ -103,7 +103,13 @@
   background-color: white;
   padding: 0.1rem 0.3rem;
   text-align: left;
-  text-indent: 2em;
+  h3 {
+
+  }
+  p {
+    text-indent: 0.2rem;
+    word-wrap: break-word;
+  }
 }
 
 .repo-experience-content {
@@ -201,6 +207,7 @@
 }
 .postContainer {
   padding-top: 0.1rem;
+  padding-left: 0.1rem;
 }
 .post {
   margin-bottom: 0.1rem;
