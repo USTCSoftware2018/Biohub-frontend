@@ -8,6 +8,7 @@
 
               <div class="repo-info-name">
                 BBa_{{ rResult.name }}
+                <button class="btn btn-forum" id='watchButton' @click="watch(rResult.id)">Watch</button>
               </div>
               <div class="repo-info-addon">
                 Designed by: {{ rResult.designer }}
@@ -61,7 +62,8 @@
       return {
         currentView: 'Description',
         anotherView: 'Experience',
-        rResult: null
+        rResult: null,
+        watched: false
       }
     },
     watch: {
@@ -75,14 +77,23 @@
       Description, Experience, PageFooter, Star
     },
     created () {
-      console.log(this.$route.params)
       axios.get('/api/forum/bricks/' + this.$route.params.repo + '/').then((response) => {
         this.rResult = response.data
-        console.log(response, '1')
+        console.log(response)
+        axios.get('/api/users/me').then((me) => {
+          console.log(me.data)
+          _.forEach(this.rResult.watch_users, (user) => {
+            console.log(user.id)
+            console.log(me.data.id)
+            if (user.id === me.data.id) {
+              this.watched = true
+              document.querySelector('#watchButton').innerText = 'Watched'
+              document.querySelector('#watchButton').classList.add('disabled-button')
+            }
+          })
+        })
       }).catch((error) => {
         console.log(error, '2')
-      }).get(this.rResult.api_url).then((response) => {
-        console.log(response)
       })
     },
     methods: {
@@ -90,6 +101,18 @@
         let tmp = this.anotherView
         this.anotherView = this.currentView
         this.currentView = tmp
+      },
+      watch (id) {
+        if (this.watched) {
+          return
+        }
+        axios.post(`/api/forum/bricks/${id}/watch/`).then((response) => {
+          console.log(response)
+          document.querySelector('#watchButton').innerText = 'Watched'
+          document.querySelector('#watchButton').classList.add('disabled-button')
+        }).catch((error) => {
+          console.log(error)
+        })
       }
     }
   }

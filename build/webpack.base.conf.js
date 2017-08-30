@@ -77,7 +77,8 @@ module.exports = {
       jQuery: 'jquery',
       $: 'jquery',
       'window.jQuery': 'jquery',
-      axios: 'axios'
+      axios: 'axios',
+      _: 'lodash'
     })
   ]
 }

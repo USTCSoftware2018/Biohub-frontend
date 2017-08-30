@@ -108,6 +108,7 @@
   }
   p {
     text-indent: 0.2rem;
+  }
   img {
     max-width: 100%;
   }
@@ -214,4 +215,9 @@
   margin-bottom: 0.1rem;
   padding-bottom: 0.1rem;
   border-bottom: 1px solid $border-color;
+}
+
+.disabled-button {
+  background-color: $border-color !important;
+  color: lighten(black,2%) !important;
 }
