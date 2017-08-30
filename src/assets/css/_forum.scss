@@ -104,6 +104,9 @@
   padding: 0.1rem 0.3rem;
   text-align: left;
   text-indent: 2em;
+  img {
+    max-width: 100%;
+  }
 }
 
 .repo-experience-content {

@@ -7,7 +7,7 @@
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
     </div>
-    <div class="star-container-full" v-bind:style="{width: wSize + '%'}">
+    <div class="star-container-full" @mousemove="calcMouse"  @click="submit" v-bind:style="{width: wSize + '%'}">
       <span class="full-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="full-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="full-star" v-bind:class="{cursorPointer: canChange}"></span>
@@ -84,6 +84,7 @@
       calcMouse (e) {
         if (this.canChange) {
           this.wSize = Math.round((e.layerX-1)/12.5)/2.0 * 20
+          console.log(this.wSize)
         }
       },
       submit () {

@@ -11,11 +11,20 @@
               </div>
               <div class="repo-info-addon">
                 Author: {{ rResult.designer }}
-                | Followers: <a href="#">{{rResult.watch_users.length}}</a> | <router-link :to="{name:'ExperienceList'}"
-                v-if='$route.name === "RepoInfo"' class="view-experience">View Experience</router-link>
-                <router-link :to="{name: 'RepoInfo'}" v-if='($route.name === "ExperienceList") || ($route.name === "ExperienceNew")
-                || ($route.name === "RepoExperience")'
-                             class="view-experience">View Description</router-link>
+                | Followers: <a href="#">{{rResult.watch_users.length}}</a>
+                |
+                <router-link :to="{name:'ExperienceList'}"
+                             v-if='$route.name === "RepoInfo"'
+                             class="view-experience">
+                  View Experience
+                </router-link>
+                <router-link :to="{name: 'RepoInfo'}"
+                             v-if='($route.name === "ExperienceList")
+                             || ($route.name === "ExperienceNew")
+                             || ($route.name === "RepoExperience")'
+                             class="view-experience">
+                  View Description
+                </router-link>
               </div>
             </div>
             <router-view :content="rResult.document"></router-view>
