@@ -3,9 +3,18 @@
     <top-navbar></top-navbar>
     <div class="search-head">
       <form class="biohub-form">
-      <img src="../../../assets/img/icon.png"
-                 class="snailicon" />
-        <input placeholder="Anything you interest in ..." class="search-input" v-model="searchKeyword" v-on:keydown.enter.prevent="intoSearch">
+        <img src="../../../assets/img/icon.png"
+             class="snailicon"/>
+        <div class="form-group has-feedback" style="width: auto; display: inline-block;">
+          <input type="search" placeholder="Anything you interest in ..." class="search-input" v-model="searchKeyword"
+                 v-on:keydown.enter.prevent="intoSearch">
+          <a class="form-control-feedback"
+             href="javascript:;" style="pointer-events: auto;top: 3.7em; right: 0.4em;"
+             v-if="searchKeyword !== ''"
+             v-on:click="searchKeyword = ''">
+            <i class="fa fa-times" style="font-size: 1.8em; color: #999!important;"></i>
+          </a>
+        </div>
         <button class="btn-search" @click.prevent="intoSearch">Search</button>
         <div class="label-container">
           <label class="checkbox-inline">
@@ -43,8 +52,8 @@
   .search-line {
     height: 40px;
     font-size: 20px;
-    margin:0px 0px 20px;
-    padding-left:30px;
+    margin: 0px 0px 20px;
+    padding-left: 30px;
   }
 
   .search-result-tab {
@@ -60,6 +69,7 @@
   import topNavbar from '../../Common/topNavbar.vue'
   import PageFooter from '../../Common/PageFooter.vue'
   import SearchResult from './SearchResult.vue'
+
   export default {
     methods: {
       intoSearch () {

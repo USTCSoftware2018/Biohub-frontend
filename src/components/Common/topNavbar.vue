@@ -10,9 +10,15 @@
         <li><a href="/plugins">Plugins</a></li>
       </ul>
       <form class="navbar-form navbar-left" v-if="!($route.name === 'Search')">
-        <div class="form-group">
-          <input type="text" class="form-control" v-on:keydown.enter.prevent="intoSearch" ref="Search"
-                 placeholder="Search" style="font-size: 15px;">
+        <div class="form-group has-feedback">
+          <input type="search" class="form-control" v-on:keydown.enter.prevent="intoSearch" ref="Search"
+                 placeholder="Search" style="font-size: 15px;" v-model="searchContent">
+          <a class="form-control-feedback"
+             href="javascript:;" style="pointer-events: auto"
+             v-if="searchContent !== ''"
+             v-on:click="searchContent = ''">
+            <i class="fa fa-times" style="font-size: 1.2em; color: #999!important;"></i>
+          </a>
         </div>
       </form>
       <ul v-if="!hasLogged" class="nav navbar-nav navbar-right">
@@ -52,7 +58,8 @@
       return {
         hasLogged: false,
         userName: '',
-        avatarURL: ''
+        avatarURL: '',
+        searchContent: ''
       }
     },
     methods: {
@@ -71,6 +78,9 @@
             keyword: sValue
           }
         })
+      },
+      cleanInput () {
+        this.searchContent = ''
       }
     },
     mounted () {

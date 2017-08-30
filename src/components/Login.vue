@@ -24,8 +24,11 @@
               <button type="button" class="close"></button>
               <strong>Error: </strong> {{ errorMessage }}
             </div>
-            <button type="submit" class="btn btn-biohub btn-biohub-blue full-width" v-on:click.self.prevent="Login">Sign in</button>
-            <a class="btn btn-biohub btn-biohub-light full-width"  href="/reset">Forget Password</a>
+            <button type="submit" class="btn btn-biohub btn-biohub-blue full-width" v-on:click.self.prevent="Login">
+              Sign in
+            </button>
+            <button class="btn btn-biohub btn-biohub-light full-width" v-on:click.self.prevent="Reset">Forget Password
+            </button>
           </form>
         </div>
         <div class="col-md-3"></div>
@@ -80,6 +83,9 @@
           }
           console.log(e)
         })
+      },
+      Reset () {
+        window.location.href = '/reset'
       }
     }
   }

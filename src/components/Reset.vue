@@ -39,6 +39,7 @@
 <script>
   import axios from 'axios'
   import $ from 'jquery'
+
   export default {
     data () {
       return {
@@ -49,9 +50,10 @@
     },
     methods: {
       requestReset () {
-        axios.get('/api/users/reset_password/', {
-          lookup: this.email
-        }).then((response) => {
+        axios.get('/api/users/reset_password/' +
+          '?' + 'callback=http://www.baidu.com'.replace(/\./g, '%2E') +
+          '&' + 'lookup=' + this.email
+        ).then((response) => {
           console.log(response)
         }).catch((e) => {
           console.log(e.response)
