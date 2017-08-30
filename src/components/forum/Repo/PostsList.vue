@@ -16,7 +16,7 @@
         loadedData: null,
         displayPost: [],
         startPoint: 0,
-        hasMore: true
+        hasMore: false
       }
     },
     methods: {
@@ -26,8 +26,8 @@
           this.displayPost.push(this.loadedData.results[i])
         }
         this.startPoint -= 5
-        if (this.startPoint <= 0) {
-          this.hasMore = false
+        if (this.startPoint > 0) {
+          this.hasMore = true
         }
         console.log(this.displayPost)
       }

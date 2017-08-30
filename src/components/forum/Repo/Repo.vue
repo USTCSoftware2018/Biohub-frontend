@@ -10,12 +10,22 @@
                 BBa_{{ rResult.name }}
               </div>
               <div class="repo-info-addon">
-                Designed by: {{ rResult.designer }} | Group: {{rResult.group_name}}
-                | Followers: <a href="#">{{rResult.watch_users.length}}</a> | <router-link :to="{name:'ExperienceList'}"
-                v-if='$route.name === "RepoInfo"' class="view-experience">View Experience</router-link>
-                <router-link :to="{name: 'RepoInfo'}" v-if='($route.name === "ExperienceList") || ($route.name === "ExperienceNew")
-                || ($route.name === "RepoExperience")'
-                             class="view-experience">View Description</router-link>
+                Designed by: {{ rResult.designer }}
+                | Group: {{rResult.group_name}}
+                | Followers: <a href="#">{{rResult.watch_users.length}}</a>
+                |
+                <router-link :to="{name:'ExperienceList'}"
+                             v-if='$route.name === "RepoInfo"'
+                             class="view-experience">
+                  View Experience
+                </router-link>
+                <router-link :to="{name: 'RepoInfo'}"
+                             v-if='($route.name === "ExperienceList")
+                             || ($route.name === "ExperienceNew")
+                             || ($route.name === "RepoExperience")'
+                             class="view-experience">
+                  View Description
+                </router-link>
               </div>
             </div>
             <router-view :content="rResult.document"></router-view>
