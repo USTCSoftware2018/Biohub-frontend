@@ -103,8 +103,8 @@
   }
 </style>
 <script>
-  import topNavbar from './Common/topNavbar.vue'
-  import PageFooter from './Common/PageFooter.vue'
+  import topNavbar from '../Common/topNavbar.vue'
+  import PageFooter from '../Common/PageFooter.vue'
 
   export default {
     methods: {

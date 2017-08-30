@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/img/bioLogo.png" width="530px" style="padding-top: 10em;">
+    <img src="../../assets/img/bioLogo.png" width="530px" style="padding-top: 10em;">
     <div class="container signup">
       <div class="row">
         <div class="col-md-3"></div>
@@ -53,7 +53,7 @@
   </div>
 </template>
 <script>
-  import DynamicOptions from './utils/DynamicOptions.vue'
+  import DynamicOptions from '../utils/DynamicOptions.vue'
 
   let usernameReg = /^\w{4,15}$/
   let userPwdReg = /(?=.*\d)(?=.*[a-zA-Z]).{6,20}/
