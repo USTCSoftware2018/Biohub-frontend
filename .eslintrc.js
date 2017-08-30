@@ -14,7 +14,8 @@ module.exports = {
     $: true,
     editormd: true,
     axios: true,
-    Promise: true
+    Promise: true,
+    _: true
   },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: 'standard',

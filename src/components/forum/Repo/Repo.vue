@@ -7,11 +7,12 @@
             <div class="repo-info-header">
 
               <div class="repo-info-name">
-                {{ $route.params.repo }}
+                BBa_{{ rResult.name }}
+
               </div>
               <div class="repo-info-addon">
-                Author: {{ rResult.designer }}
-                | Followers: <a href="#">{{rResult.watch_users.length}}</a>
+                Designed by: {{ rResult.designer }}
+                | Group: {{rResult.group_name}}
                 |
                 <router-link :to="{name:'ExperienceList'}"
                              v-if='$route.name === "RepoInfo"'
@@ -25,6 +26,10 @@
                              class="view-experience">
                   View Description
                 </router-link>
+              </div>
+              <div class="repo-info-addon">
+                Followers: <a href="#">{{rResult.watch_users.length}}</a>
+                <button class="btn btn-forum btn-watch" id='watchButton' @click="watch(rResult.id)">Watch</button>
               </div>
             </div>
             <router-view :content="rResult.document"></router-view>
@@ -60,7 +65,8 @@
       return {
         currentView: 'Description',
         anotherView: 'Experience',
-        rResult: null
+        rResult: null,
+        watched: false
       }
     },
     watch: {
@@ -74,14 +80,19 @@
       Description, Experience, PageFooter, Star
     },
     created () {
-      console.log(this.$route.params)
       axios.get('/api/forum/bricks/' + this.$route.params.repo + '/').then((response) => {
         this.rResult = response.data
-        console.log(response, '1')
+        axios.get('/api/users/me').then((me) => {
+          _.forEach(this.rResult.watch_users, (user) => {
+            if (user.id === me.data.id) {
+              this.watched = true
+              document.querySelector('#watchButton').innerHTML = '<i class="fa fa-check"> Watched'
+              document.querySelector('#watchButton').classList.add('disabled-button')
+            }
+          })
+        })
       }).catch((error) => {
         console.log(error, '2')
-      }).get(this.rResult.api_url).then((response) => {
-        console.log(response)
       })
     },
     methods: {
@@ -89,6 +100,23 @@
         let tmp = this.anotherView
         this.anotherView = this.currentView
         this.currentView = tmp
+      },
+      watch (id) {
+        if (this.watched) {
+          axios.post(`/api/forum/bricks/${id}/cancel_watch/`).then((response) => {
+            document.querySelector('#watchButton').innerHTML = '<i class="fa fa-eye"></i> Watch'
+            document.querySelector('#watchButton').classList.remove('disabled-button')
+            this.watched = false
+          })
+        } else {
+          axios.post(`/api/forum/bricks/${id}/watch/`).then((response) => {
+            document.querySelector('#watchButton').innerHTML = '<i class="fa fa-check"></i> Watched'
+            document.querySelector('#watchButton').classList.add('disabled-button')
+            this.watched = true
+          }).catch((error) => {
+            console.log(error)
+          })
+        }
       }
     }
   }

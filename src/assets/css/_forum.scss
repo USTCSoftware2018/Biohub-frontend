@@ -103,7 +103,12 @@
   background-color: white;
   padding: 0.1rem 0.3rem;
   text-align: left;
-  text-indent: 2em;
+  h3 {
+
+  }
+  p {
+    text-indent: 0.2rem;
+  }
   img {
     max-width: 100%;
   }
@@ -204,9 +209,12 @@
 }
 .postContainer {
   padding-top: 0.1rem;
+  padding-left: 0.1rem;
 }
 .post {
   margin-bottom: 0.1rem;
   padding-bottom: 0.1rem;
   border-bottom: 1px solid $border-color;
 }
+
+

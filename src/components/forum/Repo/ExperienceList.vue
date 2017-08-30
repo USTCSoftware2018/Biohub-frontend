@@ -12,6 +12,10 @@
             <div class="list-group-item-text">{{item.content}}</div>
             <a class='biohub-a' v-show="expandedExperience['key' + item.id]" @click="showPost(item.id)" :id="'postSwitch' + item.id">Show Posts</a>
             <post-list :id="item.id" v-if="showPosts['key' + item.id]"></post-list>
+            <form class="postForm" v-if="showPosts['key' + item.id]">
+              <div v-model="postContent" class="textarea" contenteditable="true" :id="'postContent' + item.id"></div>
+              <button class="btn btn-forum" @click.prevent="submitPost(item.id)">Submit Your Post</button>
+            </form>
           </li>
         </div>
         <button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button>
@@ -93,11 +97,11 @@
         this.$set(this.expandedExperience, 'key' + id, true)
         console.log(this.$data)
       },
-      submitPost () {
+      submitPost (id) {
         this.postContent = document.querySelector('#postContent').innerText
         console.log(this.postContent)
         axios.post('/api/forum/posts/', {
-          experience_id: this.$route.params.id,
+          experience_id: id,
           content: this.postContent
         }).then((response) => {
           console.log(response)

@@ -8,12 +8,12 @@
             Part Name
           </div>
           <div class="input-group">
-            <div class="input-group-addon">BBa_</div>
+            <div class="input-group-addon" style="background: #eee;">BBa_</div>
             <input class="form-control" placeholder="name" v-model="newPartName"
                    v-on:keydown.enter.prevent="search(newPartName)"
                    style="display: inline-block;vertical-align: middle;width: 95%;">
-            <span class="fa fa-spinner fa-spin fa-fw input-indicator" style="vertical-align: middle;" v-show="stateLoad"></span>
-            <span class="fa fa-check-circle input-indicator" style="vertical-align: middle;" v-show="stateFound">Result Found.</span>
+            <span class="fa fa-spinner fa-spin input-indicator" style="vertical-align: middle;" v-show="stateLoad"></span>
+            <span class="fa fa-check-circle input-indicator" style="vertical-align: middle;" v-show="stateFound"></span>
             <span class="fa fa-exclamation-circle input-indicator" style="vertical-align: middle;" v-show="stateNotFound"></span>
           </div>
         </div>
@@ -60,7 +60,7 @@
     methods: {
       search (name) {
         this.stateLoad = true
-        this.stateFind = false
+        this.stateFound = false
         this.stateNotFound = false
         axios.get('/api/forum/bricks/' + name + '/').then((response) => {
           this.stateLoad = false

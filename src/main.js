@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import $ from 'jquery'
 import axios from 'axios'
+import _ from 'lodash'
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 
 Vue.config.productionTip = false
