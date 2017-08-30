@@ -120,3 +120,12 @@
   margin-left: -2px;
   @include transition(border-color);
 }
+
+.btn-watch {
+  padding: 0 0.1rem;
+  margin-left: 0.05rem;
+}
+.disabled-button {
+  background-color: $color-blue-1 !important;
+  color: $text-color !important;
+}
