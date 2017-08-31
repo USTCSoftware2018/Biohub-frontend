@@ -41,29 +41,6 @@
   </div>
 </template>
 <style scoped>
-  .search-lable {
-    color: white;
-    background-color: #f1a751;
-    border-radius: 1px;
-    border: none;
-    font-size: 12px;
-  }
-
-  .search-line {
-    height: 40px;
-    font-size: 20px;
-    margin: 0px 0px 20px;
-    padding-left: 30px;
-  }
-
-  .search-result-tab {
-    box-shadow: 2px 2px 10px #cacaca;
-    width: 100% !important;
-    position: relative;
-    padding: 15px 15px 15px 15px;
-    margin-top: 60px;
-  }
-
 </style>
 <script>
   import topNavbar from '../../Common/topNavbar.vue'
