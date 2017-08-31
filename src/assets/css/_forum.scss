@@ -217,4 +217,8 @@
   border-bottom: 1px solid $border-color;
 }
 
-
+.repo-info-addon + .repo-info-addon {
+  border-top: 1px solid $border-color;
+  margin-top: 0.05rem;
+  padding-top: 0.05rem;
+}
