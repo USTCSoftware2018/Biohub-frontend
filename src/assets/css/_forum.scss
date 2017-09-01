@@ -4,8 +4,6 @@
   margin-bottom: 50px;
 }
 
-
-
 .forum-description p {
 
   padding-top: 0.1rem;
@@ -81,12 +79,13 @@
 }
 
 .view-experience {
-  font-size: 0.12rem!important;
-  color: $color-orange!important;
+  font-size: 0.12rem !important;
+  color: $color-orange !important;
   &:hover {
     text-decoration: none;
   }
 }
+
 .repo-info-addon {
   a {
     color: $color-blue-2;
@@ -99,6 +98,7 @@
 .repo-info-name {
   font-size: 0.4rem;
 }
+
 .repo-info-content {
   background-color: white;
   padding: 0.1rem 0.3rem;
@@ -118,14 +118,20 @@
   background-color: white;
   padding: 0.1rem 0.3rem;
   text-align: left;
+  form > input.form-control {
+    border-color: $border-color;
+  }
 }
+
 .list-experience {
   .list-group-item {
     border: none;
     &:hover {
       background-color: white;
     }
-    cursor: pointer;
+    .list-group-item-heading {
+      cursor: pointer;
+    }
   }
   .list-group-item + .list-group-item {
     border-top: 1px solid $border-color;
@@ -134,9 +140,11 @@
     color: $color-blue-2;
   }
 }
+
 .editormd, .CodeMirror, .CodeMirror-gutters, .CodeMirror-scroll {
   min-height: 300px;
 }
+
 .OfficialResult {
   background-color: white;
   margin: 0.1rem;
@@ -144,6 +152,7 @@
   border-radius: 0.05rem;
   padding: 0.2rem 0;
 }
+
 .OfficialResultHead {
   font-size: 0.2rem;
 }
@@ -153,6 +162,7 @@
   text-align: left;
   word-wrap: break-word;
 }
+
 .OfficialFooter {
   text-align: left;
   padding: 0 0.4rem;
@@ -169,18 +179,14 @@
 .UploadFileNotice {
   @extend .OfficialResultHead;
 }
+
 %list-biohub {
   .list-group-item {
     text-align: left;
     padding: 0.08rem 0.1rem;
   }
   .list-group-item a {
-    color: darken($color-blue-2,0%);
-  }
-}
-.repo-experience-content {
-  form > input.form-control {
-    border-color: $border-color;
+    color: darken($color-blue-2, 0%);
   }
 }
 
@@ -190,13 +196,13 @@
     display: block;
     width: 100%;
     resize: none;
-    border: 1px solid darken($border-color,5%);
+    border: 1px solid darken($border-color, 5%);
     min-height: 0.4rem;
     border-radius: 0.05rem;
     padding: 0.02rem 0.03rem;
     @include transition(border-color);
     &:focus {
-      outline:none;
+      outline: none;
       border-color: $color-blue-2;
     }
   }
@@ -207,10 +213,12 @@
   border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
 }
+
 .postContainer {
   padding-top: 0.1rem;
   padding-left: 0.1rem;
 }
+
 .post {
   margin-bottom: 0.1rem;
   padding-bottom: 0.1rem;

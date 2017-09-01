@@ -7,8 +7,8 @@
         </div>
         <div class="divider" style="border-top: 1px solid #ddd;margin: 0.2rem 0 0rem 0;"></div>
         <div class="list-group list-experience">
-          <li v-for="item in lResult.results" class="list-group-item" :id="'experience'+item.id" @click="expandExperience(item.id)">
-            <h4 class="list-group-item-heading">{{item.title}}<router-link :to="{name: 'Profile',params:{author: item.author_name}}">@{{item.author_name}}</router-link></h4>
+          <li v-for="item in lResult.results" class="list-group-item" :id="'experience'+item.id">
+            <h4 class="list-group-item-heading" @click="expandExperience(item.id)">{{item.title}}<router-link :to="{name: 'Profile',params:{author: item.author_name}}">@{{item.author_name}}</router-link></h4>
             <div class="list-group-item-text">{{item.content}}</div>
             <a class='biohub-a' v-show="expandedExperience['key' + item.id]" @click="showPost(item.id)" :id="'postSwitch' + item.id">Show Posts</a>
             <post-list :id="item.id" v-if="showPosts['key' + item.id]"></post-list>
@@ -98,7 +98,7 @@
         console.log(this.$data)
       },
       submitPost (id) {
-        this.postContent = document.querySelector('#postContent').innerText
+        this.postContent = document.querySelector('#postContent' + id).innerText
         console.log(this.postContent)
         axios.post('/api/forum/posts/', {
           experience_id: id,
