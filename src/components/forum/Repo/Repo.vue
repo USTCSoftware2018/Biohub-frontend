@@ -31,6 +31,9 @@
                 Followers: <a href="#">{{rResult.watch_users.length}}</a>
                 <button class="btn btn-forum btn-watch" id='watchButton' @click="watch(rResult.id)">Watch</button>
               </div>
+              <div class="repo-info-addon">
+                <feature :feaData="rResult.seqFeatures"></feature>
+              </div>
             </div>
             <router-view :content="rResult.document"></router-view>
           </div>
@@ -60,6 +63,7 @@
   import Experience from './RepoReview.vue'
   import PageFooter from '../../Common/PageFooter.vue'
   import Star from '../../../utils/Star.vue'
+  import Feature from './SeqFeature.vue'
   export default {
     data () {
       return {
@@ -77,11 +81,12 @@
       }
     },
     components: {
-      Description, Experience, PageFooter, Star
+      Description, Experience, PageFooter, Star, Feature
     },
     created () {
       axios.get('/api/forum/bricks/' + this.$route.params.repo + '/').then((response) => {
         this.rResult = response.data
+        console.log(response.data)
         axios.get('/api/users/me').then((me) => {
           _.forEach(this.rResult.watch_users, (user) => {
             if (user.id === me.data.id) {
