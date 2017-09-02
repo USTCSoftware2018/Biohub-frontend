@@ -1,10 +1,9 @@
 <template>
   <div id='fContainer'>
-    <button type="button" data-toggle="tooltip" data-placement="bottom" title="Tooltip on top"></button>
   </div>
 </template>
 
-<style scoped>
+<style>
   #fContainer {
     position: relative;
     width: 100%;
@@ -13,13 +12,29 @@
     border-radius: 5px;
     margin-top: 5px;
   }
-  button {
+  .fea-button {
     top: 0px;
     position: absolute;
     height: 20px;
     outline: none;
     box-shadow: none;
     border: none;
+    padding: 0 2px;
+  }
+  .color-stop {
+    background-color: rosybrown;
+  }
+  .color-mutation {
+    background-color: salmon;
+  }
+  .color-protein {
+    background-color: aquamarine;
+  }
+  .color-s_mutation {
+    background-color: olivedrab;
+  }
+  .color-rarrow_p {
+    background-color: lavender;
   }
 </style>
 
@@ -28,15 +43,21 @@
     props: ['feaData'],
     data () {
       return {
-        endPoint: 0
+        endPoint: 0,
+        length: 0
       }
     },
-    created () {
+    mounted () {
       this.endPoint = _.result(_.find(this.feaData, (fea) => {
         return (fea.feature_type === 'stop' | fea.feature_type === 'new_feature')
       }), 'end_loc')
+      this.length = $('#fContainer').width()
+      _.forEach(this.feaData, (fea) => {
+        $('#fContainer').append('<button type="button" class="fea-button color-' + fea.feature_type +
+          '" style="left: ' + fea.start_loc / this.endPoint * this.length +
+          'px" data-toggle="tooltip" data-placement="bottom" title="' + fea.feature_type + '"></button>')
+      })
       $(function () {
-        console.log($('[data-toggle="tooltip"]'))
         $('[data-toggle="tooltip"]').tooltip()
       })
     }
