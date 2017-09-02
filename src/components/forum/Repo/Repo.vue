@@ -43,6 +43,8 @@
             <div class="panel-heading">Rate</div>
             <div class="panel-body">
               <star :isEnable="true"></star>
+              <div class="divider"></div>
+              <star :isEnable="false"></star>
             </div>
           </div>
           <ul class="list-group left-list" style="margin-top:0.2rem">
