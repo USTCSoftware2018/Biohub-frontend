@@ -15,23 +15,11 @@
     <div class="row">
       <div class="container">
         <div class="col-md-8 less-padding">
-          <div class="forum-activity-border">
+          <div class="forum-activity-border" v-for="item in notice.results">
             <div class="forum-activity-content">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-              . Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
-            <div class="forum-activity-label">1926 08 17</div>
-          </div>
-          <div class="forum-activity-border">
-            <div class="forum-activity-content">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-              . Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
-            <div class="forum-activity-label">1926 08 17</div>
+              {{item.message}}
+            </div>
+            <div class="forum-activity-label"></div>
           </div>
         </div>
         <div class="col-md-4 less-padding">
@@ -49,8 +37,19 @@
   import PageFooter from '../Common/PageFooter.vue'
 
   export default {
+    data () {
+      return {
+        notice: null
+      }
+    },
     components: {
       topNavbar, RepoList, PageFooter
+    },
+    created () {
+      axios.get('/api/notices/').then((response) => {
+        console.log(response.data)
+        this.notice = response.data
+      })
     }
   }
 </script>

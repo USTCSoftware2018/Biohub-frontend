@@ -9,7 +9,6 @@
     width: 100%;
     height: 20px;
     background-color: cornflowerblue;
-    border-radius: 5px;
     margin-top: 5px;
   }
   .fea-button {
@@ -50,7 +49,7 @@
     mounted () {
       this.endPoint = _.result(_.find(this.feaData, (fea) => {
         return (fea.feature_type === 'stop' | fea.feature_type === 'new_feature')
-      }), 'end_loc')
+      }), 'end_loc') + 10
       this.length = $('#fContainer').width()
       _.forEach(this.feaData, (fea) => {
         $('#fContainer').append('<button type="button" class="fea-button color-' + fea.feature_type +

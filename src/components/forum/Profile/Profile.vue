@@ -20,6 +20,7 @@
               <p id="user-mail-content">{{ userMail }}</p>
             </span>
             </div>
+
             <div id="user-stars" v-bind:title="userStar + ' Stars'">
               <span id="user-stars-num">{{ userStar }}</span>
               <i class="fa fa-star" aria-hidden="true"></i>
@@ -123,9 +124,18 @@
       }).catch((_) => {
         window.location.href = '/notfound'
       })
+      axios.get('/api/users/n:' + this.$route.params.author + '/followers/').then((response) => {
+        this.followers = response.data
+      })
+      axios.get('/api/users/n:' + this.$route.params.author + '/following/').then((response) => {
+        this.following = response.data
+      })
     },
     mounted () {
       // It must be done after html elements are created and be watched by vue
+      axios.get('/api/notices/').then((response) => {
+        console.log(response)
+      })
       axios.get('/api/users/me/').then((response) => {
         if (response.data.username === this.params.user) {
           this.isSelf = true
@@ -150,6 +160,8 @@
         hintShow: false,
         currentPlugin: 'Activity',
         once: false,
+        followers: null,
+        following: null,
         params: {
           user: '',
           showIntro: false
