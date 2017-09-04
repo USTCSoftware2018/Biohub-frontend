@@ -39,7 +39,8 @@
   export default {
     data () {
       return {
-        notice: null
+        notice: null,
+        nameContainer: []
       }
     },
     components: {
@@ -49,6 +50,11 @@
       axios.get('/api/notices/').then((response) => {
         console.log(response.data)
         this.notice = response.data
+        let titlePatt = /(\[\[(.*?)\]\])/g
+        let urlPatt = /(\(\(.*?\)\))/g
+        _.forEach(response.data.results, (notice) => {
+          console.log(notice.message.match(titlePatt))
+        })
       })
     }
   }
