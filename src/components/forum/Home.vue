@@ -16,8 +16,7 @@
       <div class="container">
         <div class="col-md-8 less-padding">
           <div class="forum-activity-border" v-for="item in notice.results">
-            <div class="forum-activity-content">
-              {{item.message}}
+            <div class="forum-activity-content" v-html="item.message">
             </div>
             <div class="forum-activity-label"></div>
           </div>
@@ -39,8 +38,7 @@
   export default {
     data () {
       return {
-        notice: null,
-        nameContainer: []
+        notice: null
       }
     },
     components: {
@@ -50,10 +48,31 @@
       axios.get('/api/notices/').then((response) => {
         console.log(response.data)
         this.notice = response.data
-        let titlePatt = /(\[\[(.*?)\]\])/g
-        let urlPatt = /(\(\(.*?\)\))/g
+        let titlePatt = /\[\[(.*?)\]\]/g
+        let urlPatt = /\(\((.*?)\)\)/g
         _.forEach(response.data.results, (notice) => {
-          console.log(notice.message.match(titlePatt))
+          let count = 0
+          let urlContainer = notice.message.match(urlPatt)
+          console.log(urlContainer)
+          axios.get(urlContainer[0].substring(2, urlContainer[0].length - 2)).then((response) => {
+            urlContainer[0] = '/user/' + response.data.username + '/'
+            notice.message = notice.message.replace(titlePatt, (place) => {
+              let length = place.length
+              let uLength = urlContainer[count].length
+              console.log(place)
+              if (count === 0) {
+                count++
+                console.log(urlContainer[0], place.substring(2, length - 2))
+                return '<a href="' + urlContainer[0] + '">' + place.substring(2, length - 2) + '</a>'
+              } else {
+                count++
+                console.log(urlContainer[count - 1].substring(6, uLength - 2), place.substring(2, length - 2))
+                return '<a href="' + urlContainer[count - 1].substring(6, uLength - 2) + '">' + place.substring(2, length - 2) + '</a>'
+              }
+            })
+            notice.message = notice.message.replace(urlPatt, '')
+            console.log(notice.message)
+          })
         })
       })
     }
