@@ -71,6 +71,7 @@
               }
             })
             notice.message = notice.message.replace(urlPatt, '')
+            notice.message += (notice.created.slice(0, 10) + ' ' + notice.created.slice(11, -8))
             console.log(notice.message)
           })
         })
