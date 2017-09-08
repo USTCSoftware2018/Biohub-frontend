@@ -45,37 +45,6 @@
       topNavbar, RepoList, PageFooter
     },
     created () {
-      axios.get('/api/notices/').then((response) => {
-        console.log(response.data)
-        this.notice = response.data
-        let titlePatt = /\[\[(.*?)\]\]/g
-        let urlPatt = /\(\((.*?)\)\)/g
-        _.forEach(response.data.results, (notice) => {
-          let count = 0
-          let urlContainer = notice.message.match(urlPatt)
-          console.log(urlContainer)
-          axios.get(urlContainer[0].substring(2, urlContainer[0].length - 2)).then((response) => {
-            urlContainer[0] = '/user/' + response.data.username + '/'
-            notice.message = notice.message.replace(titlePatt, (place) => {
-              let length = place.length
-              let uLength = urlContainer[count].length
-              console.log(place)
-              if (count === 0) {
-                count++
-                console.log(urlContainer[0], place.substring(2, length - 2))
-                return '<a class="biohub-a" href="' + urlContainer[0] + '">' + place.substring(2, length - 2) + '</a>'
-              } else {
-                count++
-                console.log(urlContainer[count - 1].substring(6, uLength - 2), place.substring(2, length - 2))
-                return '<a class="biohub-a" href="' + urlContainer[count - 1].substring(6, uLength - 2) + '">' + place.substring(2, length - 2) + '</a>'
-              }
-            })
-            notice.message = notice.message.replace(urlPatt, '')
-            notice.created = notice.created.slice(0, 10) + ' ' + notice.created.slice(11, -8)
-            console.log(notice.message)
-          })
-        })
-      })
     }
   }
 </script>
