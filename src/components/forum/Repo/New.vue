@@ -20,10 +20,16 @@
       </form>
       <p></p>
       <div class="OfficialResult" v-if="stateFound">
-        <div class="OfficialResultHead">{{findResult.name}}</div>
+        <div class="OfficialResultHead">BBa_{{findResult.name}}</div>
         <div class="divider"></div>
-        <div class="OfficialResultInfo">{{findResult.name}}<br>{{findResult.designer}}<br>
-          {{findResult.part_type}}<br>{{findResult.sequence_a}}<br>
+        <div class="OfficialResultInfo row">
+          <div class="col-md-3">{{findResult.designer}}<small> designed it.</small></div>
+          <div class="col-md-3">{{findResult.part_type}}<small> part type.</small></div>
+          <div class="col-md-3">{{findResult.stars}}<small> stars</small></div>
+          <div class="col-md-3">{{findResult.watch_users.length}}<small> watchers</small></div>
+        </div>
+        <div class="OfficialResultInfo row">
+
         </div>
         <div class="divider"></div>
         <div class="OfficialFooter">Is that you need?

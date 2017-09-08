@@ -18,7 +18,7 @@
           <div class="forum-activity-border" v-for="item in notice.results">
             <div class="forum-activity-content" v-html="item.message">
             </div>
-            <div class="forum-activity-label"></div>
+            <div class="forum-activity-label" v-html="item.created"></div>
           </div>
         </div>
         <div class="col-md-4 less-padding">
@@ -63,15 +63,15 @@
               if (count === 0) {
                 count++
                 console.log(urlContainer[0], place.substring(2, length - 2))
-                return '<a href="' + urlContainer[0] + '">' + place.substring(2, length - 2) + '</a>'
+                return '<a class="biohub-a" href="' + urlContainer[0] + '">' + place.substring(2, length - 2) + '</a>'
               } else {
                 count++
                 console.log(urlContainer[count - 1].substring(6, uLength - 2), place.substring(2, length - 2))
-                return '<a href="' + urlContainer[count - 1].substring(6, uLength - 2) + '">' + place.substring(2, length - 2) + '</a>'
+                return '<a class="biohub-a" href="' + urlContainer[count - 1].substring(6, uLength - 2) + '">' + place.substring(2, length - 2) + '</a>'
               }
             })
             notice.message = notice.message.replace(urlPatt, '')
-            notice.message += (notice.created.slice(0, 10) + ' ' + notice.created.slice(11, -8))
+            notice.created = notice.created.slice(0, 10) + ' ' + notice.created.slice(11, -8)
             console.log(notice.message)
           })
         })

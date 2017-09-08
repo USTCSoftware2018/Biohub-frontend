@@ -157,9 +157,13 @@
 }
 
 .OfficialResultInfo {
-  padding: 0 0.4rem;
-  text-align: left;
-  word-wrap: break-word;
+  font-size: 0.2rem;
+  .col-md-3 {
+    margin: auto;
+  }
+  .col-md-3 + .col-md-3 {
+    border-left: 1px solid $border-color;
+  }
 }
 
 .OfficialFooter {

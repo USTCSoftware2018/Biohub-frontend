@@ -21,6 +21,7 @@
           </a>
         </div>
       </form>
+
       <ul v-if="!hasLogged" class="nav navbar-nav navbar-right">
         <li><a href="/login">Login</a></li>
       </ul>
@@ -40,11 +41,14 @@
             {{ userName }}
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu" style="border: 0px">
-            <li><a :href="'/user/'+userName">Profile</a></li>
+          <ul class="dropdown-menu" style="border: 0px;">
+            <li><a :href="'/user/'+userName" >Profile</a></li>
             <li><a href="javascript:;" v-on:click="LogOut">Log Out</a></li>
           </ul>
         </li>
+      </ul>
+      <ul v-if="hasLogged" class="nav navbar-nav navbar-right">
+        <li><a href="#">Notice <i class="fa fa-exclamation"></i></a></li>
       </ul>
     </div>
   </nav>
