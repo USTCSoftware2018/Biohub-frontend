@@ -20,7 +20,7 @@
           {
             user: 'Gloit',
             expLink: '#',
-            partName: 'Good Part',
+            partName: 'Good Part ',
             intro: 'this is a brief intro'
           }
         ]
