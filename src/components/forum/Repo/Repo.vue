@@ -32,7 +32,7 @@
                 <button class="btn btn-forum btn-watch" id='watchButton' @click="watch(rResult.id)">Watch</button>
               </div>
               <div class="repo-info-addon">
-                <feature :feaData="rResult.seqFeatures"></feature>
+                <feature :feaData="rResult.seq_features"></feature>
               </div>
             </div>
             <router-view :content="rResult.document"></router-view>

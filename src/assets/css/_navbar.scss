@@ -110,3 +110,22 @@
     }
   }
 }
+
+#notice {
+  li a {
+    background-color: whitesmoke !important;
+    color: black;
+    &:hover {
+      border-bottom-color: $color-blue-1;
+    }
+  }
+  .head-info {
+    color: black;
+    padding: 0.05rem 0.2rem;
+    border-bottom: 1px solid $border-color;
+    background-color: whitesmoke !important;
+    &:focus {
+      background-color: whitesmoke !important;
+    }
+  }
+}
