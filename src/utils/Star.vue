@@ -21,6 +21,8 @@
   .star-container {
     position: relative;
     display: inline-block;
+    vertical-align: middle;
+
   }
   .star-container-empty {
     z-index: -1;
@@ -48,10 +50,10 @@
     display: inline-block;
   }
   .empty-star:first-child, .full-star:first-child {
-    margin-left: 3px;
+    margin-left: 1px;
   }
   .empty-star:last-child, .full-star:last-child {
-    margin-right: 3px;
+    margin-right: 1px;
   }
   .full-star {
     background: url('../assets/img/star-filled.svg') no-repeat;
@@ -83,7 +85,7 @@
     methods: {
       calcMouse (e) {
         if (this.canChange) {
-          this.wSize = Math.round((e.layerX-1)/12.5)/2.0 * 20
+          this.wSize = Math.round((e.layerX-1)/10)/2.0 * 20
         }
       },
       submit () {

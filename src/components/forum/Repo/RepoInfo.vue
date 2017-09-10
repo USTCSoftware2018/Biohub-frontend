@@ -1,6 +1,8 @@
 <template>
+  <div>
     <div class="repo-info-content" v-html="rContent">
     </div>
+  </div>
 </template>
 
 <script>

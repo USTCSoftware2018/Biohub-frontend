@@ -31,17 +31,19 @@
           <a role="button" data-toggle="collapse" href="#ruler" aria-expanded="false" aria-controls="ruler">
             Ruler
           </a>
-          <a role="button" data-toggle="collapse" href="#document" aria-expanded="false" aria-controls="document">
-            Document
+          <a role="button" data-toggle="collapse" href="#rate" aria-expanded="false" aria-controls="rate">
+            Rate
           </a>
+          <a @click="watch(rResult.id)" id="watch">Watch</a><span>{{watchNum}}</span>
+          <a @click="star(rResult.id)" id="star">Star</a><span>{{starsNum}}</span>
           <div class="collapse" id="ruler">
             <div class="info-collapse">
               <feature :feaData="rResult.seq_features"></feature>
             </div>
           </div>
-          <div class="collapse" id="document">
-            <div class="info-collapse">
-              <div class="repo-info-content">{{rResult.document}}</div>
+          <div class="collapse" id="rate">
+            <div class="info-collapse" style="width: auto;">
+              <star :isEnable="true"></star>
             </div>
           </div>
         </div>
@@ -50,7 +52,8 @@
     <div class="row">
       <div class="container">
         <div class="col-md-9">
-          <router-view :content="rResult.document"></router-view>
+          <experience-list></experience-list>
+          <!--router-view :content="rResult.document"></router-view-->
         </div>
         <div class="col-md-3">
           <div class="panel panel-default panel-biohub">
@@ -77,9 +80,11 @@
 <script>
   import Description from './RepoInfo.vue'
   import Experience from './RepoReview.vue'
+  import ExperienceList from './ExperienceList.vue'
   import PageFooter from '../../Common/PageFooter.vue'
   import Star from '../../../utils/Star.vue'
   import Feature from './SeqFeature.vue'
+  import marked from 'marked'
   export default {
     data () {
       return {
@@ -87,7 +92,9 @@
         anotherView: 'Experience',
         rResult: null,
         watched: false,
-        watch_num: 0
+        watchNum: 0,
+        starred: false,
+        starsNum: 0
       }
     },
     watch: {
@@ -98,26 +105,32 @@
       }
     },
     components: {
-      Description, Experience, PageFooter, Star, Feature
+      Description, Experience, PageFooter, Star, Feature, ExperienceList
     },
     created () {
       axios.get('/api/forum/bricks/' + this.$route.params.repo + '/').then((response) => {
         this.rResult = response.data
         console.log(response.data)
       })
-      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/watched_users/').then((response) => {
-        this.watch_num = response.data.results.length
-        axios.get('/api/users/me').then((me) => {
+      axios.get('/api/users/me').then((me) => {
+        axios.get('/api/forum/bricks/' + this.$route.params.repo + '/watched_users/').then((response) => {
+          this.watchNum = response.data.results.length
           _.forEach(response.data.results, (user) => {
             if (user.id === me.data.id) {
               this.watched = true
-              document.querySelector('#watchButton').innerHTML = '<i class="fa fa-check"> Watched'
-              document.querySelector('#watchButton').classList.add('disabled-button')
+              document.querySelector('#watch').innerHTML = 'Watching'
             }
           })
         })
-      }).catch((error) => {
-        console.log(error, '2')
+        axios.get('/api/forum/bricks/' + this.$route.params.repo + '/starred_users/').then((response) => {
+          this.starsNum = response.data.results.length
+          _.forEach(response.data.results, (user) => {
+            if (user.id === me.data.id) {
+              this.starred = true
+              document.querySelector('#star').innerHTML = 'Unstar'
+            }
+          })
+        })
       })
     },
     methods: {
@@ -131,19 +144,32 @@
       watch (id) {
         if (this.watched) {
           axios.post(`/api/forum/bricks/${id}/cancel_watch/`).then((response) => {
-            document.querySelector('#watchButton').innerHTML = '<i class="fa fa-eye"></i> Watch'
-            document.querySelector('#watchButton').classList.remove('disabled-button')
+            document.querySelector('#watch').innerHTML = 'Watch'
             this.watched = false
-            this.watch_num -= 1
+            this.watchNum -= 1
           })
         } else {
           axios.post(`/api/forum/bricks/${id}/watch/`).then((response) => {
-            document.querySelector('#watchButton').innerHTML = '<i class="fa fa-check"></i> Watched'
-            document.querySelector('#watchButton').classList.add('disabled-button')
+            document.querySelector('#watch').innerHTML = 'Watching'
             this.watched = true
-            this.watch_num += 1
+            this.watchNum += 1
           }).catch((error) => {
             console.log(error)
+          })
+        }
+      },
+      star (id) {
+        if (this.starred) {
+          axios.post(`/api/forum/bricks/${id}/unstar/`).then((response) => {
+            document.querySelector('#star').innerHTML = 'Star'
+            this.starred = false
+            this.starsNum -= 1
+          })
+        } else {
+          axios.post(`/api/forum/bricks/${id}/star/`).then((response) => {
+            document.querySelector('#star').innerHTML = 'Unstar'
+            this.starred = true
+            this.starsNum += 1
           })
         }
       }

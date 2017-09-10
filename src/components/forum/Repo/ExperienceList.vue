@@ -2,10 +2,8 @@
   <div>
     <div class="repo-experience-content">
       <div v-if="!ExperienceDetail">
-        <div class="experience-header">
-          <p >Experience List</p>
-        </div>
-        <div class="divider" style="border-top: 1px solid #ddd;margin: 0.2rem 0 0rem 0;"></div>
+        <h4 class="experience-header">{{lResult.count}} Experience(s)</h4>
+        <div class="divider" style="width: 100%; margin: 5px 0;"></div>
         <div class="list-group list-experience">
           <li v-for="item in lResult.results" class="list-group-item" :id="'experience'+item.id">
             <h4 class="list-group-item-heading" @click="expandExperience(item.id)">{{item.title}}<router-link :to="{name: 'Profile',params:{author: item.author_name}}">@{{item.author_name}}</router-link></h4>

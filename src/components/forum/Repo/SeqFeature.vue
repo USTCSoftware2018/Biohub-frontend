@@ -43,14 +43,14 @@
     data () {
       return {
         endPoint: 0,
-        length: 0
+        length: 460
       }
     },
     mounted () {
       this.endPoint = _.result(_.find(this.feaData, (fea) => {
         return (fea.feature_type === 'stop' | fea.feature_type === 'new_feature')
       }), 'end_loc') + 10
-      this.length = $('#fContainer').width()
+      console.log(this.length)
       _.forEach(this.feaData, (fea) => {
         $('#fContainer').append('<button type="button" class="fea-button color-' + fea.feature_type +
           '" style="left: ' + fea.start_loc / this.endPoint * this.length +

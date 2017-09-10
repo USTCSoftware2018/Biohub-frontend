@@ -87,8 +87,21 @@
 
 .repo-info-addon {
   a {
-    color: $color-orange;
+    text-decoration: none;
+    display: inline-block;
+    color: $color-blue-2;
     font-size: 0.16rem;
+    cursor: pointer;
+    padding: 5px 0 4px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  span {
+    background-color: darken($navbar-color, 5%);
+    color: white;
+    padding: 0 4px;
+    border-radius: 2px;
+    margin-left: -3px;
   }
   color: #ccc;
   font-size: 0.16rem;
@@ -98,13 +111,11 @@
   margin-top: 0.1rem;
   font-size: 0.4rem;
 }
-
 .repo-info-content {
   background-color: white;
   padding: 0.1rem 0.3rem;
   text-align: left;
   h3 {
-
   }
   p {
     text-indent: 0.2rem;
@@ -115,12 +126,18 @@
 }
 
 .repo-experience-content {
+  margin-top: 20px;
   background-color: white;
+  box-shadow: 0 0 3px $border-color;
   padding: 0.1rem 0.3rem;
   text-align: left;
   form > input.form-control {
     border-color: $border-color;
   }
+}
+.experience-header {
+  margin-top: 5px;
+  margin-bottom: 12px;
 }
 
 .list-experience {
