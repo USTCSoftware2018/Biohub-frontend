@@ -68,6 +68,8 @@
   background-color: $navbar-color;
   border-top: 1px solid lighten($navbar-color, 5%);
   text-align: left;
+  color: $text-color;
+  padding-bottom: 0.2rem;
 }
 .view-experience {
   font-size: 0.12rem !important;
@@ -76,17 +78,24 @@
     text-decoration: none;
   }
 }
+.info-collapse {
+  padding: 0.15rem 0.2rem;
+  margin-top: 0.1rem;
+  background-color: darken($navbar-color, 5%);
+  max-width: 500px;
+}
 
 .repo-info-addon {
   a {
-    color: $color-blue-2;
-    font-size: 0.12rem;
+    color: $color-orange;
+    font-size: 0.16rem;
   }
-  color: #999;
-  font-size: 0.12rem;
+  color: #ccc;
+  font-size: 0.16rem;
 }
 
 .repo-info-name {
+  margin-top: 0.1rem;
   font-size: 0.4rem;
 }
 
@@ -218,10 +227,4 @@
   margin-bottom: 0.1rem;
   padding-bottom: 0.1rem;
   border-bottom: 1px solid $border-color;
-}
-
-.repo-info-addon + .repo-info-addon {
-  border-top: 1px solid $border-color;
-  margin-top: 0.05rem;
-  padding-top: 0.05rem;
 }

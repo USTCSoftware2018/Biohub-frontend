@@ -2,17 +2,15 @@
   <div>
     <div class="row repo-wrapper">
       <div class="container">
+        <div class="repo-type">Coding</div>
         <div class="repo-info-name">
           BBa_{{ rResult.name }}
         </div>
-        <div class="repo-info-addon">
-          Designed by: {{ rResult.designer }}
-          | Group: {{rResult.group_name}}
-          |
+        <div class="repo-info-addon">{{ rResult.designer }}@{{rResult.group_name}}
           <router-link :to="{name:'ExperienceList'}"
                        v-if='$route.name === "RepoInfo"'
                        class="view-experience">
-                View Eperience
+                View Experience
           </router-link>
           <router-link :to="{name: 'RepoInfo'}"
                        v-if='($route.name === "ExperienceList")
@@ -22,19 +20,36 @@
             View Description
           </router-link>
         </div>
-        <div class="repo-info-addon">
+        <!--div class="repo-info-addon">
           Followers: <a href="#">{{watch_num}}</a>
           <button class="btn btn-forum btn-watch" id='watchButton' @click="watch(rResult.id)">Watch</button>
         </div>
         <div class="repo-info-addon">
           <feature :feaData="rResult.seq_features"></feature>
+        </div-->
+        <div class="repo-info-addon">
+          <a role="button" data-toggle="collapse" href="#ruler" aria-expanded="false" aria-controls="ruler">
+            Ruler
+          </a>
+          <a role="button" data-toggle="collapse" href="#document" aria-expanded="false" aria-controls="document">
+            Document
+          </a>
+          <div class="collapse" id="ruler">
+            <div class="info-collapse">
+              <feature :feaData="rResult.seq_features"></feature>
+            </div>
+          </div>
+          <div class="collapse" id="document">
+            <div class="info-collapse">
+              <div class="repo-info-content">{{rResult.document}}</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="container">
         <div class="col-md-9">
-
           <router-view :content="rResult.document"></router-view>
         </div>
         <div class="col-md-3">
@@ -110,6 +125,8 @@
         let tmp = this.anotherView
         this.anotherView = this.currentView
         this.currentView = tmp
+      },
+      brief (text) {
       },
       watch (id) {
         if (this.watched) {
