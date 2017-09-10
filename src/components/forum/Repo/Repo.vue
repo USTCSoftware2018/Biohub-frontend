@@ -1,42 +1,41 @@
 <template>
   <div>
+    <div class="row repo-wrapper">
+      <div class="container">
+        <div class="repo-info-name">
+          BBa_{{ rResult.name }}
+        </div>
+        <div class="repo-info-addon">
+          Designed by: {{ rResult.designer }}
+          | Group: {{rResult.group_name}}
+          |
+          <router-link :to="{name:'ExperienceList'}"
+                       v-if='$route.name === "RepoInfo"'
+                       class="view-experience">
+                View Eperience
+          </router-link>
+          <router-link :to="{name: 'RepoInfo'}"
+                       v-if='($route.name === "ExperienceList")
+                           || ($route.name === "ExperienceNew")
+                            || ($route.name === "RepoExperience")'
+                       class="view-experience">
+            View Description
+          </router-link>
+        </div>
+        <div class="repo-info-addon">
+          Followers: <a href="#">{{watch_num}}</a>
+          <button class="btn btn-forum btn-watch" id='watchButton' @click="watch(rResult.id)">Watch</button>
+        </div>
+        <div class="repo-info-addon">
+          <feature :feaData="rResult.seq_features"></feature>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="container">
         <div class="col-md-9">
-          <div class="repo-wrapper">
-            <div class="repo-info-header">
 
-              <div class="repo-info-name">
-                BBa_{{ rResult.name }}
-
-              </div>
-              <div class="repo-info-addon">
-                Designed by: {{ rResult.designer }}
-                | Group: {{rResult.group_name}}
-                |
-                <router-link :to="{name:'ExperienceList'}"
-                             v-if='$route.name === "RepoInfo"'
-                             class="view-experience">
-                  View Experience
-                </router-link>
-                <router-link :to="{name: 'RepoInfo'}"
-                             v-if='($route.name === "ExperienceList")
-                             || ($route.name === "ExperienceNew")
-                             || ($route.name === "RepoExperience")'
-                             class="view-experience">
-                  View Description
-                </router-link>
-              </div>
-              <div class="repo-info-addon">
-                Followers: <a href="#">{{rResult.watch_users.length}}</a>
-                <button class="btn btn-forum btn-watch" id='watchButton' @click="watch(rResult.id)">Watch</button>
-              </div>
-              <div class="repo-info-addon">
-                <feature :feaData="rResult.seq_features"></feature>
-              </div>
-            </div>
-            <router-view :content="rResult.document"></router-view>
-          </div>
+          <router-view :content="rResult.document"></router-view>
         </div>
         <div class="col-md-3">
           <div class="panel panel-default panel-biohub">
@@ -72,7 +71,8 @@
         currentView: 'Description',
         anotherView: 'Experience',
         rResult: null,
-        watched: false
+        watched: false,
+        watch_num: 0
       }
     },
     watch: {
@@ -89,8 +89,11 @@
       axios.get('/api/forum/bricks/' + this.$route.params.repo + '/').then((response) => {
         this.rResult = response.data
         console.log(response.data)
+      })
+      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/watched_users/').then((response) => {
+        this.watch_num = response.data.results.length
         axios.get('/api/users/me').then((me) => {
-          _.forEach(this.rResult.watch_users, (user) => {
+          _.forEach(response.data.results, (user) => {
             if (user.id === me.data.id) {
               this.watched = true
               document.querySelector('#watchButton').innerHTML = '<i class="fa fa-check"> Watched'
@@ -114,12 +117,14 @@
             document.querySelector('#watchButton').innerHTML = '<i class="fa fa-eye"></i> Watch'
             document.querySelector('#watchButton').classList.remove('disabled-button')
             this.watched = false
+            this.watch_num -= 1
           })
         } else {
           axios.post(`/api/forum/bricks/${id}/watch/`).then((response) => {
             document.querySelector('#watchButton').innerHTML = '<i class="fa fa-check"></i> Watched'
             document.querySelector('#watchButton').classList.add('disabled-button')
             this.watched = true
+            this.watch_num += 1
           }).catch((error) => {
             console.log(error)
           })

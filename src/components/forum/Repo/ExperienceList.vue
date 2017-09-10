@@ -9,6 +9,7 @@
         <div class="list-group list-experience">
           <li v-for="item in lResult.results" class="list-group-item" :id="'experience'+item.id">
             <h4 class="list-group-item-heading" @click="expandExperience(item.id)">{{item.title}}<router-link :to="{name: 'Profile',params:{author: item.author_name}}">@{{item.author_name}}</router-link></h4>
+
             <div class="list-group-item-text">{{item.content}}</div>
             <a class='biohub-a' v-show="expandedExperience['key' + item.id]" @click="showPost(item.id)" :id="'postSwitch' + item.id">Show Posts</a>
             <post-list :id="item.id" v-if="showPosts['key' + item.id]"></post-list>
@@ -39,6 +40,7 @@
   import marked from 'marked'
   import PostList from './PostsList.vue'
   import Bus from '../../../utils/bus'
+  import Star from '../../../utils/Star.vue'
   export default {
     data () {
       return {
@@ -55,7 +57,7 @@
       }
     },
     components: {
-      PostList
+      PostList, Star
     },
     mounted () {
       if (this.$route.params.id) {

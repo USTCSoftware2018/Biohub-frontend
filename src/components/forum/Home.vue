@@ -15,10 +15,10 @@
     <div class="row">
       <div class="container">
         <div class="col-md-8 less-padding">
-          <div class="forum-activity-border" v-for="item in notice.results">
-            <div class="forum-activity-content" v-html="item.message">
+          <div class="forum-activity-border">
+            <div class="forum-activity-content">
             </div>
-            <div class="forum-activity-label" v-html="item.created"></div>
+            <div class="forum-activity-label"></div>
           </div>
         </div>
         <div class="col-md-4 less-padding">

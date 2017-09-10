@@ -65,18 +65,10 @@
 }
 
 .repo-wrapper {
-  background-color: #FFF;
-  border: 1px solid $list-group-border;
-  margin-top: 0.5rem;
+  background-color: $navbar-color;
+  border-top: 1px solid lighten($navbar-color, 5%);
+  text-align: left;
 }
-
-.repo-info-header {
-  padding: 0.2rem 0;
-  margin: 0 0.3rem 0.1rem 0.3rem;
-  position: relative;
-  border-bottom: 1px solid $border-color;
-}
-
 .view-experience {
   font-size: 0.12rem !important;
   color: $color-orange !important;
