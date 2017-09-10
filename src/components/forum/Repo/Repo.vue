@@ -55,7 +55,7 @@
           <experience-list></experience-list>
           <!--router-view :content="rResult.document"></router-view-->
         </div>
-        <div class="col-md-3">
+        <!--div class="col-md-3">
           <div class="panel panel-default panel-biohub">
             <div class="panel-heading">Rate</div>
             <div class="panel-body">
@@ -70,7 +70,7 @@
             <li class="list-group-item"><a href="#">consectetur adipisicing elit</a></li>
             <li class="list-group-item"><a href="#">sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
           </ul>
-        </div>
+        </div-->
       </div>
     </div>
     <page-footer></page-footer>

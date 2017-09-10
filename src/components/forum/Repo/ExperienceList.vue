@@ -2,24 +2,24 @@
   <div>
     <div class="repo-experience-content">
       <div v-if="!ExperienceDetail">
-        <h4 class="experience-header">{{lResult.count}} Experience(s)</h4>
+        <h4 class="experience-list-header">{{lResult.count}} Experience(s)</h4>
         <div class="divider" style="width: 100%; margin: 5px 0;"></div>
         <div class="list-group list-experience">
           <li v-for="item in lResult.results" class="list-group-item" :id="'experience'+item.id">
-            <h4 class="list-group-item-heading" @click="expandExperience(item.id)">{{item.title}}<router-link :to="{name: 'Profile',params:{author: item.author_name}}">@{{item.author_name}}</router-link></h4>
-
-            <div class="list-group-item-text">{{item.content}}</div>
-            <a class='biohub-a' v-show="expandedExperience['key' + item.id]" @click="showPost(item.id)" :id="'postSwitch' + item.id">Show Posts</a>
-            <post-list :id="item.id" v-if="showPosts['key' + item.id]"></post-list>
-            <form class="postForm" v-if="showPosts['key' + item.id]">
-              <div v-model="postContent" class="textarea" contenteditable="true" :id="'postContent' + item.id"></div>
-              <button class="btn btn-forum" @click.prevent="submitPost(item.id)">Submit Your Post</button>
-            </form>
+            <div class="experience-header">
+              <router-link :to="{name: 'Profile',params:{author: item.author_name}}" class="experience-author-name">{{item.author_name}}</router-link>
+            </div>
+            <div class="list-group-item-text" v-html="item.content.text"></div>
+            <div class="action-bar">
+              <button class="btn btn-forum"><i class="fa fa-angle-up"></i></button>
+              <a><i class="fa fa-comment-o"></i> 5 Comment(s)</a>
+            </div>
+            <div class="divider" style="width: 100%; margin: 5px 0;"></div>
           </li>
         </div>
-        <button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button>
+        <!--button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button-->
       </div>
-      <router-link :to="{name:'ExperienceList'}" v-if="ExperienceDetail" class="biohub-a"><i class="fa fa-angle-left"></i> Back</router-link>
+      <!--router-link :to="{name:'ExperienceList'}" v-if="ExperienceDetail" class="biohub-a"><i class="fa fa-angle-left"></i> Back</router-link>
       <div v-if="ExperienceDetail" v-html="eResult.content.text">
       </div>
       <div v-if="ExperienceDetail">
@@ -28,7 +28,7 @@
           <button class="btn btn-forum" @click.prevent="submitPost">Submit Your Post</button>
         </form>
         <post-list :id="$route.params.id"></post-list>
-      </div>
+      </div-->
     </div>
   </div>
 </template>
@@ -82,9 +82,12 @@
         })
       },
       loadExperienceList () {
-        axios.get(`/api/forum/bricks/${this.$route.params.repo}/experiences/?short=true`).then((response) => {
+        axios.get(`/api/forum/bricks/${this.$route.params.repo}/experiences/`).then((response) => {
           console.log(response)
           this.lResult = response.data
+          _.forEach(this.lResult.results, (experience) => {
+            experience.content.text = marked(experience.content.text)
+          })
           this.ExperienceDetail = false
         }).catch((error) => {
           console.log(error)
