@@ -14,10 +14,10 @@
           <input type="search" class="form-control" v-on:keydown.enter.prevent="intoSearch" ref="Search"
                  placeholder="Search" style="font-size: 15px;" v-model="searchContent">
           <a class="form-control-feedback"
-             href="javascript:;" style="pointer-events: auto"
+             href="javascript:;" style="pointer-events: auto;top: 2px!important;"
              v-if="searchContent !== ''"
              v-on:click="searchContent = ''">
-            <i class="fa fa-times" style="font-size: 1.2em; color: #999!important;"></i>
+            <i class="fa fa-times" style="font-size: 16px; color: #999!important;"></i>
           </a>
         </div>
       </form>
@@ -29,7 +29,7 @@
         <li><a href="/signup">Signup</a></li>
       </ul>
       <ul v-if="hasLogged" class="nav navbar-nav navbar-right navbar-biohub-toggle">
-        <li class="dropdown" id="notice">
+        <li class="dropdown" id='notice'>
           <a href="javascript:;" class="dropdown-toggle"
              data-toggle="dropdown"
              role="button"
@@ -38,8 +38,7 @@
             notice
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu" style="border: 0px;">
-            <li class="head-info">Notice</li>
+          <ul class="dropdown-menu dropdown-notice" style="border: 0px;">
             <li v-for="item in notice.results"><a href="#">{{item.message}}</a></li>
           </ul>
         </li>
@@ -100,6 +99,7 @@
       }
     },
     mounted () {
+      console.log(this.$root.logged)
       axios.get('/api/users/me/').then((response) => {
         this.userName = response.data.username
         this.avatarURL = response.data.avatar_url

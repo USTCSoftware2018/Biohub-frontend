@@ -7,19 +7,7 @@
           BBa_{{ rResult.name }}
         </div>
         <div class="repo-info-addon">{{ rResult.designer }}@{{rResult.group_name}}
-          <router-link :to="{name:'ExperienceList'}"
-                       v-if='$route.name === "RepoInfo"'
-                       class="view-experience">
-                View Experience
-          </router-link>
-          <router-link :to="{name: 'RepoInfo'}"
-                       v-if='($route.name === "ExperienceList")
-                           || ($route.name === "ExperienceNew")
-                            || ($route.name === "RepoExperience")'
-                       class="view-experience">
-            View Description
-          </router-link>
-        </div>
+      </div>
         <!--div class="repo-info-addon">
           Followers: <a href="#">{{watch_num}}</a>
           <button class="btn btn-forum btn-watch" id='watchButton' @click="watch(rResult.id)">Watch</button>
@@ -42,7 +30,7 @@
             </div>
           </div>
           <div class="collapse" id="rate">
-            <div class="info-collapse" style="width: auto;">
+            <div class="info-collapse" style="width: 150px;">
               <star :isEnable="true"></star>
             </div>
           </div>

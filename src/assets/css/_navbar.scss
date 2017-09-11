@@ -2,10 +2,10 @@
   margin-bottom: 0;
   border-radius: 0;
   border: none;
-  background-color: $navbar-color !important;
+  background-color: $navbar-color;
 
   .nav .open > a {
-    border-color: transparent !important;
+    border-color: transparent;
   }
 
   .nav a, .nav li {
@@ -14,10 +14,10 @@
     @include transition(border-color);
     &:hover {
       border-bottom: 2px solid white;
-      background-color: $navbar-color !important;
+      background-color: $navbar-color;
     }
     &:focus, &:visited, &:active {
-      background-color: $navbar-color !important;
+      background-color: $navbar-color;
     }
   }
   .navbar-header {
@@ -65,11 +65,11 @@
       }
     }
 
-    .dropdown-menu, .open {
+    .dropdown-menu {
       padding: 0px;
       a, a:focus, a:visited, a:hover, a:active {
         color: inherit;
-        background-color: $navbar-color !important;
+        background-color: $navbar-color;
       }
       li {
         text-decoration: none !important;
@@ -112,8 +112,8 @@
 }
 
 #notice {
-  li a {
-    background-color: whitesmoke !important;
+  ul li a {
+    background-color: lighten($color-blue-1, 65%) !important;
     color: black;
     &:hover {
       border-bottom-color: $color-blue-1;
@@ -127,5 +127,21 @@
     &:focus {
       background-color: whitesmoke !important;
     }
+  }
+}
+.dropdown-notice {
+  a {
+    display: block;
+    width: 400px;
+    word-wrap:break-word;
+    word-break: break-all;
+    white-space: normal !important;
+  }
+  right: -150px !important;
+}
+.open {
+  > a {
+    background-color: darken($color-blue-1, 5%) !important;
+    color: $text-color-rev;
   }
 }

@@ -11,7 +11,7 @@
             </div>
             <div class="list-group-item-text" v-html="item.content.text"></div>
             <div class="action-bar">
-              <button class="btn btn-forum"><i class="fa fa-angle-up"></i></button>
+              <button class="btn btn-forum" @click="upvote(item.id)"><i class="fa fa-angle-up"></i> {{item.up_vote_num}}</button>
               <a><i class="fa fa-comment-o"></i> 5 Comment(s)</a>
             </div>
             <div class="divider" style="width: 100%; margin: 5px 0;"></div>
@@ -51,7 +51,8 @@
         count: 5,
         postNoMore: false,
         showPosts: {},
-        expandedExperience: {}
+        expandedExperience: {},
+        hasUpvote: null
       }
     },
     components: {
@@ -63,6 +64,8 @@
       } else {
         this.loadExperienceList()
       }
+      // Check Upvote Status
+      axios.get()
     },
     watch: {
       '$route.params' (to, from) {
@@ -86,6 +89,7 @@
           console.log(response)
           this.lResult = response.data
           _.forEach(this.lResult.results, (experience) => {
+            axios.post()
             experience.content.text = marked(experience.content.text)
           })
           this.ExperienceDetail = false
@@ -121,6 +125,8 @@
           this.$set(this.showPosts, 'key' + id, true)
           document.querySelector('#postSwitch' + id).innerHTML = 'Hide Posts'
         }
+      },
+      upvote (id) {
       }
     }
   }

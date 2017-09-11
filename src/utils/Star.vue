@@ -50,10 +50,10 @@
     display: inline-block;
   }
   .empty-star:first-child, .full-star:first-child {
-    margin-left: 1px;
+    margin-left: 2px;
   }
   .empty-star:last-child, .full-star:last-child {
-    margin-right: 1px;
+    margin-right: 2px;
   }
   .full-star {
     background: url('../assets/img/star-filled.svg') no-repeat;
