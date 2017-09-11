@@ -1,7 +1,8 @@
 const state = {
   loggedUser: null,
   loginHasError: false,
-  loginErrorMessage: ''
+  loginErrorMessage: '',
+  loginErrorPart: ''
 }
 const getters = {
   userName (state) {
@@ -22,8 +23,9 @@ const mutations = {
   loginFeedback (state, status) {
     state.loginHasError = status
   },
-  loginError (state, message) {
-    state.loginErrorMessage = message
+  loginError (state, payload) {
+    state.loginErrorMessage = payload.message
+    state.loginErrorPart = payload.part
   }
 }
 
@@ -31,12 +33,18 @@ const actions = {
   loginAuth (context, userInput) {
     if (userInput.username === '') {
       context.commit('loginFeedback', true)
-      context.commit('loginError', 'Username can\'t be blank.')
+      context.commit('loginError', {
+        message: 'Username can\'t be blank.',
+        part: 'username'
+      })
       return
     }
     if (userInput.password === '') {
       context.commit('loginFeedback', true)
-      context.commit('loginError', 'Password can\'t be blank.')
+      context.commit('loginError', {
+        message: 'Password can\'t be blank.',
+        part: 'password'
+      })
       return
     }
     axios.post('/api/users/login/', {

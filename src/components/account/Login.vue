@@ -44,6 +44,12 @@
         window.location.href = '/forum'
       })
     },
+    watch: {
+      '$store.state.UserAuth.loginErrorPart' (to) {
+        if (to === 'username') this.$refs.usernameInput.focus()
+        if (to === 'password') this.$refs.passwordInput.focus()
+      }
+    },
     mounted () {
       this.$refs.usernameInput.focus()
     },
