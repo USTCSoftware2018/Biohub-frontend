@@ -20,7 +20,7 @@
                        placeholder="Password" v-model="password">
               </div>
             </div>
-            <div class="alert alert-danger form-error" v-if="errorOccur">
+            <div class="alert alert-danger form-error" v-if="hasError">
               <button type="button" class="close"></button>
               <strong>Error: </strong> {{ errorMessage }}
             </div>
@@ -50,39 +50,20 @@
     data () {
       return {
         username: '',
-        password: '',
-        errorOccur: false,
-        errorMessage: ''
+        password: ''
+      }
+    },
+    computed: {
+      hasError () {
+        return this.$store.state.UserAuth.loginHasError
+      },
+      errorMessage () {
+        return this.$store.state.UserAuth.loginErrorMessage
       }
     },
     methods: {
       Login () {
-        if (this.username === '') {
-          this.errorOccur = true
-          this.errorMessage = 'Username can\'t be blank'
-          this.$refs.usernameInput.focus()
-          return
-        }
-        if (this.password === '') {
-          this.errorOccur = true
-          this.errorMessage = 'Password can\'t be blank'
-          this.$refs.passwordInput.focus()
-          return
-        }
-        this.errorOccur = false
-        axios.post('/api/users/login/', {
-          username: this.username,
-          password: this.password
-        }).then((response) => {
-          console.log(response)
-          window.location.href = '/forum'
-        }).catch(e => {
-          if (e.response.status === 400) {
-            this.errorOccur = true
-            this.errorMessage = 'Wrong username or password'
-          }
-          console.log(e)
-        })
+        this.$store.dispatch('loginAuth', {username: this.username, password: this.password})
       },
       Reset () {
         window.location.href = '/reset'
