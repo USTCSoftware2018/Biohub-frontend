@@ -70,20 +70,22 @@
   export default {
     data () {
       return {
-        hasLogged: false,
-        userName: '',
         avatarURL: '',
         searchContent: '',
         notice: null
       }
     },
+    computed: {
+      hasLogged () {
+        return this.$store.getters.hasLogin
+      },
+      userName () {
+        return this.$store.getters.userName
+      }
+    },
     methods: {
       LogOut () {
-        axios.get('/api/users/logout/').then((response) => {
-          window.location.href = '/forum'
-        }).catch((e) => {
-          window.alert('not logged in yet')
-        })
+        this.$store.dispatch('logout')
       },
       intoSearch (e) {
         let sValue = this.$refs.Search.value
@@ -99,7 +101,8 @@
       }
     },
     mounted () {
-      console.log(this.$root.logged)
+      console.log(this.$store)
+      this.$store.commit('loadFromLS')
       axios.get('/api/users/me/').then((response) => {
         this.userName = response.data.username
         this.avatarURL = response.data.avatar_url

@@ -1,3 +1,6 @@
+import Lockr from 'lockr'
+import Crypto from 'crypto-js'
+Lockr.prefix = 'biohub_'
 const state = {
   loggedUser: null,
   loginHasError: false,
@@ -10,15 +13,25 @@ const getters = {
   },
   userId (state) {
     if (state.loggedUser) return state.loggedUser.id
+  },
+  hasLogin (state) {
+    return state.loggedUser
   }
 }
 
 const mutations = {
   login (state, user) {
     state.loggedUser = user
+    Lockr.set('user', Crypto.AES.encrypt(JSON.stringify(user), 'secretkey').toString())
+    console.log(Crypto.AES.encrypt(JSON.stringify(user), 'secretkey').toString())
   },
   logout (state) {
     state.loggedUser = null
+    Lockr.set('user', '')
+  },
+  loadFromLS (state) {
+    let bytes = Crypto.AES.decrypt(Lockr.get('user'), 'secretkey')
+    state.loggedUser = JSON.parse(bytes.toString(Crypto.enc.Utf8))
   },
   loginFeedback (state, status) {
     state.loginHasError = status
@@ -61,6 +74,11 @@ const actions = {
         context.commit('loginError', 'Username or password incorrect.')
       }
       console.log(e)
+    })
+  },
+  logout (context) {
+    axios.get('/api/users/logout/').then((response) => {
+      context.commit('logout')
     })
   }
 }

@@ -10,13 +10,5 @@ export default new Vuex.Store({
     UserAuth: UserAuth
   },
   state: {
-  },
-  mutations: {
-    login (state, user) {
-      state.loginedUser = user
-    },
-    logout (state) {
-      state.loginedUser = null
-    }
   }
 })
