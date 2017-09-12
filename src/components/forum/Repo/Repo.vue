@@ -85,6 +85,11 @@
         starsNum: 0
       }
     },
+    computed: {
+      userID () {
+        return this.$store.getters.userId
+      }
+    },
     watch: {
       '$route' (to, from) {
         if (to.name === 'RepoExperienceList' || to.name === 'Repo') {
@@ -96,37 +101,31 @@
       Description, Experience, PageFooter, Star, Feature, ExperienceList
     },
     created () {
+      const _this = this
       axios.get('/api/forum/bricks/' + this.$route.params.repo + '/').then((response) => {
         this.rResult = response.data
         console.log(response.data)
       })
-      axios.get('/api/users/me').then((me) => {
-        axios.get('/api/forum/bricks/' + this.$route.params.repo + '/watched_users/').then((response) => {
-          this.watchNum = response.data.results.length
-          _.forEach(response.data.results, (user) => {
-            if (user.id === me.data.id) {
-              this.watched = true
-              document.querySelector('#watch').innerHTML = 'Watching'
-            }
-          })
+      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/watched_users/').then((response) => {
+        this.watchNum = response.data.results.length
+        _.forEach(response.data.results, (user) => {
+          if (user.id === this.userID) {
+            _this.watched = true
+            document.querySelector('#watch').innerHTML = 'Watching'
+          }
         })
-        axios.get('/api/forum/bricks/' + this.$route.params.repo + '/starred_users/').then((response) => {
-          this.starsNum = response.data.results.length
-          _.forEach(response.data.results, (user) => {
-            if (user.id === me.data.id) {
-              this.starred = true
-              document.querySelector('#star').innerHTML = 'Unstar'
-            }
-          })
+      })
+      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/starred_users/').then((response) => {
+        this.starsNum = response.data.results.length
+        _.forEach(response.data.results, (user) => {
+          if (user.id === this.userID) {
+            _this.starred = true
+            document.querySelector('#star').innerHTML = 'Unstar'
+          }
         })
       })
     },
     methods: {
-      changeView () {
-        let tmp = this.anotherView
-        this.anotherView = this.currentView
-        this.currentView = tmp
-      },
       brief (text) {
       },
       watch (id) {

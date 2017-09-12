@@ -105,7 +105,6 @@
       }
     },
     methods: {
-
       SignUp () {
         if (this.usermail === '') {
           this.errorOccur = true
@@ -113,7 +112,6 @@
           this.$refs.emailInput.focus()
           return
         }
-
         var matchResult = this.usermail.match(rfcEmailReg)
         if (matchResult === null || !matchResult[0].length === this.usermail.length) {
           this.errorOccur = true

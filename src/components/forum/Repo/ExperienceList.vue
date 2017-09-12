@@ -2,16 +2,17 @@
   <div>
     <div class="repo-experience-content">
       <div v-if="!ExperienceDetail">
-        <h4 class="experience-list-header">{{lResult.count}} Experience(s)</h4>
+        <h4 class="experience-list-header">{{$store.state.BrickStatus.experienceSet.length}} Experience(s)</h4>
         <div class="divider" style="width: 100%; margin: 5px 0;"></div>
         <div class="list-group list-experience">
-          <li v-for="item in lResult.results" class="list-group-item" :id="'experience'+item.id">
+          <li v-for="(item, index) in $store.state.BrickStatus.experienceSet" class="list-group-item" :id="'experience'+item.id">
             <div class="experience-header">
               <router-link :to="{name: 'Profile',params:{author: item.author_name}}" class="experience-author-name">{{item.author_name}}</router-link>
             </div>
             <div class="list-group-item-text" v-html="item.content.text"></div>
             <div class="action-bar">
-              <button class="btn btn-forum" @click="upvote(item.id)"><i class="fa fa-angle-up"></i> {{item.up_vote_num}}</button>
+              <button class="btn btn-forum" @click="upvote(item.id)" v-bind:class=
+                "{'hasVoted':$store.state.BrickStatus.experienceSet[index].voted}"><i class="fa fa-angle-up"></i> {{item.up_vote_num}}</button>
               <a><i class="fa fa-comment-o"></i> 5 Comment(s)</a>
             </div>
             <div class="divider" style="width: 100%; margin: 5px 0;"></div>
@@ -32,6 +33,11 @@
     </div>
   </div>
 </template>
+<style>
+  .hasVoted {
+    background-color: #ccc;
+  }
+</style>
 
 <script>
   import '../../../assets/css/editormd.css'
@@ -59,11 +65,7 @@
       PostList, Star
     },
     mounted () {
-      if (this.$route.params.id) {
-        this.loadExperience(this.$route.params.id)
-      } else {
-        this.loadExperienceList()
-      }
+      this.$store.dispatch('loadBrick', this.$route.params.repo)
       // Check Upvote Status
       axios.get()
     },
@@ -74,29 +76,6 @@
       }
     },
     methods: {
-      loadExperience (id) {
-        axios.get(`/api/forum/experiences/${id}/`).then((response) => {
-          console.log(response)
-          this.ExperienceDetail = true
-          this.eResult = response.data
-          this.eResult.content.text = marked(this.eResult.content.text)
-        }).catch((error) => {
-          console.log(error)
-        })
-      },
-      loadExperienceList () {
-        axios.get(`/api/forum/bricks/${this.$route.params.repo}/experiences/`).then((response) => {
-          console.log(response)
-          this.lResult = response.data
-          _.forEach(this.lResult.results, (experience) => {
-            axios.post()
-            experience.content.text = marked(experience.content.text)
-          })
-          this.ExperienceDetail = false
-        }).catch((error) => {
-          console.log(error)
-        })
-      },
       expandExperience (id) {
         axios.get(`/api/forum/experiences/${id}/`).then((response) => {
           document.querySelector('#experience' + id + ' .list-group-item-text').innerHTML = marked(response.data.content.text)
@@ -127,6 +106,7 @@
         }
       },
       upvote (id) {
+        this.$store.dispatch('upVote', id)
       }
     }
   }

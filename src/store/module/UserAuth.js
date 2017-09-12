@@ -43,18 +43,18 @@ const mutations = {
 }
 
 const actions = {
-  loginAuth (context, userInput) {
+  loginAuth ({commit}, userInput) {
     if (userInput.username === '') {
-      context.commit('loginFeedback', true)
-      context.commit('loginError', {
+      commit('loginFeedback', true)
+      commit('loginError', {
         message: 'Username can\'t be blank.',
         part: 'username'
       })
       return
     }
     if (userInput.password === '') {
-      context.commit('loginFeedback', true)
-      context.commit('loginError', {
+      commit('loginFeedback', true)
+      commit('loginError', {
         message: 'Password can\'t be blank.',
         part: 'password'
       })
@@ -65,15 +65,14 @@ const actions = {
       password: userInput.password
     }).then((response) => {
       console.log(response)
-      context.commit('login', response.data)
-      context.commit('loginFeedback', false)
+      commit('login', response.data)
+      commit('loginFeedback', false)
       window.location.href = '/forum'
     }).catch(e => {
       if (e.response.status === 400) {
-        context.commit('loginFeedback', true)
-        context.commit('loginError', 'Username or password incorrect.')
+        commit('loginFeedback', true)
+        commit('loginError', 'Username or password incorrect.')
       }
-      console.log(e)
     })
   },
   logout (context) {

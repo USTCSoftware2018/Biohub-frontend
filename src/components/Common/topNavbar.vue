@@ -103,15 +103,6 @@
     mounted () {
       console.log(this.$store)
       this.$store.commit('loadFromLS')
-      axios.get('/api/users/me/').then((response) => {
-        this.userName = response.data.username
-        this.avatarURL = response.data.avatar_url
-        this.hasLogged = true
-      }).catch((e) => {
-        if (e.response.state === 404) {
-          this.hasLogged = false
-        }
-      })
       axios.get('/api/notices/').then((response) => {
         console.log(response.data)
         this.notice = response.data
