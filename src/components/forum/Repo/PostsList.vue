@@ -8,9 +8,8 @@
 </template>
 
 <script>
-  import Bus from '../../../utils/bus'
   export default {
-    props: ['id'],
+    props: ['brickId'],
     data () {
       return {
         loadedData: null,
@@ -31,13 +30,10 @@
       }
     },
     created () {
-      axios.get(`/api/forum/experiences/${this.id}/posts/`).then((response) => {
+      axios.get(`/api/forum/experiences/${this.brickId}/posts/`).then((response) => {
         this.loadedData = response.data
         this.startPoint = response.data.results.length - 1
         this.load()
-      })
-      Bus.$on('newPost', (newPost) => {
-        this.displayPost.splice(0, 0, newPost)
       })
     }
   }

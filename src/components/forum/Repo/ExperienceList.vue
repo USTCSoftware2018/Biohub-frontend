@@ -11,9 +11,10 @@
             </div>
             <div class="list-group-item-text" v-html="item.content.text"></div>
             <div class="action-bar">
-              <button class="btn btn-forum" @click="upvote(item.id)" v-bind:class=
+              <button  class="btn btn-forum" @click="upvote(item.id)" v-bind:class=
                 "{'hasVoted':$store.state.BrickStatus.experienceSet[index].voted}"><i class="fa fa-angle-up"></i> {{item.up_vote_num}}</button>
-              <a><i class="fa fa-comment-o"></i> 5 Comment(s)</a>
+              <a :id='"commentsButton" + item.id' @click="showComments(item.id, index)"><i class="fa fa-comment-o"></i> {{$store.state.BrickStatus.experienceSet[index].posts_num}} Comment(s)</a>
+              <post-list class='hide' :id='"comments"+item.id' :brickId="item.id"></post-list>
             </div>
             <div class="divider" style="width: 100%; margin: 5px 0;"></div>
           </li>
@@ -43,7 +44,6 @@
   import '../../../assets/css/editormd.css'
   import marked from 'marked'
   import PostList from './PostsList.vue'
-  import Bus from '../../../utils/bus'
   import Star from '../../../utils/Star.vue'
   export default {
     data () {
@@ -64,10 +64,8 @@
     components: {
       PostList, Star
     },
-    mounted () {
+    created () {
       this.$store.dispatch('loadBrick', this.$route.params.repo)
-      // Check Upvote Status
-      axios.get()
     },
     watch: {
       '$route.params' (to, from) {
@@ -76,6 +74,18 @@
       }
     },
     methods: {
+      showComments (id, index) {
+        let element = document.querySelector('#comments' + id)
+        let element2 = document.querySelector('#commentsButton' + id)
+        console.log(element)
+        if (element.classList.contains('hide')) {
+          element.classList.remove('hide')
+          element2.innerHTML = '<i class="fa fa-angle-up"></i> Hide'
+        } else {
+          element.classList.add('hide')
+          element2.innerHTML = '<i class="fa fa-comment-o"></i>' + this.$store.state.BrickStatus.experienceSet[index].posts_num + ' Comment(s)'
+        }
+      },
       expandExperience (id) {
         axios.get(`/api/forum/experiences/${id}/`).then((response) => {
           document.querySelector('#experience' + id + ' .list-group-item-text').innerHTML = marked(response.data.content.text)
@@ -91,7 +101,6 @@
           content: this.postContent
         }).then((response) => {
           console.log(response)
-          Bus.$emit('newPost', response.data)
           document.querySelector('#postContent').innerText = ''
           this.postContent = ''
         })

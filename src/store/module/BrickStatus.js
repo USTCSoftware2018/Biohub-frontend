@@ -18,6 +18,9 @@ const mutations = {
   },
   initBrickExperience (state, payload) {
     state.experienceSet = payload
+    for (var index in payload) {
+      state.commentsShow['exp' + payload[index].id] = false
+    }
   },
   upvote (state, id) {
     for (var index in state.experienceSet) {
