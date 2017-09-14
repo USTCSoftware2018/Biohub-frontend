@@ -166,7 +166,7 @@
 }
 
 .editormd, .CodeMirror, .CodeMirror-gutters, .CodeMirror-scroll {
-  min-height: 300px;
+  min-height: 100px;
 }
 
 .OfficialResult {
@@ -243,14 +243,21 @@
 }
 
 .postContainer {
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  margin-top: 10px;
   padding-top: 0.1rem;
   padding-left: 0.1rem;
 }
-
-.post {
-  margin-bottom: 0.1rem;
-  padding-bottom: 0.1rem;
+.postHeader {
   border-bottom: 1px solid $border-color;
+  padding-bottom: 5px;
+}
+.post {
+  padding: 10px 10px;
+}
+.post + .post {
+  border-top: 1px solid $border-color;
 }
 .action-bar {
   margin-bottom: 10px;

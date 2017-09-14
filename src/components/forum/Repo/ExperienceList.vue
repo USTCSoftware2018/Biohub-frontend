@@ -16,7 +16,6 @@
               <a :id='"commentsButton" + item.id' @click="showComments(item.id, index)"><i class="fa fa-comment-o"></i> {{$store.state.BrickStatus.experienceSet[index].posts_num}} Comment(s)</a>
               <post-list class='hide' :id='"comments"+item.id' :brickId="item.id"></post-list>
             </div>
-            <div class="divider" style="width: 100%; margin: 5px 0;"></div>
           </li>
         </div>
         <!--button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button-->
@@ -77,7 +76,6 @@
       showComments (id, index) {
         let element = document.querySelector('#comments' + id)
         let element2 = document.querySelector('#commentsButton' + id)
-        console.log(element)
         if (element.classList.contains('hide')) {
           element.classList.remove('hide')
           element2.innerHTML = '<i class="fa fa-angle-up"></i> Hide'

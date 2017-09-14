@@ -24,6 +24,7 @@
           </a>
           <a @click="watch(rResult.id)" id="watch">Watch</a><span>{{watchNum}}</span>
           <a @click="star(rResult.id)" id="star">Star</a><span>{{starsNum}}</span>
+          <a @click="newExp">Write Your Experience</a>
           <div class="collapse" id="ruler">
             <div class="info-collapse">
               <feature :feaData="rResult.seq_features"></feature>
@@ -42,6 +43,7 @@
         <div class="col-md-9">
           <experience-list></experience-list>
           <!--router-view :content="rResult.document"></router-view-->
+          <editor></editor>
         </div>
         <!--div class="col-md-3">
           <div class="panel panel-default panel-biohub">
@@ -73,6 +75,10 @@
   import Star from '../../../utils/Star.vue'
   import Feature from './SeqFeature.vue'
   import marked from 'marked'
+  import Editor from './Editor'
+  import '../../../assets/css/editormd.css'
+  import '../../../utils/editormd.js'
+  var editor = null
   export default {
     data () {
       return {
@@ -98,7 +104,7 @@
       }
     },
     components: {
-      Description, Experience, PageFooter, Star, Feature, ExperienceList
+      Description, Experience, PageFooter, Star, Feature, ExperienceList, Editor
     },
     created () {
       const _this = this
@@ -124,6 +130,8 @@
           }
         })
       })
+    },
+    mounted () {
     },
     methods: {
       brief (text) {
@@ -159,6 +167,9 @@
             this.starsNum += 1
           })
         }
+      },
+      newExp () {
+
       }
     }
   }
