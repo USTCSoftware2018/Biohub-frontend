@@ -82,8 +82,6 @@
   export default {
     data () {
       return {
-        currentView: 'Description',
-        anotherView: 'Experience',
         rResult: null,
         watched: false,
         watchNum: 0,
@@ -117,7 +115,7 @@
         _.forEach(response.data.results, (user) => {
           if (user.id === this.userID) {
             _this.watched = true
-            document.querySelector('#watch').innerHTML = 'Watching'
+            document.querySelector('#watch').innerText = 'Watching'
           }
         })
       })
@@ -126,7 +124,7 @@
         _.forEach(response.data.results, (user) => {
           if (user.id === this.userID) {
             _this.starred = true
-            document.querySelector('#star').innerHTML = 'Unstar'
+            document.querySelector('#star').innerText = 'Unstar'
           }
         })
       })

@@ -97,15 +97,6 @@
           this.postContent = ''
         })
       },
-      showPost (id) {
-        if (this.showPosts['key' + id]) {
-          this.$set(this.showPosts, 'key' + id, false)
-          document.querySelector('#postSwitch' + id).innerHTML = 'Show Posts'
-        } else {
-          this.$set(this.showPosts, 'key' + id, true)
-          document.querySelector('#postSwitch' + id).innerHTML = 'Hide Posts'
-        }
-      },
       upvote (id) {
         this.$store.dispatch('upVote', id)
       }

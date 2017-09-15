@@ -113,7 +113,7 @@
 
 #notice {
   ul li a {
-    background-color: lighten($color-blue-1, 65%) !important;
+    background-color: white !important;
     color: black;
   }
   li a {
@@ -146,6 +146,8 @@
     white-space: normal !important;
   }
   right: -150px !important;
+  height: 400px;
+  overflow-y: scroll;
 }
 .open {
   > a {
