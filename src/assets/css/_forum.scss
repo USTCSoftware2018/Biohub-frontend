@@ -250,15 +250,18 @@
   padding-left: 0.1rem;
 }
 .postHeader {
-  border-bottom: 1px solid $border-color;
   padding-bottom: 5px;
 }
 .post {
   padding: 10px 10px;
-}
-.post + .post {
   border-top: 1px solid $border-color;
 }
+
+.commentUserInfo {
+  font-weight: 600;
+  color: $text-color-rev;
+}
+
 .action-bar {
   margin-bottom: 10px;
   a {

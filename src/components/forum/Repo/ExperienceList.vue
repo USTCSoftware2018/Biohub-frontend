@@ -13,7 +13,7 @@
             <div class="action-bar">
               <button  class="btn btn-forum" @click="upvote(item.id)" v-bind:class=
                 "{'hasVoted':$store.state.BrickStatus.experienceSet[index].voted}"><i class="fa fa-angle-up"></i> {{item.up_vote_num}}</button>
-              <a :id='"commentsButton" + item.id' @click="showComments(item.id, index)"><i class="fa fa-comment-o"></i> {{$store.state.BrickStatus.experienceSet[index].posts_num}} Comment(s)</a>
+              <a :id='"commentsButton" + item.id' @click="showComments(item.id, index)" style="margin-left: 15px;"><i class="fa fa-comment-o"></i>    {{$store.state.BrickStatus.experienceSet[index].posts_num}} Comment(s)</a>
               <post-list class='hide' :id='"comments"+item.id' :brickId="item.id"></post-list>
             </div>
           </li>
@@ -51,13 +51,7 @@
         eResult: null,
         lResult: {},
         postContent: '',
-        loadedPost: [],
-        page: 0,
-        count: 5,
-        postNoMore: false,
-        showPosts: {},
-        expandedExperience: {},
-        hasUpvote: null
+        hasUpvote: {}
       }
     },
     components: {

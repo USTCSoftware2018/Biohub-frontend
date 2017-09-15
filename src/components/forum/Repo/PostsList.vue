@@ -2,7 +2,7 @@
   <div class="postContainer">
     <div class="postHeader">{{loadedData.results.length}} Comment(s)</div>
     <div class="posts">
-      <div class="post" v-for="item in displayPost"><a :href="'/user/' + item.author.username"><img v-bind:src="item.author.avatar_url">{{item.author.username}} </a>{{item.content}}</div>
+      <div class="post" v-for="item in displayPost"><a class='commentUserInfo' :href="'/user/' + item.author.username"><img v-bind:src="item.author.avatar_url">{{item.author.username}} </a>{{item.content}}</div>
     </div>
     <a @click="load" v-if="hasMore" class="biohub-a">Load More<i class="fa fa-angle-double-down"></i></a>
   </div>

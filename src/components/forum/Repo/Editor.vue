@@ -1,12 +1,11 @@
 <template>
   <div class="repo-experience-content">
-    <form class="biohub-form" style="padding-left:0;padding-right:0;"><input
+    <form class="biohub-form" style="padding-left:0;padding-right:0;"><img :src="$store.state.UserAuth.loggedUser.avatar"><input
       class="form-control " placeholder="Title here..." v-model="title"></form>
     <div id="editormd">
       <textarea style="display:none;">### Hello Editor.md !</textarea>
     </div>
     <button class="btn btn-forum" @click="submit">Submit</button>
-    <button class="btn" style="background-color:#EB7F00;color: white;" @click="$router.push({name:'ExperienceList'})">Cancel</button>
   </div>
 </template>
 

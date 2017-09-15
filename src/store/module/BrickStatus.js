@@ -1,6 +1,16 @@
 /**
  * Created by ChanYH on 2017/9/12.
  */
+function deepCopy (obj) {
+  if (typeof obj !== 'object') {
+    return obj
+  }
+  var newobj = {}
+  for (var attr in obj) {
+    newobj[attr] = deepCopy(obj[attr])
+  }
+  return newobj
+}
 const state = {
   brickId: 0,
   experienceSet: [],
@@ -22,17 +32,12 @@ const mutations = {
       state.commentsShow['exp' + payload[index].id] = false
     }
   },
-  upvote (state, id) {
-    for (var index in state.experienceSet) {
-      if (state.experienceSet[index].id === id) {
-        state.experienceSet[index].voted = true
-        state.experienceSet[index].up_vote_num += 1
-      }
-    }
-  },
   changeUpvoteStatus (state, payload) {
-    state.experienceSet[payload.index].voted = payload.status
-    state.experienceSet[payload.index].up_vote_num += payload.flag
+    console.log(payload.index)
+    var tmp = deepCopy(state.experienceSet[payload.index])
+    tmp.voted = payload.status
+    tmp.up_vote_num += payload.flag
+    state.experienceSet.splice(payload.index, 1, tmp)
   }
 }
 
@@ -48,11 +53,13 @@ const actions = {
   upVote ({state, commit}, id) {
     for (var index in state.experienceSet) {
       if (state.experienceSet[index].id === id) {
+        let indexInto = index
+        console.log(index)
         if (state.experienceSet[index].voted) {
           axios.post(`/api/forum/experiences/${id}/cancel_up_vote/`).then((response) => {
             commit('changeUpvoteStatus', {
               status: false,
-              index: index,
+              index: indexInto,
               flag: -1
             })
           }).catch((e) => {
@@ -62,7 +69,7 @@ const actions = {
           axios.post(`/api/forum/experiences/${id}/up_vote/`).then((response) => {
             commit('changeUpvoteStatus', {
               status: true,
-              index: index,
+              index: indexInto,
               flag: 1
             })
           }).catch((e) => {

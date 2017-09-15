@@ -115,8 +115,16 @@
   ul li a {
     background-color: lighten($color-blue-1, 65%) !important;
     color: black;
+  }
+  li a {
+    border-bottom: none !important;
     &:hover {
-      border-bottom-color: $color-blue-1;
+      border-bottom: none !important;
+    }
+  }
+  li + li {
+    a {
+      border-top: 1px solid $border-color;
     }
   }
   .head-info {
