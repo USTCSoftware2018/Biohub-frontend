@@ -8,7 +8,38 @@
           . Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <button class="btn btn-biohub btn-biohub-forum-welcome-default">Learn More</button>
-        <button class="btn btn-biohub btn-biohub-forum-welcome-notice" @click="$router.push({name:'newDiscussion'})">Start a Discussion</button>
+        <button class="btn btn-biohub btn-biohub-forum-welcome-notice" data-toggle="modal" data-target="#myModal">Start a Discussion</button>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">New Discussion</h4>
+              </div>
+              <div class="modal-body">
+                <div class="input-group">
+                  <div class="input-group-addon" style="background: #eee;">Part Name:</div>
+                  <input class="form-control" placeholder="Please input part name" v-model="newPartName"
+                         v-on:keydown.enter.prevent="search(newPartName)"
+                         style="display: inline-block;vertical-align: middle;width: 95%;">
+                  <span class="fa fa-spinner fa-spin input-indicator" style="margin-top: 6px;font-size: 20px;vertical-align: middle;" v-show="stateLoad"></span>
+                  <span class="fa fa-check-circle input-indicator" style="margin-top: 6px;font-size: 20px;vertical-align: middle;" v-show="stateFound"></span>
+                  <span class="fa fa-exclamation-circle input-indicator" style="margin-top: 6px;font-size: 20px;vertical-align: middle;" v-show="stateNotFound"></span>
+                </div>
+                <div class="collapse" id="collapseSuccess">
+                  <div class="well">
+                    ...
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -38,13 +69,38 @@
   export default {
     data () {
       return {
-        notice: null
+        notice: null,
+        newPartName: '',
+        stateLoad: false,
+        stateFound: false,
+        stateNotFound: false,
+        findResult: null
       }
     },
     components: {
       topNavbar, RepoList, PageFooter
     },
     created () {
+    },
+    methods: {
+      search (name) {
+        this.stateLoad = true
+        this.stateFound = false
+        this.stateNotFound = false
+        axios.get('/api/forum/bricks/' + name + '/').then((response) => {
+          this.stateLoad = false
+          if (response.status === 200) {
+            this.findResult = response.data
+            this.stateFound = true
+            $('#collapseSuccess').collapse('show')
+          }
+          console.log(response)
+        }).catch((error) => {
+          this.stateLoad = false
+          this.stateNotFound = true
+          console.log(error.response, this.stateLoad)
+        })
+      }
     }
   }
 </script>
