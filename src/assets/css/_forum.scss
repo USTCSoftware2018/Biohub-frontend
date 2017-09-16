@@ -220,14 +220,15 @@
 
 .postForm {
   .textarea {
-    margin-top: 0.1rem;
-    display: block;
-    width: 100%;
+    display: inline-block;
+    width: 85%;
     resize: none;
+    line-height: 0.2rem;
     border: 1px solid darken($border-color, 5%);
-    min-height: 0.4rem;
+    min-height: 33px;
+    vertical-align: middle;
     border-radius: 0.05rem;
-    padding: 0.02rem 0.03rem;
+    padding: 0.05rem 0.03rem;
     @include transition(border-color);
     &:focus {
       outline: none;
@@ -235,19 +236,18 @@
     }
   }
   button {
-    margin-top: 0.1rem;
-    margin-bottom: 0.1rem;
+    display: inline-block;
+    vertical-align: bottom;
   }
   border-top: 1px solid $border-color;
-  border-bottom: 1px solid $border-color;
+  padding-top: 10px;
 }
 
 .postContainer {
   border: 1px solid $border-color;
   border-radius: 5px;
   margin-top: 10px;
-  padding-top: 0.1rem;
-  padding-left: 0.1rem;
+  padding: 0.1rem 0.1rem;
 }
 .postHeader {
   padding-bottom: 5px;
@@ -268,5 +268,23 @@
     color: $text-color-rev;
     cursor: pointer;
     text-decoration: none;
+  }
+}
+.repo-type {
+  background-color: lighten($color-blue-1, 10%);
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+.postPage {
+  text-align: center;
+  .pagination li a {
+    border: none;
+    color: $text-color-rev;
+    &:hover {
+      background-color: transparent;
+      color: $color-blue-2;
+    }
   }
 }

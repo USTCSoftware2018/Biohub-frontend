@@ -4,7 +4,17 @@
     <div class="posts">
       <div class="post" v-for="item in displayPost"><a class='commentUserInfo' :href="'/user/' + item.author.username"><img v-bind:src="item.author.avatar_url">{{item.author.username}} </a>{{item.content}}</div>
     </div>
-    <a @click="load" v-if="hasMore" class="biohub-a">Load More<i class="fa fa-angle-double-down"></i></a>
+    <nav class='postPage' aria-label="navigation">
+      <ul class="pagination">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+      </ul>
+    </nav>
+    <form class="postForm">
+      <div v-model="postContent" class="textarea" contenteditable="true" id="postContent"></div>
+      <button class="btn btn-forum" @click.prevent="submitPost">Submit</button>
+    </form>
   </div>
 </template>
 
@@ -16,18 +26,19 @@
         loadedData: null,
         displayPost: [],
         startPoint: 0,
-        hasMore: false
+        page: 1
       }
     },
     methods: {
       load () {
-        for (var i = this.startPoint; (i > (this.startPoint - 5)) && (i >= 0); i--) {
+        this.displayPost = []
+        for (var i = this.startPoint; (i > (this.startPoint - 10)) && (i >= 0); i--) {
           this.displayPost.push(this.loadedData.results[i])
         }
-        this.startPoint -= 5
-        if (this.startPoint > 0) {
-          this.hasMore = true
-        }
+        this.startPoint -= 10
+      },
+      setPage (page) {
+
       }
     },
     created () {
