@@ -89,7 +89,8 @@
   a {
     text-decoration: none;
     display: inline-block;
-    color: $color-blue-2;
+    color: $color-blue-3;
+    font-weight: 500;
     font-size: 0.16rem;
     cursor: pointer;
     padding: 5px 0 4px;
@@ -171,7 +172,7 @@
 
 .OfficialResult {
   background-color: white;
-  margin: 0.1rem;
+  margin-top: 10px;
   border: 1px solid $border-color;
   border-radius: 0.05rem;
   padding: 0.2rem 0;

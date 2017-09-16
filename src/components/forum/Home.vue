@@ -28,7 +28,7 @@
                   <span class="fa fa-exclamation-circle input-indicator" style="margin-top: 6px;font-size: 20px;vertical-align: middle;" v-show="stateNotFound"></span>
                 </div>
                 <div class="collapse" id="collapseSuccess">
-                  <div class="well">
+                  <div class="OfficialResult">
                     ...
                   </div>
                 </div>

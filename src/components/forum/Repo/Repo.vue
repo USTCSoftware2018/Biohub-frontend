@@ -105,11 +105,13 @@
       Description, Experience, PageFooter, Star, Feature, ExperienceList, Editor
     },
     created () {
-      const _this = this
       axios.get('/api/forum/bricks/' + this.$route.params.repo + '/').then((response) => {
         this.rResult = response.data
         console.log(response.data)
       })
+    },
+    mounted () {
+      const _this = this
       axios.get('/api/forum/bricks/' + this.$route.params.repo + '/watched_users/').then((response) => {
         this.watchNum = response.data.results.length
         _.forEach(response.data.results, (user) => {
@@ -128,8 +130,6 @@
           }
         })
       })
-    },
-    mounted () {
     },
     methods: {
       brief (text) {
