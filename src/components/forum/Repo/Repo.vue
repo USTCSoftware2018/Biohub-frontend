@@ -41,6 +41,13 @@
     <div class="row">
       <div class="container">
         <div class="col-md-9">
+          <div class="documentClick" role='button' data-toggle="collapse" href="#collapseDocument" aria-expanded="false" aria-controls="collapseDocument">
+            View Document
+          </div>
+          <div class="collapse" id="collapseDocument">
+            <div class="well" v-html="bDocument">
+            </div>
+          </div>
           <experience-list></experience-list>
           <!--router-view :content="rResult.document"></router-view-->
           <editor></editor>
@@ -92,6 +99,9 @@
     computed: {
       userID () {
         return this.$store.getters.userId
+      },
+      bDocument (id) {
+        return marked(this.$store.state.BrickStatus.brick.document.text)
       }
     },
     watch: {

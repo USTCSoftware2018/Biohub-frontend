@@ -222,11 +222,11 @@
 .postForm {
   .textarea {
     display: inline-block;
+    font-size: 20px;
     width: 85%;
     resize: none;
     line-height: 0.2rem;
     border: 1px solid darken($border-color, 5%);
-    min-height: 33px;
     vertical-align: middle;
     border-radius: 0.05rem;
     padding: 0.05rem 0.03rem;
@@ -288,4 +288,13 @@
       color: $color-blue-2;
     }
   }
+}
+
+.documentClick {
+  background-color: white;
+  padding: 10px 0;
+  font-size: 16px;
+  margin-top: 10px;
+  box-shadow: 0 0 3px $border-color;
+  cursor: pointer;
 }

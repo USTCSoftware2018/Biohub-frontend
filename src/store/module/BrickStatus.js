@@ -12,7 +12,7 @@ function deepCopy (obj) {
   return newobj
 }
 const state = {
-  brickId: 0,
+  brick: 0,
   experienceSet: [],
   hasStarred: false,
   hasRated: false,
@@ -24,7 +24,7 @@ const getters = {
 
 const mutations = {
   initBrick (state, payload) {
-    state.brickId = payload.id
+    state.brick = payload
   },
   initBrickExperience (state, payload) {
     state.experienceSet = payload

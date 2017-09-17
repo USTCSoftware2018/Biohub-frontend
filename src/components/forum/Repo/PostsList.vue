@@ -23,6 +23,7 @@
     props: ['brickId'],
     data () {
       return {
+        postContent: '',
         loadedData: null,
         displayPost: [],
         startPoint: 0,
@@ -38,7 +39,18 @@
         this.startPoint -= 10
       },
       setPage (page) {
-
+      },
+      submitPost (id) {
+        this.postContent = document.querySelector('#postContent' + id).innerText
+        console.log(this.postContent)
+        axios.post('/api/forum/posts/', {
+          experience_id: id,
+          content: this.postContent
+        }).then((response) => {
+          console.log(response)
+          document.querySelector('#postContent').innerText = ''
+          this.postContent = ''
+        })
       }
     },
     created () {

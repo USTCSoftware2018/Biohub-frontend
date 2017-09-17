@@ -75,7 +75,7 @@
           element2.innerHTML = '<i class="fa fa-angle-up"></i> Hide'
         } else {
           element.classList.add('hide')
-          element2.innerHTML = '<i class="fa fa-comment-o"></i>' + this.$store.state.BrickStatus.experienceSet[index].posts_num + ' Comment(s)'
+          element2.innerHTML = '<i class="fa fa-comment-o"></i> ' + this.$store.state.BrickStatus.experienceSet[index].posts_num + ' Comment(s)'
         }
       },
       expandExperience (id) {
