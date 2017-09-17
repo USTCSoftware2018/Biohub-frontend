@@ -25,7 +25,6 @@
 </template>
 
 <script>
-  import autosize from 'autosize'
   export default {
     props: ['brickId'],
     data () {
