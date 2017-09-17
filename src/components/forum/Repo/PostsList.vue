@@ -12,11 +12,11 @@
       </ul>
     </nav>
     <form class="postForm">
-      <div class="textarea" :id="'postOutsideContainer'+ brickId">
+      <div class="textarea" :id="'postOutsideContainer'+ expId">
         <div contenteditable="true" v-model="postContent"
              v-on:focus="postFocus"
              v-on:blur="postBlur"
-             :id="'postContent'+ brickId" class="innerText">
+             :id="'postContent'+ expId" class="innerText">
         </div>
       </div>
       <button class="btn btn-forum" @click.prevent="submitPost()">Submit</button>
@@ -26,7 +26,7 @@
 
 <script>
   export default {
-    props: ['brickId'],
+    props: ['expId'],
     data () {
       return {
         postContent: '',
@@ -47,26 +47,28 @@
       setPage (page) {
       },
       submitPost () {
-        this.postContent = document.querySelector('#postContent' + this.brickId).innerText
+        this.postContent = document.querySelector('#postContent' + this.expId).innerText
         console.log(this.postContent)
         axios.post('/api/forum/posts/', {
-          experience_id: this.brickId,
+          experience_id: this.expId,
           content: this.postContent
         }).then((response) => {
           console.log(response)
-          document.querySelector('#postContent' + this.brickId).innerText = ''
+          document.querySelector('#postContent' + this.expId).innerText = ''
           this.postContent = ''
+          this.displayPost.splice(0, 0, response.data)
+          this.$store.commit('newCommentReceived', this.expId)
         })
       },
       postFocus () {
-        $('#postOutsideContainer' + this.brickId)[0].classList.add('textareaFocus')
+        $('#postOutsideContainer' + this.expId)[0].classList.add('textareaFocus')
       },
       postBlur () {
-        $('#postOutsideContainer' + this.brickId)[0].classList.remove('textareaFocus')
+        $('#postOutsideContainer' + this.expId)[0].classList.remove('textareaFocus')
       }
     },
     created () {
-      axios.get(`/api/forum/experiences/${this.brickId}/posts/`).then((response) => {
+      axios.get(`/api/forum/experiences/${this.expId}/posts/`).then((response) => {
         this.loadedData = response.data
         this.startPoint = response.data.results.length - 1
         this.load()

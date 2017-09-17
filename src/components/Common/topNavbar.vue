@@ -47,7 +47,7 @@
              data-toggle="dropdown"
              role="button"
              aria-haspopup="true"
-             aria-expanded="false">
+             aria-expanded="false" style="">
             <span class="navbar-avatar">
               <img :src="avatarURL">
             </span>
@@ -70,7 +70,6 @@
   export default {
     data () {
       return {
-        avatarURL: '',
         searchContent: '',
         notice: null
       }
@@ -81,6 +80,9 @@
       },
       userName () {
         return this.$store.getters.userName
+      },
+      avatarURL () {
+        return this.$store.state.UserAuth.loggedUser.avatar_url
       }
     },
     methods: {

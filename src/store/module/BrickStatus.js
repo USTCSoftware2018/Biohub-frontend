@@ -33,11 +33,18 @@ const mutations = {
     }
   },
   changeUpvoteStatus (state, payload) {
-    console.log(payload.index)
     var tmp = deepCopy(state.experienceSet[payload.index])
     tmp.voted = payload.status
     tmp.up_vote_num += payload.flag
     state.experienceSet.splice(payload.index, 1, tmp)
+  },
+  newCommentReceived (state, expId) {
+    for (var index in state.experienceSet) {
+      if (state.experienceSet[index].id === expId) {
+        console.log(expId)
+        state.experienceSet[index].posts_num += 1
+      }
+    }
   }
 }
 

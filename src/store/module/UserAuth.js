@@ -21,6 +21,7 @@ const getters = {
 
 const mutations = {
   login (state, user) {
+    console.log(user)
     state.loggedUser = user
     Lockr.set('user', Crypto.AES.encrypt(JSON.stringify(user), 'secretkey').toString())
     console.log(Crypto.AES.encrypt(JSON.stringify(user), 'secretkey').toString())

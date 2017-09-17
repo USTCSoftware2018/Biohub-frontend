@@ -39,7 +39,7 @@
 <script>
   export default {
     name: 'login',
-    beforeCreate () {
+    created () {
       axios.get('/api/users/me/').then((response) => {
         this.$store.commit('login', response.data)
         window.location.href = '/forum'

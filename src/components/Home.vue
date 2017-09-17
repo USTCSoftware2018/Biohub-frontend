@@ -25,8 +25,9 @@
   import axios from 'axios'
   export default {
     name: 'home',
-    beforeCreate () {
+    created () {
       axios.get('/api/users/me/').then((_) => {
+        this.$store.commit('login', _.data)
         window.location.href = '/forum'
       })
     },
