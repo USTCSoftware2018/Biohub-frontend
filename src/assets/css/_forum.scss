@@ -225,16 +225,27 @@
     font-size: 20px;
     width: 85%;
     resize: none;
-    line-height: 0.2rem;
-    border: 1px solid darken($border-color, 5%);
+    line-height: 27px;
+    border-style: none;
+    border-radius: 5px;
+    padding-left: 5px;
+    background-color: lighten($border-color, 10%);
     vertical-align: middle;
-    border-radius: 0.05rem;
-    padding: 0.05rem 0.03rem;
     @include transition(border-color);
-    &:focus {
+    @include transition(background-color);
+    .innerText {
       outline: none;
-      border-color: $color-blue-2;
+      margin-top: 3px;
+      margin-bottom: 3px;
     }
+  }
+  .textareaFocus {
+    outline: none;
+    border-color: $color-blue-2;
+    background-color: white;
+    line-height: 25px;
+    border-style: solid;
+    border-width: 1px;
   }
   button {
     display: inline-block;

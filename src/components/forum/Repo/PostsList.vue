@@ -12,13 +12,20 @@
       </ul>
     </nav>
     <form class="postForm">
-      <div v-model="postContent" class="textarea" contenteditable="true" id="postContent"></div>
-      <button class="btn btn-forum" @click.prevent="submitPost">Submit</button>
+      <div class="textarea" :id="'postOutsideContainer'+ brickId">
+        <div contenteditable="true" v-model="postContent"
+             v-on:focus="postFocus"
+             v-on:blur="postBlur"
+             :id="'postContent'+ brickId" class="innerText">
+        </div>
+      </div>
+      <button class="btn btn-forum" @click.prevent="submitPost()">Submit</button>
     </form>
   </div>
 </template>
 
 <script>
+  import autosize from 'autosize'
   export default {
     props: ['brickId'],
     data () {
@@ -40,17 +47,23 @@
       },
       setPage (page) {
       },
-      submitPost (id) {
-        this.postContent = document.querySelector('#postContent' + id).innerText
+      submitPost () {
+        this.postContent = document.querySelector('#postContent' + this.brickId).innerText
         console.log(this.postContent)
         axios.post('/api/forum/posts/', {
-          experience_id: id,
+          experience_id: this.brickId,
           content: this.postContent
         }).then((response) => {
           console.log(response)
-          document.querySelector('#postContent').innerText = ''
+          document.querySelector('#postContent' + this.brickId).innerText = ''
           this.postContent = ''
         })
+      },
+      postFocus () {
+        $('#postOutsideContainer' + this.brickId)[0].classList.add('textareaFocus')
+      },
+      postBlur () {
+        $('#postOutsideContainer' + this.brickId)[0].classList.remove('textareaFocus')
       }
     },
     created () {

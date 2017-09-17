@@ -45,7 +45,7 @@
             View Document
           </div>
           <div class="collapse" id="collapseDocument">
-            <div class="well" v-html="bDocument">
+            <div class="well">
             </div>
           </div>
           <experience-list></experience-list>
