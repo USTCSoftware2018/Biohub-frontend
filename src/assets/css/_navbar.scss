@@ -1,7 +1,6 @@
 .navbar-biohub {
   margin-bottom: 0;
   border-radius: 0;
-  border: none;
   background-color: $navbar-color;
 
   .nav .open > a {
@@ -73,7 +72,7 @@
       }
       li {
         text-decoration: none !important;
-        border: 0px;
+        border-bottom-width: 0;
       }
     }
   }
@@ -111,44 +110,7 @@
   }
 }
 
-#notice {
-  ul li a {
-    background-color: white !important;
-    color: black;
-  }
-  li a {
-    border-bottom: none !important;
-    &:hover {
-      border-bottom: none !important;
-    }
-  }
-  li + li {
-    a {
-      border-top: 1px solid $border-color;
-    }
-  }
-  .head-info {
-    color: black;
-    padding: 0.05rem 0.2rem;
-    border-bottom: 1px solid $border-color;
-    background-color: whitesmoke !important;
-    &:focus {
-      background-color: whitesmoke !important;
-    }
-  }
-}
-.dropdown-notice {
-  a {
-    display: block;
-    width: 400px;
-    word-wrap:break-word;
-    word-break: break-all;
-    white-space: normal !important;
-  }
-  right: -150px !important;
-  height: 400px;
-  overflow-y: scroll;
-}
+
 .open {
   > a {
     background-color: darken($color-blue-1, 5%) !important;

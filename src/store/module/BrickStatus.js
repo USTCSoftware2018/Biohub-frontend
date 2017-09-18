@@ -12,7 +12,7 @@ function deepCopy (obj) {
   return newobj
 }
 const state = {
-  brick: 0,
+  brick: null,
   experienceSet: [],
   hasStarred: false,
   hasRated: false,

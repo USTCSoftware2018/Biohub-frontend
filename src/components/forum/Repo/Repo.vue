@@ -4,9 +4,9 @@
       <div class="container">
         <div class="repo-type">Coding</div>
         <div class="repo-info-name">
-          BBa_{{ rResult.name }}
+          BBa_{{ Brick.name }}
         </div>
-        <div class="repo-info-addon">{{ rResult.designer }}@{{rResult.group_name}}
+        <div class="repo-info-addon">{{ Brick.designer }}@{{Brick.group_name}}
       </div>
         <!--div class="repo-info-addon">
           Followers: <a href="#">{{watch_num}}</a>
@@ -22,12 +22,12 @@
           <a role="button" data-toggle="collapse" href="#rate" aria-expanded="false" aria-controls="rate">
             Rate
           </a>
-          <a @click="watch(rResult.id)" id="watch">Watch</a><span>{{watchNum}}</span>
-          <a @click="star(rResult.id)" id="star">Star</a><span>{{starsNum}}</span>
+          <a @click="watch(Brick.id)" id="watch">Watch</a><span>{{watchNum}}</span>
+          <a @click="star(Brick.id)" id="star">Star</a><span>{{starsNum}}</span>
           <a @click="newExp">Write Your Experience</a>
           <div class="collapse" id="ruler">
             <div class="info-collapse">
-              <feature :feaData="rResult.seq_features"></feature>
+              <feature :feaData="Brick.seq_features"></feature>
             </div>
           </div>
           <div class="collapse" id="rate">
@@ -45,7 +45,7 @@
             View Document
           </div>
           <div class="collapse" id="collapseDocument">
-            <div class="well">
+            <div class="well" v-html="bDocument">
             </div>
           </div>
           <experience-list></experience-list>
@@ -101,7 +101,10 @@
         return this.$store.getters.userId
       },
       bDocument (id) {
-        return marked(this.$store.state.BrickStatus.brick.document.text)
+        return marked(this.Brick.document.text)
+      },
+      Brick () {
+        return this.$store.state.BrickStatus.brick
       }
     },
     watch: {
@@ -115,10 +118,7 @@
       Description, Experience, PageFooter, Star, Feature, ExperienceList, Editor
     },
     created () {
-      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/').then((response) => {
-        this.rResult = response.data
-        console.log(response.data)
-      })
+      this.$store.dispatch('loadBrick', this.$route.params.repo)
     },
     mounted () {
       const _this = this
