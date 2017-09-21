@@ -33,7 +33,8 @@
         loadedData: null,
         displayPost: [],
         startPoint: 0,
-        page: 1
+        page: 1,
+        maxPage: 1
       }
     },
     methods: {

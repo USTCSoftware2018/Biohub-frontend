@@ -54,39 +54,13 @@ export default new Router({
           component: forumHome
         },
         {
-          path: 'new',
-          component: RepoNew,
-          name: 'newDiscussion'
-        },
-        {
           path: ':repo',
           component: Repo,
+          name: 'Brick',
           children: [
             {
-              path: '',
-              component: RepoInfo,
-              name: 'RepoInfo'
-            },
-            {
-              path: 'experience',
-              component: RepoReview,
-              children: [
-                {
-                  path: '',
-                  component: ExperienceList,
-                  name: 'ExperienceList'
-                },
-                {
-                  path: 'new',
-                  component: Editor,
-                  name: 'ExperienceNew'
-                },
-                {
-                  path: ':id',
-                  component: ExperienceList,
-                  name: 'RepoExperience'
-                }
-              ]
+              path: 'experience/:id',
+              component: Repo
             }
           ]
         }

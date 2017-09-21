@@ -41,7 +41,10 @@
     <div class="row">
       <div class="container">
         <div class="col-md-9">
-          <div class="documentClick" role='button' data-toggle="collapse" href="#collapseDocument" aria-expanded="false" aria-controls="collapseDocument">
+          <div class="documentClick" v-if='insideExperience' @click="$router.push({name:'Brick',params:{repo:$route.params.repo}})">
+            View All Experience
+          </div>
+          <div class="documentClick" v-if='!insideExperience' role='button' data-toggle="collapse" href="#collapseDocument" aria-expanded="false" aria-controls="collapseDocument">
             View Document
           </div>
           <div class="collapse" id="collapseDocument">
@@ -87,13 +90,23 @@
   import '../../../utils/editormd.js'
   var editor = null
   export default {
+    watch: {
+      '$route' (to, from) {
+        if (to.params.id) {
+          this.insideExperience = true
+        } else {
+          this.insideExperience = false
+        }
+      }
+    },
     data () {
       return {
         rResult: null,
         watched: false,
         watchNum: 0,
         starred: false,
-        starsNum: 0
+        starsNum: 0,
+        insideExperience: false
       }
     },
     computed: {
@@ -107,12 +120,15 @@
         return this.$store.state.BrickStatus.brick
       }
     },
-    watch: {
-    },
     components: {
       Description, Experience, PageFooter, Star, Feature, ExperienceList, Editor
     },
     created () {
+      if (this.$route.params.id) {
+        this.insideExperience = true
+      } else {
+        this.insideExperience = false
+      }
       this.$store.dispatch('loadBrick', this.$route.params.repo)
     },
     mounted () {
