@@ -3,7 +3,7 @@
     <form class="biohub-form" style="padding-left:0;padding-right:0;"><img :src="$store.state.UserAuth.loggedUser.avatar"><input
       class="form-control " placeholder="Title here..." v-model="title"></form>
     <div id="editormd">
-      <textarea style="display:none;">### Hello Editor.md !</textarea>
+      <textarea style="display:none;">Hello World!</textarea>
     </div>
     <button class="btn btn-forum" @click="submit">Submit</button>
   </div>
@@ -40,7 +40,7 @@
       submit () {
         console.log(editor.getHTML())
         axios.post('/api/forum/experiences/', {
-          brick_id: this.$route.params.repo,
+          brick_name: this.$route.params.repo,
           content: {
             text: editor.getHTML(),
             file_ids: []

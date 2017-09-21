@@ -4,9 +4,9 @@
       <div class="container">
         <div class="repo-type">Coding</div>
         <div class="repo-info-name">
-          BBa_{{ Brick.name }}
+          {{ Brick.part_name }}
         </div>
-        <div class="repo-info-addon">{{ Brick.designer }}@{{Brick.group_name}}
+        <div class="repo-info-addon">{{ Brick.author }}@{{Brick.group_name}}
       </div>
         <!--div class="repo-info-addon">
           Followers: <a href="#">{{watch_num}}</a>
@@ -22,8 +22,8 @@
           <a role="button" data-toggle="collapse" href="#rate" aria-expanded="false" aria-controls="rate">
             Rate
           </a>
-          <a @click="watch(Brick.id)" id="watch">Watch</a><span>{{watchNum}}</span>
-          <a @click="star(Brick.id)" id="star">Star</a><span>{{starsNum}}</span>
+          <a @click="watch(Brick.part_name)" id="watch">Watch</a><span>{{watchNum}}</span>
+          <a @click="star(Brick.part_name)" id="star">Star</a><span>{{starsNum}}</span>
           <a @click="newExp">Write Your Experience</a>
           <div class="collapse" id="ruler">
             <div class="info-collapse">
@@ -108,11 +108,6 @@
       }
     },
     watch: {
-      '$route' (to, from) {
-        if (to.name === 'RepoExperienceList' || to.name === 'Repo') {
-          this.changeView()
-        }
-      }
     },
     components: {
       Description, Experience, PageFooter, Star, Feature, ExperienceList, Editor
@@ -122,7 +117,7 @@
     },
     mounted () {
       const _this = this
-      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/watched_users/').then((response) => {
+      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/users_watching/').then((response) => {
         this.watchNum = response.data.results.length
         _.forEach(response.data.results, (user) => {
           if (user.id === this.userID) {
@@ -131,7 +126,7 @@
           }
         })
       })
-      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/starred_users/').then((response) => {
+      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/users_starred/').then((response) => {
         this.starsNum = response.data.results.length
         _.forEach(response.data.results, (user) => {
           if (user.id === this.userID) {
@@ -144,15 +139,15 @@
     methods: {
       brief (text) {
       },
-      watch (id) {
+      watch (name) {
         if (this.watched) {
-          axios.post(`/api/forum/bricks/${id}/cancel_watch/`).then((response) => {
+          axios.post(`/api/forum/bricks/${name}/cancel_watch/`).then((response) => {
             document.querySelector('#watch').innerHTML = 'Watch'
             this.watched = false
             this.watchNum -= 1
           })
         } else {
-          axios.post(`/api/forum/bricks/${id}/watch/`).then((response) => {
+          axios.post(`/api/forum/bricks/${name}/watch/`).then((response) => {
             document.querySelector('#watch').innerHTML = 'Watching'
             this.watched = true
             this.watchNum += 1
@@ -161,15 +156,15 @@
           })
         }
       },
-      star (id) {
+      star (name) {
         if (this.starred) {
-          axios.post(`/api/forum/bricks/${id}/unstar/`).then((response) => {
+          axios.post(`/api/forum/bricks/${name}/unstar/`).then((response) => {
             document.querySelector('#star').innerHTML = 'Star'
             this.starred = false
             this.starsNum -= 1
           })
         } else {
-          axios.post(`/api/forum/bricks/${id}/star/`).then((response) => {
+          axios.post(`/api/forum/bricks/${name}/star/`).then((response) => {
             document.querySelector('#star').innerHTML = 'Unstar'
             this.starred = true
             this.starsNum += 1

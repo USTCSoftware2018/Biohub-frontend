@@ -71,6 +71,7 @@
     methods: {
       Login () {
         this.$store.dispatch('loginAuth', {username: this.username, password: this.password})
+        console.log(this.$store)
       },
       Reset () {
         window.location.href = '/reset'

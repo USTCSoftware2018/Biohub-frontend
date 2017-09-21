@@ -38,8 +38,7 @@ const mutations = {
     state.loginHasError = status
   },
   loginError (state, payload) {
-    state.loginErrorMessage = payload.message
-    state.loginErrorPart = payload.part
+    state.loginErrorMessage = payload
   }
 }
 

@@ -63,7 +63,6 @@
 
 <script>
   import topNavbar from '../Common/topNavbar.vue'
-  import RepoList from './Repo/RepoList.vue'
   import PageFooter from '../Common/PageFooter.vue'
 
   export default {
@@ -78,7 +77,7 @@
       }
     },
     components: {
-      topNavbar, RepoList, PageFooter
+      topNavbar, PageFooter
     },
     created () {
     },

@@ -35,7 +35,7 @@ const mutations = {
   changeUpvoteStatus (state, payload) {
     var tmp = deepCopy(state.experienceSet[payload.index])
     tmp.voted = payload.status
-    tmp.up_vote_num += payload.flag
+    tmp.votes += payload.flag
     state.experienceSet.splice(payload.index, 1, tmp)
   },
   newCommentReceived (state, expId) {
@@ -63,7 +63,7 @@ const actions = {
         let indexInto = index
         console.log(index)
         if (state.experienceSet[index].voted) {
-          axios.post(`/api/forum/experiences/${id}/cancel_up_vote/`).then((response) => {
+          axios.post(`/api/forum/experiences/${id}/unvote/`).then((response) => {
             commit('changeUpvoteStatus', {
               status: false,
               index: indexInto,
@@ -73,7 +73,7 @@ const actions = {
             console.log(e)
           })
         } else {
-          axios.post(`/api/forum/experiences/${id}/up_vote/`).then((response) => {
+          axios.post(`/api/forum/experiences/${id}/vote/`).then((response) => {
             commit('changeUpvoteStatus', {
               status: true,
               index: indexInto,
