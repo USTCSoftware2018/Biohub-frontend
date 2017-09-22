@@ -4,7 +4,7 @@
       <div class="container">
         <div class="repo-type">Coding</div>
         <div class="repo-info-name">
-          {{ Brick.part_name }}
+          {{ Brick.part_name }} <star isEnable="true"></star>
         </div>
         <div class="repo-info-addon">{{ Brick.author }}@{{Brick.group_name}}
       </div>
@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="collapse" id="rate">
-            <div class="info-collapse" style="width: 150px;">
+            <div class="info-collapse" style="width: 170px;">
               <star :isEnable="true"></star>
             </div>
           </div>

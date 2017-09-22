@@ -22,7 +22,7 @@
     position: relative;
     display: inline-block;
     vertical-align: middle;
-
+    font-size: 18px !important;
   }
   .star-container-empty {
     z-index: -1;
@@ -48,6 +48,9 @@
     height: 20px;
     background-size: cover;
     display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: none;
   }
   .empty-star:first-child, .full-star:first-child {
     margin-left: 2px;
@@ -61,6 +64,9 @@
     height: 20px;
     background-size: cover;
     display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: none;
   }
   .cursorPointer {
     cursor: pointer;
@@ -84,8 +90,9 @@
     },
     methods: {
       calcMouse (e) {
+        console.log(e.layerX)
         if (this.canChange) {
-          this.wSize = Math.round((e.layerX-1)/10)/2.0 * 20
+          this.wSize = Math.round(e.layerX / 12)/2.0 * 20
         }
       },
       submit () {
