@@ -51,7 +51,8 @@ export default new Router({
       children: [
         {
           path: '',
-          component: forumHome
+          component: forumHome,
+          name: 'forumHomepage'
         },
         {
           path: ':repo',

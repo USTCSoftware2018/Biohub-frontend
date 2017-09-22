@@ -29,7 +29,7 @@
         <li><a href="/signup">Signup</a></li>
       </ul>
       <ul v-if="hasLogged" class="nav navbar-nav navbar-right navbar-biohub-toggle">
-        <li class="dropdown" id='notice'>
+        <li class="dropdown" id='notice' v-if="$route.name!=='forumHomepage'">
           <a href="javascript:;" class="dropdown-toggle"
              data-toggle="dropdown"
              role="button"
@@ -38,7 +38,9 @@
             notice
             <span class="caret"></span>
           </a>
-          <Notice></Notice>
+          <ul class="dropdown-menu dropdown-notice" style="border: 0px;">
+            <Notice></Notice>
+          </ul>
         </li>
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle"

@@ -46,14 +46,12 @@
     <div class="row">
       <div class="container">
         <div class="col-md-8 less-padding">
+          <notice></notice>
           <div class="forum-activity-border">
             <div class="forum-activity-content">
             </div>
             <div class="forum-activity-label"></div>
           </div>
-        </div>
-        <div class="col-md-4 less-padding">
-          <repo-list inside="home"></repo-list>
         </div>
       </div>
     </div>
@@ -64,6 +62,7 @@
 <script>
   import topNavbar from '../Common/topNavbar.vue'
   import PageFooter from '../Common/PageFooter.vue'
+  import Notice from '../Common/notice.vue'
 
   export default {
     data () {
@@ -77,9 +76,13 @@
       }
     },
     components: {
-      topNavbar, PageFooter
+      topNavbar, PageFooter, Notice
     },
     created () {
+      axios.get('/api/users/me/').then((response) => {
+      }).catch((_) => {
+        this.$store.commit('logout')
+      })
     },
     methods: {
       search (name) {

@@ -1,6 +1,6 @@
 <template>
   <div class="postContainer">
-    <div class="postHeader">{{loadedData.results.length}} Comment(s)</div>
+    <div class="postHeader">{{num}} Comment(s)</div>
     <div class="posts">
       <div class="post" v-for="item in displayPost"><a class='commentUserInfo' :href="'/user/' + item.author.username"><img v-bind:src="item.author.avatar_url">{{item.author.username}} </a>{{item.content}}</div>
     </div>
@@ -31,7 +31,8 @@
         displayPost: [],
         startPoint: 0,
         page: 1,
-        maxPage: 1
+        maxPage: 1,
+        num: 0
       }
     },
     methods: {
@@ -70,6 +71,10 @@
       axios.get(`/api/forum/experiences/${this.expId}/posts/`).then((response) => {
         this.loadedData = response.data
         this.startPoint = response.data.results.length - 1
+        this.num = response.data.count
+        this.maxPage = Math.floor(response.data.count / 10) + 1
+        if (this.maxPage > 5) {
+        }
         this.load()
       })
     }

@@ -72,3 +72,19 @@
 .noticeFoot {
 
 }
+
+.noticeHome {
+  background-color: white;
+  padding: 10px 10px;
+  box-shadow: 0 0 3px $border-color;
+  .noticeHead {
+    text-align: left;
+    background-color: white;
+  }
+  .noticeItem {
+    list-style: none;
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
