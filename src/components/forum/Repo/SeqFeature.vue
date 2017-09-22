@@ -48,13 +48,12 @@
     },
     mounted () {
       this.endPoint = _.result(_.find(this.feaData, (fea) => {
-        return (fea.feature_type === 'stop' | fea.feature_type === 'new_feature')
-      }), 'end_loc') + 10
-      console.log(this.length)
+        return (fea.type === 'stop' | fea.type === 'new_feature')
+      }), 'last') + 10
       _.forEach(this.feaData, (fea) => {
-        $('#fContainer').append('<button type="button" class="fea-button color-' + fea.feature_type +
-          '" style="left: ' + fea.start_loc / this.endPoint * this.length +
-          'px" data-toggle="tooltip" data-placement="bottom" title="' + fea.feature_type + '"></button>')
+        $('#fContainer').append('<button type="button" class="fea-button color-' + fea.type +
+          '" style="left: ' + fea.first / this.endPoint * this.length +
+          'px" data-toggle="tooltip" data-placement="bottom" title="' + fea.type + '"></button>')
       })
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()

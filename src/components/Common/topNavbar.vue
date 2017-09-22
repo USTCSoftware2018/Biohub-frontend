@@ -38,9 +38,7 @@
             notice
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu dropdown-notice" style="border: 0px;">
-            <li v-for="item in notice.results" v-html="item.message" class="noticeItem"></li>
-          </ul>
+          <Notice></Notice>
         </li>
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle"
@@ -66,6 +64,7 @@
 
 <script>
   import axios from 'axios'
+  import Notice from './notice.vue'
 
   export default {
     data () {
@@ -73,6 +72,9 @@
         searchContent: '',
         notice: null
       }
+    },
+    components: {
+      Notice
     },
     computed: {
       hasLogged () {
@@ -103,34 +105,7 @@
       }
     },
     mounted () {
-      console.log(this.$store)
       this.$store.commit('loadFromLS')
-      axios.get('/api/notices/').then((response) => {
-        this.notice = response.data
-        let titlePatt = /\[\[(.*?)\]\]/g
-        let urlPatt = /\(\((.*?)\)\)/g
-        _.forEach(this.notice.results, (notice) => {
-          let count = 0
-          notice.message = '<p>' + notice.message + '</p>'
-          let urlContainer = notice.message.match(urlPatt)
-          axios.get(urlContainer[0].substring(2, urlContainer[0].length - 2)).then((response) => {
-            urlContainer[0] = '/user/' + response.data.username + '/'
-            notice.message = notice.message.replace(titlePatt, (place) => {
-              let length = place.length
-              let uLength = urlContainer[count].length
-              if (count === 0) {
-                count++
-                return '</p><a href="' + urlContainer[0] + '">' + place.substring(2, length - 2) + '</a><p>'
-              } else {
-                count++
-                return '</p><a href="' + urlContainer[count - 1].substring(6, uLength - 2) + '">' + place.substring(2, length - 2) + '</a><p>'
-              }
-            })
-            notice.message = notice.message.replace(urlPatt, '')
-            notice.created = notice.created.slice(0, 10) + ' ' + notice.created.slice(11, -8)
-          })
-        })
-      })
     }
   }
 </script>

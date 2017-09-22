@@ -52,3 +52,23 @@
 .noticeItem + .noticeItem {
   border-top: 1px solid $border-color;
 }
+.noticeHead {
+  background-color: #eee;
+  border-bottom: 1px solid $border-color;
+  font-size: 16px;
+  color: $text-color-rev;
+  padding: 5px 10px;
+  > a {
+    background: none !important;
+    display: inline-block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    cursor: pointer;
+    text-decoration: none !important;
+    color: $color-blue-2 !important;
+  }
+}
+.noticeFoot {
+
+}

@@ -27,7 +27,7 @@
           <a @click="newExp">Write Your Experience</a>
           <div class="collapse" id="ruler">
             <div class="info-collapse">
-              <feature :feaData="Brick.seq_features"></feature>
+              <feature :feaData="Brick.ruler.seq_features"></feature>
             </div>
           </div>
           <div class="collapse" id="rate">
@@ -157,7 +157,7 @@
       },
       watch (name) {
         if (this.watched) {
-          axios.post(`/api/forum/bricks/${name}/cancel_watch/`).then((response) => {
+          axios.post(`/api/forum/bricks/${name}/unwatch/`).then((response) => {
             document.querySelector('#watch').innerHTML = 'Watch'
             this.watched = false
             this.watchNum -= 1

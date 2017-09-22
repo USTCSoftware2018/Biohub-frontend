@@ -4,11 +4,8 @@
     <div class="posts">
       <div class="post" v-for="item in displayPost"><a class='commentUserInfo' :href="'/user/' + item.author.username"><img v-bind:src="item.author.avatar_url">{{item.author.username}} </a>{{item.content}}</div>
     </div>
-    <nav class='postPage' aria-label="navigation">
+    <nav class='postPage' aria-label="navigation" :id='"postPage"+expId'>
       <ul class="pagination">
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
       </ul>
     </nav>
     <form class="postForm">
@@ -46,6 +43,7 @@
         this.startPoint -= 10
       },
       setPage (page) {
+        let i = 1
       },
       submitPost () {
         this.postContent = document.querySelector('#postContent' + this.expId).innerText
