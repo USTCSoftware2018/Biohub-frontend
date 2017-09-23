@@ -39,19 +39,20 @@
       }
     },
     methods: {
-      load () {
-        this.displayPost = []
-        for (var i = this.startPoint; (i > (this.startPoint - 10)) && (i >= 0); i--) {
-          this.displayPost.push(this.loadedData.results[i])
-        }
-        this.startPoint -= 10
-      },
       setPage (page) {
+        if (page === this.page) return
         if (Math.abs(page - this.page) > 5) {
         } else {
           console.log($('#postPage' + this.expId + ' li')[(this.page + 4) % 5])
           $('#postPage' + this.expId + ' li')[(this.page + 4) % 5].firstChild.classList.remove('disabled')
           $('#postPage' + this.expId + ' li')[(page + 4) % 5].firstChild.classList.add('disabled')
+          axios.get(`/api/forum/experiences/${this.expId}/posts/?page=${page}`).then((response) => {
+            this.displayPost = []
+            for (var i = 0; i < response.data.results.length; i++) {
+              this.displayPost.splice(0, 0, response.data.results[i])
+            }
+          })
+          console.log(this.loadedData)
         }
         this.page = page
       },
@@ -79,7 +80,6 @@
     created () {
       axios.get(`/api/forum/experiences/${this.expId}/posts/`).then((response) => {
         this.loadedData = response.data
-        this.startPoint = response.data.results.length - 1
         this.num = response.data.count
         this.maxPage = Math.floor(response.data.count / 10) + 1
         if (this.maxPage > 5) {
@@ -97,7 +97,10 @@
         this.$nextTick(() => {
           $('#postPage' + this.expId + ' li')[0].firstChild.classList.add('disabled')
         })
-        this.load()
+        this.displayPost = []
+        for (var j = 0; j < response.data.results.length; j++) {
+          this.displayPost.splice(0, 0, response.data.results[j])
+        }
       }).catch((e) => {
         console.log(e)
       })
