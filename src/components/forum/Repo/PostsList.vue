@@ -4,9 +4,8 @@
     <div class="posts">
       <div class="post" v-for="item in displayPost"><a class='commentUserInfo' :href="'/user/' + item.author.username"><img v-bind:src="item.author.avatar_url">{{item.author.username}} </a>{{item.content}}</div>
     </div>
-    <nav class='postPage' aria-label="navigation" :id='"postPage"+expId'>
-      <ul class="pagination">
-      </ul>
+    <nav class='postPage' aria-label="navigation">
+      <div :id='"postPage"+expId'></div>
     </nav>
     <form class="postForm">
       <div class="textarea" :id="'postOutsideContainer'+ expId">
@@ -22,6 +21,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   export default {
     props: ['expId'],
     data () {
@@ -44,7 +44,14 @@
         this.startPoint -= 10
       },
       setPage (page) {
-        let i = 1
+        if (page > this.page) {
+          if (page - this.page > 5) {
+          } else {
+            $('#postPage' + this.expId + ' ul li')[(this.page + 4) % 5].classNode.remove('disabled')
+            $('#postPage' + this.expId + ' ul li')[(page + 4) % 5].classNode.add('disabled')
+          }
+        }
+        this.page = page
       },
       submitPost () {
         this.postContent = document.querySelector('#postContent' + this.expId).innerText
@@ -74,6 +81,23 @@
         this.num = response.data.count
         this.maxPage = Math.floor(response.data.count / 10) + 1
         if (this.maxPage > 5) {
+        } else {
+          if (this.num === 0) {
+            $('#postPage' + this.expId + ' ul').append('<p style="color: #999;">Oops, nothing\'s here...</p>')
+          } else {
+            let i = 1
+            var tempString = '<ul class="pagination">'
+            while (i <= this.maxPage) {
+              if (i === 1) tempString += '<li><a href="#" class="disabled" @click="setPage(' + i + ')">' + i + '</a></li>'
+              else tempString += '<li><a href="#" @click="setPage(' + i + ')">' + i + '</a></li>'
+              i++
+            }
+            tempString += '</ul>'
+            var Pagination = Vue.extend({
+              template: tempString
+            })
+            new Pagination().$mount('#postPage' + this.expId)
+          }
         }
         this.load()
       })

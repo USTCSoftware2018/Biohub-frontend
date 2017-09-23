@@ -28,9 +28,6 @@ const mutations = {
   },
   initBrickExperience (state, payload) {
     state.experienceSet = payload
-    for (var index in payload) {
-      state.commentsShow['exp' + payload[index].id] = false
-    }
   },
   changeUpvoteStatus (state, payload) {
     var tmp = deepCopy(state.experienceSet[payload.index])
@@ -52,9 +49,13 @@ const actions = {
   loadBrick (context, id) {
     axios.get(`/api/forum/bricks/${id}/`).then((response) => {
       context.commit('initBrick', response.data)
+    }).catch((e) => {
+      console.log(e)
     })
     axios.get(`/api/forum/bricks/${id}/experiences/`).then((response) => {
       context.commit('initBrickExperience', response.data.results)
+    }).catch((e) => {
+      console.log(e)
     })
   },
   upVote ({state, commit}, id) {
