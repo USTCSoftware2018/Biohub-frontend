@@ -6,8 +6,7 @@
         <div class="repo-info-name">
           {{ Brick.part_name }} <star isEnable="true"></star>
         </div>
-        <div class="repo-info-addon">{{ Brick.author }}@{{Brick.group_name}}
-      </div>
+        <div class="repo-info-addon">{{ Brick.author }}@{{Brick.group_name}}</div>
         <!--div class="repo-info-addon">
           Followers: <a href="#">{{watch_num}}</a>
           <button class="btn btn-forum btn-watch" id='watchButton' @click="watch(rResult.id)">Watch</button>
@@ -19,7 +18,7 @@
           <a role="button" data-toggle="collapse" href="#ruler" aria-expanded="false" aria-controls="ruler">
             Ruler
           </a>
-          <a role="button" data-toggle="collapse" href="#rate" aria-expanded="false" aria-controls="rate">
+          <a role="button" data-toggle="collapse" href="#                                                            rate" aria-expanded="false" aria-controls="rate">
             Rate
           </a>
           <a @click="watch(Brick.part_name)" id="watch">Watch</a><span>{{watchNum}}</span>
@@ -48,7 +47,7 @@
             View Document
           </div>
           <div class="collapse" id="collapseDocument">
-            <div class="well" v-html="bDocument">
+            <div class="well" v-html="bDocument" style="text-align: left; text-indent: 2em;">
             </div>
           </div>
           <experience-list></experience-list>
@@ -141,6 +140,8 @@
             document.querySelector('#watch').innerText = 'Watching'
           }
         })
+      }).catch((e) => {
+        console.log(e)
       })
       axios.get('/api/forum/bricks/' + this.$route.params.repo + '/users_starred/').then((response) => {
         this.starsNum = response.data.results.length
@@ -150,6 +151,8 @@
             document.querySelector('#star').innerText = 'Unstar'
           }
         })
+      }).catch((e) => {
+        console.log(e)
       })
     },
     methods: {

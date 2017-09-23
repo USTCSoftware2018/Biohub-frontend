@@ -4,8 +4,9 @@
     <div class="posts">
       <div class="post" v-for="item in displayPost"><a class='commentUserInfo' :href="'/user/' + item.author.username"><img v-bind:src="item.author.avatar_url">{{item.author.username}} </a>{{item.content}}</div>
     </div>
-    <nav class='postPage' aria-label="navigation" :id='"postPage"+expId'>
-      <ul class="pagination">
+    <nav class='postPage' aria-label="navigation">
+      <ul class="pagination" :id='"postPage" + this.expId'>
+        <li v-for="i in paginationSequence"><a @click="setPage(i)">{{i}}</a></li>
       </ul>
     </nav>
     <form class="postForm">
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   export default {
     props: ['expId'],
     data () {
@@ -32,7 +34,8 @@
         startPoint: 0,
         page: 1,
         maxPage: 1,
-        num: 0
+        num: 0,
+        paginationSequence: []
       }
     },
     methods: {
@@ -44,7 +47,13 @@
         this.startPoint -= 10
       },
       setPage (page) {
-        let i = 1
+        if (Math.abs(page - this.page) > 5) {
+        } else {
+          console.log($('#postPage' + this.expId + ' li')[(this.page + 4) % 5])
+          $('#postPage' + this.expId + ' li')[(this.page + 4) % 5].firstChild.classList.remove('disabled')
+          $('#postPage' + this.expId + ' li')[(page + 4) % 5].firstChild.classList.add('disabled')
+        }
+        this.page = page
       },
       submitPost () {
         this.postContent = document.querySelector('#postContent' + this.expId).innerText
@@ -74,8 +83,23 @@
         this.num = response.data.count
         this.maxPage = Math.floor(response.data.count / 10) + 1
         if (this.maxPage > 5) {
+        } else {
+          var i = 1
+          if (this.num === 0) {
+            $('#postPage' + this.expId).append('<p style="color:#999;">Oops, nothing\'s here</p>')
+            i++
+          }
+          while (i <= this.maxPage) {
+            this.paginationSequence.push(i)
+            i++
+          }
         }
+        this.$nextTick(() => {
+          $('#postPage' + this.expId + ' li')[0].firstChild.classList.add('disabled')
+        })
         this.load()
+      }).catch((e) => {
+        console.log(e)
       })
     }
   }

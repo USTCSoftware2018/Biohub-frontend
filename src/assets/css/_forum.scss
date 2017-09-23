@@ -294,10 +294,18 @@
   text-align: center;
   .pagination li a {
     border: none;
-    color: $text-color-rev;
+    color: $color-blue-2;
     &:hover {
       background-color: transparent;
-      color: $color-blue-2;
+      color: darken($color-blue-2,5%);
+    }
+    &.disabled {
+      color: grey;
+      cursor: default;
+    }
+    &.disabled:hover {
+      background-color: transparent;
+      color: grey;
     }
   }
 }
