@@ -47,6 +47,7 @@
       <div class="container">
         <div class="col-md-8 less-padding">
           <div class="noticeHome">
+            <div class="noticeHead">Timeline</div>
             <div class="noticeItem"  v-for="item in timeline">
               <div v-html="item" style="display: inline-block"></div>
               <div class="pull-right" style="display: inline-block">sdfsdf</div>
