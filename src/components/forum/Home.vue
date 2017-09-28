@@ -8,16 +8,16 @@
           . Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <button class="btn btn-biohub btn-biohub-forum-welcome-default">Learn More</button>
-        <button class="btn btn-biohub btn-biohub-forum-welcome-notice" data-toggle="modal" data-target="#myModal">Start a Discussion</button>
+        <button class="btn btn-biohub btn-biohub-forum-welcome-notice" data-toggle="modal" data-target="#findPart">Find a Part</button>
         <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="findPart" tabindex="-1" role="dialog" aria-labelledby="findPartLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">New Discussion</h4>
+                <h4 class="modal-title" id="findPartLabel">Find a Part</h4>
               </div>
-              <div class="modal-body">
+              <div class="modal-body biohub-form">
                 <div class="input-group">
                   <div class="input-group-addon" style="background: #eee;">Part Name:</div>
                   <input class="form-control" placeholder="Please input part name" v-model="newPartName"
@@ -35,7 +35,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-forum">Start a Discussion</button>
               </div>
             </div>
           </div>
