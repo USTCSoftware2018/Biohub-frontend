@@ -46,11 +46,11 @@
     <div class="row">
       <div class="container">
         <div class="col-md-8 less-padding">
-          <notice></notice>
-          <div class="forum-activity-border">
-            <div class="forum-activity-content">
+          <div class="noticeHome">
+            <div class="noticeItem"  v-for="item in timeline">
+              <div v-html="item" style="display: inline-block"></div>
+              <div class="pull-right" style="display: inline-block">sdfsdf</div>
             </div>
-            <div class="forum-activity-label"></div>
           </div>
         </div>
       </div>
@@ -72,7 +72,8 @@
         stateLoad: false,
         stateFound: false,
         stateNotFound: false,
-        findResult: null
+        findResult: null,
+        timeline: []
       }
     },
     components: {
@@ -82,6 +83,17 @@
       axios.get('/api/users/me/').then((response) => {
       }).catch((_) => {
         this.$store.commit('logout')
+      })
+      axios.get('/api/forum/activities/timeline/').then((response) => {
+        _.forEach(response.data.results, (t) => {
+          if (t.type === 'Watch') {
+            this.timeline.push('<a href="/user/' + t.params.user + '">' + t.params.user + '</a> began to watch <a href=' +
+              '"/forum/' + t.params.partName + '">' + t.params.partName + '</a>')
+          }
+        })
+        console.log(this.timeline)
+      }).catch((e) => {
+        console.log(e)
       })
     },
     methods: {

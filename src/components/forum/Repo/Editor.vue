@@ -28,6 +28,7 @@
           pluginPath: '/static/plugins/',
           mode: 'markdown',
           autoHeight: true,
+          autoFocus: false,
           toolbarAutoFixed: false,
           toolbarIcons: 'biohub',
           htmlDecode: true,
