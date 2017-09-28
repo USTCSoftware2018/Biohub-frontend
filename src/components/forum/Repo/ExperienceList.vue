@@ -12,8 +12,10 @@
             </div>
             <div class="list-group-item-text" v-html="item.content.text"></div>
             <div class="action-bar">
-              <button class="btn btn-forum" @click="upvote(item.id)" v-bind:class=
-                "{'hasVoted':$store.state.BrickStatus.experienceSet[index].voted}"><i class="fa fa-angle-up"></i> {{item.up_vote_num}}</button>
+              <button class="btn btn-forum" @click="upvote(item.id)" :id='"upvoteButton" + item.id' v-bind:class=
+                "{'hasVoted':$store.state.BrickStatus.experienceSet[index].voted, 'cannotVote': (item.author_name === $store.getters.userName)}">
+                <span v-if="!$store.state.BrickStatus.experienceSet[index].voted"><i class="fa fa-angle-up"></i></span>
+                <span v-else><i class="fa fa-angle-down"></i></span> {{item.up_vote_num}}</button>
               <a :id='"commentsButton" + item.id' @click="showComments(item.id, index)" style="margin-left: 15px;"><i class="fa fa-comment-o"></i>    {{$store.state.BrickStatus.experienceSet[index].posts_num}} Comment(s)</a>
               <post-list class='hide' :id='"comments"+item.id' :expId="item.id"></post-list>
             </div>

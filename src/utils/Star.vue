@@ -90,7 +90,6 @@
     },
     methods: {
       calcMouse (e) {
-        console.log(e.layerX)
         if (this.canChange) {
           this.wSize = Math.round(e.layerX / 12)/2.0 * 20
         }
