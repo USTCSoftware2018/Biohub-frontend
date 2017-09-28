@@ -68,6 +68,10 @@
           this.postContent = ''
           this.displayPost.splice(0, 0, response.data)
           this.$store.commit('newCommentReceived', this.expId)
+          if (this.num === 0) {
+            $('#postPage' + this.expId).empty()
+          }
+          this.num++
         })
       },
       postFocus () {
