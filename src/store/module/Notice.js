@@ -14,7 +14,7 @@ const mutations = {
   initNotice (state, payload) {
     state.thisPage = payload
   },
-  initNoticeNavbar(state, payload) {
+  initNoticeNavbar (state, payload) {
     state.navbarContent = payload.data
   }
 }

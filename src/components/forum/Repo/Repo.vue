@@ -2,7 +2,7 @@
   <div>
     <div class="row repo-wrapper">
       <div class="container">
-        <div class="repo-type">Coding</div>
+        <div class="repo-type">{{Brick.part_type}}</div>
         <div class="repo-info-name">
           {{ Brick.part_name }} <star :initial="Brick.rate_score"></star>
         </div>
