@@ -77,8 +77,6 @@
 </template>
 
 <script>
-  import Description from './RepoInfo.vue'
-  import Experience from './RepoReview.vue'
   import ExperienceList from './ExperienceList.vue'
   import PageFooter from '../../Common/PageFooter.vue'
   import Star from '../../../utils/Star.vue'
@@ -120,7 +118,7 @@
       }
     },
     components: {
-      Description, Experience, PageFooter, Star, Feature, ExperienceList, Editor
+      PageFooter, Star, Feature, ExperienceList, Editor
     },
     created () {
       if (this.$route.params.id) {

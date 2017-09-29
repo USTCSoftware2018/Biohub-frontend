@@ -12,12 +12,7 @@ import Profile from '@/components/forum/Profile/Profile'
 import Plugins from '@/components/plugins/plugins'
 import Search from '@/components/forum/Search/Search'
 import Settings from '@/components/account/Settings'
-import RepoInfo from '@/components/forum/Repo/RepoInfo'
-import RepoReview from '@/components/forum/Repo/RepoReview'
-import Editor from '@/components/forum/Repo/Editor'
-import ExperienceList from '@/components/forum/Repo/ExperienceList'
 import Reset from '@/components/account/Reset'
-import RepoNew from '@/components/forum/Repo/New'
 
 Vue.use(Router)
 
