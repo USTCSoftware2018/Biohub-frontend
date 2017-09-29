@@ -4,7 +4,7 @@
       <div class="container">
         <div class="repo-type">Coding</div>
         <div class="repo-info-name">
-          {{ Brick.part_name }} <star isEnable="true"></star>
+          {{ Brick.part_name }} <star :initial="Brick.rate_score"></star>
         </div>
         <div class="repo-info-addon">{{ Brick.author }}@{{Brick.group_name}}</div>
         <!--div class="repo-info-addon">
@@ -18,20 +18,16 @@
           <a role="button" data-toggle="collapse" href="#ruler" aria-expanded="false" aria-controls="ruler">
             Ruler
           </a>
-          <a role="button" data-toggle="collapse" href="#                                                            rate" aria-expanded="false" aria-controls="rate">
+          <a id="#rate" @click="changeRate" v-show="!rated">
             Rate
           </a>
+          <star isEnable="true" v-if="showRate" :brickName="Brick.part_name"></star>
           <a @click="watch(Brick.part_name)" id="watch">Watch</a><span>{{watchNum}}</span>
           <a @click="star(Brick.part_name)" id="star">Star</a><span>{{starsNum}}</span>
           <a @click="newExp">Write Your Experience</a>
           <div class="collapse" id="ruler">
             <div class="info-collapse">
               <feature :feaData="Brick.ruler.seq_features"></feature>
-            </div>
-          </div>
-          <div class="collapse" id="rate">
-            <div class="info-collapse" style="width: 170px;">
-              <star :isEnable="true"></star>
             </div>
           </div>
         </div>
@@ -103,7 +99,9 @@
         watchNum: 0,
         starred: false,
         starsNum: 0,
-        insideExperience: false
+        rated: false,
+        insideExperience: false,
+        showRate: false
       }
     },
     computed: {
@@ -152,9 +150,22 @@
       }).catch((e) => {
         console.log(e)
       })
+      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/users_rated/').then((response) => {
+        this.starsNum = response.data.results.length
+        _.forEach(response.data.results, (user) => {
+          if (user.id === this.userID) {
+            _this.rated = true
+          }
+        })
+      }).catch((e) => {
+        console.log(e)
+      })
     },
     methods: {
       brief (text) {
+      },
+      changeRate () {
+        this.showRate = !this.showRate
       },
       watch (name) {
         if (this.watched) {

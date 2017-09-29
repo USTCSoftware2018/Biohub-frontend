@@ -75,11 +75,11 @@
 </style>
 <script>
   export default {
-    props: ['isEnable','initial'],
+    props: ['isEnable','initial','brickName'],
     data () {
       return {
         canChange: this.isEnable,
-        wSize: 0
+        wSize: 0,
       }
     },
     mounted () {
@@ -95,6 +95,13 @@
         }
       },
       submit () {
+        if (this.canChange) {
+          axios.post('/api/forum/bricks/' + this.brickName + '/rate/', {
+            score: this.wSize / 20
+          }).then((response) => {
+            console.log(response)
+          })
+        }
         this.canChange = false
       },
       changeValue (value) {
