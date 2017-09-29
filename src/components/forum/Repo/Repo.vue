@@ -22,8 +22,8 @@
             Rate
           </a>
           <star isEnable="true" v-if="showRate" :brickName="Brick.part_name"></star>
-          <a @click="watch(Brick.part_name)" id="watch">Watch</a><span>{{watchNum}}</span>
-          <a @click="star(Brick.part_name)" id="star">Star</a><span>{{starsNum}}</span>
+          <a @click="watch(Brick.part_name)" id="watch"><span v-if="!watched">Watch</span><span v-else>Unwatch</span></a><span class="number">{{watchNum}}</span>
+          <a @click="star(Brick.part_name)" id="star"><span v-if="!starred">Star</span><span v-else>Unstar</span></a><span class="number">{{starsNum}}</span>
           <a @click="newExp">Write Your Experience</a>
           <div class="collapse" id="ruler">
             <div class="info-collapse">
@@ -133,7 +133,6 @@
         _.forEach(response.data.results, (user) => {
           if (user.id === this.userID) {
             _this.watched = true
-            document.querySelector('#watch').innerText = 'Watching'
           }
         })
       }).catch((e) => {
@@ -144,7 +143,6 @@
         _.forEach(response.data.results, (user) => {
           if (user.id === this.userID) {
             _this.starred = true
-            document.querySelector('#star').innerText = 'Unstar'
           }
         })
       }).catch((e) => {
@@ -170,13 +168,11 @@
       watch (name) {
         if (this.watched) {
           axios.post(`/api/forum/bricks/${name}/unwatch/`).then((response) => {
-            document.querySelector('#watch').innerHTML = 'Watch'
             this.watched = false
             this.watchNum -= 1
           })
         } else {
           axios.post(`/api/forum/bricks/${name}/watch/`).then((response) => {
-            document.querySelector('#watch').innerHTML = 'Watching'
             this.watched = true
             this.watchNum += 1
           }).catch((error) => {
@@ -187,13 +183,11 @@
       star (name) {
         if (this.starred) {
           axios.post(`/api/forum/bricks/${name}/unstar/`).then((response) => {
-            document.querySelector('#star').innerHTML = 'Star'
             this.starred = false
             this.starsNum -= 1
           })
         } else {
           axios.post(`/api/forum/bricks/${name}/star/`).then((response) => {
-            document.querySelector('#star').innerHTML = 'Unstar'
             this.starred = true
             this.starsNum += 1
           })
