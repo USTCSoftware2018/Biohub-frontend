@@ -49,8 +49,7 @@
           <div class="noticeHome">
             <div class="noticeHead">Timeline</div>
             <div class="noticeItem"  v-for="item in timeline">
-              <div v-html="item" style="display: inline-block"></div>
-              <div class="pull-right" style="display: inline-block">sdfsdf</div>
+              <div v-html="item"></div>
             </div>
           </div>
         </div>
@@ -64,6 +63,7 @@
   import topNavbar from '../Common/topNavbar.vue'
   import PageFooter from '../Common/PageFooter.vue'
   import Notice from '../Common/notice.vue'
+  import { getTimeStamp } from '../../utils/functions.js'
 
   export default {
     data () {
@@ -89,7 +89,8 @@
         _.forEach(response.data.results, (t) => {
           if (t.type === 'Watch') {
             this.timeline.push('<a href="/user/' + t.params.user + '">' + t.params.user + '</a> began to watch <a href=' +
-              '"/forum/' + t.params.partName + '">' + t.params.partName + '</a>')
+              '"/forum/' + t.params.partName + '">' + t.params.partName + '</a><span class="pull-right">' +
+              getTimeStamp(t.acttime) + '</span>')
           }
         })
         console.log(this.timeline)
