@@ -16,17 +16,22 @@
             </span>
             </div>
             <div id="user-mail">
-            <span v-bind:title="userMail">
-              <p id="user-mail-content">{{ userMail }}</p>
-            </span>
+              <span v-bind:title="userMail">
+                <p id="user-mail-content">{{ userMail }}</p>
+              </span>
             </div>
-
-            <div id="user-stars" v-bind:title="userStar + ' Stars'">
-              <span id="user-stars-num">{{ userStar }}</span>
-              <i class="fa fa-star" aria-hidden="true"></i>
+            <div style="display: block;">
+              <span style="display: inline-block;width: 50%;">
+                <span style='margin:auto;text-align: center;font-size: 16px;color: grey;' aria-hidden="true">Followers</span>
+                <a style="display:block;font-size: 16px;">{{userStar}}</a>
+              </span>
+              <span style="display: inline-block;width: 50%;">
+                <span style='margin:auto;text-align: center;font-size: 16px;color: grey;' aria-hidden="true">Followings</span>
+                <a style="display:block;font-size: 16px;">{{userStar}}</a>
+              </span>
             </div>
             <div id="edit-button" v-if="isSelf">
-              <button class="btn btn-primary follow-button" v-on:click="ToSetting">Setting</button>
+              <button class="btn btn-forum follow-button" v-on:click="ToSetting">Setting</button>
             </div>
             <div class="profile-parting-line"></div>
             <div id="personal-info" v-if="userLoc !== '' || userLink !== ''">
@@ -109,7 +114,7 @@
   import PageFooter from '../../Common/PageFooter.vue'
   import axios from 'axios'
 
-  var userStar = 666
+  var userStar = '1000'
 
   export default {
     beforeCreate () {
@@ -120,7 +125,11 @@
         this.userLink = response.data.site_url
         this.userAvatar = response.data.avatar_url
         this.biography = response.data.description
-        setTimeout(this.foldStateCheck, 1)
+        if (this.$store.getters.userName === this.params.user) {
+          this.isSelf = true
+        } else {
+          this.isSelf = false
+        }
       }).catch((_) => {
         window.location.href = '/notfound'
       })
@@ -136,15 +145,8 @@
       axios.get('/api/notices/').then((response) => {
         console.log(response)
       })
-      axios.get('/api/users/me/').then((response) => {
-        if (response.data.username === this.params.user) {
-          this.isSelf = true
-        } else {
-          this.isSelf = false
-        }
-      }).catch((_) => {
-        this.isSelf = false
-      })
+      console.log(this.$store.getters.userName)
+      console.log(this.params.user)
     },
     data () {
       return {
