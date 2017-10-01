@@ -6,7 +6,7 @@
                :params="mod.params"
                :showIntro="params.showIntro" class="-profile-activity-tab">
     </component>
-    <div v-if="hasNext">sdfsdf</div>
+    <div v-if="!sw">You have reached the bottom...</div>
   </div>
 </template>
 
@@ -22,7 +22,6 @@
     data () {
       return {
         allActivities: [],
-        hasNext: false,
         next: '',
         sw: true
       }
@@ -38,7 +37,6 @@
       axios.get('/api/forum/activities/').then((response) => {
         this.allActivities = response.data.results
         if (response.data.next) {
-          this.hasNext = true
           this.next = response.data.next
           this.sw = true
         }
@@ -55,7 +53,7 @@
             this.sw = true
             this.next = response.data.next
           }
-          this.allActivities.splice(0, 0, response.data.results)
+          this.allActivities = this.allActivities.concat(response.data.results)
         })
       }
     }
