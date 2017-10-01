@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <div v-scroll="loadMore">
     <component v-for="(mod, i) in allActivities"
                :key="i"
                :is="mod.type + 'Tab'"
                :params="mod.params"
                :showIntro="params.showIntro" class="-profile-activity-tab">
     </component>
+    <div v-if="hasNext">sdfsdf</div>
   </div>
 </template>
 
@@ -20,51 +21,10 @@
     props: ['params', 'showIntro'],
     data () {
       return {
-        allActivities: [
-          {
-            type: 'Experience',
-            params: {
-              user: 'Gloit',
-              expLink: '#',
-              partName: '#',
-              intro: ''
-            }
-          },
-          {
-            type: 'Comment',
-            params: {
-              user: 'Gloit',
-              expLink: '#',
-              partName: '#',
-              intro: ''
-            }
-          },
-          {
-            type: 'Star',
-            params: {
-              user: 'Gloit',
-              expLink: '#',
-              partName: '#',
-              intro: ''
-            }
-          },
-          {
-            type: 'Rating',
-            params: {
-              user: 'Gloit',
-              expLink: '#',
-              score: 2.3,
-              partName: '#'
-            }
-          },
-          {
-            type: 'Watch',
-            params: {
-              user: 'Gloit',
-              partName: 'BBk'
-            }
-          }
-        ]
+        allActivities: [],
+        hasNext: false,
+        next: '',
+        sw: true
       }
     },
     components: {
@@ -73,6 +33,31 @@
       StarTab,
       RatingTab,
       WatchTab
+    },
+    mounted () {
+      axios.get('/api/forum/activities/').then((response) => {
+        this.allActivities = response.data.results
+        if (response.data.next) {
+          this.hasNext = true
+          this.next = response.data.next
+          this.sw = true
+        }
+      })
+    },
+    methods: {
+      loadMore () {
+        if (!this.sw) {
+          return
+        }
+        this.sw = false
+        axios.get(this.next).then((response) => {
+          if (response.data.next) {
+            this.sw = true
+            this.next = response.data.next
+          }
+          this.allActivities.splice(0, 0, response.data.results)
+        })
+      }
     }
   }
 </script>

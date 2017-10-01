@@ -13,6 +13,16 @@ Vue.config.productionTip = false
 axios.get('/api/users/me/').then((response) => {
   Vue.prototype.USER = response.data
 })
+
+Vue.directive('scroll', {
+  bind: function (el, binding) {
+    window.addEventListener('scroll', () => {
+      if (document.body.scrollTop + window.innerHeight >= el.clientHeight) {
+        binding.value()
+      }
+    })
+  }
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
