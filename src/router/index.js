@@ -56,6 +56,7 @@ export default new Router({
           children: [
             {
               path: 'experience/:id',
+              name: 'Exp',
               component: Repo
             }
           ]

@@ -5,7 +5,7 @@
     <div id="editormd">
       <textarea style="display:none;">Hello World!</textarea>
     </div>
-    <button class="btn btn-forum" @click="submit">Submit</button>
+    <button class="btn btn-forum" @click.prevent="Submit">Submit</button>
   </div>
 </template>
 
@@ -38,7 +38,7 @@
       })
     },
     methods: {
-      submit () {
+      Submit () {
         console.log(editor.getHTML())
         axios.post('/api/forum/experiences/', {
           brick_name: this.$route.params.repo,
@@ -49,7 +49,7 @@
           title: this.title
         }).then((response) => {
           console.log(response)
-          this.$router.push({name: 'RepoExperience', params: { id: response.data.id }})
+          this.$router.push({name: 'Exp', params: { id: response.data.id }})
         }).catch((error) => {
           console.log(error)
         })

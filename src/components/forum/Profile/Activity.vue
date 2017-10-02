@@ -19,8 +19,6 @@
   import WatchTab from '../Common/WatchTab.vue'
 
   export default {
-    watch: {
-    },
     props: ['params', 'showIntro'],
     data () {
       return {

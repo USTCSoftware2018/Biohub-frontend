@@ -2,7 +2,8 @@
   <div class="postContainer">
     <div class="postHeader">{{num}} Comment(s)</div>
     <div class="posts">
-      <div class="post" v-for="item in displayPost"><a class='commentUserInfo' :href="'/user/' + item.author.username"><img v-bind:src="item.author.avatar_url">{{item.author.username}} </a>{{item.content}}</div>
+      <div class="post" v-for="item in displayPost"><a class='commentUserInfo' :href="'/user/' + item.author.username">
+        <img v-bind:src="item.author.avatar_url" style="width: 30px;margin-right: 10px;">{{item.author.username}}: </a>{{item.content}}</div>
     </div>
     <nav class='postPage' aria-label="navigation">
       <ul class="pagination" :id='"postPage" + this.expId'>

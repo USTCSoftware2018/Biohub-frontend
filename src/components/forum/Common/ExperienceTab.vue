@@ -6,13 +6,8 @@
       shared
       <a :href="params.expLink">experience</a>
       on
-      <a href="#">{{ params.partName }}</a>
+      <a :href="'/forum/'+params.partName">{{ params.partName }}</a>
     </p>
-    <div v-if="showIntro" class="experience-brief-intro">
-      <p>
-        {{ params.intro }}
-      </p>
-    </div>
   </div>
 
 </template>

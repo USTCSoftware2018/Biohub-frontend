@@ -1,7 +1,7 @@
 <template>
   <div>
     <repo-view v-for="(n, i) in activities"
-               :params="{partName: n, grade: grade[i], label: label, intro: abstract[i]}"
+               :params="{partName: n.brick_name, score: n.score, intro: n.intro}"
                :key="i"></repo-view>
   </div>
 </template>
@@ -26,7 +26,7 @@
       this.$store.commit('cleanActivities')
       this.$store.dispatch('initActivities', {
         username: this.$route.params.author,
-        type: 'Watching'})
+        type: 'Watch'})
       console.log(this.activities)
     },
     components: {

@@ -2,7 +2,7 @@
   <div>
     <i class="fa activity-indicator" :class="{ 'fa-thumbs-up' : (params.score >= 3), 'fa-thumbs-down' : (params.score < 3) }"></i>
     <p class="activity-content">
-      <a :href="'/user'+params.user">{{ params.user }}</a>
+      <a :href="'/user/'+params.user">{{ params.user }}</a>
       rated
       <a :href="'/forum/'+params.partName">{{ params.partName }}</a>
       for

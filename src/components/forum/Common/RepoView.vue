@@ -2,13 +2,13 @@
   <div class="-profile-activity-tab">
     <i class="fa fa-book activity-indicator-2"></i>
     <div class="-profile-repo-header">
-      <a href="#">{{ params.partName }}</a>
+      <a :href="'/forum/'+params.partName">{{ params.partName }}</a>
       <div class="profile-repo-score">
-        <p>{{ params.grade }}</p>
+        <p>{{ params.score }}</p>
       </div>
     </div>
     <p class="-profile-repo-info" :title="params.intro" v-if="params.intro !== ''">{{ params.intro }}</p>
-    <p class="-profile-repo-info" title="Empty" v-if="params.intro === ''">Empty</p>
+    <p class="-profile-repo-info" title="No introduction yet" v-if="params.intro === ''">No introduction yet</p>
   </div>
 </template>
 <style scoped>

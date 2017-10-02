@@ -22,12 +22,14 @@
             </div>
             <div style="display: block;">
               <span style="display: inline-block;width: 50%;">
-                <span style='margin:auto;text-align: center;font-size: 16px;color: grey;' aria-hidden="true">Followers</span>
-                <a style="display:block;font-size: 16px;">{{userStar}}</a>
+                <span style='margin:auto;text-align: center;font-size: 16px;color: grey;'
+                      aria-hidden="true">Followers</span>
+                <a style="display:block;font-size: 16px;">{{followers.results.length}}</a>
               </span>
               <span style="display: inline-block;width: 50%;">
-                <span style='margin:auto;text-align: center;font-size: 16px;color: grey;' aria-hidden="true">Followings</span>
-                <a style="display:block;font-size: 16px;">{{userStar}}</a>
+                <span style='margin:auto;text-align: center;font-size: 16px;color: grey;'
+                      aria-hidden="true">Following</span>
+                <a style="display:block;font-size: 16px;">{{following.results.length}}</a>
               </span>
             </div>
             <div id="edit-button" v-if="isSelf">
@@ -157,8 +159,8 @@
         hintShow: false,
         currentPlugin: 'Activity',
         once: false,
-        followers: null,
-        following: null,
+        followers: {results: []},
+        following: {results: []},
         params: {
           user: '',
           showIntro: false

@@ -4,7 +4,7 @@
     <p class="activity-content">
       <a :href="'/user'+params.user">{{ params.user }}</a>
       watched
-      <a href="#">{{ params.partName }}</a>
+      <a :href="'/forum/'+params.partName">{{ params.partName }}</a>
     </p>
   </div>
 </template>
