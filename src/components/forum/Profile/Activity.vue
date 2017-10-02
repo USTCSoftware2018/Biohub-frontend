@@ -6,7 +6,7 @@
                :params="mod.params"
                :showIntro="params.showIntro" class="-profile-activity-tab">
     </component>
-    <div v-if="!sw">You have reached the bottom...</div>
+    <div v-if="!$store.state.Activities.hasNext">You have reached the bottom...</div>
   </div>
 </template>
 
@@ -18,12 +18,18 @@
   import WatchTab from '../Common/WatchTab.vue'
 
   export default {
+    watch: {
+    },
     props: ['params', 'showIntro'],
     data () {
       return {
-        allActivities: [],
         next: '',
         sw: true
+      }
+    },
+    computed: {
+      allActivities () {
+        return this.$store.state.Activities.activities
       }
     },
     components: {
@@ -34,27 +40,11 @@
       WatchTab
     },
     mounted () {
-      axios.get('/api/forum/activities/').then((response) => {
-        this.allActivities = response.data.results
-        if (response.data.next) {
-          this.next = response.data.next
-          this.sw = true
-        }
-      })
+      this.$store.dispatch('initActivities', this.$route.params.author)
     },
     methods: {
       loadMore () {
-        if (!this.sw) {
-          return
-        }
-        this.sw = false
-        axios.get(this.next).then((response) => {
-          if (response.data.next) {
-            this.sw = true
-            this.next = response.data.next
-          }
-          this.allActivities = this.allActivities.concat(response.data.results)
-        })
+        this.$store.dispatch('loadMoreActivities')
       }
     }
   }

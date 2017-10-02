@@ -142,11 +142,6 @@
     },
     mounted () {
       // It must be done after html elements are created and be watched by vue
-      axios.get('/api/notices/').then((response) => {
-        console.log(response)
-      })
-      console.log(this.$store.getters.userName)
-      console.log(this.params.user)
     },
     data () {
       return {
