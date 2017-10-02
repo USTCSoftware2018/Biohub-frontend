@@ -8,7 +8,11 @@
     </a>
     <ul class="dropdown-menu dropdown-notice" style="border: 0px;">
       <div class="notice-container" ref="noticeContainer">
-        <div class="notice-head">Notice <a>View All</a><a class="pull-right">Clear All</a></div>
+        <div class="notice-head clearfix">
+          <a class="pull-right" href="javascript:;" @click="markAllAsRead">
+            Mark All As Read
+          </a>
+        </div>
         <div class="notice-list">
           <notice-item v-for="item in notices" :notice="item" :key="item.id"></notice-item>
           <div class="indicator load-more" v-if="next" @click="loadNext">
@@ -48,6 +52,14 @@
         notice.created = new Date(notice.created)
         let index = _.sortedIndexBy(this.notices, notice, n => -n.created)
         this.notices.splice(index, 0, notice)
+      },
+      markAllAsRead () {
+        return axios.get('/api/notices/mark_all_as_read/')
+          .then(() => {
+            this.notices.forEach(notice => {
+              notice.has_read = true
+            })
+          })
       },
       clear () {
         this.notices = []
