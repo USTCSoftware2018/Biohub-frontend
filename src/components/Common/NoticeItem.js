@@ -50,6 +50,14 @@ export default {
         class: {
           'notice-item': true,
           'notice-unread': !this.notice.has_read
+        },
+        on: {
+          click: e => {
+            let notice = this.notice
+            if (notice.has_read) return
+            axios.get(`/api/notices/${notice.id}/mark_read/`)
+              .then(() => { notice.has_read = true })
+          }
         }
       },
       this.getFragments(createElement)
