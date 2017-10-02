@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="repo-experience-content">
-      <h4 class="experience-list-header">{{experiencesSet.length}} Experience(s)</h4>
+      <h4 class="experience-list-header">{{experiencesNum}} Experience(s)</h4>
       <div class="divider" style="width: 100%; margin: 5px 0;"></div>
       <div class="list-group list-experience">
         <li v-for="(item, index) in experiencesSet" class="list-group-item" :id="'experience'+item.id">
@@ -21,6 +21,7 @@
         </li>
         <!--button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button-->
       </div>
+      
       <!--router-link :to="{name:'ExperienceList'}" v-if="ExperienceDetail" class="biohub-a"><i class="fa fa-angle-left"></i> Back</router-link>
       <div v-if="ExperienceDetail" v-html="eResult.content.text">
       </div>
@@ -31,6 +32,9 @@
         </form>
         <post-list :id="$route.params.id"></post-list>
       </div-->
+    </div>
+    <div class="documentClick" v-if="experienceNext!==null" @click='loadMore'>
+        Load More Experience
     </div>
   </div>
 </template>
@@ -53,7 +57,8 @@
         postContent: '',
         hasUpvote: {},
         experiencesSet: [],
-        experienceNext: ''
+        experienceNext: '',
+        experiencesNum: 0
       }
     },
     props: ['brickID'],
@@ -63,6 +68,7 @@
     },
     created () {
       axios.get(`/api/forum/bricks/${this.brickID}/experiences/`).then((response) => {
+        this.experiencesNum = response.data.count
         this.experiencesSet = response.data.results
         this.experienceNext = response.data.next
       }).catch((e) => {
@@ -80,6 +86,13 @@
       },
       upvote (id) {
         this.$store.dispatch('upVote', id)
+      },
+      loadMore () {
+        axios.get(this.experienceNext).then((response) => {
+          this.experiencesSet = this.experiencesSet.concat(response.data.results)
+          this.experienceNext = response.data.next
+        }).catch((e) => {
+        })
       }
     }
   }
