@@ -49,8 +49,8 @@
         notices.forEach(this._handleSingleNotice.bind(this))
       },
       _handleSingleNotice (notice) {
-        notice.created = new Date(notice.created)
-        let index = _.sortedIndexBy(this.notices, notice, n => -n.created)
+        notice.created_date = new Date(notice.created)
+        let index = _.sortedIndexBy(this.notices, notice, n => -n.created_date)
         this.notices.splice(index, 0, notice)
       },
       markAllAsRead () {

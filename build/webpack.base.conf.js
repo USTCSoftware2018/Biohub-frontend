@@ -78,7 +78,8 @@ module.exports = {
       $: 'jquery',
       'window.jQuery': 'jquery',
       axios: 'axios',
-      _: 'lodash'
+      _: 'lodash',
+      'timeago': 'timeago.js'
     })
   ]
 }
