@@ -62,7 +62,6 @@
 <script>
   import topNavbar from '../Common/topNavbar.vue'
   import PageFooter from '../Common/PageFooter.vue'
-  import Notice from '../Common/notice.vue'
   import { getTimeStamp } from '../../utils/functions.js'
 
   export default {
@@ -78,7 +77,7 @@
       }
     },
     components: {
-      topNavbar, PageFooter, Notice
+      topNavbar, PageFooter
     },
     created () {
       axios.get('/api/users/me/').then((response) => {

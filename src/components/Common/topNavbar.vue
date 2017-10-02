@@ -39,7 +39,7 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu dropdown-notice" style="border: 0px;">
-            <Notice></Notice>
+            <header-notice-list></header-notice-list>
           </ul>
         </li>
         <li class="dropdown">
@@ -66,17 +66,16 @@
 
 <script>
   import axios from 'axios'
-  import Notice from './notice.vue'
+  import HeaderNoticeList from './HeaderNoticeList.vue'
 
   export default {
     data () {
       return {
-        searchContent: '',
-        notice: null
+        searchContent: ''
       }
     },
     components: {
-      Notice
+      HeaderNoticeList
     },
     computed: {
       hasLogged () {
