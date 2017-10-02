@@ -8,7 +8,6 @@ export default {
         .map(fragment => {
           let parsed = parser.exec(fragment)
           if (!parsed) return fragment
-
           let [_, title, type, pk] = parsed
           return this.makeLink(title, type, pk, createElement)
         })

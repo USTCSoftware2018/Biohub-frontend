@@ -85,10 +85,14 @@
       })
       axios.get('/api/forum/activities/timeline/').then((response) => {
         _.forEach(response.data.results, (t) => {
-          if (t.type === 'Watch') {
-            this.timeline.push('<a href="/user/' + t.params.user + '">' + t.params.user + '</a> began to watch <a href=' +
-              '"/forum/' + t.params.partName + '">' + t.params.partName + '</a><span class="pull-right">' +
-              new Date(t.acttime) + '</span>')
+          t.acttime = new Date(t.acttime)
+          switch (t.type) {
+            case 'Watch':
+              this.timeline.push(`<a href='/user/${t.params.user}/'>${t.params.user}</a> began to watch <a href='/forum/${t.params.partName}/'>${t.params.partName}</a><span class='pull-right'>${t.acttime}</span>`)
+              break
+            case 'Experience':
+              this.timeline.push(`<a href='/user/${t.params.user}/'>${t.params.user}</a> post a new experience at <a href='/forum/${t.params.partName}/'>${t.params.partName}</a><span class='pull-right'>${t.acttime}</span>`)
+              break
           }
         })
         console.log(this.timeline)
