@@ -46,9 +46,9 @@
     <div class="row">
       <div class="container">
         <div class="col-md-8 less-padding">
-          <div class="noticeHome">
-            <div class="noticeHead">Timeline</div>
-            <div class="noticeItem"  v-for="item in timeline">
+          <div class="timeline">
+            <div class="timelineHead">Timeline</div>
+            <div class="timelineItem"  v-for="item in timeline">
               <div v-html="item"></div>
             </div>
           </div>
