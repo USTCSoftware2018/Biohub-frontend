@@ -50,7 +50,7 @@ export default {
       {
         class: {
           'notice-item': true,
-          'notice-unread': !this.notice.hasRead
+          'notice-unread': !this.notice.has_read
         }
       },
       this.getFragments(createElement)
