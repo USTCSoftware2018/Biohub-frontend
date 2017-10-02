@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store from './store'
 import $ from 'jquery'
 import axios from 'axios'
 import _ from 'lodash'
@@ -43,7 +42,6 @@ Vue.directive('scroll', {
 let biohub = new Vue({
   el: '#app',
   router,
-  store,
   template: '<App/>',
   components: { App },
   data: {
