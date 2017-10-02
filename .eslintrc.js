@@ -15,6 +15,7 @@ module.exports = {
     editormd: true,
     axios: true,
     Promise: true,
+    timeago: true,
     _: true,
     Lockr: true,
     Crypto: true

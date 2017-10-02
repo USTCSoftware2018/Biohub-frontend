@@ -47,6 +47,10 @@
         color: $text-color-rev;
         border-bottom: 1px solid $border-color;
 
+        span.timeago {
+          float: right;
+        }
+
         &.notice-unread {
           background: $color-blue-4!important;
 

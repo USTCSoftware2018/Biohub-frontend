@@ -79,6 +79,7 @@ module.exports = {
       'window.jQuery': 'jquery',
       axios: 'axios',
       _: 'lodash',
+      'timeago': 'timeago.js'
       Lockr: 'lockr',
       Crypto: 'crypto-js'
     })

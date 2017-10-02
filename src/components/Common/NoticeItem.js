@@ -10,7 +10,18 @@ export default {
           if (!parsed) return fragment
           let [_, title, type, pk] = parsed
           return this.makeLink(title, type, pk, createElement)
-        })
+        }).concat([
+          createElement(
+            'span',
+            {
+              class: ['timeago', 'pull-right', 'text-muted'],
+              attrs: {
+                datetime: this.notice.created
+              },
+              ref: 'created'
+            }
+          )
+        ])
     },
     makeLink (title, type, pk, createElement) {
       return createElement(
@@ -43,12 +54,17 @@ export default {
       )
     }
   },
+  mounted () {
+    console.log(timeago)
+    timeago().render(this.$refs.created)
+  },
   render (createElement) {
     return createElement(
       'div',
       {
         class: {
           'notice-item': true,
+          'clearfix': true,
           'notice-unread': !this.notice.has_read
         },
         on: {
