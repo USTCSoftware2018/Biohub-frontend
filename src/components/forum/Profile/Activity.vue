@@ -6,6 +6,7 @@
                :params="mod.params"
                :showIntro="params.showIntro" class="-profile-activity-tab">
     </component>
+    <div v-if='$store.state.Activities.loading'>Loading...</div>
     <div v-if="!$store.state.Activities.hasNext">You have reached the bottom...</div>
   </div>
 </template>
@@ -40,11 +41,13 @@
       WatchTab
     },
     mounted () {
-      this.$store.dispatch('initActivities', this.$route.params.author)
+      this.$store.dispatch('initActivities', {
+        username: this.$route.params.author,
+        type: null})
     },
     methods: {
       loadMore () {
-        this.$store.dispatch('loadMoreActivities')
+        this.$store.dispatch('loadMoreActivities', null)
       }
     }
   }

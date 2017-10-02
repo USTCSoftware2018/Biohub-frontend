@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <comment-tab v-for="(p, i) in tempParams" :key="i"
-                 :params="p" :showIntro="params.showIntro" class="-profile-activity-tab">
+  <div v-scroll="loadMore">
+    <comment-tab v-for="(p, i) in activities" :key="i"
+                 :params="p.params" :showIntro="params.showIntro" class="-profile-activity-tab">
     </comment-tab>
   </div>
 </template>
@@ -11,23 +11,25 @@
 
   export default {
     props: ['params'],
-    mounted () {
-      console.log('Star mounted')
-    },
-    data () {
-      return {
-        tempParams: [
-          {
-            user: 'Gloit',
-            expLink: '#',
-            partName: 'BBk_?',
-            intro: 'this is comment in brief'
-          }
-        ]
+    computed: {
+      activities () {
+        return this.$store.state.Activities.activities
       }
+    },
+    mounted () {
+      this.$store.commit('cleanActivities')
+      this.$store.dispatch('initActivities', {
+        username: this.$route.params.author,
+        type: 'Comment'})
+      console.log(this.activities)
     },
     components: {
       CommentTab
+    },
+    methods: {
+      loadMore () {
+        this.$store.dispatch('loadMoreActivities')
+      }
     }
   }
 </script>

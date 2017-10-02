@@ -1,7 +1,7 @@
 <template>
   <div>
-    <rating-tab v-for="(p, i) in starredExps" :key="i"
-                :params="p" class="-profile-activity-tab">
+    <rating-tab v-for="(p, i) in activities" :key="i"
+                :params="p.params" class="-profile-activity-tab">
     </rating-tab>
   </div>
 </template>
@@ -11,27 +11,25 @@
 
   export default {
     props: ['params'],
-    mounted () {
-      console.log('Star mounted')
-    },
-    data () {
-      return {
-        starredExps: [
-          {
-            user: 'Gloit',
-            partName: 'BBk_A',
-            score: 4.4
-          },
-          {
-            user: 'Gloit',
-            partName: 'BBk_B',
-            score: 2.3
-          }
-        ]
+    computed: {
+      activities () {
+        return this.$store.state.Activities.activities
       }
+    },
+    mounted () {
+      this.$store.commit('cleanActivities')
+      this.$store.dispatch('initActivities', {
+        username: this.$route.params.author,
+        type: 'Rating'})
+      console.log(this.activities)
     },
     components: {
       RatingTab
+    },
+    methods: {
+      loadMore () {
+        this.$store.dispatch('loadMoreActivities')
+      }
     }
   }
 </script>

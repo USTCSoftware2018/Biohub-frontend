@@ -15,22 +15,43 @@ const mutations = {
   },
   setLoading (state, loading) {
     state.loading = loading
+  },
+  cleanActivities (state) {
+    state.activities = []
   }
 }
 
 const actions = {
-  initActivities ({commit}, username) {
-    axios.get('/api/forum/activities/?user=' + username).then((response) => {
-      console.log(response)
-      commit('addActivities', response.data.results)
-      commit('setNext', {
-        hasNext: (response.data.next !== null),
-        nextUrl: response.data.next
+  initActivities ({commit}, {username, type}) {
+    commit('cleanActivities')
+    commit('setLoading', true)
+    if (type === null) {
+      axios.get('/api/forum/activities/?user=' + username).then((response) => {
+        console.log(response)
+        commit('setLoading', false)
+        commit('addActivities', response.data.results)
+        commit('setNext', {
+          hasNext: (response.data.next !== null),
+          nextUrl: response.data.next
+        })
+      }).catch((e) => {
+        console.log(e)
+        commit('setLoading', false)
       })
-    }).catch((e) => {
-      console.log(e)
-      commit('setLoading', false)
-    })
+    } else {
+      axios.get('/api/forum/activities/?user=' + username + '&type=' + type).then((response) => {
+        console.log(response)
+        commit('setLoading', false)
+        commit('addActivities', response.data.results)
+        commit('setNext', {
+          hasNext: (response.data.next !== null),
+          nextUrl: response.data.next
+        })
+      }).catch((e) => {
+        console.log(e)
+        commit('setLoading', false)
+      })
+    }
   },
   loadMoreActivities (context) {
     if ((!context.state.loading) && context.state.hasNext) {
@@ -50,7 +71,6 @@ const actions = {
     }
   }
 }
-
 export default {
   state, mutations, actions
 }

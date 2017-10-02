@@ -1,7 +1,7 @@
 <template>
   <div>
-    <experience-tab v-for="(p, i) in tempParams" :key="i"
-               :params="p" :showIntro="params.showIntro" class="-profile-activity-tab">
+    <experience-tab v-for="(p, i) in activities" :key="i"
+               :params="p.params" :showIntro="params.showIntro" class="-profile-activity-tab">
     </experience-tab>
   </div>
 </template>
@@ -11,23 +11,25 @@
 
   export default {
     props: ['params'],
-    mounted () {
-      console.log('Star mounted')
-    },
-    data () {
-      return {
-        tempParams: [
-          {
-            user: 'Gloit',
-            expLink: '#',
-            partName: 'Good Part ',
-            intro: 'this is a brief intro'
-          }
-        ]
+    computed: {
+      activities () {
+        return this.$store.state.Activities.activities
       }
+    },
+    mounted () {
+      this.$store.commit('cleanActivities')
+      this.$store.dispatch('initActivities', {
+        username: this.$route.params.author,
+        type: 'Experience'})
+      console.log(this.activities)
     },
     components: {
       ExperienceTab
+    },
+    methods: {
+      loadMore () {
+        this.$store.dispatch('loadMoreActivities')
+      }
     }
   }
 </script>
