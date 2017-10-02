@@ -29,19 +29,7 @@
         <li><a href="/signup">Signup</a></li>
       </ul>
       <ul v-if="hasLogged" class="nav navbar-nav navbar-right navbar-biohub-toggle">
-        <li class="dropdown" id='notice' v-if="$route.name!=='forumHomepage'">
-          <a href="javascript:;" class="dropdown-toggle"
-             data-toggle="dropdown"
-             role="button"
-             aria-haspopup="true"
-             aria-expanded="false" style="padding-top: 17px;padding-bottom: 13px;">
-            notice
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu dropdown-notice" style="border: 0px;">
-            <header-notice-list></header-notice-list>
-          </ul>
-        </li>
+        <header-notice-list></header-notice-list>
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle"
              data-toggle="dropdown"
