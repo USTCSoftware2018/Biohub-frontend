@@ -9,6 +9,14 @@ import axios from 'axios'
 import _ from 'lodash'
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 
+// eslint-disable-next-line no-extend-native
+Promise.prototype.always = function (callback) {
+  return this.then(callback, function (reason) {
+    callback(reason)
+    throw reason
+  })
+}
+
 Vue.config.productionTip = false
 axios.get('/api/users/me/').then((response) => {
   Vue.prototype.USER = response.data

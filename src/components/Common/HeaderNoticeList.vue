@@ -8,12 +8,13 @@
     </a>
     <ul class="dropdown-menu dropdown-notice" style="border: 0px;">
       <div class="notice-container" ref="noticeContainer">
-        <div class="notice-head">Notice <a v-if="!isHome">View All</a><a class="pull-right">Clear All</a></div>
-        <div v-if="!notices.length">
-          Empty
-        </div>
+        <div class="notice-head">Notice <a>View All</a><a class="pull-right">Clear All</a></div>
         <div class="notice-list">
           <notice-item v-for="item in notices" :notice="item" :key="item.id"></notice-item>
+          <div class="indicator load-more" v-if="next" @click="loadNext">
+            {{loading ? 'Loading...' : 'Click to Load More...'}}
+          </div>
+          <div class="indicator" v-else>~~ No More Notices ~~</div>
         </div>
       </div>
     </ul>
@@ -27,13 +28,11 @@
       return {
         notices: [],
         next: null,
-        isOpened: false
+        isOpened: false,
+        loading: false
       }
     },
     computed: {
-      isHome () {
-        return (this.$route.name === 'forumHomepage')
-      },
       menuClasses () {
         return {
           dropdown: true,
@@ -42,21 +41,28 @@
       }
     },
     methods: {
+      _handleNewNotices (notices) {
+        notices.forEach(this._handleSingleNotice.bind(this))
+      },
+      _handleSingleNotice (notice) {
+        notice.created = new Date(notice.created)
+        let index = _.sortedIndexBy(this.notices, notice, n => -n.created)
+        this.notices.splice(index, 0, notice)
+      },
       clear () {
         this.notices = []
       },
       load (url) {
-        if (!url) return
+        if (!url || this.loading) return
 
-        return axios.get(url).then(response => {
-          this.next = response.next
-          console.log(response.data)
-          response.data.results.forEach(item => {
-            item.created_time = new Date(item.created_time)
-            this.notices.push(item)
+        this.loading = true
+        return axios.get(url)
+          .then(response => {
+            this.next = response.data.next
+            this._handleNewNotices(response.data.results)
+            return response
           })
-          return response
-        })
+          .always(() => { this.loading = false })
       },
       loadNext () {
         return this.load(this.next)
@@ -67,16 +73,18 @@
       reload () {
         this.notices = []
         this.init()
+      },
+      initEvents () {
+        $(document).on('click', e => {
+          if (this.isOpened && !$.contains(this.$refs.noticeContainer, e.target)) {
+            this.isOpened = false
+          }
+        })
       }
     },
     mounted () {
       this.init()
-
-      $(document).on('click', e => {
-        if (this.isOpened && !$.contains(this.$refs.noticeContainer, e.target)) {
-          this.isOpened = false
-        }
-      })
+      this.initEvents()
     }
   }
 </script>
