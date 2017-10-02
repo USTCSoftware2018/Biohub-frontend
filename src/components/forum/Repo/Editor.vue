@@ -1,6 +1,6 @@
 <template>
   <div class="repo-experience-content">
-    <form class="biohub-form" style="padding-left:0;padding-right:0;"><img :src="$store.state.UserAuth.loggedUser.avatar"><input
+    <form class="biohub-form" style="padding-left:0;padding-right:0;"><img :src="$root.user.avatar"><input
       class="form-control " placeholder="Title here..." v-model="title"></form>
     <div id="editormd">
       <textarea style="display:none;">Hello World!</textarea>
@@ -21,7 +21,6 @@
       }
     },
     mounted () {
-      let _this = this
       $(function () {
         editor = editormd('editormd', {
           path: '/static/lib/',
@@ -53,6 +52,9 @@
         }).catch((error) => {
           console.log(error)
         })
+      },
+      Focus () {
+        editor.focus()
       }
     }
   }

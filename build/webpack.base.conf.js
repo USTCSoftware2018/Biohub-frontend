@@ -80,6 +80,8 @@ module.exports = {
       axios: 'axios',
       _: 'lodash',
       'timeago': 'timeago.js'
+      Lockr: 'lockr',
+      Crypto: 'crypto-js'
     })
   ]
 }

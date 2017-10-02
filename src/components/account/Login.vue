@@ -20,7 +20,7 @@
                        placeholder="Password" v-model="password">
               </div>
             </div>
-            <div class="alert alert-danger form-error" v-if="hasError">
+            <div class="alert alert-danger form-error" v-if="errorOccur">
               <button type="button" class="close"></button>
               <strong>Error: </strong> {{ errorMessage }}
             </div>
@@ -41,15 +41,12 @@
     name: 'login',
     created () {
       axios.get('/api/users/me/').then((response) => {
-        this.$store.commit('login', response.data)
         window.location.href = '/forum'
+      }).catch((_) => {
+        console.log(_)
       })
     },
     watch: {
-      '$store.state.UserAuth.loginErrorPart' (to) {
-        if (to === 'username') this.$refs.usernameInput.focus()
-        if (to === 'password') this.$refs.passwordInput.focus()
-      }
     },
     mounted () {
       this.$refs.usernameInput.focus()
@@ -57,24 +54,40 @@
     data () {
       return {
         username: '',
-        password: ''
-      }
-    },
-    computed: {
-      hasError () {
-        return this.$store.state.UserAuth.loginHasError
-      },
-      errorMessage () {
-        return this.$store.state.UserAuth.loginErrorMessage
+        password: '',
+        errorOccur: false,
+        errorMessage: ''
       }
     },
     methods: {
       Login () {
-        this.$store.dispatch('loginAuth', {username: this.username, password: this.password})
-        console.log(this.$store)
-      },
-      Reset () {
-        window.location.href = '/reset'
+        if (this.username === '') {
+          this.errorOccur = true
+          this.errorMessage = 'Username can\'t be blank'
+          this.$refs.usernameInput.focus()
+          return
+        }
+        if (this.password === '') {
+          this.errorOccur = true
+          this.errorMessage = 'Password can\'t be blank'
+          this.$refs.passwordInput.focus()
+          return
+        }
+        this.errorOccur = false
+        axios.post('/api/users/login/', {
+          username: this.username,
+          password: this.password
+        }).then((response) => {
+          Lockr.set('user', Crypto.AES.encrypt(JSON.stringify(response.data), 'secretkey').toString())
+          this.$root.user = response.data
+          this.$router.push({name: 'forumHomepage'})
+        }).catch(e => {
+          if (e.response.status === 400) {
+            this.errorOccur = true
+            this.errorMessage = 'Wrong username or password'
+          }
+          console.log(e)
+        })
       }
     }
   }

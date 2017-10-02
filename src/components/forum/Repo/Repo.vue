@@ -36,19 +36,38 @@
     <div class="row">
       <div class="container">
         <div class="col-md-9">
-          <div class="documentClick" v-if='insideExperience' @click="$router.push({name:'Brick',params:{repo:$route.params.repo}})">
-            View All Experience
-          </div>
-          <div class="documentClick" v-if='!insideExperience' role='button' data-toggle="collapse" href="#collapseDocument" aria-expanded="false" aria-controls="collapseDocument">
-            View Document
-          </div>
-          <div class="collapse" id="collapseDocument">
-            <div class="well" v-html="bDocument" style="text-align: left; text-indent: 2em;">
+          <template v-if=insideExperience>
+            <div class="documentClick" @click="$router.push({name:'Brick',params:{repo:$route.params.repo}})">
+              View All Experience
             </div>
-          </div>
-          <experience-list></experience-list>
+            <!--li class="list-group-item" :id="'experience'+item.id">
+              <div class="experience-header">
+                <img :src="item.author.avatar_url" style="width: 30px;"></span>
+                <router-link :to="{name: 'Profile',params:{author: item.author_name}}" class="experience-author-name">{{item.author_name}}</router-link>
+              </div>
+              <div class="list-group-item-text" v-html="item.content.text"></div>
+              <div class="action-bar">
+                <button class="btn btn-forum" @click="upvote(item.id)" :id='"upvoteButton" + item.id' v-bind:class=
+                  "{'hasVoted':$store.state.BrickStatus.experienceSet[index].voted, 'cannotVote': (item.author_name === $store.getters.userName)}">
+                  <span v-if="!$store.state.BrickStatus.experienceSet[index].voted"><i class="fa fa-angle-up"></i></span>
+                  <span v-else><i class="fa fa-angle-down"></i></span> {{item.up_vote_num}}</button>
+                <a :id='"commentsButton" + item.id' @click="showComments(item.id, index)" style="margin-left: 15px;"><i class="fa fa-comment-o"></i>    {{$store.state.BrickStatus.experienceSet[index].posts_num}} Comment(s)</a>
+                <post-list class='hide' :id='"comments"+item.id' :expId="item.id"></post-list>
+              </div>
+            </li-->
+          </template>
+          <template v-else>
+            <div class="documentClick" v-if='!insideExperience' role='button' data-toggle="collapse" href="#collapseDocument" aria-expanded="false" aria-controls="collapseDocument">
+              View Document
+            </div>
+            <div class="collapse" id="collapseDocument">
+              <div class="well" v-html="brickDocument" style="text-align: left; text-indent: 2em;">
+              </div>
+            </div>
+            <experience-list :brickID='brickID'></experience-list>
+          </template>
           <!--router-view :content="rResult.document"></router-view-->
-          <editor></editor>
+          <editor ref='Editor'></editor>
         </div>
         <!--div class="col-md-3">
           <div class="panel panel-default panel-biohub">
@@ -94,29 +113,33 @@
     },
     data () {
       return {
-        rResult: null,
+        brickID: this.$route.params.repo,
         watched: false,
         watchNum: 0,
         starred: false,
         starsNum: 0,
         rated: false,
         insideExperience: false,
-        showRate: false
+        showRate: false,
+        Brick: null
       }
     },
     computed: {
       userID () {
-        return this.$store.getters.userId
+        return this.$root.user.id
       },
-      bDocument (id) {
+      brickDocument (id) {
         return marked(this.Brick.document.text)
-      },
-      Brick () {
-        return this.$store.state.BrickStatus.brick
       }
     },
     components: {
-      PageFooter, Star, Feature, ExperienceList, Editor
+      PageFooter,
+      Star,
+      Feature,
+      Editor,
+      ExperienceList () {
+        return import('./ExperienceList.vue')
+      }
     },
     created () {
       if (this.$route.params.id) {
@@ -124,35 +147,37 @@
       } else {
         this.insideExperience = false
       }
-      this.$store.dispatch('loadBrick', this.$route.params.repo)
+      axios.get(`/api/forum/bricks/${this.brickID}/`).then((response) => {
+        this.Brick = response.data
+      }).catch((e) => {
+      })
     },
     mounted () {
-      const _this = this
-      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/users_watching/').then((response) => {
+      axios.get('/api/forum/bricks/' + this.brickID + '/users_watching/').then((response) => {
         this.watchNum = response.data.results.length
         _.forEach(response.data.results, (user) => {
           if (user.id === this.userID) {
-            _this.watched = true
+            this.watched = true
           }
         })
       }).catch((e) => {
         console.log(e)
       })
-      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/users_starred/').then((response) => {
+      axios.get('/api/forum/bricks/' + this.brickID + '/users_starred/').then((response) => {
         this.starsNum = response.data.results.length
         _.forEach(response.data.results, (user) => {
           if (user.id === this.userID) {
-            _this.starred = true
+            this.starred = true
           }
         })
       }).catch((e) => {
         console.log(e)
       })
-      axios.get('/api/forum/bricks/' + this.$route.params.repo + '/users_rated/').then((response) => {
+      axios.get('/api/forum/bricks/' + this.brickID + '/users_rated/').then((response) => {
         this.starsNum = response.data.results.length
         _.forEach(response.data.results, (user) => {
           if (user.id === this.userID) {
-            _this.rated = true
+            this.rated = true
           }
         })
       }).catch((e) => {
@@ -160,8 +185,6 @@
       })
     },
     methods: {
-      brief (text) {
-      },
       changeRate () {
         this.showRate = !this.showRate
       },
@@ -194,7 +217,7 @@
         }
       },
       newExp () {
-
+        this.$refs.Editor.Focus()
       }
     }
   }
