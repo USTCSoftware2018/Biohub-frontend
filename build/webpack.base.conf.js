@@ -78,7 +78,9 @@ module.exports = {
       $: 'jquery',
       'window.jQuery': 'jquery',
       axios: 'axios',
-      _: 'lodash'
+      _: 'lodash',
+      Lockr: 'lockr',
+      Crypto: 'crypto-js'
     })
   ]
 }

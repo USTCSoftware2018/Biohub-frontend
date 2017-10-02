@@ -1,5 +1,5 @@
 <template>
-  <div class="postContainer">
+  <div class="postContainer" v-bind:class="{hide: !open}">
     <div class="postHeader">{{num}} Comment(s)</div>
     <div class="posts">
       <div class="post" v-for="item in displayPost"><a class='commentUserInfo' :href="'/user/' + item.author.username">
@@ -36,7 +36,8 @@
         page: 1,
         maxPage: 1,
         num: 0,
-        paginationSequence: []
+        paginationSequence: [],
+        open: false
       }
     },
     methods: {
@@ -58,14 +59,13 @@
         this.page = page
       },
       submitPost () {
-        this.postContent = document.querySelector('#postContent' + this.expId).innerText
-        console.log(this.postContent)
+        this.postContainer = document.querySelector('#postContent' + this.expId)
         axios.post('/api/forum/posts/', {
           experience_id: this.expId,
           content: this.postContent
         }).then((response) => {
           console.log(response)
-          document.querySelector('#postContent' + this.expId).innerText = ''
+          this.postContainer.innerText = ''
           this.postContent = ''
           this.displayPost.splice(0, 0, response.data)
           this.$store.commit('newCommentReceived', this.expId)
@@ -80,35 +80,45 @@
       },
       postBlur () {
         $('#postOutsideContainer' + this.expId)[0].classList.remove('textareaFocus')
-      }
-    },
-    created () {
-      axios.get(`/api/forum/experiences/${this.expId}/posts/`).then((response) => {
-        this.loadedData = response.data
-        this.num = response.data.count
-        this.maxPage = Math.floor(response.data.count / 10) + 1
-        if (this.maxPage > 5) {
-        } else {
-          var i = 1
-          if (this.num === 0) {
-            $('#postPage' + this.expId).append('<p style="color:#999;">Oops, nothing\'s here</p>')
-            i++
+      },
+      load () {
+        this.open = true
+        axios.get(`/api/forum/experiences/${this.expId}/posts/`).then((response) => {
+          this.loadedData = response.data
+          this.num = response.data.count
+          this.maxPage = Math.floor(response.data.count / 10) + 1
+          $('#postPage' + this.expId).html('')
+          if (this.maxPage > 5) {
+          } else {
+            var i = 1
+            if (this.num === 0) {
+              $('#postPage' + this.expId).append('<p style="color:#999;">Oops, nothing\'s here</p>')
+              i++
+            }
+            while (i <= this.maxPage) {
+              this.paginationSequence.push(i)
+              i++
+            }
           }
-          while (i <= this.maxPage) {
-            this.paginationSequence.push(i)
-            i++
+          this.$nextTick(() => {
+            $('#postPage' + this.expId + ' li')[0].firstChild.classList.add('disabled')
+          })
+          this.displayPost = []
+          for (var j = 0; j < response.data.results.length; j++) {
+            this.displayPost.splice(0, 0, response.data.results[j])
           }
-        }
-        this.$nextTick(() => {
-          $('#postPage' + this.expId + ' li')[0].firstChild.classList.add('disabled')
+        }).catch((e) => {
+          console.log(e)
         })
-        this.displayPost = []
-        for (var j = 0; j < response.data.results.length; j++) {
-          this.displayPost.splice(0, 0, response.data.results[j])
+      },
+      switch () {
+        if (!this.open) {
+          this.open = true
+          this.load()
+        } else {
+          this.open = false
         }
-      }).catch((e) => {
-        console.log(e)
-      })
+      }
     }
   }
 </script>

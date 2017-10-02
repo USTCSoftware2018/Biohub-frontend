@@ -53,7 +53,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import HeaderNoticeList from './HeaderNoticeList.vue'
 
   export default {
@@ -67,18 +66,21 @@
     },
     computed: {
       hasLogged () {
-        return this.$store.getters.hasLogin
+        return (this.$root.user !== null)
       },
       userName () {
-        return this.$store.getters.userName
+        return this.$root.user.username
       },
       avatarURL () {
-        return this.$store.state.UserAuth.loggedUser.avatar_url
+        return this.$root.user.avatar_url
       }
     },
     methods: {
       LogOut () {
-        this.$store.dispatch('logout')
+        axios.get('/api/users/logout/').then((_) => {
+          this.$root.user = null
+          Lockr.set('user', '')
+        })
       },
       intoSearch (e) {
         let sValue = this.$refs.Search.value
@@ -92,9 +94,6 @@
       cleanInput () {
         this.searchContent = ''
       }
-    },
-    mounted () {
-      this.$store.commit('loadFromLS')
     }
   }
 </script>
