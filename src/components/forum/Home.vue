@@ -62,7 +62,6 @@
 <script>
   import topNavbar from '../Common/topNavbar.vue'
   import PageFooter from '../Common/PageFooter.vue'
-  import { getTimeStamp } from '../../utils/functions.js'
 
   export default {
     data () {
@@ -89,7 +88,7 @@
           if (t.type === 'Watch') {
             this.timeline.push('<a href="/user/' + t.params.user + '">' + t.params.user + '</a> began to watch <a href=' +
               '"/forum/' + t.params.partName + '">' + t.params.partName + '</a><span class="pull-right">' +
-              getTimeStamp(t.acttime) + '</span>')
+              new Date(t.acttime) + '</span>')
           }
         })
         console.log(this.timeline)
