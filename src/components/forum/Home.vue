@@ -53,6 +53,12 @@
             </div>
           </div>
         </div>
+        <div class="col-md-4 less-padding">
+          <ul class="nav nav-pills">
+            <li role="presentation"><a href='#'>User</a></li>
+            <li role="presentation"><a href='#'>Brick</a></li>
+          </ul>
+        </div>
       </div>
     </div>
       <page-footer></page-footer>

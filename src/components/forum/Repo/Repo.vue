@@ -2,34 +2,31 @@
   <div>
     <div class="row repo-wrapper">
       <div class="container">
-        <div class="repo-type">{{Brick.part_type}}</div>
-        <div class="repo-info-name">
-          {{ Brick.part_name }} <star :initial="Brick.rate_score"></star>
-        </div>
-        <div class="repo-info-addon">{{ Brick.author }}@{{Brick.group_name}}</div>
-        <!--div class="repo-info-addon">
-          Followers: <a href="#">{{watch_num}}</a>
-          <button class="btn btn-forum btn-watch" id='watchButton' @click="watch(rResult.id)">Watch</button>
-        </div>
-        <div class="repo-info-addon">
-          <feature :feaData="rResult.seq_features"></feature>
-        </div-->
-        <div class="repo-info-addon">
-          <a role="button" data-toggle="collapse" href="#ruler" aria-expanded="false" aria-controls="ruler">
-            Ruler
-          </a>
-          <a id="#rate" @click="changeRate" v-show="!rated">
-            Rate
-          </a>
-          <star isEnable="true" v-if="showRate" :brickName="Brick.part_name"></star>
-          <a @click="watch(Brick.part_name)" id="watch"><span v-if="!watched">Watch</span><span v-else>Unwatch</span></a><span class="number">{{watchNum}}</span>
-          <a @click="star(Brick.part_name)" id="star"><span v-if="!starred">Star</span><span v-else>Unstar</span></a><span class="number">{{starsNum}}</span>
-          <a @click="newExp">Write Your Experience</a>
-          <div class="collapse" id="ruler">
-            <div class="info-collapse">
-              <feature :feaData="Brick.ruler.seq_features"></feature>
-            </div>
+        <div class='col-md-8'>
+          <div class="repo-type">{{Brick.part_type}}</div>
+          <div class="repo-info-name">
+            {{ Brick.part_name }} <star :initial="Brick.rate_score"></star>
           </div>
+          <div class="repo-info-addon">{{ Brick.author }}@{{Brick.group_name}}</div>
+          <!--div class="repo-info-addon">
+            Followers: <a href="#">{{watch_num}}</a>
+            <button class="btn btn-forum btn-watch" id='watchButton' @click="watch(rResult.id)">Watch</button>
+          </div>
+          <div class="repo-info-addon">
+            <feature :feaData="rResult.seq_features"></feature>
+          </div-->
+          <div class="repo-info-addon">
+            <a id="#rate" @click="changeRate" v-show="!rated">
+              Rate
+            </a>
+            <star isEnable="true" v-if="showRate" :brickName="Brick.part_name"></star>
+            <a @click="watch(Brick.part_name)" id="watch"><span v-if="!watched">Watch</span><span v-else>Unwatch</span></a><span class="number">{{watchNum}}</span>
+            <a @click="star(Brick.part_name)" id="star"><span v-if="!starred">Star</span><span v-else>Unstar</span></a><span class="number">{{starsNum}}</span>
+            <a @click="newExp">Write Your Experience</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <feature :feaData="Brick.ruler.seq_features"></feature>
         </div>
       </div>
     </div>
