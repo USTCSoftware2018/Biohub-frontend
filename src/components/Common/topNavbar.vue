@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-biohub">
+  <div class="navbar navbar-biohub">
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -49,7 +49,7 @@
         </li>
       </ul>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>

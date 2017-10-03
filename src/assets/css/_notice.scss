@@ -5,7 +5,7 @@
 
   .notice-container {
 
-    .notice-head, .notice-footer {
+    .notice-head {
       background-color: #eee;
       border-bottom: 1px solid $border-color;
       font-size: 16px;
@@ -47,8 +47,9 @@
         color: $text-color-rev;
         border-bottom: 1px solid $border-color;
 
-        span.timeago {
+        span.created {
           float: right;
+          display: blo
         }
 
         &.notice-unread {
@@ -75,5 +76,14 @@
   }
 }
 
+.notice-view {
 
+  .notice-list {
 
+    .notice-item {
+      padding: 10px 10px;
+      color: $text-color-rev;
+      text-align: left;
+    }
+  }
+}

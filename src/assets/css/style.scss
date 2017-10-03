@@ -46,6 +46,10 @@ body {
   cursor: pointer;
 }
 
+// scrollbar override
+
+$scrollbar-color: #c3c3c3;
+
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -53,9 +57,13 @@ body {
 ::-webkit-scrollbar-thumb {
   border-radius: 3px;
   -webkit-border-radius: 3px;
-  background-color: #c3c3c3;
+  background-color: $scrollbar-color;
+
+  &:focus, &:hover {
+    background-color: lighten($scrollbar-color, 3%);
+  }
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #eee;
 }

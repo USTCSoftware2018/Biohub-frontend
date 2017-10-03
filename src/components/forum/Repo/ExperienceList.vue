@@ -21,7 +21,7 @@
         </li>
         <!--button class="btn btn-forum" @click="$router.push({name:'ExperienceNew'})">Share Your Experience</button-->
       </div>
-      
+
       <!--router-link :to="{name:'ExperienceList'}" v-if="ExperienceDetail" class="biohub-a"><i class="fa fa-angle-left"></i> Back</router-link>
       <div v-if="ExperienceDetail" v-html="eResult.content.text">
       </div>
@@ -46,7 +46,6 @@
 
 <script>
   import '../../../assets/css/editormd.css'
-  import marked from 'marked'
   import Star from '../../../utils/Star.vue'
   import PostsList from './PostsList'
   export default {

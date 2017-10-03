@@ -97,7 +97,7 @@
   import Editor from './Editor'
   import '../../../assets/css/editormd.css'
   import '../../../utils/editormd.js'
-  var editor = null
+
   export default {
     watch: {
       '$route' (to, from) {
@@ -134,9 +134,7 @@
       Star,
       Feature,
       Editor,
-      ExperienceList () {
-        return import('./ExperienceList.vue')
-      }
+      ExperienceList
     },
     created () {
       if (this.$route.params.id) {

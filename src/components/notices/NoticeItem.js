@@ -1,18 +1,31 @@
 export default {
   props: ['notice'],
+  data () {
+    return {
+      linkInfos: {}
+    }
+  },
   methods: {
     getFragments (createElement) {
       const splitter = /(\[\[.*?\]\]\(\(.*?\)\)\(\(.*?\)\))/g
-      const parser = /\[\[(.*?)\]\]\(\((.*?)\)\)\(\((.*?)\)\)/
-      return this.notice.message.split(splitter)
+      const parser = /\[\[(.*?)\]\]\(\((.*?)\)\)\(\((.*?)\)\)/g
+      const message = this.notice.message
+
+      message.replace(parser, (_, title, type, pk) => {
+        this.linkInfos[type] = { title, pk }
+      })
+
+      return message.split(splitter)
         .map(fragment => {
           let parsed = parser.exec(fragment)
           if (!parsed) return fragment
+
+          // eslint-disable-next-line no-unused-vars
           let [_, title, type, pk] = parsed
           return this.makeLink(title, type, pk, createElement)
         }).concat([
           createElement(
-            'span',
+            'small',
             {
               class: ['timeago', 'pull-right', 'text-muted'],
               attrs: {
@@ -32,7 +45,8 @@ export default {
               experience: {
                 name: 'Exp',
                 params: {
-                  id: pk
+                  id: pk,
+                  repo: this.linkInfos.brick.pk
                 }
               },
               user: {
@@ -55,7 +69,6 @@ export default {
     }
   },
   mounted () {
-    console.log(timeago)
     timeago().render(this.$refs.created)
   },
   render (createElement) {

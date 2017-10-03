@@ -16,7 +16,7 @@
             Mark All As Read
           </a>
         </div>
-        <div class="notice-list">
+        <div class="notice-list top-nav">
           <notice-item v-for="item in notices" :notice="item" :key="item.id"></notice-item>
           <div class="indicator load-more" v-if="next || loading" @click="loadNext">
             {{loading ? 'Loading...' : 'Click to Load More...'}}
@@ -32,8 +32,11 @@
 </template>
 <script>
   import NoticeItem from './NoticeItem'
+  import NoticeListMixin from './NoticeListMixin'
+
   export default {
     components: {NoticeItem},
+    mixins: [NoticeListMixin],
     data () {
       return {
         notices: [],
@@ -57,14 +60,6 @@
       }
     },
     methods: {
-      _handleNewNotices (notices) {
-        notices.forEach(this._handleSingleNotice.bind(this))
-      },
-      _handleSingleNotice (notice) {
-        notice.created_date = new Date(notice.created)
-        let index = _.sortedIndexBy(this.notices, notice, n => -n.created_date)
-        this.notices.splice(index, 0, notice)
-      },
       markAllAsRead () {
         return axios.get('/api/notices/mark_all_as_read/')
           .then(() => {
@@ -81,18 +76,6 @@
         this.notices = []
         this.next = null
         this.inited = false
-      },
-      load (url) {
-        if (!url || this.loading) return
-
-        this.loading = true
-        return axios.get(url)
-          .then(response => {
-            this.next = response.data.next
-            this._handleNewNotices(response.data.results)
-            return response
-          })
-          .always(() => { this.loading = false })
       },
       loadNext () {
         return this.load(this.next)
