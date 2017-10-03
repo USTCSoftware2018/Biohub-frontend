@@ -4,59 +4,36 @@
 </template>
 
 <style>
-  #fContainer {
-    position: relative;
-    width: 100%;
-    height: 20px;
-    background-color: cornflowerblue;
-    margin-top: 5px;
-  }
-  .fea-button {
-    top: 0px;
-    position: absolute;
-    height: 20px;
-    outline: none;
-    box-shadow: none;
-    border: none;
-    padding: 0 2px;
-  }
-  .color-stop {
-    background-color: rosybrown;
-  }
-  .color-mutation {
-    background-color: salmon;
-  }
-  .color-protein {
-    background-color: aquamarine;
-  }
-  .color-s_mutation {
-    background-color: olivedrab;
-  }
-  .color-rarrow_p {
-    background-color: lavender;
+  path {
+    fill: steelblue;
   }
 </style>
 
 <script>
+  import * as d3 from 'd3'
   export default {
     props: ['feaData'],
     data () {
       return {
-        endPoint: 0,
-        length: 460
+        currentAngle: 0,
+        maxLength: 0
       }
     },
     mounted () {
-      this.endPoint = _.result(_.find(this.feaData, (fea) => {
-        return (fea.type === 'stop' | fea.type === 'new_feature')
-      }), 'last') + 10
+      var width = document.querySelector('#fContainer').width
+      var height = document.querySelector('#fContainer').height
+      var svg = d3.select('#fContainer')
+        .append('svg')
+          .attr('width', width)
+          .attr('height', height)
+        .append('g')
+          .attr('transform', 'translate(100,70)')
+      var arc = null
+      this.maxLength = _.result(_.find(this.feaData, {'type': 'stop'}), 'last')
+      console.log(this.maxLength)
       _.forEach(this.feaData, (fea) => {
-        $('#fContainer').append('<button type="button" class="fea-button color-' + fea.type +
-          '" style="left: ' + fea.first / this.endPoint * this.length +
-          'px" data-toggle="tooltip" data-placement="bottom" title="' + fea.type + '"></button>')
-      })
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
+        arc = d3.arc().innerRadius(40).outerRadius(50).startAngle(fea.first * 2.0 * Math.PI / this.maxLength).endAngle(2.0 * Math.PI * fea.last / this.maxLength)
+        svg.append('path').attr('d', arc())
       })
     }
   }
