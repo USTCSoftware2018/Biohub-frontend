@@ -24,7 +24,7 @@
           <div class="indicator" v-else>~~ No More Notices ~~</div>
         </div>
         <div class="notice-footer">
-          <router-link :to="{ name: 'notices' }">View All</router-link>
+          <a href="javascript:;" @click="viewAllClick">View All</a>
         </div>
       </div>
     </ul>
@@ -94,6 +94,10 @@
             this.isOpened = false
           }
         })
+      },
+      viewAllClick () {
+        this.isOpened = false
+        this.$router.push({ name: 'notices' })
       }
     },
     mounted () {

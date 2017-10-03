@@ -61,13 +61,11 @@
         </div>
       </div>
     </div>
-      <page-footer></page-footer>
   </div>
 </template>
 
 <script>
   import topNavbar from '../Common/topNavbar.vue'
-  import PageFooter from '../Common/PageFooter.vue'
 
   export default {
     data () {
@@ -82,7 +80,7 @@
       }
     },
     components: {
-      topNavbar, PageFooter
+      topNavbar
     },
     created () {
       axios.get('/api/users/me/').then((response) => {

@@ -84,13 +84,11 @@
         </div-->
       </div>
     </div>
-    <page-footer></page-footer>
   </div>
 </template>
 
 <script>
   import ExperienceList from './ExperienceList.vue'
-  import PageFooter from '../../Common/PageFooter.vue'
   import Star from '../../../utils/Star.vue'
   import Feature from './SeqFeature.vue'
   import marked from 'marked'
@@ -130,7 +128,6 @@
       }
     },
     components: {
-      PageFooter,
       Star,
       Feature,
       Editor,

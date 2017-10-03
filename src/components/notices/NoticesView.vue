@@ -1,34 +1,29 @@
 <template>
-  <div>
-    <top-nav-bar></top-nav-bar>
-    <div class="container notice-view">
-      <div class="col-md-offset-2 col-md-8 notice-view-container">
-        <div class="notice-list" v-if="inited">
-          <notice-item v-for="item in notices" :notice="item" :key="item.id"></notice-item>
-          <ul class="pager">
-            <li :class="{ disabled: !hasPrevious }">
-              <router-link :to="{ name: 'notices', query: { page: pageNum - 1 } }">
-                Previous
-              </router-link>
-            </li>
-            <li :class="{ disabled: !hasNext }">
-              <router-link :to="{ name: 'notices', query: { page: pageNum + 1 } }">Next</router-link>
-            </li>
-          </ul>
-        </div>
+  <div class="container notice-view">
+    <div class="col-md-offset-2 col-md-8 notice-view-container">
+      <div class="notice-list" v-if="inited">
+        <notice-item v-for="item in notices" :notice="item" :key="item.id"></notice-item>
+        <ul class="pager">
+          <li :class="{ disabled: !hasPrevious }">
+            <router-link :to="{ name: 'notices', query: { page: pageNum - 1 } }">
+              Previous
+            </router-link>
+          </li>
+          <li :class="{ disabled: !hasNext }">
+            <router-link :to="{ name: 'notices', query: { page: pageNum + 1 } }">Next</router-link>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import topNavBar from '@/components/Common/topNavbar.vue'
   import NoticeListMixin from './NoticeListMixin'
   import NoticeItem from './NoticeItem'
 
   export default {
     components: {
-      topNavBar,
       NoticeItem
     },
     mixins: [NoticeListMixin],

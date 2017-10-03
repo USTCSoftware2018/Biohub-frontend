@@ -48,10 +48,20 @@ export default new Router({
         {
           path: '',
           component: forumHome,
-          name: 'forumHomepage'
+          name: 'forum-home'
         },
         {
-          path: ':repo',
+          path: 'notices',
+          component: NoticesView,
+          name: 'notices'
+        },
+        {
+          path: 'search',
+          component: Search,
+          name: 'search'
+        },
+        {
+          path: 'brick/:repo',
           component: Repo,
           name: 'Brick',
           children: [
@@ -75,23 +85,9 @@ export default new Router({
       component: Profile
     },
     {
-      path: '/search',
-      component: Search,
-      children: [{
-        path: '',
-        name: 'SearchHome',
-        component: Search
-      },
-      {
-        path: ':keyword',
-        name: 'Search',
-        component: Search
-      }]
-    },
-    {
       path: '/plugins',
       component: Plugins,
-      name: 'Plugins'
+      name: 'plugins'
     },
     {
       path: '/plugins/:plugin',
@@ -102,11 +98,6 @@ export default new Router({
       path: '/settings',
       component: Settings,
       name: 'settings'
-    },
-    {
-      path: '/notices',
-      component: NoticesView,
-      name: 'notices'
     },
     {
       path: '*',

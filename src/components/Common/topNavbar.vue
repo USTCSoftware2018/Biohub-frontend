@@ -6,13 +6,18 @@
         <a class="navbar-brand" href="#">Brand</a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a href="/forum">Forum</a></li>
-        <li><a href="/plugins">Plugins</a></li>
+        <li><router-link :to="{ name: 'forum-home' }">Forum</router-link></li>
+        <li><router-link :to="{ name: 'plugins' }">Plugins</router-link></li>
       </ul>
       <form class="navbar-form navbar-left" v-if="!($route.name === 'Search')">
         <div class="form-group has-feedback">
-          <input type="search" class="form-control" v-on:keydown.enter.prevent="intoSearch" ref="Search"
-                 placeholder="Search" style="font-size: 15px;" v-model="searchContent">
+          <input
+            type="search" class="form-control"
+            v-on:keydown.enter.prevent="intoSearch"
+            ref="Search"
+            placeholder="Search"
+            style="font-size: 15px;"
+            v-model="searchContent">
           <a class="form-control-feedback"
              href="javascript:;" style="pointer-events: auto;top: 2px!important;"
              v-if="searchContent !== ''"
@@ -83,11 +88,10 @@
         })
       },
       intoSearch (e) {
-        let sValue = this.$refs.Search.value
         this.$router.push({
-          name: 'Search',
-          params: {
-            keyword: sValue
+          name: 'search',
+          query: {
+            q: this.searchContent
           }
         })
       },

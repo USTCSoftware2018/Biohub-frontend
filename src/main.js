@@ -50,7 +50,7 @@ let biohub = new Vue({
 axios.interceptors.response.use((response) => {
   return response
 }, (error) => {
-  if (error.response.status === 403) {
+  if (error.response && error.response.status === 403) {
     Lockr.set('user', '')
     biohub.user = null
   }
