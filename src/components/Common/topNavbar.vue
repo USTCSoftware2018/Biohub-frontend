@@ -53,7 +53,7 @@
 </template>
 
 <script>
-  import HeaderNoticeList from './HeaderNoticeList.vue'
+  import HeaderNoticeList from '@/components/notices/HeaderNoticeList.vue'
 
   export default {
     data () {

@@ -13,6 +13,7 @@ import Plugins from '@/components/plugins/plugins'
 import Search from '@/components/forum/Search/Search'
 import Settings from '@/components/account/Settings'
 import Reset from '@/components/account/Reset'
+import NoticesView from '@/components/notices/NoticesView'
 
 Vue.use(Router)
 
@@ -101,6 +102,11 @@ export default new Router({
       path: '/settings',
       component: Settings,
       name: 'settings'
+    },
+    {
+      path: '/notices',
+      component: NoticesView,
+      name: 'notices'
     },
     {
       path: '*',

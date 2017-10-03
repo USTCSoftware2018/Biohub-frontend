@@ -45,3 +45,17 @@ body {
   }
   cursor: pointer;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #c3c3c3;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -9,16 +9,22 @@
     <ul class="dropdown-menu dropdown-notice" style="border: 0px;">
       <div class="notice-container" ref="noticeContainer">
         <div class="notice-head clearfix">
+          <a href="javascript:;" @click="refresh">
+            Refresh
+          </a>
           <a class="pull-right" href="javascript:;" @click="markAllAsRead">
             Mark All As Read
           </a>
         </div>
         <div class="notice-list">
           <notice-item v-for="item in notices" :notice="item" :key="item.id"></notice-item>
-          <div class="indicator load-more" v-if="next" @click="loadNext">
+          <div class="indicator load-more" v-if="next || loading" @click="loadNext">
             {{loading ? 'Loading...' : 'Click to Load More...'}}
           </div>
           <div class="indicator" v-else>~~ No More Notices ~~</div>
+        </div>
+        <div class="notice-footer">
+          <router-link :to="{ name: 'notices' }">View All</router-link>
         </div>
       </div>
     </ul>
@@ -33,7 +39,8 @@
         notices: [],
         next: null,
         isOpened: false,
-        loading: false
+        loading: false,
+        inited: false
       }
     },
     computed: {
@@ -42,6 +49,11 @@
           dropdown: true,
           open: this.isOpened
         }
+      }
+    },
+    watch: {
+      isOpened (newValue) {
+        if (newValue && !this.inited) this.init()
       }
     },
     methods: {
@@ -61,8 +73,14 @@
             })
           })
       },
+      refresh () {
+        this.clear()
+        this.init()
+      },
       clear () {
         this.notices = []
+        this.next = null
+        this.inited = false
       },
       load (url) {
         if (!url || this.loading) return
@@ -81,6 +99,7 @@
       },
       init () {
         return this.load('/api/notices/')
+          .then(() => { this.inited = true })
       },
       reload () {
         this.notices = []
@@ -95,7 +114,6 @@
       }
     },
     mounted () {
-      this.init()
       this.initEvents()
     }
   }
