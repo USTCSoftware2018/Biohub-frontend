@@ -31,9 +31,13 @@
       var arc = null
       this.maxLength = _.result(_.find(this.feaData, {'type': 'stop'}), 'last')
       console.log(this.maxLength)
+      arc = d3.arc().innerRadius(40).outerRadius(50).startAngle(0).endAngle(2.0 * Math.PI)
+      svg.append('path').attr('d', arc()).attr('style', 'fill: black')
       _.forEach(this.feaData, (fea) => {
-        arc = d3.arc().innerRadius(40).outerRadius(50).startAngle(fea.first * 2.0 * Math.PI / this.maxLength).endAngle(2.0 * Math.PI * fea.last / this.maxLength)
-        svg.append('path').attr('d', arc())
+        if (fea.type !== 'protein') {
+          arc = d3.arc().innerRadius(40).outerRadius(50).startAngle(fea.first * 2.0 * Math.PI / this.maxLength).endAngle(2.0 * Math.PI * fea.last / this.maxLength)
+          svg.append('path').attr('d', arc())
+        }
       })
     }
   }

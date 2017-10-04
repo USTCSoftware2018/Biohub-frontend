@@ -91,10 +91,10 @@
         _.forEach(response.data.results, (t) => {
           switch (t.type) {
             case 'Watch':
-              this.timeline.push(`<a href='/user/${t.params.user}/'>${t.params.user}</a> began to watch <a href='/forum/${t.params.partName}/'>${t.params.partName}</a><span class='timeago pull-right'>${t.acttime}</span>`)
+              this.timeline.push(`<a href='/user/${t.params.user}/'>${t.params.user}</a> began to watch <a href='/forum/brick/${t.params.partName}/'>${t.params.partName}</a><span class='timeago pull-right'>${t.acttime}</span>`)
               break
             case 'Experience':
-              this.timeline.push(`<a href='/user/${t.params.user}/'>${t.params.user}</a> post a new experience at <a href='/forum/${t.params.partName}/'>${t.params.partName}</a><span class='timeago pull-right' datetime='${t.acttime}'></span>`)
+              this.timeline.push(`<a href='/user/${t.params.user}/'>${t.params.user}</a> post a new experience at <a href='/forum/brick/${t.params.partName}/'>${t.params.partName}</a><span class='timeago pull-right' datetime='${t.acttime}'></span>`)
               break
           }
         })
