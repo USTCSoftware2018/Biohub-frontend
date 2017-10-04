@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <feature :feaData="Brick.ruler.seq_features"></feature>
+          <feature :feaData="Brick.ruler.seq_features" :seqLength='Brick.sequence.length'></feature>
         </div>
       </div>
     </div>
