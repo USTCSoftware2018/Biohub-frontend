@@ -68,6 +68,12 @@
 
   .result-footer {
     margin-top: .2rem;
+
+    .data-group {
+      + .data-group {
+        margin-left: .25em;
+      }
+    }
   }
 
   .progress-matches {
