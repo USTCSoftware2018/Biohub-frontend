@@ -46,7 +46,7 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" style="border: 0px;">
-            <li><router-link :to="{name:'Profile', params:{author: userName}}">Profile</router-link></li>
+            <li><router-link :to="{name:'profile', params:{user: userName}}">Profile</router-link></li>
             <li><a href="javascript:;" @click="logOut">Log Out</a></li>
           </ul>
         </li>

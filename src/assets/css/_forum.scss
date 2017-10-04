@@ -325,9 +325,7 @@
 }
 
 .timeline {
-  background-color: white;
-  padding: 10px 10px;
-  box-shadow: 0 0 3px $border-color;
+
   .timelineHead {
     text-align: left;
     background-color: white;
@@ -343,4 +341,26 @@
   .timelineItem + .timelineItem {
     border-top: 1px solid $border-color;
   }
-} 
+}
+
+.activities {
+  background-color: white;
+  padding: 10px 10px;
+  box-shadow: 0 0 3px $border-color;
+
+  .activity-item {
+    list-style: none;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .activity-item + .activity-item {
+    border-top: 1px solid $border-color;
+  }
+
+  .load-more {
+    margin: .75em 0;
+    text-align: center;
+  }
+}

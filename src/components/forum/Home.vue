@@ -46,12 +46,7 @@
     <div class="row">
       <div class="container">
         <div class="col-md-8 less-padding">
-          <div class="timeline">
-            <div class="timelineHead">Timeline</div>
-            <div class="timelineItem"  v-for="item in timeline">
-              <div v-html="item"></div>
-            </div>
-          </div>
+          <activity-list api="/api/forum/activities/timeline/"></activity-list>
         </div>
         <div class="col-md-4 less-padding">
           <ul class="nav nav-pills">
@@ -66,6 +61,7 @@
 
 <script>
   import topNavbar from '../Common/topNavbar.vue'
+  import ActivityList from '@/components/forum/Activity/ActivityList'
 
   export default {
     data () {
@@ -75,53 +71,17 @@
         stateLoad: false,
         stateFound: false,
         stateNotFound: false,
-        findResult: null,
-        timeline: []
+        findResult: null
       }
     },
     components: {
-      topNavbar
-    },
-    created () {
-      axios.get('/api/forum/activities/timeline/').then((response) => {
-        _.forEach(response.data.results, (t) => {
-          switch (t.type) {
-            case 'Watch':
-              this.timeline.push(`<a href='/user/${t.params.user}/'>${t.params.user}</a> began to watch <a href='/forum/brick/${t.params.partName}/'>${t.params.partName}</a><span class='timeago pull-right'>${t.acttime}</span>`)
-              break
-            case 'Experience':
-              this.timeline.push(`<a href='/user/${t.params.user}/'>${t.params.user}</a> post a new experience at <a href='/forum/brick/${t.params.partName}/'>${t.params.partName}</a><span class='timeago pull-right' datetime='${t.acttime}'></span>`)
-              break
-          }
-        })
-        console.log(this.timeline)
-        this.$nextTick(() => {
-          timeago().render($('.timeago'))
-        })
-      }).catch((e) => {
-        console.log(e)
-      })
+      topNavbar,
+      ActivityList
     },
     mounted () {
     },
     methods: {
       search (name) {
-        this.stateLoad = true
-        this.stateFound = false
-        this.stateNotFound = false
-        axios.get('/api/forum/bricks/' + name + '/').then((response) => {
-          this.stateLoad = false
-          if (response.status === 200) {
-            this.findResult = response.data
-            this.stateFound = true
-            $('#collapseSuccess').collapse('show')
-          }
-          console.log(response)
-        }).catch((error) => {
-          this.stateLoad = false
-          this.stateNotFound = true
-          console.log(error.response, this.stateLoad)
-        })
       }
     }
   }

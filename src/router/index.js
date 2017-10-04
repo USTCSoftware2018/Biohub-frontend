@@ -56,6 +56,11 @@ export default new Router({
           name: 'notices'
         },
         {
+          path: 'user/:user',
+          name: 'profile',
+          component: Profile
+        },
+        {
           path: 'search',
           component: Search,
           name: 'search'
@@ -78,11 +83,6 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: Signup
-    },
-    {
-      path: '/user/:author',
-      name: 'Profile',
-      component: Profile
     },
     {
       path: '/plugins',

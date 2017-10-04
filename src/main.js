@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import axios from 'axios'
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 import authController from '@/utils/authController'
 import websocket from '@/utils/websocket'
