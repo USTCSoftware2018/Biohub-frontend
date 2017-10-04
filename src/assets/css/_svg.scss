@@ -2,30 +2,9 @@
   stroke: lighten($color-blue-1, 5%);
   fill: none;
 }
-.path-protein, .path-cds {
-  fill: #56B1BF;
-}
-.path-mutation {
-  fill: #0B708A;
-}
-.path-s_mutation {
-  fill: #D73A31;
-}
-.path-rarrow_p {
-  fill: #032B2F;
-}
-.path-new_feature {
-  fill: #CFF09E;
-}
-.path-stop {
-  fill: #3B8686;
-}
-.path-brick {
-  fill: $color-blue-2;
-}
-.path-conserved {
-  fill: grey;
-}
 .path-hover {
-  stroke: lighten($color-blue-1, 10%);
+  fill: #7C8DC1 !important;
+}
+.path-empty {
+  @include transition(fill);
 }

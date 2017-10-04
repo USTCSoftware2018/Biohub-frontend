@@ -39,6 +39,7 @@
       var radius = Math.min(width, height)
       var colorBase = d3.color('#1695A3')
       var uniq = _.uniqBy(this.oriData, 'type')
+      var t = d3.transition().duration(100).ease(d3.easeLinear)
       _.forEach(uniq, (x) => {
         this.colorSpace[x.type + 'Color'] = colorBase
         colorBase = colorBase.brighter(2 / uniq.length)
@@ -58,14 +59,22 @@
       svg.selectAll('path').data(this.oriData).enter().append('path').attr('d', arc).attr('style', (d) => {
         console.log('fill:' + this.colorSpace[d.type + 'Color'])
         return 'fill:' + this.colorSpace[d.type + 'Color']
-      })
+      }).attr('name', (d) => d.type)
       d3.select('g').insert('path').attr('d', d3.arc().innerRadius(radius / 2 - 20).outerRadius(radius / 2 - 10).startAngle(0).endAngle(2 * Math.PI).cornerRadius(3)).attr('class', 'path-base')
+      svg.selectAll('path').on('mouseover', function () {
+        console.log('enter', d3.select(this).attr('name'))
+        svg.selectAll('path[name=' + d3.select(this).attr('name') + ']').attr('class', 'path-empty path-hover')
+      })
+      svg.selectAll('path').on('mouseout', function () {
+        console.log('leave', d3.select(this).attr('name'))
+        svg.selectAll('path[name=' + d3.select(this).attr('name') + ']').attr('class', 'path-empty')
+      })
     },
     methods: {
       convertLengthToDegree (d) {
         var r = d / this.seqLength * 2.0 * Math.PI
-        if (r < 0.05) {
-          return 0.05
+        if (r < 0.02) {
+          return 0.02
         } else return r
       }
     }
