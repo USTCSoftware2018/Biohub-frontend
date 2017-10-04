@@ -41,6 +41,10 @@ module.exports = {
         pathRewrite: {
           '^/media': '/media'
         }
+      },
+      '/ws': {
+        target: 'ws://120.25.250.211:8080/ws/',
+        ws: true
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

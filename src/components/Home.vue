@@ -22,14 +22,11 @@
   </div>
 </template>
 <script>
-  import axios from 'axios'
-
   export default {
     name: 'home',
-    created () {
-      if (this.$root.user) window.location.href = '/forum'
-      axios.get('/api/users/me/').then((_) => {
-        window.location.href = '/forum'
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        if (vm.$root.user) vm.$router.push({ name: 'forum-home' })
       })
     },
     methods: {
