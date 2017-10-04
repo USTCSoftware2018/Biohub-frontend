@@ -13,38 +13,20 @@
 </template>
 
 <style>
-  .path-base {
-    fill: #D0D3C5;
-  }
-  .path-protein {
-    fill: #56B1BF;
-  }
-  .path-mutation {
-    fill: #0B708A;
-  }
-  .path-s_mutation {
-    fill: #D73A31;
-  }
-  .path-rarrow_p {
-    fill: #032B2F;
-  }
-  .path-new_feature {
-    fill: #CFF09E;
-  }
 </style>
 
 <script>
   import * as d3 from 'd3'
   export default {
-    props: ['feaData'],
+    props: ['feaData', 'seqLength'],
     data () {
       return {
         oriData: this.feaData,
-        currentAngle: 0,
-        maxLength: 0
+        currentAngle: 0
       }
     },
     mounted () {
+      console.log(this.seqLength)
       _.forEach(this.oriData, (fea) => {
         fea.length = fea.last - fea.first
       })
@@ -62,19 +44,18 @@
         .append('g')
           .attr('transform', 'translate(' + width / 2.0 + ',' + (height / 2.0 + 10) + ')')
       var arc = d3.arc().innerRadius(radius / 2 - 20).outerRadius(radius / 2 - 10).startAngle((d) => {
-        return d.first * 2.0 * Math.PI / this.maxLength
+        return d.first * 2.0 * Math.PI / this.seqLength
       }).endAngle((d) => {
-        return this.convertLengthToDegree(d.length) + d.first * 2.0 * Math.PI / this.maxLength
-      })
-      this.maxLength = _.result(_.find(this.feaData, {'type': 'stop'}), 'last')
-      console.log(this.maxLength)
+        return this.convertLengthToDegree(d.length) + d.first * 2.0 * Math.PI / this.seqLength
+      }).cornerRadius(3)
       svg.selectAll('path').data(this.oriData).enter().append('path').attr('d', arc).attr('class', (d) => {
         return 'path-' + d.type
       })
+      d3.select('g').insert('path').attr('d', d3.arc().innerRadius(radius / 2 - 20).outerRadius(radius / 2 - 10).startAngle(0).endAngle(2 * Math.PI).cornerRadius(3)).attr('class', 'path-base')
     },
     methods: {
       convertLengthToDegree (d) {
-        var r = d / this.maxLength * 2.0 * Math.PI
+        var r = d / this.seqLength * 2.0 * Math.PI
         if (r < 0.05) {
           return 0.05
         } else return r

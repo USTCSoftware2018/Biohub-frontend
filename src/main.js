@@ -22,7 +22,6 @@ let a = null
 try {
   let bytes = Crypto.AES.decrypt(Lockr.get('user'), 'secretkey')
   a = JSON.parse(bytes.toString(Crypto.enc.Utf8))
-  console.log(JSON.parse(bytes.toString(Crypto.enc.Utf8)))
 } catch (e) {
   console.log(e)
 }

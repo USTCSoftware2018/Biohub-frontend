@@ -27,8 +27,8 @@
   export default {
     name: 'home',
     created () {
+      if (this.$root.user) window.location.href = '/forum'
       axios.get('/api/users/me/').then((_) => {
-        this.$store.commit('login', _.data)
         window.location.href = '/forum'
       })
     },

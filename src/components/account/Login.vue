@@ -41,6 +41,8 @@
     name: 'login',
     created () {
       axios.get('/api/users/me/').then((response) => {
+        Lockr.set('user', Crypto.AES.encrypt(JSON.stringify(response.data), 'secretkey').toString())
+        this.$root.user = response.data
         window.location.href = '/forum'
       }).catch((_) => {
         console.log(_)
