@@ -2,7 +2,7 @@
   <div>
     <div class="row repo-wrapper">
       <div class="container">
-        <div class='col-md-8'>
+        <div class='col-md-6'>
           <div class="repo-type">{{Brick.part_type}}</div>
           <div class="repo-info-name">
             {{ Brick.part_name }} <star :initial="Brick.rate_score"></star>
@@ -25,7 +25,7 @@
             <a @click="newExp">Write Your Experience</a>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <feature :feaData="Brick.ruler.seq_features"></feature>
         </div>
       </div>
