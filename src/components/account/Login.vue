@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-          <form style="margin-top:50px;" class="biohub-form">
+          <form style="margin-top:50px;" class="biohub-form" @submit.prevent="login">
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
@@ -24,10 +24,8 @@
               <button type="button" class="close"></button>
               <strong>Error: </strong> {{ errorMessage }}
             </div>
-            <button type="submit" class="btn btn-biohub btn-biohub-blue full-width" v-on:click.self.prevent="Login">
+            <button type="submit" class="btn btn-biohub btn-biohub-blue full-width" v-on:click.self.prevent="login">
               Sign in
-            </button>
-            <button class="btn btn-biohub btn-biohub-light full-width" v-on:click.self.prevent="Reset">Forget Password
             </button>
           </form>
         </div>
@@ -37,15 +35,13 @@
   </div>
 </template>
 <script>
+  import authController from '@/utils/authController'
+
   export default {
     name: 'login',
-    created () {
-      axios.get('/api/users/me/').then((response) => {
-        Lockr.set('user', Crypto.AES.encrypt(JSON.stringify(response.data), 'secretkey').toString())
-        this.$root.user = response.data
-        window.location.href = '/forum'
-      }).catch((_) => {
-        console.log(_)
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        if (vm.$root.user) vm.$router.push({ name: 'forum-home' })
       })
     },
     watch: {
@@ -62,7 +58,7 @@
       }
     },
     methods: {
-      Login () {
+      login () {
         if (this.username === '') {
           this.errorOccur = true
           this.errorMessage = 'Username can\'t be blank'
@@ -80,15 +76,20 @@
           username: this.username,
           password: this.password
         }).then((response) => {
-          Lockr.set('user', Crypto.AES.encrypt(JSON.stringify(response.data), 'secretkey').toString())
-          this.$root.user = response.data
-          this.$router.push({name: 'forumHomepage'})
+          authController.login(response.data)
+          this.$router.push({name: 'forum-home'})
         }).catch(e => {
-          if (e.response.status === 400) {
-            this.errorOccur = true
-            this.errorMessage = 'Wrong username or password'
+          switch (e.response.status) {
+            case 400:
+              this.errorOccur = true
+              this.errorMessage = 'Wrong username or password'
+              break
+            case 404:
+              authController.fetch()
+              this.$router.push({name: 'forum-home'})
           }
-          console.log(e)
+          if (e.response.status === 400) {
+          }
         })
       }
     }

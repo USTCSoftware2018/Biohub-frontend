@@ -22,7 +22,8 @@
     data () {
       return {
         oriData: this.feaData,
-        currentAngle: 0
+        currentAngle: 0,
+        colorSpace: {}
       }
     },
     mounted () {
@@ -36,7 +37,13 @@
       var width = document.querySelector('#fContainer').offsetWidth
       var height = document.querySelector('.repo-wrapper').offsetHeight - 20
       var radius = Math.min(width, height)
-      console.log(radius)
+      var colorBase = d3.color('#1695A3')
+      var uniq = _.uniqBy(this.oriData, 'type')
+      _.forEach(uniq, (x) => {
+        this.colorSpace[x.type + 'Color'] = colorBase
+        colorBase = colorBase.brighter(2 / uniq.length)
+      })
+      console.log(this.colorSpace)
       var svg = d3.select('#fContainer')
         .append('svg')
           .attr('width', width)
@@ -48,8 +55,9 @@
       }).endAngle((d) => {
         return this.convertLengthToDegree(d.length) + d.first * 2.0 * Math.PI / this.seqLength
       }).cornerRadius(3)
-      svg.selectAll('path').data(this.oriData).enter().append('path').attr('d', arc).attr('class', (d) => {
-        return 'path-' + d.type
+      svg.selectAll('path').data(this.oriData).enter().append('path').attr('d', arc).attr('style', (d) => {
+        console.log('fill:' + this.colorSpace[d.type + 'Color'])
+        return 'fill:' + this.colorSpace[d.type + 'Color']
       })
       d3.select('g').insert('path').attr('d', d3.arc().innerRadius(radius / 2 - 20).outerRadius(radius / 2 - 10).startAngle(0).endAngle(2 * Math.PI).cornerRadius(3)).attr('class', 'path-base')
     },

@@ -83,10 +83,6 @@
       topNavbar
     },
     created () {
-      axios.get('/api/users/me/').then((response) => {
-      }).catch((_) => {
-        this.$store.commit('logout')
-      })
       axios.get('/api/forum/activities/timeline/').then((response) => {
         _.forEach(response.data.results, (t) => {
           switch (t.type) {

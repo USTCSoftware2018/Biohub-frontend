@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6" style="padding-left:20px;padding-right:20px;">
-          <form style="margin-top:50px;" class="biohub-form">
+          <form style="margin-top:50px;" class="biohub-form" @submit.prevent="signUp">
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-address-card fa-fw"></i></div>
@@ -41,8 +41,7 @@
                 <button type="button" class="close"></button>
                 <strong>Error: </strong> {{ errorMessage }}
               </div>
-              <button type="submit" class="btn btn-biohub btn-biohub-blue full-width"
-                      v-on:click.self.prevent="SignUp">
+              <button type="submit" class="btn btn-biohub btn-biohub-blue full-width">
                 Sign up
               </button>
             </div>
@@ -54,6 +53,7 @@
 </template>
 <script>
   import DynamicOptions from '../utils/DynamicOptions.vue'
+  import authController from '@/utils/authController'
 
   let usernameReg = /^\w{4,15}$/
   let userPwdReg = /(?=.*\d)(?=.*[a-zA-Z]).{6,20}/
@@ -65,6 +65,11 @@
     name: 'Signup',
     components: {
       DynamicOptions
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        if (vm.$root.user) vm.$router.push({ name: 'forum-home' })
+      })
     },
     mounted () {
       this.$refs.emailInput.focus()
@@ -105,7 +110,7 @@
       }
     },
     methods: {
-      SignUp () {
+      signUp () {
         if (this.usermail === '') {
           this.errorOccur = true
           this.errorMessage = 'E-mail address can\'t be blank'
@@ -153,15 +158,13 @@
           email: this.usermail,
           password: this.password
         }).then((response) => {
-          console.log(response)
-          if (response.statusText === 'OK') {
-            window.location.href = '/forum'
-          }
+          authController.login(response.data)
+          this.$router.push({ name: 'forum-home' })
         }).catch((e) => {
           console.log(e.response.status)
           if (e.response.status === 404) {
-            window.alert('Current User hasn\'t logged out')
-            window.location.href = '/forum'
+            authController.fetch()
+            this.$router.push({ name: 'forum-home' })
           } else if (e.response.status === 400) {
             this.errorOccur = true
             this.errorMessage = 'username has been used'

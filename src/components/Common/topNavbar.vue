@@ -27,13 +27,11 @@
         </div>
       </form>
 
-      <ul v-if="!hasLogged" class="nav navbar-nav navbar-right">
-        <li><a href="/login">Login</a></li>
+      <ul v-if="!logined" class="nav navbar-nav navbar-right">
+        <li><router-link :to="{ name: 'login' }">Login</router-link></li>
+        <li><router-link :to="{ name: 'signup' }">Signup</router-link></li>
       </ul>
-      <ul v-if="!hasLogged" class="nav navbar-nav navbar-right">
-        <li><a href="/signup">Signup</a></li>
-      </ul>
-      <ul v-if="hasLogged" class="nav navbar-nav navbar-right navbar-biohub-toggle">
+      <ul v-if="logined" class="nav navbar-nav navbar-right navbar-biohub-toggle">
         <header-notice-list></header-notice-list>
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle"
@@ -49,7 +47,7 @@
           </a>
           <ul class="dropdown-menu" style="border: 0px;">
             <li><router-link :to="{name:'Profile', params:{author: userName}}">Profile</router-link></li>
-            <li><a href="javascript:;" v-on:click="LogOut">Log Out</a></li>
+            <li><a href="javascript:;" @click="logOut">Log Out</a></li>
           </ul>
         </li>
       </ul>
@@ -59,6 +57,7 @@
 
 <script>
   import HeaderNoticeList from '@/components/notices/HeaderNoticeList.vue'
+  import authController from '@/utils/authController'
 
   export default {
     data () {
@@ -66,11 +65,14 @@
         searchContent: ''
       }
     },
+    mounted () {
+
+    },
     components: {
       HeaderNoticeList
     },
     computed: {
-      hasLogged () {
+      logined () {
         return (this.$root.user !== null)
       },
       userName () {
@@ -81,10 +83,9 @@
       }
     },
     methods: {
-      LogOut () {
+      logOut () {
         axios.get('/api/users/logout/').then((_) => {
-          this.$root.user = null
-          Lockr.set('user', '')
+          authController.logout()
         })
       },
       intoSearch (e) {
