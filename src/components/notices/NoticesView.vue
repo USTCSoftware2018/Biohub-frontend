@@ -3,16 +3,11 @@
     <div class="col-md-offset-2 col-md-8 notice-view-container">
       <div class="notice-list" v-if="inited">
         <notice-item v-for="item in notices" :notice="item" :key="item.id"></notice-item>
-        <ul class="pager">
-          <li :class="{ disabled: !hasPrevious }">
-            <router-link :to="{ name: 'notices', query: { page: pageNum - 1 } }">
-              Previous
-            </router-link>
-          </li>
-          <li :class="{ disabled: !hasNext }">
-            <router-link :to="{ name: 'notices', query: { page: pageNum + 1 } }">Next</router-link>
-          </li>
-        </ul>
+        <pager
+          :hasNext="hasNext"
+          :hasPrevious="hasPrevious"
+          :nextRoute="nextRoute"
+          :previousRoute="previousRoute"></pager>
       </div>
     </div>
   </div>
@@ -21,10 +16,13 @@
 <script>
   import NoticeListMixin from './NoticeListMixin'
   import NoticeItem from './NoticeItem'
+  import Pager from '@/components/Common/Pager'
+  import { normalizedPageNum } from '@/utils/page'
 
   export default {
     components: {
-      NoticeItem
+      NoticeItem,
+      Pager
     },
     mixins: [NoticeListMixin],
     data () {
@@ -35,6 +33,24 @@
         loading: false,
         hasNext: false,
         hasPrevious: false
+      }
+    },
+    computed: {
+      nextRoute () {
+        return {
+          name: 'notices',
+          query: {
+            page: this.pageNum + 1
+          }
+        }
+      },
+      previousRoute () {
+        return {
+          name: 'notices',
+          query: {
+            page: this.pageNum - 1
+          }
+        }
       }
     },
     methods: {
@@ -53,10 +69,14 @@
 
         this.pageNum = page
         return this.load(`/api/notices/?page=${page}`)
-          .then(({ data: {next, previous} }) => {
+          .then((response) => {
             this.inited = true
-            this.hasNext = next !== null
-            this.hasPrevious = previous !== null
+            this.hasNext = response.data.next !== null
+            this.hasPrevious = response.data.previous !== null
+
+            return response
+          }).always(response => {
+            this.pageNum = normalizedPageNum(response)
           })
       }
     },

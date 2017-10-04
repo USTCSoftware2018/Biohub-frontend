@@ -1,31 +1,45 @@
-.search-input {
-  @extend %input-biohub;
-  width: 40em;
-  background-color: darken($search-header-color,5%);
-  border-color: transparent;
-  color: $text-color;
-  margin: 0.3rem 0 0.3rem 0;
-  font-size: 0.2rem;
-  padding: 0.07rem 0.1rem;
-  &:focus, &:active {
-    outline: none;
-  }
-  vertical-align: middle;
-}
-
 .search-head {
   background-color: $search-header-color;
+
+  .snail-icon {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+  }
+
+  .btn-search {
+    height: 0.44rem;
+    padding: 0 0.1rem;
+    vertical-align: middle;
+    background-color: $color-blue-2;
+    border-color: transparent;
+    color: $text-color;
+    margin-left: 0;
+  }
+
+  .search-input {
+    @extend %input-biohub;
+    width: 40em;
+    background-color: darken($search-header-color,5%);
+    border-color: transparent;
+    color: $text-color;
+    margin: 0.3rem 0 0.3rem 0;
+    font-size: 0.2rem;
+    padding: 0.07rem 0.1rem;
+    vertical-align: middle;
+
+    &:focus, &:active {
+      outline: none;
+    }
+  }
 }
 
-.btn-search {
-  height: 0.44rem;
-  padding: 0 0.1rem;
-  vertical-align: middle;
-  background-color: $color-blue-2;
-  border-color: transparent;
-  color: $text-color;
-  margin-left: 0;
+.stats {
+  text-align: left;
+  margin-top: .2rem;
 }
+
 .search-result {
   text-align: left;
   padding-top: 0.2rem;
@@ -36,28 +50,54 @@
   &:first-child {
     margin-top: 0;
   }
-}
 
-
-.result-header {
-  font-size: 0.24rem;
-  span, a {
-    vertical-align: middle;
+  .result-header {
+    font-size: 0.24rem;
+    span, a {
+      vertical-align: middle;
+    }
+    a {
+      color: $color-blue-2;
+      padding-right: 0.1rem;
+    }
   }
-  a {
-    color: $color-blue-2;
-    padding-right: 0.1rem;
-  }
-}
 
-.label-container {
-  padding-bottom: 0.3rem;
-  width: 76%;
-  margin-left: auto;
-  margin-right: auto;
-  .checkbox-inline {
-    float: left;
-    color: $text-color;
+  .result-content {
+    margin-top: 0.1rem;
+  }
+
+  .result-footer {
+    margin-top: .2rem;
+  }
+
+  .progress-matches {
+    width: 100px;
+    height: 14px;
+    float: right;
+    display: inline-block;
+    position: relative;
+
+    .progress-bar {
+      &.fatal {
+        background-color: $color-fatal;
+      }
+      &.warning {
+        background-color: $color-warning;
+      }
+      &.success {
+        background-color: $color-success;
+      }
+    }
+
+    .text {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 2px;
+      line-height: 1;
+      font-size: 10px;
+      text-align: center;
+    }
   }
 }
 
@@ -66,28 +106,44 @@
   font-size: 0.12rem;
   padding: 0.03rem 0.1rem;
   border-radius: 0.05rem;
+
+  + .result-label {
+    margin-left: .25em;
+  }
+
+  &.sample-status {
+    margin-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &.status {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 
-.result-label-person {
-  background-color: $color-blue-3;
-  color: $text-color-rev;
-}
-.result-label-parts {
-  background-color: $color-orange;
+.result-label-fatal {
+  background-color: $color-fatal;
   color: $text-color;
 }
 
-.result-label-device {
-  background-color: darken($color-light,5%);
+.result-label-info {
+  background-color: $color-info;
   color: $text-color-rev;
 }
 
-.result-content {
-  margin-top: 0.1rem;
+.result-label-warning {
+  background-color: $color-warning;
+  color: $text-color-rev;
 }
-.snailicon{
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  margin: 10px;
+
+.result-label-success {
+  background-color: $color-success;
+  color: $text-color;
+}
+
+.result-label-type {
+  background-color: $color-orange;
+  color: $text-color;
 }

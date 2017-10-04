@@ -2,8 +2,7 @@
   <div>
     <div class="search-head">
       <form class="biohub-form" @submit.prevent="formSubmit">
-        <img src="../../../assets/img/icon.png"
-             class="snailicon"/>
+        <img src="../../../assets/img/icon.png" class="snail-icon"/>
         <div class="form-group has-feedback" style="width: auto; display: inline-block;">
           <input
             type="search"
@@ -20,13 +19,19 @@
         <input class="btn-search" value="Search" type="submit">
       </form>
     </div>
-    <div class="container search-result">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <search-result></search-result>
-        <search-result></search-result>
+    <div class="container">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="stats">
+          {{ bricksCount }} brick(s) found. Page {{ pageNum }} of {{ Math.ceil(bricksCount / 20) }}.
+        </div>
+        <search-result v-for="brick in bricks" :key="brick.part_name" :brick="brick"></search-result>
+        <pager
+          :hasNext="hasNext"
+          :hasPrevious="hasPrevious"
+          :nextRoute="nextRoute"
+          :previousRoute="previousRoute">
+        </pager>
       </div>
-      <div class="col-md-2"></div>
     </div>
   </div>
 </template>
@@ -35,6 +40,8 @@
 </style>
 <script>
   import SearchResult from './SearchResult.vue'
+  import Pager from '@/components/Common/Pager.vue'
+  import { normalizedPageNum } from '@/utils/page'
 
   export default {
     data () {
@@ -42,7 +49,11 @@
         query: '',
         loading: true,
         bricks: [],
-        cancel: null
+        cancel: null,
+        hasNext: false,
+        hasPrevious: false,
+        pageNum: 0,
+        bricksCount: 0
       }
     },
     methods: {
@@ -58,6 +69,7 @@
         let page = parseInt(this.$route.query.page)
 
         if (isNaN(page) || page <= 0) page = 1
+        this.pageNum = page
         this.query = this.$route.query.q
 
         return {
@@ -75,7 +87,15 @@
           params: this.getQueryParams()
         }).then(response => {
           this.cancel = null
-          console.log(response.data)
+          this.bricks = response.data.results
+          this.hasNext = response.data.next !== null
+          this.hasPrevious = response.data.previous !== null
+          this.bricksCount = response.data.count
+
+          return response
+        }).always(response => {
+          this.cancel = null
+          this.pageNum = normalizedPageNum(response)
         })
       },
       init () {
@@ -88,8 +108,28 @@
         this.load()
       }
     },
+    computed: {
+      nextRoute () {
+        return {
+          name: 'search',
+          query: {
+            q: this.query,
+            page: this.pageNum + 1
+          }
+        }
+      },
+      previousRoute () {
+        return {
+          name: 'search',
+          query: {
+            q: this.query,
+            page: this.pageNum - 1
+          }
+        }
+      }
+    },
     components: {
-      SearchResult
+      SearchResult, Pager
     },
     mounted () {
       this.init()

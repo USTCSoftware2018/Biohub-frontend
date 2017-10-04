@@ -1,5 +1,5 @@
 <template>
-  <div class="star-container" @mousemove="calcMouse">
+  <div class="star-container" @mousemove="calcMouse" v-if="initial !== null">
     <div class="star-container-empty"  @click="submit">
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
@@ -80,10 +80,20 @@
       return {
         canChange: this.isEnable,
         wSize: 0,
+        disabled: false
       }
     },
+    computed: {
+    },
     mounted () {
-      if (this.initial) {
+      if (this.initial === undefined) return
+
+      if (this.initial === null) {
+        this.disabled = true
+      }
+      let initialScore = parseFloat(this.initial)
+
+      if (!isNaN(initialScore)) {
         this.changeValue(this.initial)
         this.canChange = false
       }
@@ -91,13 +101,13 @@
     methods: {
       calcMouse (e) {
         if (this.canChange) {
-          this.wSize = Math.round(e.layerX / 12)/2.0 * 20
+          this.wSize = Math.round(e.layerX / 12) / 2.0 * 20
         }
       },
       submit () {
         if (this.canChange) {
           axios.post('/api/forum/bricks/' + this.brickName + '/rate/', {
-            score: this.wSize / 20
+            score: (this.wSize / 20).toFixed(1)
           }).then((response) => {
             console.log(response)
           })

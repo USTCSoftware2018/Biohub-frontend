@@ -4,6 +4,10 @@ $color-blue-3:#ACF0F2;
 $color-blue-4:#E9F8FD;
 $color-light :#F3FFE2;
 $color-orange:#EB7F00;
+$color-info: $color-blue-3;
+$color-fatal: #cc0f00;
+$color-warning: #ffdc00;
+$color-success: #00a800;
 
 $text-color  :lighten($color-light, 4%);
 $text-color-rev: darken($color-blue-1, 8%);
