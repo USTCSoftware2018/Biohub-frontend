@@ -38,9 +38,10 @@
       var height = document.querySelector('.repo-wrapper').offsetHeight - 20
       var radius = Math.min(width, height)
       var colorBase = d3.color('#1695A3')
-      _.forEach(_.uniqBy(this.oriData, 'type'), (x) => {
+      var uniq = _.uniqBy(this.oriData, 'type')
+      _.forEach(uniq, (x) => {
         this.colorSpace[x.type + 'Color'] = colorBase
-        colorBase = colorBase.brighter(0.1)
+        colorBase = colorBase.brighter(2 / uniq.length)
       })
       console.log(this.colorSpace)
       var svg = d3.select('#fContainer')
