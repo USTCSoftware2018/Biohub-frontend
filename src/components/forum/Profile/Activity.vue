@@ -1,13 +1,13 @@
 <template>
   <div v-scroll="loadMore">
-    <component v-for="(mod, i) in allActivities"
+    <component v-for="(mod, i) in fetcher.results"
                :key="i"
                :is="mod.type + 'Tab'"
                :params="mod.params"
                :showIntro="params.showIntro" class="-profile-activity-tab">
     </component>
-    <div v-if='$store.state.Activities.loading'>Loading...</div>
-    <div v-if="!$store.state.Activities.hasNext">You have reached the bottom...</div>
+    <div v-if='fetcher.loading'>Loading...</div>
+    <div v-if="fetcher.hasNext">You have reached the bottom...</div>
   </div>
 </template>
 
@@ -18,17 +18,19 @@
   import RatingTab from '../Common/RatingTab.vue'
   import WatchTab from '../Common/WatchTab.vue'
 
+  import ActivityFetcher from './Activity'
+
   export default {
     props: ['params', 'showIntro'],
     data () {
       return {
         next: '',
-        sw: true
-      }
-    },
-    computed: {
-      allActivities () {
-        return this.$store.state.Activities.activities
+        sw: true,
+        fetcher: {
+          results: [],
+          loading: true,
+          hasNext: false
+        }
       }
     },
     components: {
@@ -39,13 +41,11 @@
       WatchTab
     },
     mounted () {
-      this.$store.dispatch('initActivities', {
-        username: this.$route.params.author,
-        type: null})
+      this.fetcher = new ActivityFetcher(this.$route.params.author)
+      console.log(this.fetcher.results)
     },
     methods: {
       loadMore () {
-        this.$store.dispatch('loadMoreActivities', null)
       }
     }
   }

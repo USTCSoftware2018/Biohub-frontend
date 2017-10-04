@@ -127,14 +127,16 @@
         this.userLink = response.data.site_url
         this.userAvatar = response.data.avatar_url
         this.biography = response.data.description
-        if (this.$store.getters.userName === this.params.user) {
+        if (this.$route.params.author === this.params.user) {
           this.isSelf = true
         } else {
           this.isSelf = false
         }
       }).catch((_) => {
-        window.location.href = '/notfound'
+        console.log(_)
+        // window.location.href = '/notfound'
       })
+      console.log('finish')
       axios.get('/api/users/n:' + this.$route.params.author + '/followers/').then((response) => {
         this.followers = response.data
       })
