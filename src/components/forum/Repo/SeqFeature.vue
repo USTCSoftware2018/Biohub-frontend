@@ -6,6 +6,7 @@
     </div>
     <div class="col-md-6">
       <div class="featureList">
+        <div v-for='item in oriData' class="featureListItem">{{item.type}}</div>
       </div>
     </div>
   </div>
@@ -38,11 +39,18 @@
     props: ['feaData'],
     data () {
       return {
+        oriData: this.feaData,
         currentAngle: 0,
         maxLength: 0
       }
     },
     mounted () {
+      _.forEach(this.oriData, (fea) => {
+        fea.length = fea.last - fea.first
+      })
+      this.oriData = _.sortBy(this.oriData, [(o) => {
+        return -o.length
+      }])
       var width = document.querySelector('#fContainer').offsetWidth
       var height = document.querySelector('.repo-wrapper').offsetHeight - 20
       var radius = Math.min(width, height)
@@ -54,21 +62,22 @@
         .append('g')
           .attr('transform', 'translate(' + width / 2.0 + ',' + (height / 2.0 + 10) + ')')
       var arc = d3.arc().innerRadius(radius / 2 - 20).outerRadius(radius / 2 - 10).startAngle((d) => {
-        return this.convertLengthToDegree(d.first)
+        return d.first * 2.0 * Math.PI / this.maxLength
       }).endAngle((d) => {
-        return this.convertLengthToDegree(d.last)
+        return this.convertLengthToDegree(d.length) + d.first * 2.0 * Math.PI / this.maxLength
       })
       this.maxLength = _.result(_.find(this.feaData, {'type': 'stop'}), 'last')
       console.log(this.maxLength)
-      svg.append('path').attr('d', d3.arc().innerRadius(radius / 2 - 20).outerRadius(radius / 2 - 10).startAngle(0).endAngle(2.0 * Math.PI)).attr('class', 'path-base')
-      svg.selectAll('path').data(this.feaData).enter().append('path').attr('d', arc).attr('class', (d) => {
+      svg.selectAll('path').data(this.oriData).enter().append('path').attr('d', arc).attr('class', (d) => {
         return 'path-' + d.type
       })
     },
     methods: {
       convertLengthToDegree (d) {
-        console.log(d)
-        return d / this.maxLength * 2.0 * Math.PI
+        var r = d / this.maxLength * 2.0 * Math.PI
+        if (r < 0.05) {
+          return 0.05
+        } else return r
       }
     }
   }
