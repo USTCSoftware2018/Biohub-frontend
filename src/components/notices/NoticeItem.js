@@ -85,7 +85,10 @@ export default {
             let notice = this.notice
             if (notice.has_read) return
             axios.get(`/api/notices/${notice.id}/mark_read/`)
-              .then(() => { notice.has_read = true })
+              .then(() => {
+                notice.has_read = true
+                this.$emit('marked', this)
+              })
           }
         }
       },
