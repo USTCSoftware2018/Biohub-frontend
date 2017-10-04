@@ -41,7 +41,7 @@
     },
     computed: {
       tabName () {
-        return this.$route.query.tab
+        return this.$route.query.tab || 'Activities'
       }
     },
     methods: {
