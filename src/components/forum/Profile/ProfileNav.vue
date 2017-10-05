@@ -1,7 +1,12 @@
 <template>
-  <ul class="nav nav-tabs">
+  <ul class="nav p-nav-tabs">
     <li v-for="nav in navData" :class="nav.classes">
-      <router-link :to="nav.to">{{ nav.text }}</router-link>
+      <router-link :to="nav.to">
+        {{ nav.text }}
+        <span v-if="nav.label !== undefined" class="badge">
+          {{ nav.label }}
+        </span>
+      </router-link>
     </li>
   </ul>
 </template>
@@ -28,6 +33,10 @@
         let index = _.indexOf(source, tab)
         if (index < 0) index = 0
         let active = source[index]
+        const labels = {
+          Following: this.user.following_count,
+          Followers: this.user.follower_count
+        }
 
         return source.map(item => {
           return {
@@ -35,7 +44,8 @@
             to: this.makeRoute(item),
             classes: {
               active: active === item
-            }
+            },
+            label: labels[item]
           }
         })
       }

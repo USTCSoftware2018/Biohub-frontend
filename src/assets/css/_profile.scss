@@ -8,7 +8,11 @@
   .username {
     padding: .5em 0;
     font-size: 2em;
-    text-align: center;
+    text-align: left;
+  }
+
+  .info {
+    text-align: left!important;
   }
 }
 
@@ -135,52 +139,52 @@
 
 // }
 
-// .profile-biography-frame {
-//   background: white;
-//   height: 100%;
-//   width: 100%;
-//   padding: 10px;
-//   -webkit-border-radius: 2px;
-//   -moz-border-radius: 2px;
-//   border-radius: 2px;
-//   border: 1px solid #ddd;
-//   margin-top: 5%;
+.profile-biography-frame {
+  background: white;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  border: 1px solid #ddd;
+  position: relative;
 
-//   .profile-biography {
-//     line-height: 0.15rem !important;
-//     text-align: left;
-//     min-height: 0.7rem;
-//     word-wrap: break-word;
-//     -ms-word-wrap: break-word;
+  .profile-biography {
+    line-height: 0.15rem !important;
+    text-align: left;
+    min-height: 0.7rem;
+    word-wrap: break-word;
+    -ms-word-wrap: break-word;
 
-//     p {
-//       margin: 0px;
-//     }
+    p {
+      margin: 0px;
+    }
 
-//     .arrow-l-int {
-//       width: 0;
-//       height: 0;
-//       border-width: 15px;
-//       border-style: solid;
-//       border-color: transparent #ddd transparent transparent;
-//       position: absolute;
-//       top: 50px;
-//       left: -15px;
-//     }
+    .arrow-l-int {
+      width: 0;
+      height: 0;
+      border-width: 15px;
+      border-style: solid;
+      border-color: transparent #ddd transparent transparent;
+      position: absolute;
+      top: 15px;
+      left: -30px;
+    }
 
-//     .arrow-l-out {
-//       width: 0px;
-//       height: 0px;
-//       border-width: 16px;
-//       border-style: solid;
-//       border-color: transparent white transparent transparent;
-//       position: absolute;
-//       top: 49px;
-//       left: -14px;
-//     }
+    .arrow-l-out {
+      width: 0px;
+      height: 0px;
+      border-width: 16px;
+      border-style: solid;
+      border-color: transparent white transparent transparent;
+      position: absolute;
+      top: 14px;
+      left: -29px;
+    }
 
-//   }
-// }
+  }
+}
 
 // .profile-nav {
 //   margin-top: 5%;
@@ -209,43 +213,16 @@
 //   overflow: hidden;
 // }
 
-// @mixin fix() {
-//   &:before,
-//   &:after {
-//     content: "";
-//     display: table;
-//   }
-//   &:after {
-//     clear: both
-//   }
-// }
-
-// @keyframes profile-nav-emp {
-//   0% {
-//     color: #333;
-//   }
-//   100% {
-//     color: #2ab69d;
-//   }
-// }
-
-// @-o-keyframes profile-nav-emp {
-//   0% {
-//     color: #333;
-//   }
-//   100% {
-//     color: #2ab69d;
-//   }
-// }
-
-// @-webkit-keyframes profile-nav-emp {
-//   0% {
-//     color: #333;
-//   }
-//   100% {
-//     color: #2ab69d;
-//   }
-// }
+@mixin fix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both
+  }
+}
 
 // .p-nav {
 //   margin-bottom: 0;
@@ -275,37 +252,37 @@
 //   }
 // }
 
-// .p-nav-tabs {
-//   > li {
-//     float: left;
-//     margin-bottom: -1px;
+.p-nav-tabs {
+  > li {
+    float: left;
+    margin-bottom: -1px;
 
-//     > a {
-//       transition: .3s color;
-//       margin-right: 2px;
-//       line-height: 2em;
-//       &:hover {
-//         color: #2ab69d;
-//       }
-//     }
+    > a {
+      transition: .3s color;
+      margin-right: 2px;
+      line-height: 2em;
+      &:hover {
+        color: #2ab69d;
+      }
+    }
 
-//     & > a {
-//       color: #333;
-//       font-size: 20px;
-//       font-family: Helvetica;
-//     }
+    & > a {
+      color: #333;
+      font-size: 20px;
+      font-family: Helvetica;
+    }
 
-//     &.active > a {
-//       &,
-//       &:hover,
-//       &:focus {
-//         -webkit-animation: none;
-//         color: #2ab69d;
-//         cursor: default;
-//       }
-//     }
-//   }
-// }
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        -webkit-animation: none;
+        color: #2ab69d;
+        cursor: default;
+      }
+    }
+  }
+}
 
 // .profile-repo-score {
 //   float: right;

@@ -1,6 +1,6 @@
 <template>
   <div class="tab-pane fade in active">
-    <activity-list :api="apiUrl"></activity-list>
+    <activity-list :api="apiUrl" ref="list"></activity-list>
   </div>
 </template>
 
@@ -13,6 +13,13 @@
     computed: {
       apiUrl () {
         return `/api/forum/activities/?user=${this.user.username}`
+      }
+    },
+    watch: {
+      'user' (newVal, oldVal) {
+        if (newVal.username !== oldVal.username) {
+          this.$refs.list.refresh()
+        }
       }
     }
   }
