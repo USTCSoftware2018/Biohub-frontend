@@ -3,12 +3,12 @@
   fill: none;
 }
 .path-hover {
-  fill: white !important;
+  fill: #FFDEAA !important;
 }
 .path-empty {
   @include transition(fill);
 }
 .featureListItem {
   cursor: pointer;
-  
+
 }
