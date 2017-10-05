@@ -9,35 +9,15 @@
       </router-link>
     </div>
     <div class="user-right" v-if="user.followed !== undefined" :disabled="toggling">
-      <button class="btn" @click="toggleRelation">
-        {{ user.followed ? 'Unfollow' : 'Follow' }}
-      </button>
+      <follow-button :user="user"></follow-button>
     </div>
   </div>
 </template>
 
 <script>
+  import FollowMixin from './FollowMixin'
   export default {
-    data () {
-      return {
-        toggling: false
-      }
-    },
-    props: ['user'],
-    methods: {
-      toggleRelation () {
-        if (this.toggling) return
-
-        let action = this.user.followed ? 'unfollow' : 'follow'
-        let url = `/api/users/n:${this.user.username}/${action}/`
-        this.toggling = true
-        axios.post(url)
-          .then(response => {
-            this.user.followed = !this.user.followed
-          }).always(() => {
-            this.toggling = false
-          })
-      }
-    }
+    mixins: [FollowMixin],
+    props: ['user']
   }
 </script>

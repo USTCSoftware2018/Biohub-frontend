@@ -14,6 +14,14 @@
   .info {
     text-align: left!important;
   }
+
+  .profile-left {
+    .btn-follow {
+      @extend .btn-forum;
+      font-weight: 500!important;
+      width: 100%;
+    }
+  }
 }
 
 // .profile {
@@ -203,15 +211,15 @@
 //   margin: 0 auto;
 // }
 
-// .profile-biography-folded {
-//   height: 0.7rem !important;
-//   display: -webkit-box;
-//   -ms-text-overflow: ellipsis;
-//   text-overflow: ellipsis;
-//   -webkit-line-clamp: 4;
-//   -webkit-box-orient: vertical;
-//   overflow: hidden;
-// }
+.profile-biography-folded {
+  height: 0.7rem !important;
+  display: -webkit-box;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
 @mixin fix() {
   &:before,
@@ -224,33 +232,33 @@
   }
 }
 
-// .p-nav {
-//   margin-bottom: 0;
-//   padding-left: 0; // Override default ul/ol
-//   list-style: none;
+.p-nav {
+  margin-bottom: 0;
+  padding-left: 0; // Override default ul/ol
+  list-style: none;
 
-//   @include fix;
+  @include fix;
 
-//   > li {
-//     position: relative;
-//     display: block;
+  > li {
+    position: relative;
+    display: block;
 
-//     > a {
-//       position: relative;
-//       display: block;
-//       padding: 15px 8px 15px 8px;
-//       &:hover,
-//       &:focus {
-//         text-decoration: none;
-//       }
-//     }
+    > a {
+      position: relative;
+      display: block;
+      padding: 15px 8px 15px 8px;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
 
-//   }
+  }
 
-//   > li > a > img {
-//     max-width: none;
-//   }
-// }
+  > li > a > img {
+    max-width: none;
+  }
+}
 
 .p-nav-tabs {
   > li {

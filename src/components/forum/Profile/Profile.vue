@@ -1,6 +1,6 @@
 <template>
   <div class="container profile-container" v-if="user">
-    <div class="col-md-3">
+    <div class="col-md-3 profile-left">
       <img :src="user.avatar_url" class="avatar_url">
       <div class="username">
         {{ user.username }}
@@ -15,10 +15,11 @@
           {{ user.site_url }}
         </p>
       </div>
+      <follow-button :user="user" v-if="!isSelf"></follow-button>
     </div>
     <div class="col-md-9">
       <div class="profile-biography-frame" v-bind:title="'Biography'"
-           v-bind:class="{'profile-biography-folded': isFolded}" v-on:click="foldStateChange">
+           v-bind:class="{'profile-biography-folded': isFolded}" v-on:click="isFolded = !isFolded">
         <div ref="bioRef" class="profile-biography">
           <span class="arrow-l-int"></span>
           <span class="arrow-l-out"></span>
@@ -40,14 +41,17 @@
   import Activities from './Activities'
   import Followers from './Followers'
   import Following from './Following'
+  import FollowMixin from '@/components/forum/User/FollowMixin'
 
   export default {
     data () {
       return {
-        user: null
+        user: null,
+        isFolded: false
       }
     },
     components: { ProfileNav, Activities, Followers, Following },
+    mixins: [FollowMixin],
     mounted () {
       this.loadUserData()
     },
@@ -62,6 +66,9 @@
     computed: {
       tabName () {
         return this.$route.query.tab || 'Activities'
+      },
+      isSelf () {
+        return this.user.username === this.$root.user.username
       }
     },
     methods: {

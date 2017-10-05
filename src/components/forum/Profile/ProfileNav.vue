@@ -1,5 +1,5 @@
 <template>
-  <ul class="nav p-nav-tabs">
+  <ul class="p-nav p-nav-tabs">
     <li v-for="nav in navData" :class="nav.classes">
       <router-link :to="nav.to">
         {{ nav.text }}
@@ -28,17 +28,17 @@
     },
     computed: {
       navData () {
-        let tab = this.$route.query.tab
-        let source = ['Activities', 'Experiences', 'Followers', 'Following']
+        const tab = this.$route.query.tab
+        const source = ['Activities', 'Experiences', 'Followers', 'Following']
         let index = _.indexOf(source, tab)
         if (index < 0) index = 0
-        let active = source[index]
+        const active = source[index]
         const labels = {
           Following: this.user.following_count,
           Followers: this.user.follower_count
         }
 
-        return source.map(item => {
+        let results = source.map(item => {
           return {
             text: item,
             to: this.makeRoute(item),
@@ -48,6 +48,15 @@
             label: labels[item]
           }
         })
+        if (this.user.username === this.$root.user.username) {
+          results = results.concat([{
+            text: 'Settings',
+            to: {
+              name: 'settings'
+            }
+          }])
+        }
+        return results
       }
     }
   }

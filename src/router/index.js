@@ -76,6 +76,11 @@ export default new Router({
               component: Repo
             }
           ]
+        },
+        {
+          path: 'settings',
+          component: Settings,
+          name: 'settings'
         }
       ]
     },
@@ -93,11 +98,6 @@ export default new Router({
       path: '/plugins/:plugin',
       component: Plugins,
       name: 'Plugin'
-    },
-    {
-      path: '/settings',
-      component: Settings,
-      name: 'settings'
     },
     {
       path: '*',

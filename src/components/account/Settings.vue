@@ -1,6 +1,5 @@
 <template>
   <div>
-    <top-navbar></top-navbar>
     <div class="container" style="text-align: left;">
       <div class="col-md-12">
         <div class="settings-title">
@@ -90,7 +89,6 @@
         <div class="col-md-3"></div>
       </div>
     </div>
-    <page-footer></page-footer>
   </div>
 </template>
 <style scoped>
@@ -103,9 +101,6 @@
   }
 </style>
 <script>
-  import topNavbar from '../Common/topNavbar.vue'
-  import PageFooter from '../Common/PageFooter.vue'
-
   export default {
     methods: {
       UpdateProfile () {
@@ -193,10 +188,6 @@
       }).catch((e) => {
         window.location.href = '/notfound'
       })
-    },
-    components: {
-      topNavbar,
-      PageFooter
     }
   }
 
