@@ -1,6 +1,6 @@
 <template>
   <div class="user-list">
-    <user-item :user="user" v-for="user in users"></user-item>
+    <user-item :user="user" v-for="user in users" :key="user.username"></user-item>
     <pager :hasNext="hasNext" :hasPrevious="hasPrevious" :pageNum="pageNum"></pager>
   </div>
 </template>
