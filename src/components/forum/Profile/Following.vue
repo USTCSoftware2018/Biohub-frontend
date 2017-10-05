@@ -1,6 +1,6 @@
 <template>
   <div class="tab-pane active in fade">
-    <user-list :api="api"></user-list>
+    <user-list :api="api" ref="list"></user-list>
   </div>
 </template>
 
@@ -13,6 +13,11 @@
     computed: {
       api () {
         return `/api/users/n:${this.user.username}/following/`
+      }
+    },
+    watch: {
+      '$route' () {
+        this.$refs.list.loadUsers()
       }
     }
   }

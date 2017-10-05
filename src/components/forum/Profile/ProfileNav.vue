@@ -29,13 +29,15 @@
     computed: {
       navData () {
         const tab = this.$route.query.tab
-        const source = ['Activities', 'Experiences', 'Followers', 'Following']
+        const source = ['Activities', 'Stars', 'Experiences', 'Followers', 'Following']
         let index = _.indexOf(source, tab)
         if (index < 0) index = 0
         const active = source[index]
         const labels = {
           Following: this.user.following_count,
-          Followers: this.user.follower_count
+          Followers: this.user.follower_count,
+          Stars: this.user.star_count,
+          Experiences: this.user.experience_count
         }
 
         let results = source.map(item => {

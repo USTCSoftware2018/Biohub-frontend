@@ -41,6 +41,8 @@
   import Activities from './Activities'
   import Followers from './Followers'
   import Following from './Following'
+  import Experiences from './Experiences'
+  import Stars from './Stars'
   import FollowMixin from '@/components/forum/User/FollowMixin'
 
   export default {
@@ -50,7 +52,7 @@
         isFolded: false
       }
     },
-    components: { ProfileNav, Activities, Followers, Following },
+    components: { ProfileNav, Activities, Followers, Following, Stars, Experiences },
     mixins: [FollowMixin],
     mounted () {
       this.loadUserData()
@@ -76,6 +78,10 @@
         return axios.get(`/api/users/n:${this.$route.params.user}/`)
           .then(({ data }) => {
             this.user = data
+
+            return axios.get(`/api/users/n:${this.$route.params.user}/stat/`)
+          }).then(({ data }) => {
+            this.user = { ...this.user, ...data }
           })
       }
     }

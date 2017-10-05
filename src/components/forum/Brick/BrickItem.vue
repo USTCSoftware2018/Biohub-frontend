@@ -1,11 +1,11 @@
 <template>
-  <div class="search-result">
-    <div class="result-header">
+  <div class="brick-item">
+    <div class="brick-header">
       <router-link :to="{ name: 'Brick', params: { repo: brick.part_name } }">
         {{ brick.part_name }}
       </router-link>
       <span
-        class="result-label result-label-type"
+        class="brick-label brick-label-type"
         data-toggle="tooltip"
         title="Type">{{ brick.part_type }}</span>
       <star :isEnable="false" :initial="brick.rate_score"></star>
@@ -20,14 +20,14 @@
       </span>
       <br>
       <span
-        class="result-label result-label-info"
+        class="brick-label brick-label-info"
         v-for="author in authors" v-if="author" v-html="author">
         </span>
     </div>
-    <p class="result-content">
+    <p class="brick-content">
       {{ brick.short_desc }}
     </p>
-    <div class="result-footer">
+    <div class="brick-footer">
       <span class="data-group" data-toggle="tooltip" title="Stars">
         <i class="fa fa-star-o"></i>
         <span>{{ brick.stars || 0 }}</span>
@@ -59,6 +59,7 @@
     },
     computed: {
       authors () {
+        if (!this.brick.author) return []
         return this.brick.author.split(/,\s+/g)
       },
       statusClasses () {
@@ -70,7 +71,7 @@
           Planning: 'warning'
         }[this.brick.status]
 
-        return ['result-label', 'status', `result-label-${klass}`]
+        return ['brick-label', 'status', `brick-label-${klass}`]
       },
       sampleStatusClasses () {
         let klass = {
@@ -83,7 +84,7 @@
           '': ''
         }[this.brick.sample_status]
 
-        return ['result-label', 'sample-status', `result-label-${klass}`]
+        return ['brick-label', 'sample-status', `brick-label-${klass}`]
       },
       progressStyle () {
         return {

@@ -40,7 +40,7 @@
   margin-top: .2rem;
 }
 
-.search-result {
+.brick-item {
   text-align: left;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
@@ -51,7 +51,7 @@
     margin-top: 0;
   }
 
-  .result-header {
+  .brick-header {
     font-size: 0.24rem;
     span, a {
       vertical-align: middle;
@@ -62,11 +62,11 @@
     }
   }
 
-  .result-content {
+  .brick-content {
     margin-top: 0.1rem;
   }
 
-  .result-footer {
+  .brick-footer {
     margin-top: .2rem;
 
     .data-group {
@@ -107,13 +107,13 @@
   }
 }
 
-.result-label {
+.brick-label {
   background-color: #ccc;
   font-size: 0.12rem;
   padding: 0.03rem 0.1rem;
   border-radius: 0.05rem;
 
-  + .result-label {
+  + .brick-label {
     margin-left: .25em;
   }
 
@@ -129,27 +129,27 @@
   }
 }
 
-.result-label-fatal {
+.brick-label-fatal {
   background-color: $color-fatal;
   color: $text-color;
 }
 
-.result-label-info {
+.brick-label-info {
   background-color: $color-info;
   color: $text-color-rev;
 }
 
-.result-label-warning {
+.brick-label-warning {
   background-color: $color-warning;
   color: $text-color-rev;
 }
 
-.result-label-success {
+.brick-label-success {
   background-color: $color-success;
   color: $text-color;
 }
 
-.result-label-type {
+.brick-label-type {
   background-color: $color-orange;
   color: $text-color;
 }

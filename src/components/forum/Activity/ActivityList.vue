@@ -42,7 +42,6 @@
         return this.load(this.next)
       },
       refresh () {
-        console.log('refreshing', this.api)
         this.loading = false
         this.next = null
         return this.load(this.api)

@@ -24,7 +24,7 @@
         <div class="stats">
           {{ bricksCount }} brick(s) found. Page {{ pageNum }} of {{ Math.ceil(bricksCount / 20) }}.
         </div>
-        <search-result v-for="brick in bricks" :key="brick.part_name" :brick="brick"></search-result>
+        <brick-item v-for="brick in bricks" :key="brick.part_name" :brick="brick"></brick-item>
         <pager
           :hasNext="hasNext"
           :hasPrevious="hasPrevious"
@@ -38,7 +38,7 @@
 
 </style>
 <script>
-  import SearchResult from './SearchResult.vue'
+  import BrickItem from '@/components/forum/Brick/BrickItem.vue'
   import PageMixin from '@/components/Common/PageMixin'
 
   export default {
@@ -88,7 +88,7 @@
       }
     },
     components: {
-      SearchResult
+      BrickItem
     },
     mounted () {
       this.init()
