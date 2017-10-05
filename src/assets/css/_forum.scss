@@ -345,22 +345,57 @@
 
 .activities {
   background-color: white;
-  padding: 10px 10px;
+  padding: 13px 10px;
   box-shadow: 0 0 3px $border-color;
 
   .activity-item {
+    color: gray;
     list-style: none;
     text-align: left;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
+    padding-top: 13px;
+    padding-bottom: 13px;
 
-  .activity-item + .activity-item {
-    border-top: 1px solid $border-color;
+    + .activity-item {
+      border-top: 1px solid $border-color;
+    }
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    i {
+      margin-right: 1em;
+    }
   }
 
   .load-more {
     margin: .75em 0;
     text-align: center;
+  }
+}
+
+.user-list {
+  .user-item {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+
+    margin: 2em 0;
+
+    .user-left {
+      width: 48px;
+    }
+
+    .user-body {
+      flex: auto;
+      padding-left: 1em;
+    }
+
+    .user-right {
+      button {
+        border: 1px solid black;
+        background: white;
+      }
+    }
   }
 }

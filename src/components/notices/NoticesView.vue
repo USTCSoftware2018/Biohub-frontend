@@ -6,8 +6,7 @@
         <pager
           :hasNext="hasNext"
           :hasPrevious="hasPrevious"
-          :nextRoute="nextRoute"
-          :previousRoute="previousRoute"></pager>
+          :pageNum="pageNum"></pager>
       </div>
     </div>
   </div>
@@ -16,15 +15,13 @@
 <script>
   import NoticeListMixin from './NoticeListMixin'
   import NoticeItem from './NoticeItem'
-  import Pager from '@/components/Common/Pager'
-  import { normalizedPageNum } from '@/utils/page'
+  import PageMixin from '@/components/Common/PageMixin'
 
   export default {
     components: {
-      NoticeItem,
-      Pager
+      NoticeItem
     },
-    mixins: [NoticeListMixin],
+    mixins: [NoticeListMixin, PageMixin],
     data () {
       return {
         notices: [],
@@ -35,49 +32,19 @@
         hasPrevious: false
       }
     },
-    computed: {
-      nextRoute () {
-        return {
-          name: 'notices',
-          query: {
-            page: this.pageNum + 1
-          }
-        }
-      },
-      previousRoute () {
-        return {
-          name: 'notices',
-          query: {
-            page: this.pageNum - 1
-          }
-        }
-      }
-    },
     methods: {
+      getQueryParams () {
+        return {}
+      },
+      processResponse (response) {
+        this.inited = true
+        this._handleNewNotices(response.data.results)
+      },
       loadNotices () {
         this.inited = false
         this.notices = []
 
-        let page = this.$route.query.page
-        if (page === undefined) {
-          page = 1
-        } else {
-          page = parseInt(page)
-        }
-
-        if (isNaN(page) || page <= 0) return
-
-        this.pageNum = page
-        return this.load(`/api/notices/?page=${page}`)
-          .then((response) => {
-            this.inited = true
-            this.hasNext = response.data.next !== null
-            this.hasPrevious = response.data.previous !== null
-
-            return response
-          }).always(response => {
-            this.pageNum = normalizedPageNum(response)
-          })
+        this._load('/api/notices/')
       }
     },
     watch: {

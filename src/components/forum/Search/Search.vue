@@ -28,8 +28,7 @@
         <pager
           :hasNext="hasNext"
           :hasPrevious="hasPrevious"
-          :nextRoute="nextRoute"
-          :previousRoute="previousRoute">
+          :pageNum="pageNum">
         </pager>
       </div>
     </div>
@@ -40,14 +39,14 @@
 </style>
 <script>
   import SearchResult from './SearchResult.vue'
-  import Pager from '@/components/Common/Pager.vue'
-  import { normalizedPageNum } from '@/utils/page'
+  import PageMixin from '@/components/Common/PageMixin'
 
   export default {
+    mixins: [PageMixin],
     data () {
       return {
         query: '',
-        loading: true,
+        loading: false,
         bricks: [],
         cancel: null,
         hasNext: false,
@@ -66,40 +65,20 @@
         })
       },
       getQueryParams () {
-        let page = parseInt(this.$route.query.page)
-
-        if (isNaN(page) || page <= 0) page = 1
-        this.pageNum = page
         this.query = this.$route.query.q
 
         return {
-          q: this.query,
-          page
+          q: this.query
         }
       },
       load () {
-        this.cancel && this.cancel()
-
-        axios.get('/api/forum/bricks/', {
-          cancelToken: new axios.CancelToken(c => {
-            this.cancel = c
-          }),
-          params: this.getQueryParams()
-        }).then(response => {
-          this.cancel = null
-          this.bricks = response.data.results
-          this.hasNext = response.data.next !== null
-          this.hasPrevious = response.data.previous !== null
-          this.bricksCount = response.data.count
-
-          return response
-        }).always(response => {
-          this.cancel = null
-          this.pageNum = normalizedPageNum(response)
-        })
+        return this._load('/api/forum/bricks/')
+      },
+      processResponse (response) {
+        this.bricks = response.data.results
+        this.bricksCount = response.data.count
       },
       init () {
-        this.loading = true
         this.load()
       }
     },
@@ -108,28 +87,8 @@
         this.load()
       }
     },
-    computed: {
-      nextRoute () {
-        return {
-          name: 'search',
-          query: {
-            q: this.query,
-            page: this.pageNum + 1
-          }
-        }
-      },
-      previousRoute () {
-        return {
-          name: 'search',
-          query: {
-            q: this.query,
-            page: this.pageNum - 1
-          }
-        }
-      }
-    },
     components: {
-      SearchResult, Pager
+      SearchResult
     },
     mounted () {
       this.init()

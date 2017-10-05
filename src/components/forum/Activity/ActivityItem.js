@@ -2,7 +2,6 @@ export default {
   props: ['activity'],
   methods: {
     createUser (h) {
-      console.log(this.activity.params)
       return h(
         'router-link',
         {
@@ -34,6 +33,14 @@ export default {
         [this.activity.params.partName]
       )
     },
+    createIcon (h, icon) {
+      return h(
+        'i',
+        {
+          class: ['fa', `fa-${icon}`]
+        }
+      )
+    },
     createExperience (h) {
       return h(
         'router-link',
@@ -53,6 +60,7 @@ export default {
     },
     Rating (h) {
       return [
+        this.createIcon(h, 'star'),
         this.createUser(h),
         ' rated brick ',
         this.createBrick(h),
@@ -62,6 +70,7 @@ export default {
     },
     Watch (h) {
       return [
+        this.createIcon(h, 'eye'),
         this.createUser(h),
         ' watched brick ',
         this.createBrick(h)
@@ -69,6 +78,7 @@ export default {
     },
     Comment (h) {
       return [
+        this.createIcon(h, 'commenting'),
         this.createUser(h),
         ' commented experience ',
         this.createExperience(h),
@@ -78,8 +88,9 @@ export default {
     },
     Experience (h) {
       return [
+        this.createIcon(h, 'bookmark'),
         this.createUser(h),
-        ' posted a new experience ',
+        ' shared a new experience ',
         this.createExperience(h),
         ' at brick ',
         this.createBrick(h)
@@ -87,6 +98,7 @@ export default {
     },
     Star (h) {
       return [
+        this.createIcon(h, 'thumbs-up'),
         this.createUser(h),
         ' voted experience ',
         this.createExperience(h),
