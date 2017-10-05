@@ -3,8 +3,12 @@
   fill: none;
 }
 .path-hover {
-  fill: #7C8DC1 !important;
+  fill: #FFDEAA !important;
 }
 .path-empty {
   @include transition(fill);
+}
+.featureListItem {
+  cursor: pointer;
+
 }
