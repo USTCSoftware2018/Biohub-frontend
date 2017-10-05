@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-6">
       <div class="featureList">
-        <div v-for='item in oriData' class="featureListItem">{{item.type}}</div>
+        <p v-for='item in oriData' class="featureListItem" :name='item.type' >{{item.type}}</p>
       </div>
     </div>
   </div>
@@ -52,27 +52,39 @@
         .append('g')
           .attr('transform', 'translate(' + width / 2.0 + ',' + (height / 2.0 + 10) + ')')
       var arc = d3.arc().innerRadius(radius / 2 - 20).outerRadius(radius / 2 - 10).startAngle((d) => {
-        return d.first * 2.0 * Math.PI / this.seqLength
+        return d.first * 1.9 * Math.PI / this.seqLength
       }).endAngle((d) => {
-        return this.convertLengthToDegree(d.length) + d.first * 2.0 * Math.PI / this.seqLength
+        return this.convertLengthToDegree(d.length) + d.first * 1.9 * Math.PI / this.seqLength
       }).cornerRadius(3)
       svg.selectAll('path').data(this.oriData).enter().append('path').attr('d', arc).attr('style', (d) => {
         console.log('fill:' + this.colorSpace[d.type + 'Color'])
         return 'fill:' + this.colorSpace[d.type + 'Color']
       }).attr('name', (d) => d.type)
-      d3.select('g').insert('path').attr('d', d3.arc().innerRadius(radius / 2 - 20).outerRadius(radius / 2 - 10).startAngle(0).endAngle(2 * Math.PI).cornerRadius(3)).attr('class', 'path-base')
+      d3.select('g').insert('path').attr('d', d3.arc().innerRadius(radius / 2 - 20).outerRadius(radius / 2 - 10).startAngle(0).endAngle(1.9 * Math.PI).cornerRadius(3)).attr('class', 'path-base')
       svg.selectAll('path').on('mouseover', function () {
-        console.log('enter', d3.select(this).attr('name'))
-        svg.selectAll('path[name=' + d3.select(this).attr('name') + ']').attr('class', 'path-empty path-hover')
+        var selector = d3.select(this).attr('name')
+        svg.selectAll('path[name=' + selector + ']').attr('class', 'path-empty path-hover')
+        d3.select('p[name=' + selector + ']').attr('style', 'text-decoration:underline;')
       })
       svg.selectAll('path').on('mouseout', function () {
-        console.log('leave', d3.select(this).attr('name'))
-        svg.selectAll('path[name=' + d3.select(this).attr('name') + ']').attr('class', 'path-empty')
+        var selector = d3.select(this).attr('name')
+        svg.selectAll('path[name=' + selector + ']').attr('class', 'path-empty')
+        d3.select('p[name=' + selector + ']').attr('style', 'text-decoration:none;')
+      })
+      d3.selectAll('.featureListItem').on('mouseover', function () {
+        var selector = d3.select(this).attr('name')
+        svg.selectAll('path[name=' + selector + ']').attr('class', 'path-empty path-hover')
+        d3.select('p[name=' + selector + ']').attr('style', 'text-decoration:underline;')
+      })
+      d3.selectAll('.featureListItem').on('mouseout', function () {
+        var selector = d3.select(this).attr('name')
+        svg.selectAll('path[name=' + selector + ']').attr('class', 'path-empty')
+        d3.select('p[name=' + selector + ']').attr('style', 'text-decoration:none;')
       })
     },
     methods: {
       convertLengthToDegree (d) {
-        var r = d / this.seqLength * 2.0 * Math.PI
+        var r = d / this.seqLength * 1.9 * Math.PI
         if (r < 0.02) {
           return 0.02
         } else return r
