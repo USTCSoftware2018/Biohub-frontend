@@ -53,6 +53,7 @@
       var arc = d3.arc().innerRadius(radius / 2 - 25).outerRadius(radius / 2 - 10).startAngle((d) => {
         return d.first * 1.9 * Math.PI / this.seqLength
       }).endAngle((d) => {
+        if (d.type === 'stop') return (this.convertLengthToDegree(d.length) + d.first * 1.9 * Math.PI / this.seqLength) * 0.99
         return this.convertLengthToDegree(d.length) + d.first * 1.9 * Math.PI / this.seqLength
       }).cornerRadius(3)
       svg.selectAll('path').data(this.oriData).enter().append('path').attr('d', arc).attr('style', (d) => {
@@ -61,23 +62,19 @@
       d3.select('g').insert('path').attr('d', d3.arc().innerRadius(radius / 2 - 25).outerRadius(radius / 2 - 10).startAngle(0).endAngle(1.9 * Math.PI).cornerRadius(3)).attr('class', 'path-base')
       this.$nextTick(() => {
         svg.selectAll('path').on('mouseover', function () {
-          console.log(1)
           var selector = d3.select(this).attr('name')
           svg.selectAll('path[name=' + selector + ']').attr('class', 'path-empty path-hover')
           d3.select('p[name=' + selector + ']').attr('style', 'text-decoration:underline;')
         }).on('mouseout', function () {
-          console.log(2)
           var selector = d3.select(this).attr('name')
           svg.selectAll('path[name=' + selector + ']').attr('class', 'path-empty')
           d3.select('p[name=' + selector + ']').attr('style', 'text-decoration:none;')
         })
         d3.selectAll('.featureListItem').on('mouseover', function () {
-          console.log(3)
           var selector = d3.select(this).attr('name')
           svg.selectAll('path[name=' + selector + ']').attr('class', 'path-empty path-hover')
           d3.select('p[name=' + selector + ']').attr('style', 'text-decoration:underline;')
         }).on('mouseout', function () {
-          console.log(4)
           var selector = d3.select(this).attr('name')
           svg.selectAll('path[name=' + selector + ']').attr('class', 'path-empty')
           d3.select('p[name=' + selector + ']').attr('style', 'text-decoration:none;')

@@ -10,5 +10,11 @@
 }
 .featureListItem {
   cursor: pointer;
-
+  margin: 0;
+}
+.featureList {
+  display: -webkit-flex;
+  display: flex;
+  height: 200px;
+  flex-flow: column wrap;
 }
