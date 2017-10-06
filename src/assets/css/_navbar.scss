@@ -3,6 +3,10 @@
   border-radius: 0;
   background-color: $navbar-color;
 
+  .dropdown {
+    border-bottom-width: 2px !important;
+  }
+
   .nav .open > a {
     border-color: transparent;
   }

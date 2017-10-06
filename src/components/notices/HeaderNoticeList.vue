@@ -2,7 +2,7 @@
   <li :class="menuClasses">
     <a href="javascript:;" class="dropdown-toggle"
        role="button"
-       style="padding-top: 17px;padding-bottom: 13px;" @click.stop="isOpened = !isOpened">
+       style="padding-top: 17px;padding-bottom: 12px;" @click.stop="isOpened = !isOpened">
       <i class="fa fa-bell-o" style="font-size: 1.2em;">
         <span class="red-dot" v-if="unreadCount"></span>
       </i>
