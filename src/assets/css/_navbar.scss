@@ -78,39 +78,6 @@
   }
 }
 
-.nav-plugin {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  padding-top: 5px;
-  li {
-    width: 100%;
-  }
-  li a {
-    margin-top: 2px;
-    @include transition(border-color);
-    border-bottom: 1px solid transparent;
-    color: $color-light;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
-    &:hover {
-      background-color: #2d66a0 !important;
-      box-shadow: 2px 2px 1px #343434 !important;
-    }
-  }
-  .active {
-    a {
-      box-shadow: 1px 1px 1px #343434 !important;
-      background-color: #337ab7 !important;
-      &:hover {
-        box-shadow: 2px 2px 1px #343434!important;
-        background-color: #2d66a0 !important;
-      }
-    }
-  }
-}
-
-
 .open {
   > a {
     background-color: darken($color-blue-1, 5%) !important;

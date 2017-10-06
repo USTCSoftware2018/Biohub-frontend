@@ -1,15 +1,17 @@
 <template>
   <div>
     <top-navbar></top-navbar>
-    <div class="col-md-2">
-      <ul class="nav nav-pills nav-plugin">
-        <li role="presentation" v-bind:class="{'active' : ('ABACUS' === currentPlugin)}" style= "position:relative; left:1.5px;" id="ABACUS"><a href="/plugins/ABACUS">ABACUS</a></li>
-        <li role="presentation" v-bind:class="{'active' : ('bbkManager' === currentPlugin)}"><a href="/plugins/bbkManager">Biobrick Manager</a></li>
-        <li role="presentation"><a href="javascript:;">...</a></li>
-      </ul>
+    <div class='container'>
+      <div class="col-md-3" id='pluginsList'>
+        <div class="list-group">
+          <a href='#' class="list-group-item" style="background-color:#eee;cursor: default; padding: 5px 0;">Plugins List</a>
+          <a href='#' class="list-group-item">ABACUS</a>
+          <a href='#' class="list-group-item">Biocircuit</a>
+          <a href='#' class="list-group-item" style='background-color: #225378; color: white;border-color: #225378;'>Add a new plugin</a>
+        </div>
+      </div>
+      <div class="col-md-10"><component :is="currentPlugin"></component></div>
     </div>
-    <div class="col-md-10"></div>
-    <component :is="currentPlugin"></component>
     <page-footer></page-footer>
   </div>
 </template>
@@ -33,10 +35,8 @@
       }
     },
     mounted () {
-      document.querySelector('body').style.backgroundColor = 'rgb(32, 78, 112)'
     },
     destroyed () {
-      document.querySelector('body').style.backgroundColor = 'transparent'
     },
     methods: {
     }
