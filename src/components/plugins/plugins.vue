@@ -10,7 +10,7 @@
           <a href='#' class="list-group-item" style='background-color: #225378; color: white;border-color: #225378;'>Add a new plugin</a>
         </div>
       </div>
-      <div class="col-md-10"><component :is="currentPlugin"></component></div>
+      <div class="col-md-9"><plugin v-if='pluginShow'></plugin></div>
     </div>
     <page-footer></page-footer>
   </div>
@@ -23,18 +23,30 @@
   import PageFooter from '../Common/PageFooter.vue'
   import topNavbar from '../Common/topNavbar.vue'
   import add from './add'
+  import Vue from 'vue'
   export default {
     components: {
       topNavbar,
-      PageFooter,
-      add
+      PageFooter
     },
     data () {
       return {
-        currentPlugin: this.$route.params.plugin ? this.$route.params.plugin : 'add'
+        pluginShow: false
       }
     },
     mounted () {
+      var $ = require('jquery')
+      console.log($)
+      this.pluginShow = false
+      var link = document.createElement('script')
+      link.src = 'http://localhost:8000/plugin.min.js'
+      link.type = 'text/javascript'
+      document.body.appendChild(link)
+      window.onload = () => {
+        let plugin = window.plugin
+        Vue.component('plugin', plugin)
+        this.pluginShow = true
+      }
     },
     destroyed () {
     },
