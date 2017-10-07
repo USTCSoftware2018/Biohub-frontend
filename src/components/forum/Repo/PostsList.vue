@@ -33,32 +33,88 @@
         displayPost: [],
         startPoint: 0,
         page: 1,
+        segment: 0,
         maxPage: 1,
         num: 0,
         paginationSequence: [],
-        open: false
+        open: false,
+        offsetOld: 0,
+        offsetNew: 0
       }
     },
     methods: {
       setPage (page) {
         if (page === this.page) return
-        if (Math.abs(page - this.page) > 5) {
-        } else {
-          console.log($('#postPage' + this.expId + ' li')[(this.page + 4) % 5])
-          $('#postPage' + this.expId + ' li')[(this.page + 4) % 5].firstChild.classList.remove('disabled')
-          $('#postPage' + this.expId + ' li')[(page + 4) % 5].firstChild.classList.add('disabled')
-          axios.get(`/api/forum/experiences/${this.expId}/posts/?page=${page}`).then((response) => {
-            this.displayPost = []
-            for (var i = 0; i < response.data.results.length; i++) {
-              this.displayPost.splice(0, 0, response.data.results[i])
+        this.displayPost = []
+        var needToRemove = 0
+        var needToAdd = 0
+        var needToLoad = 0
+        var i = 1
+        var restPage = 0
+        switch (page) {
+          case '>':
+            this.segment++
+            this.paginationSequence = []
+            this.paginationSequence.push('<')
+            this.paginationSequence.push('<<')
+            restPage = this.maxPage - this.segment * 5
+            if (restPage <= 5) {
+              while (i <= restPage) {
+                this.paginationSequence.push(i + this.segment * 5)
+                i++
+              }
+            } else {
+              while (i <= 5) {
+                this.paginationSequence.push(i + this.segment * 5)
+                i++
+              }
+              this.paginationSequence.push('>')
+              this.paginationSequence.push('>>')
             }
-          })
-          console.log(this.loadedData)
+            if (this.segment > 0) needToAdd = 2
+            if (this.segment === 1) needToRemove = this.page - 1
+            else needToRemove = this.page + 1
+            this.page = 1
+            needToLoad = this.segment * 5 + 1
+            break
+          case '<':
+            this.segment--
+            this.paginationSequence = []
+            if (this.segment > 0) {
+              this.paginationSequence.push('<')
+              this.paginationSequence.push('<<')
+            }
+            restPage = this.maxPage - this.segment * 5
+            while (i <= 5) {
+              this.paginationSequence.push(i + this.segment * 5)
+              i++
+            }
+            this.paginationSequence.push('>')
+            this.paginationSequence.push('>>')
+            if (this.segment > 0) needToAdd = 2
+            needToRemove = this.page + 1
+            this.page = 1
+            needToLoad = this.segment * 5 + 1
+            break
+          default:
+            needToLoad = page
         }
-        this.page = page
+        this.$nextTick(() => {
+          $('#postPage' + this.expId + ' li')[needToRemove].firstChild.classList.remove('disabled')
+          $('#postPage' + this.expId + ' li')[needToAdd].firstChild.classList.add('disabled')
+        })
+        axios.get(`/api/forum/experiences/${this.expId}/posts/?page=${needToLoad}`).then((response) => {
+          i = 0
+          this.displayPost = []
+          while (i < response.data.results.length) {
+            this.displayPost.splice(0, 0, response.data.results[i])
+            i++
+          }
+        })
       },
       submitPost () {
         this.postContainer = document.querySelector('#postContent' + this.expId)
+        this.postContent = this.postContainer.innerText
         axios.post('/api/forum/posts/', {
           experience_id: this.expId,
           content: this.postContent
@@ -67,7 +123,6 @@
           this.postContainer.innerText = ''
           this.postContent = ''
           this.displayPost.splice(0, 0, response.data)
-          this.$store.commit('newCommentReceived', this.expId)
           if (this.num === 0) {
             $('#postPage' + this.expId).empty()
           }
@@ -82,14 +137,20 @@
       },
       load () {
         this.open = true
+        var i = 1
         axios.get(`/api/forum/experiences/${this.expId}/posts/`).then((response) => {
           this.loadedData = response.data
           this.num = response.data.count
           this.maxPage = Math.floor(response.data.count / 10) + 1
           $('#postPage' + this.expId).html('')
           if (this.maxPage > 5) {
+            while (i <= 5) {
+              this.paginationSequence.push(i)
+              i++
+            }
+            this.paginationSequence.push('>')
+            this.paginationSequence.push('>>')
           } else {
-            var i = 1
             if (this.num === 0) {
               $('#postPage' + this.expId).append('<p style="color:#999;">Oops, nothing\'s here</p>')
               i++

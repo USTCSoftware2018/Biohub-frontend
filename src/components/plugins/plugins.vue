@@ -10,7 +10,7 @@
           <a href='#' class="list-group-item" style='background-color: #225378; color: white;border-color: #225378;'>Add a new plugin</a>
         </div>
       </div>
-      <div class="col-md-9"><plugin v-if='pluginShow'></plugin></div>
+      <div class="col-md-9" id='pluginSlot'><plugin v-if='pluginShow'></plugin></div>
     </div>
     <page-footer></page-footer>
   </div>
@@ -31,24 +31,24 @@
     },
     data () {
       return {
-        pluginShow: false
+        pluginShow: false,
+        linkUrl: ''
       }
     },
     mounted () {
-      var $ = require('jquery')
-      console.log($)
       this.pluginShow = false
       var link = document.createElement('script')
       link.src = 'http://localhost:8000/plugin.min.js'
+      this.linkUrl = link.src
       link.type = 'text/javascript'
-      document.body.appendChild(link)
-      window.onload = () => {
-        let plugin = window.plugin
-        Vue.component('plugin', plugin)
-        this.pluginShow = true
-      }
+      link.name = 'pluginFile'
+      document.querySelector('#pluginSlot').appendChild(link)
+      let plugin = window.plugin
+      Vue.component('plugin', plugin)
+      this.pluginShow = true
     },
     destroyed () {
+      document.querySelector('#pluginSlot').innerHTML = ''
     },
     methods: {
     }
