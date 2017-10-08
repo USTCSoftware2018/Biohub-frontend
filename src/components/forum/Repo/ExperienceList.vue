@@ -11,11 +11,17 @@
           </div>
           <div class="list-group-item-text" v-html="item.content.text"></div>
           <div class="action-bar">
-            <button class="btn btn-forum" @click="upvote(item.id)" :id='"upvoteButton" + item.id' v-bind:class=
+            <button class="btn btn-forum" @click="upvote(item.id, index)" :id='"upvoteButton" + item.id' v-bind:class=
               "{'hasVoted':experiencesSet[index].voted, 'cannotVote': (item.author_name === $root.user.username)}">
             <span v-if="!experiencesSet[index].voted"><i class="fa fa-angle-up"></i></span>
             <span v-else><i class="fa fa-angle-down"></i></span> {{item.up_vote_num}}</button>
             <a @click='showPosts(item.id)' style="margin-left: 15px;"><i class="fa fa-comment-o"></i> {{experiencesSet[index].posts_num}} Comment(s)</a>
+            <a style="margin-left: 15px;" data-toggle="collapse" :href="'#file' + item.id" aria-expanded="false" :aria-controls="'file' + item.id"><i class='fa fa-download'></i> Files</a>
+            <div class="collapse" :id="'file' + item.id">
+              <ul class="list-group">
+                <li v-for='i in item.content.files' class='list-group-item'><a :href='i.file'>{{i.file}}</a></li>
+              </ul>
+            </div>
             <posts-list :expId="item.id" :ref='"comments"+item.id'></posts-list>
           </div>
         </li>
@@ -83,8 +89,16 @@
       showPosts (id) {
         this.$refs['comments' + id][0].switch()
       },
-      upvote (id) {
-        this.$store.dispatch('upVote', id)
+      upvote (id, index) {
+        if (!this.experiencesSet[index].voted) {
+          axios.post(`/api/forum/experiences/${id}/vote/`).then(() => {
+            this.experiencesSet[index].voted = true
+          })
+        } else {
+          axios.post(`/api/forum/experiences/${id}/unvote/`).then(() => {
+            this.experiencesSet[index].voted = false
+          })
+        }
       },
       loadMore () {
         axios.get(this.experienceNext).then((response) => {

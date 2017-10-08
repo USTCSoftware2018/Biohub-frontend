@@ -45,6 +45,13 @@ module.exports = {
       '/ws': {
         target: 'ws://120.25.250.211:8080/ws/',
         ws: true
+      },
+      '/files': {
+        target: 'http://120.25.250.211:8080',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/files': '/files'
+        }
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

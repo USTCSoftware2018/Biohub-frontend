@@ -37,6 +37,7 @@
             <div class="documentClick" @click="$router.push({name:'Brick',params:{repo:$route.params.repo}})">
               View All Experience
             </div>
+            <experience-detail :expID='expID' v-if='insideExperience'></experience-detail>
             <!--li class="list-group-item" :id="'experience'+item.id">
               <div class="experience-header">
                 <img :src="item.author.avatar_url" style="width: 30px;"></span>
@@ -93,6 +94,7 @@
   import Feature from './SeqFeature.vue'
   import marked from 'marked'
   import Editor from './Editor'
+  import ExperienceDetail from './ExperienceDetail'
   import '../../../assets/css/editormd.css'
   import '../../../utils/editormd.js'
 
@@ -109,6 +111,7 @@
     data () {
       return {
         brickID: this.$route.params.repo,
+        expID: this.$route.params.id,
         watched: false,
         watchNum: 0,
         starred: false,
@@ -116,7 +119,8 @@
         rated: false,
         insideExperience: false,
         showRate: false,
-        Brick: null
+        Brick: null,
+        specificExp: null
       }
     },
     computed: {
@@ -131,10 +135,11 @@
       Star,
       Feature,
       Editor,
-      ExperienceList
+      ExperienceList,
+      ExperienceDetail
     },
     created () {
-      if (this.$route.params.id) {
+      if (this.expID) {
         this.insideExperience = true
       } else {
         this.insideExperience = false

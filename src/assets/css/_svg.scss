@@ -13,8 +13,9 @@
   margin: 0;
 }
 .featureList {
+  margin-top: 20px;
   display: -webkit-flex;
   display: flex;
-  height: 200px;
+  height: 180px;
   flex-flow: column wrap;
 }

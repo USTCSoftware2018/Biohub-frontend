@@ -3,7 +3,7 @@
     <div class="postHeader">{{num}} Comment(s)</div>
     <div class="posts">
       <div class="post" v-for="item in displayPost"><a class='commentUserInfo' :href="'/user/' + item.author.username">
-        <img v-bind:src="item.author.avatar_url" style="width: 30px;margin-right: 10px;">{{item.author.username}}: </a>{{item.content}}</div>
+        <img v-bind:src="item.author.avatar_url" style="width: 30px;margin-right: 10px;">{{item.author.username}}: </a>{{item.content}}<span class='pull-right timeago' :datetime='item.pub_time'></span></div>
     </div>
     <nav class='postPage' aria-label="navigation">
       <ul class="pagination" :id='"postPage" + this.expId'>
@@ -56,7 +56,6 @@
             this.segment++
             this.paginationSequence = []
             this.paginationSequence.push('<')
-            this.paginationSequence.push('<<')
             restPage = this.maxPage - this.segment * 5
             if (restPage <= 5) {
               while (i <= restPage) {
@@ -69,11 +68,10 @@
                 i++
               }
               this.paginationSequence.push('>')
-              this.paginationSequence.push('>>')
             }
-            if (this.segment > 0) needToAdd = 2
+            if (this.segment > 0) needToAdd = 1
             if (this.segment === 1) needToRemove = this.page - 1
-            else needToRemove = this.page + 1
+            else needToRemove = this.page
             this.page = 1
             needToLoad = this.segment * 5 + 1
             break
@@ -82,7 +80,6 @@
             this.paginationSequence = []
             if (this.segment > 0) {
               this.paginationSequence.push('<')
-              this.paginationSequence.push('<<')
             }
             restPage = this.maxPage - this.segment * 5
             while (i <= 5) {
@@ -90,9 +87,8 @@
               i++
             }
             this.paginationSequence.push('>')
-            this.paginationSequence.push('>>')
-            if (this.segment > 0) needToAdd = 2
-            needToRemove = this.page + 1
+            if (this.segment > 0) needToAdd = 1
+            needToRemove = this.page
             this.page = 1
             needToLoad = this.segment * 5 + 1
             break
@@ -149,7 +145,6 @@
               i++
             }
             this.paginationSequence.push('>')
-            this.paginationSequence.push('>>')
           } else {
             if (this.num === 0) {
               $('#postPage' + this.expId).append('<p style="color:#999;">Oops, nothing\'s here</p>')
@@ -162,6 +157,7 @@
           }
           this.$nextTick(() => {
             $('#postPage' + this.expId + ' li')[0].firstChild.classList.add('disabled')
+            timeago().render($('.timeago'))
           })
           this.displayPost = []
           for (var j = 0; j < response.data.results.length; j++) {

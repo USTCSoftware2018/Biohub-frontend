@@ -6,6 +6,33 @@
       <textarea style="display:none;">Hello World!</textarea>
     </div>
     <button class="btn btn-forum" @click.prevent="Submit">Submit</button>
+    <button type="button" class="btn btn-forum" data-toggle="modal" data-target="#uploadFile">
+      Upload Files
+    </button>
+    <div class="modal fade" id="uploadFile" tabindex="-1" role="dialog" aria-labelledby="uploadFileLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Upload a File</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for='inputFile'>Select a file:</label>
+                <input type='file' id='inputFile'>
+              </div>
+            </form>
+            <p class="text-success" v-if='uploadStatus === 1'><i class="fa fa-check"></i> {{filename}} had been successively uploaded to the server.</p>
+            <p class="text-danger" v-if='uploadStatus === 2'><i class="fa fa-close"></i> {{filename}} had not been uploaded.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-forum" @click='uploadFile'>Submit</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
   </div>
 </template>
 
@@ -17,7 +44,10 @@
     data () {
       return {
         experienceHTML: '',
-        title: ''
+        title: '',
+        files: [],
+        uploadStatus: 0,
+        filename: ''
       }
     },
     mounted () {
@@ -43,7 +73,7 @@
           brick_name: this.$route.params.repo,
           content: {
             text: editor.getHTML(),
-            file_ids: []
+            file_ids: this.files
           },
           title: this.title
         }).then((response) => {
@@ -55,6 +85,23 @@
       },
       Focus () {
         editor.focus()
+      },
+      uploadFile () {
+        var uFile = document.getElementById('inputFile').files[0]
+        console.log(uFile)
+        this.filename = uFile.name
+        var formData = new FormData()
+        formData.append('file', uFile)
+        axios.post('/files/upload/?store_db=1', formData, {
+          headers: {'Content-Type': 'multipart/form-data'}
+        }).then((response) => {
+          console.log(response)
+          this.files.push(response.data.id)
+          this.uploadStatus = 1
+        }).catch((e) => {
+          console.log(e)
+          this.uploadStatus = 2
+        })
       }
     }
   }
