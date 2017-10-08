@@ -7,7 +7,7 @@
         <li v-for="(item, index) in experiencesSet" class="list-group-item" :id="'experience'+item.id">
           <div class="experience-header">
             <img :src="item.author.avatar_url" style="width: 30px;"></span>
-            <router-link :to="{name: 'Profile',params:{author: item.author_name}}" class="experience-author-name">{{item.author_name}}</router-link>
+            <router-link :to="{name: 'profile',params:{user: item.author_name}}" class="experience-author-name">{{item.author_name}}</router-link>
           </div>
           <div class="list-group-item-text" v-html="item.content.text"></div>
           <div class="action-bar">
@@ -62,7 +62,7 @@
         postContent: '',
         hasUpvote: {},
         experiencesSet: [],
-        experienceNext: '',
+        experienceNext: null,
         experiencesNum: 0
       }
     },

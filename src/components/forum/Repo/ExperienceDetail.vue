@@ -2,7 +2,7 @@
   <div class="experience-wrapper">
     <div class="experience-header">
       <img :src="specificExp.author.avatar_url" style="width: 30px;"></span>
-      <router-link :to="{name: 'profile',params:{author: specificExp.author_name}}" class="experience-author-name">{{specificExp.author_name}}</router-link>
+      <router-link :to="{name: 'profile',params:{user: specificExp.author_name}}" class="experience-author-name">{{specificExp.author_name}}</router-link>
     </div>
     <div class="list-group-item-text" v-html="specificExp.content.text"></div>
     <div class="action-bar">
@@ -11,7 +11,7 @@
       <span v-if="!specificExp.voted"><i class="fa fa-angle-up"></i></span>
       <span v-else><i class="fa fa-angle-down"></i></span> {{specificExp.up_vote_num}}</button>
       <a @click='showPosts' style="margin-left: 15px;"><i class="fa fa-comment-o"></i> {{specificExp.posts_num}} Comment(s)</a>
-      <a style="margin-left: 15px;" data-toggle="collapse" href="#file" aria-expanded="false" :aria-controls="file">
+      <a style="margin-left: 15px;" data-toggle="collapse" href="#file" aria-expanded="false" aria-controls="file">
         <i class='fa fa-download'></i> Files
       </a>
       <div class="collapse" id="file">
