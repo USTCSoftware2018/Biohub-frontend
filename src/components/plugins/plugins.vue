@@ -10,13 +10,12 @@
           <a href='#' class="list-group-item" style='background-color: #225378; color: white;border-color: #225378;'>Add a new plugin</a>
         </div>
       </div>
-      <div class="col-md-9" id='pluginSlot'><plugin v-if='pluginShow'></plugin></div>
+      <div class="col-md-9" id='pluginSlot' style='margin-top: 50px;'><plugin v-if='pluginShow'></plugin></div>
     </div>
     <page-footer></page-footer>
   </div>
 </template>
-<style scoped>
-
+<style>
 </style>
 
 <script>
@@ -38,17 +37,20 @@
     mounted () {
       this.pluginShow = false
       var link = document.createElement('script')
-      link.src = 'http://localhost:8000/plugin.min.js'
+      link.src = 'http://localhost:8000/plugin.js'
       this.linkUrl = link.src
       link.type = 'text/javascript'
       link.name = 'pluginFile'
       document.querySelector('#pluginSlot').appendChild(link)
-      let plugin = window.plugin
-      Vue.component('plugin', plugin)
-      this.pluginShow = true
+      window.onload = () => {
+        let plugin = window.plugin
+        Vue.component('plugin', plugin)
+        this.pluginShow = true
+      }
     },
     destroyed () {
       document.querySelector('#pluginSlot').innerHTML = ''
+      window.onload = function () {}
     },
     methods: {
     }
