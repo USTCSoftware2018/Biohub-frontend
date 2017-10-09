@@ -129,13 +129,6 @@
           if (this.isOpened) this.init()
         }
       })
-      websocket.on('message-notices', data => {
-        this.unreadCount = data
-        if (this.unreadCount) {
-          this.clear()
-          if (this.isOpened) this.init()
-        }
-      })
     }
   }
 </script>
