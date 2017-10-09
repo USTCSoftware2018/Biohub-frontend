@@ -10,7 +10,7 @@
           <a href='#' class="list-group-item" style='background-color: #225378; color: white;border-color: #225378;'>Add a new plugin</a>
         </div>
       </div>
-      <div class="col-md-9" id='pluginSlot' style='margin-top: 50px;'><plugin v-if='pluginShow'></plugin></div>
+      <div class="col-md-9"  style='margin-top: 50px;'><div id='pluginSlot'></div></div>
     </div>
     <page-footer></page-footer>
   </div>
@@ -42,15 +42,15 @@
       link.type = 'text/javascript'
       link.name = 'pluginFile'
       document.querySelector('#pluginSlot').appendChild(link)
-      window.onload = () => {
-        let plugin = window.plugin
-        Vue.component('plugin', plugin)
-        this.pluginShow = true
+      link.onload = () => {
+        var PluginC = Vue.extend(window.plugin)
+        var PluginI = new PluginC().$mount('#pluginSlot')
+        console.log(PluginI)
+        if (PluginI.name === 'ABACUS') {
+          PluginI.setFile('/media/abacus_output_4d2i_jViYBME.pdb')
+          PluginI.draw()
+        }
       }
-    },
-    destroyed () {
-      document.querySelector('#pluginSlot').innerHTML = ''
-      window.onload = function () {}
     },
     methods: {
     }
