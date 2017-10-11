@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="text-align: center;">
     <img src="../../assets/img/bioLogo.png" width="530px" style="padding-top: 10em;">
     <div class="container">
       <div class="row">

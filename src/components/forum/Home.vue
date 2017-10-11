@@ -8,40 +8,9 @@
           . Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <button class="btn btn-biohub btn-biohub-forum-welcome-default">Learn More</button>
-        <button class="btn btn-biohub btn-biohub-forum-welcome-notice" data-toggle="modal" data-target="#findPart">Find a Part</button>
+        <button class="btn btn-biohub btn-biohub-forum-welcome-notice" @click="$router.push({name:'search'})">Find a Part</button>
         <!-- Modal -->
-        <div class="modal fade" id="findPart" tabindex="-1" role="dialog" aria-labelledby="findPartLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="findPartLabel">Find a Part</h4>
-              </div>
-              <div class="modal-body biohub-form">
-                <div class="input-group">
-                  <div class="input-group-addon" style="background: #eee;">Part Name:</div>
-                  <input class="form-control" placeholder="Please input part name" v-model="newPartName"
-                         v-on:keydown.enter.prevent="search(newPartName)"
-                         style="display: inline-block;vertical-align: middle;width: 95%;">
-                  <span class="fa fa-spinner fa-spin input-indicator" style="margin-top: 6px;font-size: 20px;vertical-align: middle;" v-show="stateLoad"></span>
-                  <span class="fa fa-check-circle input-indicator" style="margin-top: 6px;font-size: 20px;vertical-align: middle;" v-show="stateFound"></span>
-                  <span class="fa fa-exclamation-circle input-indicator" style="margin-top: 6px;font-size: 20px;vertical-align: middle;" v-show="stateNotFound"></span>
-                </div>
-                <div class="collapse" id="collapseSuccess">
-                  <div class="OfficialResult">
-                    ...
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-forum">Start a Discussion</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-
     </div>
     <div class="row">
       <div class="container">
@@ -49,9 +18,9 @@
           <activity-list api="/api/forum/activities/timeline/"></activity-list>
         </div>
         <div class="col-md-4 less-padding">
-          <ul class="nav nav-pills">
-            <li role="presentation"><a href='#'>User</a></li>
-            <li role="presentation"><a href='#'>Brick</a></li>
+          <ul class="list-group list-home-bricks">
+            <li class="list-group-item disabled">Bricks Being Watched</li>
+            <li class="list-group-item" v-for="item in watchedBricks.results"><a :href='"/forum/brick/"+item.part_name'>{{item.part_name}}</a></li> 
           </ul>
         </div>
       </div>
@@ -66,12 +35,7 @@
   export default {
     data () {
       return {
-        notice: null,
-        newPartName: '',
-        stateLoad: false,
-        stateFound: false,
-        stateNotFound: false,
-        findResult: null
+        watchedBricks: []
       }
     },
     components: {
@@ -79,6 +43,9 @@
       ActivityList
     },
     mounted () {
+      axios.get(`/api/users/${this.$root.user.id}/bricks_watching/`).then((response) => {
+        this.watchedBricks = response.data
+      })
     },
     methods: {
       search (name) {

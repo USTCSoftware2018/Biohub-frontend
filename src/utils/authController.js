@@ -27,6 +27,7 @@ export default {
     store(null)
     root.$set(root, 'user', null)
     events.$emit('logout')
+    root.$router.push({name:"login"})
   },
   init (vm) {
     root = vm
@@ -46,6 +47,8 @@ export default {
     }, (error) => {
       if (error.response && error.response.status === 403) {
         this.logout()
+        console.log('get error')
+
       }
       return Promise.reject(error)
     })

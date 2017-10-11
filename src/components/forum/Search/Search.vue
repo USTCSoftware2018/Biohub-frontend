@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="search-head">
-      <form class="biohub-form" @submit.prevent="formSubmit">
+      <form class="biohub-form"@submit.prevent="formSubmit">
         <img src="../../../assets/img/icon.png" class="snail-icon"/>
         <div class="form-group has-feedback" style="width: auto; display: inline-block;">
           <input

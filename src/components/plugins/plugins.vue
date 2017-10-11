@@ -3,7 +3,7 @@
     <top-navbar></top-navbar>
     <div class='container'>
       <div class="col-md-3" id='pluginsList'>
-        <div class="list-group">
+        <div class="list-group" style="text-align: center;">
           <a href='#' class="list-group-item" style="background-color:#eee;cursor: default; padding: 5px 0;">Plugins List</a>
           <a href='#' class="list-group-item">ABACUS</a>
           <a href='#' class="list-group-item">Biocircuit</a>
