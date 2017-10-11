@@ -15,10 +15,11 @@
     <div class="row">
       <div class="container">
         <div class="col-md-8 less-padding">
+          <div class="list-group-item disabled" style="box-shadow: 0 0 3px #ccc;border: none;">Timeline</div>
           <activity-list api="/api/forum/activities/timeline/"></activity-list>
         </div>
         <div class="col-md-4 less-padding">
-          <ul class="list-group list-home-bricks">
+          <ul class="list-group list-home-bricks" style="box-shadow: 0 0 3px #ccc;border: none;">
             <li class="list-group-item disabled">Bricks Being Watched</li>
             <li class="list-group-item" v-for="item in watchedBricks.results"><a :href='"/forum/brick/"+item.part_name'>{{item.part_name}}</a></li> 
           </ul>
