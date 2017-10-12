@@ -7,6 +7,7 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 import authController from '@/utils/authController'
 import websocket from '@/utils/websocket'
 window.$ = $
+window.router = router
 
 // eslint-disable-next-line no-extend-native
 Promise.prototype.always = function (callback) {

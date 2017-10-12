@@ -1,21 +1,21 @@
 <template>
-  <div class="experience-list">
-    <experience-item :experience="experience" v-for="experience in experiences" :key="experience.part_name"></experience-item>
+  <div>
+    <post-item v-for="post in posts" :post="post" :key="post.id"></post-item>
     <pager :hasNext="hasNext" :hasPrevious="hasPrevious" :pageNum="pageNum"></pager>
   </div>
 </template>
 
 <script>
+  import PostItem from './PostItem'
   import PageMixin from '@/components/Common/PageMixin'
-  import ExperienceItem from './ExperienceItem'
 
   export default {
-    props: ['api'],
-    components: { ExperienceItem },
+    props: ['expId'],
+    components: { PostItem },
     mixins: [PageMixin],
     data () {
       return {
-        experiences: [],
+        posts: [],
         loading: false,
         hasNext: false,
         hasPrevious: false,
@@ -26,19 +26,25 @@
       getQueryParams () {
         return {}
       },
-      loadExperiences () {
-        return this._load(this.api)
+      loadPosts () {
+        return this._load(`/api/forum/experiences/${this.expId}/posts/`)
       },
       processResponse (response) {
-        this.experiences = response.data.results
+        this.posts = response.data.results
+      },
+      prepend (item) {
+        this.posts.splice(0, 0, item)
       }
     },
     mounted () {
-      this.loadExperiences()
+      this.loadPosts()
     },
     watch: {
-      'api' () {
-        this.loadExperiences()
+      expId () {
+        this.loadPosts()
+      },
+      $route () {
+        this.loadPosts()
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div style="text-align: center;">
-    <img src="../assets/img/bioLogo.png" width="530px" style="padding-top: 15%"">
+    <img src="../assets/img/bioLogo.png" width="530px" style="padding-top: 15%">
     <div class="container home">
       <div class="row">
         <div class="col-md-3"></div>
@@ -31,11 +31,11 @@
     },
     methods: {
       JumpToLogin () {
-        window.location.href = 'login'
+        this.$router.push({ name: 'login' })
       },
 
       JumpToSignup () {
-        window.location.href = 'signup'
+        this.$router.push({ name: 'signup' })
       }
     }
   }

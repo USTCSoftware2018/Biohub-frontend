@@ -1,10 +1,12 @@
 import Vue from 'vue'
-import secretkey from './secretkey.js'
+
+const secretkey = 'Secret key'
+
 let root
 const events = new Vue()
 
 function store (data) {
-  Lockr.set('user', Crypto.AES.encrypt(JSON.stringify(data), secretkey.secretkey).toString())
+  Lockr.set('user', Crypto.AES.encrypt(JSON.stringify(data), secretkey).toString())
 }
 
 export default {
@@ -16,7 +18,6 @@ export default {
 
   login (data) {
     store(data)
-    console.log(secretkey)
     root.$set(root, 'user', data)
     events.$emit('login', data)
 
@@ -36,7 +37,7 @@ export default {
     Lockr.prefix = 'biohub_'
     let user = null
     try {
-      let bytes = Crypto.AES.decrypt(Lockr.get('user'), secretkey.secretkey)
+      let bytes = Crypto.AES.decrypt(Lockr.get('user'), secretkey)
       user = JSON.parse(bytes.toString(Crypto.enc.Utf8))
       if (user !== null) this.login(user)
     } catch (e) {

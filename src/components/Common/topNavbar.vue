@@ -3,10 +3,9 @@
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Brand</a>
+        <router-link class="navbar-brand" :to="{ name: 'forum-home' }">Brand</router-link>
       </div>
       <ul class="nav navbar-nav">
-        <li><router-link :to="{ name: 'forum-home' }">Forum</router-link></li>
         <li><router-link :to="{ name: 'plugins' }">Plugins</router-link></li>
       </ul>
       <form class="navbar-form navbar-left" v-if="!($route.name === 'Search')">

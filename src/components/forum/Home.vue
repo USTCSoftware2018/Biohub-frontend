@@ -21,7 +21,9 @@
         <div class="col-md-4 less-padding">
           <ul class="list-group list-home-bricks" style="box-shadow: 0 0 3px #ccc;border: none;">
             <li class="list-group-item disabled">Bricks Being Watched</li>
-            <li class="list-group-item" v-for="item in watchedBricks.results"><a :href='"/forum/brick/"+item.part_name'>{{item.part_name}}</a></li> 
+            <li class="list-group-item" v-for="item in watchedBricks.results">
+              <router-link :to="{ name: 'Brick', params: { repo: item.part_name } }">{{ item.part_name }}</router-link>
+            </li>
           </ul>
         </div>
       </div>

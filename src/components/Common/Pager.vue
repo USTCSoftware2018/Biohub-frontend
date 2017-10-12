@@ -20,7 +20,6 @@
           params: {...this.$route.params}
         }
         route.query.page = this.pageNum + 1
-        console.log(route)
         return route
       },
       previousRoute () {

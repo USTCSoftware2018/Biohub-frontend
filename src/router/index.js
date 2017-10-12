@@ -8,6 +8,9 @@ import NotFound from '@/components/NotFound'
 import Forum from '@/components/forum/Forum'
 import forumHome from '@/components/forum/Home'
 import Repo from '@/components/forum/Repo/Repo'
+import ExperienceListView from '@/components/forum/Repo/ExperienceListView'
+import ExperienceDetailView from '@/components/forum/Repo/ExperienceDetailView'
+import Write from '@/components/forum/Repo/Write'
 import Profile from '@/components/forum/Profile/Profile'
 import Plugins from '@/components/plugins/plugins'
 import Search from '@/components/forum/Search/Search'
@@ -68,12 +71,21 @@ export default new Router({
         {
           path: 'brick/:repo',
           component: Repo,
-          name: 'Brick',
           children: [
+            {
+              path: '',
+              name: 'Brick',
+              component: ExperienceListView
+            },
             {
               path: 'experience/:id',
               name: 'Exp',
-              component: Repo
+              component: ExperienceDetailView
+            },
+            {
+              path: 'write',
+              name: 'Write-Exp',
+              component: Write
             }
           ]
         },

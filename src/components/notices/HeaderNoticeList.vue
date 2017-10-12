@@ -32,6 +32,9 @@
   </li>
 </template>
 <style scoped>
+  i.fa-bell-o {
+    position: relative;
+  }
   .red-dot {
     position: absolute;
     right: 0;
