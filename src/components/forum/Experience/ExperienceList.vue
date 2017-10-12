@@ -1,5 +1,8 @@
 <template>
-  <div class="experience-list">
+  <div class="experience-list" style="box-shadow: 0 0 3px #ccc;">
+    <div class="experience-item">
+      Experience(s) List
+    </div>
     <experience-item :experience="experience" v-for="experience in experiences" :key="experience.part_name"></experience-item>
     <pager :hasNext="hasNext" :hasPrevious="hasPrevious" :pageNum="pageNum"></pager>
   </div>

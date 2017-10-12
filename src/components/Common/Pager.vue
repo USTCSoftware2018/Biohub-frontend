@@ -1,6 +1,6 @@
 <template>
   <ul class="pager" v-if="hasPrevious || hasNext">
-    <li v-if="hasPrevious">
+    <li v-if="hasPrevious" style="margin-right: 10px;">
       <router-link :to="previousRoute">Previous</router-link>
     </li>
     <li v-if="hasNext">

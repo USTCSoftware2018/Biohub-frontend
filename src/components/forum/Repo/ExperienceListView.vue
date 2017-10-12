@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-9">
     <experience-list :api="api" ref="list" v-if="part_name"></experience-list>
   </div>
 </template>

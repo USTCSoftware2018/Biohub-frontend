@@ -87,6 +87,9 @@
     margin-left: 5px;
     margin-right: 5px;
   }
+  a:first-child {
+    margin-left: 0;
+  }
   .number {
     background-color: darken($navbar-color, 5%);
     color: white;
@@ -214,24 +217,20 @@
     line-height: 27px;
     border-style: none;
     border-radius: 5px;
+    height: 33px;
     padding-left: 5px;
     background-color: lighten($border-color, 10%);
     vertical-align: middle;
     @include transition(border-color);
     @include transition(background-color);
-    .innerText {
+    &:focus {
       outline: none;
-      margin-top: 3px;
-      margin-bottom: 3px;
+      border-color: $color-blue-2;
+      background-color: white;
+      line-height: 25px;
+      border-style: solid;
+      border-width: 1px;
     }
-  }
-  .textareaFocus {
-    outline: none;
-    border-color: $color-blue-2;
-    background-color: white;
-    line-height: 25px;
-    border-style: solid;
-    border-width: 1px;
   }
   button {
     display: inline-block;
@@ -428,10 +427,8 @@
 }
 
 .experience-item, .experience-detail {
-
-  @extend .card;
-
-  margin-top: 20px;
+  background-color: white;
+  padding: 15px 20px;
   &:first-child {
     margin-top: 40px;
   }
@@ -511,4 +508,14 @@
       order: 2;
     }
   }
+}
+
+.experience-item + .experience-item {
+  border-top: 1px solid $border-color;
+}
+
+.pager {
+  padding-bottom: 15px;
+  margin-top: 0;
+  background-color: white;
 }

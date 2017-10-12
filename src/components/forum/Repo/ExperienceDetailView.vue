@@ -1,5 +1,8 @@
 <template>
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-9">
+    <div class="card" style="margin: 20px 0 10px 0;text-align: center;cursor: pointer;" @click="$router.push({name:'Brick',repo:$route.params.repo})">
+      View All Experience
+    </div>
     <div class="card experience-detail" v-if="experience">
       <div class="experience-title">
         <h2>{{ experience.title }}</h2>

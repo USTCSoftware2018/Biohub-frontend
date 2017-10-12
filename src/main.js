@@ -28,6 +28,14 @@ Vue.directive('scroll', {
     })
   }
 })
+var mixin = {
+  created () {
+    if (this.user === null) {
+      authController.init(this.$root)
+    }
+  }
+}
+
 /* eslint-disable no-new */
 let biohub = new Vue({
   el: '#app',
@@ -36,7 +44,8 @@ let biohub = new Vue({
   components: { App },
   data: {
     user: null
-  }
+  },
+  mixins: [mixin]
 })
 
 websocket.init()

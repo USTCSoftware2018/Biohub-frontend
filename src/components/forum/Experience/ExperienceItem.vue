@@ -1,9 +1,9 @@
 <template>
   <div class="experience-item">
     <h3 class="experience-title">
-      <router-link :to="expLink">{{ experience.title }}</router-link>
+      <router-link :to="expLink" style="font-weight: 200;font-size: 24px;">{{ experience.title }}</router-link>
     </h3>
-    <div class="experience-author">
+    <div class="experience-author" style="margin-top: 15px;">
       <template v-if="!experience.author">
         {{ experience.author_name }}
       </template>
@@ -27,12 +27,16 @@
         {{ experience.votes }}
       </button>
       <router-link :to="expLink" class="text-muted">
-        {{ commentsText }}
+        <i class="fa fa-comment-o"></i> {{ commentsText }}
       </router-link>
       <small class="timeago text-muted" :datetime="experience.pub_time" ref="pub_time"></small>
     </div>
   </div>
 </template>
+
+<style>
+
+</style>
 
 <script>
   import marked from 'marked'

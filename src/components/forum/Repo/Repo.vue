@@ -24,7 +24,7 @@
       <div class="container">
         <div class="col-md-12">
           <div data-toggle="tooltip" title="Click to view document">
-            <h2 data-toggle="collapse" href="#document-div" class="document-toggler">Documentation</h2>
+            <p data-toggle="collapse" href="#document-div" class="document-toggler">Documentation</p>
           </div>
           <div v-html="documentHTML" id="document-div" class="collapse"></div>
         </div>
@@ -39,6 +39,7 @@
 <style>
   .document-toggler {
     cursor: pointer;
+    font-size: 20px;
   }
 </style>
 
