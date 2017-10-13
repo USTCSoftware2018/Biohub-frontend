@@ -7,7 +7,7 @@
       <div class="card experience-detail" v-if="experience">
         <div class="experience-title">
           <h2>{{ experience.title }}</h2>
-          <router-link :to="{ name: 'Write-Exp', params: {repo: experience.brick}, query: {expId: experience.id}}">Edit</router-link>
+          <router-link v-if='experience.author_name === $root.user.username' :to="{ name: 'Write-Exp', params: {repo: experience.brick}, query: {expId: experience.id}}">Edit</router-link>
         </div>
         <div class="experience-author">
           <template v-if="!experience.author">

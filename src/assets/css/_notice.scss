@@ -77,13 +77,19 @@
 }
 
 .notice-view {
-
+  background-color: white;
+  margin-top: 40px;
+  border: none;
+  box-shadow: 0 0 3px $border-color;
   .notice-list {
 
     .notice-item {
       padding: 10px 10px;
       color: $text-color-rev;
       text-align: left;
+    }
+    .notice-item + .notice-item {
+      border-top: 1px solid $border-color;
     }
   }
 }
