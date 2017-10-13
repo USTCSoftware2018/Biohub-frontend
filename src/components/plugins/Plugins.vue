@@ -12,6 +12,9 @@
         </div>
       </div>
       <div class="col-md-9">
+        <div v-if="!activeName">
+          This is index.
+        </div>
         <div id="plugin-slot"></div>
       </div>
     </div>
@@ -92,7 +95,8 @@
         readyEvent: {
           promise: null,
           resolve: null
-        }
+        },
+        activeName: ''
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -130,6 +134,7 @@
             this.loader.load(name)
               .then(instance => {
                 instance && instance.activated && instance.activated(this.$route)
+                this.activeName = name
               })
           })
       }
