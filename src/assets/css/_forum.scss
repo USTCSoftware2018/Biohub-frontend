@@ -22,12 +22,11 @@
 }
 
 .list-group-header {
-  background-color: #f2f2f2;
-  border: 1px solid $list-group-border;
-  list-style: none;
-  padding: 0.06rem 0.1rem;
-  line-height: 0.15rem;
-  font-weight: 500;
+  @extend .disabled;
+  box-shadow: 0 0 3px $border-color;
+  cursor: default !important;
+  border: none;
+  border-bottom: 1px solid $border-color;
 }
 
 .list-group-header + .list-group-item {
@@ -127,9 +126,13 @@
     border-color: $border-color;
   }
 }
+.experience-list {
+  margin-top: 40px;
+}
 .experience-list-header {
-  margin-top: 5px;
-  margin-bottom: 12px;
+  border-bottom: 1px solid $border-color;
+  padding: 15px 20px;
+  background-color: white;
 }
 .experience-author-name {
   color: $text-color-rev;
@@ -429,9 +432,6 @@
 .experience-item, .experience-detail {
   background-color: white;
   padding: 15px 20px;
-  &:first-child {
-    margin-top: 40px;
-  }
 
   .experience-title {
     margin: 0;

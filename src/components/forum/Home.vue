@@ -15,12 +15,12 @@
     <div class="row">
       <div class="container">
         <div class="col-md-8 less-padding">
-          <div class="list-group-item disabled" style="box-shadow: 0 0 3px #ccc;border: none;cursor: default;">Timeline</div>
+          <div class="list-group-item list-group-header">Timeline</div>
           <activity-list api="/api/forum/activities/timeline/"></activity-list>
         </div>
         <div class="col-md-4 less-padding">
-          <ul class="list-group list-home-bricks" style="border: none;">
-            <li class="list-group-item disabled" style="box-shadow: 0 0 3px #ccc;cursor:default;border:none;">Bricks Being Watched</li>
+          <ul class="list-group list-home-bricks">
+            <li class="list-group-item list-group-header">Bricks Being Watched</li>
             <li class="list-group-item" v-for="item in watchedBricks.results"
                 style="box-shadow: 0 0 3px #ccc;border:none;">
               <router-link :to="{ name: 'Brick', params: { repo: item.part_name } }">{{ item.part_name }}</router-link>

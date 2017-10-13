@@ -15,11 +15,13 @@
       </template>
     </div>
     <div class="experience-content">
+      <transition name="fade">
       <p class="digest" v-if="!fullText" @click="loadFullText">
         {{ experience.content.digest }}
         <a href="javascript:;">Expand <i class="fa fa-angle-double-down"></i></a>
       </p>
       <div v-else v-html="contentHTML" class="content"></div>
+      </transition>
     </div>
     <div class="experience-footer clearfix">
       <button :class="voteButtonClasses" @click="toggleVote" :diabled="!cannotVote">
