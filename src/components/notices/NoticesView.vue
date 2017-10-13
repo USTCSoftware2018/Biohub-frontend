@@ -1,6 +1,6 @@
 <template>
-  <div class="container notice-view">
-    <div class="col-md-offset-2 col-md-8 notice-view-container">
+  <div class="container">
+    <div class="col-md-9 notice-view">
       <div class="notice-list" v-if="inited">
         <notice-item v-for="item in notices" :notice="item" :key="item.id"></notice-item>
         <pager

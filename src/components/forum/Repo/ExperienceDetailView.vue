@@ -6,8 +6,8 @@
     <transition name="fade">
       <div class="card experience-detail" v-if="experience">
         <div class="experience-title">
-          <h2>{{ experience.title }}</h2>
-          <router-link :to="{ name: 'Write-Exp', params: {repo: experience.brick}, query: {expId: experience.id}}">Edit</router-link>
+          <h2 style="display: inline-block;">{{ experience.title }}</h2>
+          <router-link style='display: inline-block;color: #666;' v-if='experience.author_name === $root.user.username' :to="{ name: 'Write-Exp', params: {repo: experience.brick}, query: {expId: experience.id}}">Edit</router-link>
         </div>
         <div class="experience-author">
           <template v-if="!experience.author">

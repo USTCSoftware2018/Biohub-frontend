@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <form class="biohub-form" @submit.prevent="submit">
       <input class="form-control " placeholder="Title here..." v-model="title">
-      <div id="editormd">
+      <div id="editormd" style="margin-top: 10px;">
         <textarea v-model="content"></textarea>
       </div>
       <div class="form-group clearfix">
@@ -10,21 +10,25 @@
       </div>
     </form>
     <upload-button @upload-start="uploadStart"></upload-button>
-    <div class="editor-files-list">
+    <div class="editor-files-list" v-if="files.length > 0 || filesUploading.length > 0">
       <div v-for="file in filesUploading">
         {{ file.name }} {{ file.progress * 100 + '%' }}
-        <button @click="file.cancel" v-if="!file.done">Cancel</button>
+        <button class="btn btn-forum" @click="file.cancel" v-if="!file.done">Cancel</button>
       </div>
-      <div v-for="(file, index) in files">
+      <div v-for="(file, index) in files" class="editor-files-list-item">
         <a :href="file.file" target="_blank">{{ file.name }}</a>
-        <button @click="files.splice(index, 1)">Remove</button>
-        <button @click="insertImage(file)" v-if="file.mime_type.indexOf('image') >= 0">
+        <button class="btn btn-forum" @click="files.splice(index, 1)">Remove</button>
+        <button class="btn btn-forum" @click="insertImage(file)" v-if="file.mime_type.indexOf('image') >= 0">
           Insert
         </button>
       </div>
     </div>
   </div>
 </template>
+
+<style>
+
+</style>
 
 <script>
   import '../../../assets/css/editormd.css'

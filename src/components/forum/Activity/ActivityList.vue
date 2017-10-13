@@ -1,12 +1,14 @@
 <template>
-  <div class="activities">
-    <div class="activity-item" v-for="item in activities">
-      <activity-item :activity="item"></activity-item>
+  <transition name="fade">
+    <div class="activities" v-if="activities.length > 0">
+      <div class="activity-item" v-for="item in activities">
+        <activity-item :activity="item"></activity-item>
+      </div>
+      <div class="load-more" v-if="next !== null" @click="loadNext">
+        Load more
+      </div>
     </div>
-    <div class="load-more" v-if="next !== null" @click="loadNext">
-      Load more
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
