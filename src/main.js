@@ -1,5 +1,4 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import marked from 'marked'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -7,7 +6,11 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 import authController from '@/utils/authController'
 import websocket from '@/utils/websocket'
 window.$ = $
-window.router = router
+
+marked.setOptions({
+  tables: true,
+  renderer: new marked.Renderer()
+})
 
 // eslint-disable-next-line no-extend-native
 Promise.prototype.always = function (callback) {
@@ -28,16 +31,9 @@ Vue.directive('scroll', {
     })
   }
 })
-var mixin = {
-  created () {
-    if (this.user === null) {
-      authController.init(this.$root)
-    }
-  }
-}
 
 /* eslint-disable no-new */
-let biohub = new Vue({
+new Vue({
   el: '#app',
   router,
   template: '<App/>',
@@ -45,8 +41,9 @@ let biohub = new Vue({
   data: {
     user: null
   },
-  mixins: [mixin]
+  created () {
+    authController.init(this)
+  }
 })
 
 websocket.init()
-authController.init(biohub)

@@ -15,7 +15,9 @@
               <star :isEnable="true" v-show="showRate" v-if="!stats.rated" :brickName="brick.part_name"></star>
               <a id="watch" @click="watch">{{ stats.watched ? 'Unwatch' : 'Watch' }}</a><span class="number">{{ brick.watches }}</span>
               <a id="star" @click="star">{{ stats.starred ? 'Unstar' : 'Star' }}</a><span class="number">{{ brick.stars }}</span>
-              <a href="#post-box">Post a new Experience</a>
+              <router-link :to="{ name: 'Write-Exp', params: { repo: brick.part_name }}">
+                Post a new Experience
+              </router-link>
             </div>
           </div>
           <div class="col-md-6">

@@ -1,12 +1,13 @@
 <template>
   <div class="col-md-9">
     <div class="card" style="margin: 20px 0 10px 0;text-align: center;cursor: pointer;" @click="$router.push({name:'Brick',repo:$route.params.repo})">
-      View All Experience
+      View All Experiences
     </div>
     <transition name="fade">
       <div class="card experience-detail" v-if="experience">
         <div class="experience-title">
           <h2>{{ experience.title }}</h2>
+          <router-link :to="{ name: 'Write-Exp', params: {repo: experience.brick}, query: {expId: experience.id}}">Edit</router-link>
         </div>
         <div class="experience-author">
           <template v-if="!experience.author">
@@ -56,13 +57,13 @@
     beforeRouteEnter (to, from, next) {
       next(vm => {
         if (to.params.id !== vm.expId) {
-          vm.reload()
+          vm.reload(to.params.id)
         }
       })
     },
     beforeRouteUpdate (to, from, next) {
       if (to.params.id !== this.expId) {
-        this.reload()
+        this.reload(to.params.id)
       }
       next()
     },
@@ -75,8 +76,7 @@
       postCreated (item) {
         this.$refs.posts.prepend(item)
       },
-      reload () {
-        const id = this.$route.params.id
+      reload (id) {
         const repo = this.$route.params.repo
 
         axios.get(`/api/forum/bricks/${repo}/experiences/${id}/`)

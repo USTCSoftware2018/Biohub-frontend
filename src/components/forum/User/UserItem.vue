@@ -4,7 +4,7 @@
       <img :src="user.avatar_url" class="media-object">
     </div>
     <div class="user-body">
-      <router-link :to="{ name: 'profile', user: user.username }">
+      <router-link :to="{ name: 'profile', params: {user: user.username} }">
         <h4 class="media-heading">{{ user.username }}</h4>
       </router-link>
     </div>
@@ -18,6 +18,11 @@
   import FollowMixin from './FollowMixin'
   export default {
     mixins: [FollowMixin],
-    props: ['user']
+    props: ['user'],
+    data () {
+      return {
+        toggling: false
+      }
+    }
   }
 </script>
