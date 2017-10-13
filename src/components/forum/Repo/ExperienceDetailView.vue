@@ -3,29 +3,40 @@
     <div class="card" style="margin: 20px 0 10px 0;text-align: center;cursor: pointer;" @click="$router.push({name:'Brick',repo:$route.params.repo})">
       View All Experience
     </div>
-    <div class="card experience-detail" v-if="experience">
-      <div class="experience-title">
-        <h2>{{ experience.title }}</h2>
+    <transition name="fade">
+      <div class="card experience-detail" v-if="experience">
+        <div class="experience-title">
+          <h2>{{ experience.title }}</h2>
+        </div>
+        <div class="experience-author">
+          <template v-if="!experience.author">
+            {{ experience.author_name }}
+          </template>
+          <template v-else>
+            <router-link :to="{ name: 'profile', params: { user: experience.author.username }}">
+              <img :src="experience.author.avatar_url" alt="">
+              {{ experience.author.username }}
+            </router-link>
+          </template>
+        </div>
+        <div class="experience-content">
+          <div v-html="content" class="content"></div>
+        </div>
       </div>
-      <div class="experience-author">
-        <template v-if="!experience.author">
-          {{ experience.author_name }}
-        </template>
-        <template v-else>
-          <router-link :to="{ name: 'profile', params: { user: experience.author.username }}">
-            <img :src="experience.author.avatar_url" alt="">
-            {{ experience.author.username }}
-          </router-link>
-        </template>
+      <template v-else>
+        <p key="warning" class="loading">Loading <i class="fa fa-pulse fa-spinner fa-fw"></i></p>
+      </template>
+    </transition>
+    <transition name="fade">
+      <div class="card posts" v-if="experience">
+        <post-editor :expId="expId" @created="postCreated"></post-editor>
+        <post-list :expId="expId" ref="posts"></post-list>
       </div>
-      <div class="experience-content">
-        <div v-html="content" class="content"></div>
-      </div>
-    </div>
-    <div class="card posts" v-if="experience">
-      <post-editor :expId="expId" @created="postCreated"></post-editor>
-      <post-list :expId="expId" ref="posts"></post-list>
-    </div>
+      <template v-else>
+        <p key="warning" class="loading">Loading <i class="fa fa-pulse fa-spinner fa-fw"></i></p>
+      </template>
+    </transition>
+
   </div>
 </template>
 
