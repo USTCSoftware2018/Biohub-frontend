@@ -1,8 +1,10 @@
 <template>
-  <div class="brick-list">
-    <brick-item :brick="brick" v-for="brick in bricks" :key="brick.part_name"></brick-item>
-    <pager :hasNext="hasNext" :hasPrevious="hasPrevious" :pageNum="pageNum"></pager>
-  </div>
+  <transition name="fade">
+    <div class="brick-list" v-if="bricks.length > 0">
+      <brick-item :brick="brick" v-for="brick in bricks" :key="brick.part_name"></brick-item>
+      <pager :hasNext="hasNext" :hasPrevious="hasPrevious" :pageNum="pageNum"></pager>
+    </div>
+  </transition>
 </template>
 
 <script>

@@ -30,7 +30,7 @@
       </div>
       <profile-nav :user='user'></profile-nav>
       <div class="tab-content">
-        <component :is="tabName" :user="user"></component>
+        <transition name="fade"><component :is="tabName" :user="user"></component></transition>
       </div>
     </div>
   </div>
