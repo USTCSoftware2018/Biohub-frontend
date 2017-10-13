@@ -12,7 +12,7 @@ import ExperienceListView from '@/components/forum/Repo/ExperienceListView'
 import ExperienceDetailView from '@/components/forum/Repo/ExperienceDetailView'
 import Write from '@/components/forum/Repo/Write'
 import Profile from '@/components/forum/Profile/Profile'
-import Plugins from '@/components/plugins/plugins'
+import Plugins from '@/components/plugins/Plugins'
 import Search from '@/components/forum/Search/Search'
 import Settings from '@/components/account/Settings'
 import Reset from '@/components/account/Reset'
@@ -93,6 +93,11 @@ export default new Router({
           path: 'settings',
           component: Settings,
           name: 'settings'
+        },
+        {
+          path: 'plugins',
+          component: Plugins,
+          name: 'plugins'
         }
       ]
     },
@@ -100,16 +105,6 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: Signup
-    },
-    {
-      path: '/plugins',
-      component: Plugins,
-      name: 'plugins'
-    },
-    {
-      path: '/plugins/:plugin',
-      component: Plugins,
-      name: 'Plugin'
     },
     {
       path: '*',

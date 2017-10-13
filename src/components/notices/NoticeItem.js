@@ -37,31 +37,40 @@ export default {
         ])
     },
     makeLink (title, type, pk, createElement) {
+      const mapping = {
+        experience: () => ({
+          name: 'Exp',
+          params: {
+            id: pk,
+            repo: this.linkInfos.brick.pk
+          }
+        }),
+        user: () => ({
+          name: 'profile',
+          params: {
+            user: pk
+          }
+        }),
+        brick: () => ({
+          name: 'Brick',
+          params: {
+            repo: pk
+          }
+        }),
+        'plugin.abacus': () => ({
+          name: 'plugins',
+          query: {
+            name: 'biohub.abacus',
+            taskId: pk
+          }
+        })
+      }
+
       return createElement(
         'router-link',
         {
           attrs: {
-            to: {
-              experience: {
-                name: 'Exp',
-                params: {
-                  id: pk,
-                  repo: this.linkInfos.brick.pk
-                }
-              },
-              user: {
-                name: 'Profile',
-                params: {
-                  author: pk
-                }
-              },
-              brick: {
-                name: 'Brick',
-                params: {
-                  repo: pk
-                }
-              }
-            }[type]
+            to: mapping[type]()
           }
         },
         [title]

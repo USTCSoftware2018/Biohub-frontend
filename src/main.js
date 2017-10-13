@@ -5,7 +5,11 @@ import router from './router'
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 import authController from '@/utils/authController'
 import websocket from '@/utils/websocket'
+import axios from 'axios'
+
 window.$ = $
+window.axios = axios
+window.websocket = websocket
 
 marked.setOptions({
   tables: true,
@@ -42,8 +46,8 @@ new Vue({
     user: null
   },
   created () {
+    websocket.init()
     authController.init(this)
   }
 })
 
-websocket.init()
