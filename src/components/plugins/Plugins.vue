@@ -129,7 +129,7 @@
         if (!name) return ''
 
         /* eslint-disable no-undef */
-        if (!DEBUG) {
+        if (DEBUG) {
           return `/plugins/${name}/plugin.js`
         } else {
           return _.find(this.plugins, o => o.name === name).js_url
