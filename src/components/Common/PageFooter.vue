@@ -3,9 +3,9 @@
     <footer>
       <div class="footer-content">
         <p>
-          <a href="/forum" class="footer-link">Forum</a>
-          <a href="/plugins" class="footer-link">Plugins</a>
-          <a href="#" class="footer-link">Wiki</a>
+          <router-link :to="{name: 'forum-home'}" class="footer-link">Forum</router-link>
+          <router-link :to="{name: 'plugins'}" class="footer-link">Plugins</router-link>
+          <a href="#" class="footer-link" target="_blank">Wiki</a>
         </p>
         <p>Welcome to the biohub. 2017 USTC-Software. All rights reserved.</p>
       </div>

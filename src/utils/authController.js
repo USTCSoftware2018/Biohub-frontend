@@ -23,14 +23,20 @@ export default {
 
   },
   fetch () {
-    axios.get('/api/users/me/')
-      .then(({ data }) => this.login(data))
+    return axios.get('/api/users/me/')
+      .then((response) => {
+        this.login(response.data)
+        return response
+      }, e => {
+        if (e.response.status === 404) this.logout()
+        return e
+      })
   },
   logout () {
     store(null)
     root.$set(root, 'user', null)
     events.$emit('logout')
-    root.$router.push({name:"login"})
+    root.$router.replace({name:"login"})
   },
   init (vm) {
     root = vm
@@ -47,7 +53,9 @@ export default {
     axios.interceptors.response.use((response) => {
       return response
     }, (error) => {
+      console.log(error)
       if (error.response && error.response.status === 403) {
+        console.log(error, 403)
         this.logout()
         console.log('get error')
       }

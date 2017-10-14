@@ -6,7 +6,8 @@
           <router-link :to="{ name: 'plugins' }" class="list-group-item">Index</router-link>
           <router-link v-for="plugin in plugins"
             :to="{ query: { name: plugin.name }}"
-            class="list-group-item">
+            class="list-group-item"
+            :key="plugin.name">
           {{ plugin.title }}
           </router-link>
         </div>
@@ -32,7 +33,7 @@
     this.$pluginSlot = document.getElementById('plugin-slot')
   }
 
-  Loader.prototype.load = function (name) {
+  Loader.prototype.load = function (name, url) {
     return new Promise((resolve, reject) => {
       if (!name) {
         this.activate(null)
@@ -53,7 +54,7 @@
       }
 
       const link = document.createElement('script')
-      link.src = `/plugins/${name}/plugin.js`
+      link.src = url
       link.type = 'text/javascript'
       link.onload = () => {
         console.log(window._plugins)
@@ -124,11 +125,21 @@
             this.readyEvent.resolve()
           })
       },
+      pluginUrl (name) {
+        if (!name) return ''
+
+        /* eslint-disable no-undef */
+        if (!DEBUG) {
+          return `/plugins/${name}/plugin.js`
+        } else {
+          return _.find(this.plugins, o => o.name === name).js_url
+        }
+      },
       loadPlugin (name) {
         this.readyEvent.promise
           .then(() => {
             if (name && !_.find(this.plugins, o => o.name === name)) return
-            this.loader.load(name)
+            this.loader.load(name, this.pluginUrl(name))
               .then(instance => {
                 instance && instance.activated && instance.activated(this.$route)
                 this.activeName = name

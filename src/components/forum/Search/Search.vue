@@ -35,7 +35,9 @@
   </div>
 </template>
 <style scoped>
-
+  .pager {
+    background: transparent;
+  }
 </style>
 <script>
   import BrickItem from '@/components/forum/Brick/BrickItem.vue'
@@ -83,7 +85,9 @@
       }
     },
     watch: {
-      '$route' () {
+      '$route' (to) {
+        if (to.name !== 'search') return
+        if ((parseInt(to.query.page) || 1) === this.pageNum && to.query.q === this.query) return
         this.load()
       }
     },

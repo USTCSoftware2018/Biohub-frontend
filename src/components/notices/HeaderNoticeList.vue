@@ -113,7 +113,7 @@
       },
       initEvents () {
         $(document).on('click', e => {
-          if (this.isOpened && !$.contains(this.$refs.noticeContainer, e.target)) {
+          if (this.isOpened && !$.contains(this.$refs.noticeContainer, e.target) || e.target.tagName.toLowerCase() === 'a') {
             this.isOpened = false
           }
         })

@@ -11,6 +11,13 @@ window.$ = $
 window.axios = axios
 window.websocket = websocket
 
+/* eslint-disable no-undef */
+Vue.prototype.currentSrc = DEBUG ? '/app.js' : document.currentScript.src
+
+/* eslint-disable no-undef */
+axios.defaults.baseURL = axiosBaseURL
+axios.defaults.withCredentials = true
+
 marked.setOptions({
   tables: true,
   renderer: new marked.Renderer()

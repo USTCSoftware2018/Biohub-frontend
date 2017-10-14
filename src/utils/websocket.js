@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import authController from '@/utils/authController'
 
-const url = `ws://${location.host}/ws/`
+/* eslint no-undef */
+const url = wsURL
 const eventProxy = new Vue()
 let socket
 

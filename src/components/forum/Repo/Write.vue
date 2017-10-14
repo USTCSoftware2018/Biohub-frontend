@@ -10,15 +10,15 @@
       </div>
     </form>
     <upload-button @upload-start="uploadStart"></upload-button>
-    <div class="editor-files-list" v-if="files.length > 0 || filesUploading.length > 0">
-      <div v-for="file in filesUploading">
+    <div class="editor-files-list col-md-12" v-if="files.length || filesUploading.length">
+      <div v-for="file in filesUploading" class="col-md-6">
         {{ file.name }} {{ file.progress * 100 + '%' }}
-        <button class="btn btn-forum" @click="file.cancel" v-if="!file.done">Cancel</button>
+        <button class="btn btn-link" @click="file.cancel" v-if="!file.done">Cancel</button>
       </div>
-      <div v-for="(file, index) in files" class="editor-files-list-item">
+      <div v-for="(file, index) in files" class="editor-files-list-item col-md-6 clearfix">
         <a :href="file.file" target="_blank">{{ file.name }}</a>
-        <button class="btn btn-forum" @click="files.splice(index, 1)">Remove</button>
-        <button class="btn btn-forum" @click="insertImage(file)" v-if="file.mime_type.indexOf('image') >= 0">
+        <button class="btn btn-link pull-right" @click="files.splice(index, 1)">Remove</button>
+        <button class="btn btn-link pull-right" @click="insertImage(file)" v-if="file.mime_type.indexOf('image') >= 0">
           Insert
         </button>
       </div>
@@ -26,8 +26,15 @@
   </div>
 </template>
 
-<style>
+<style scoped>
+  .biohub-form {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
+  .editor-files-list-item a {
+    font-size: 20px;
+  }
 </style>
 
 <script>
@@ -57,6 +64,12 @@
       next(vm => vm.init(to))
     },
     beforeRouteUpdate (to, from, next) {
+      if (this.title || this.content) {
+        if (!window.confirm('Current experience was not saved, are you sure to start a new one?')) {
+          next(false)
+          return
+        }
+      }
       this.init(to)
       next()
     },
@@ -66,6 +79,7 @@
       })
     },
     mounted () {
+      console.log(this.currentSrc)
       this.editor = editormd('editormd', {
         path: '/static/lib/',
         pluginPath: '/static/plugins/',
@@ -125,6 +139,14 @@
                   this.editor.setMarkdown(this.content = data.content.text)
                 })
             })
+        } else {
+          this.title = ''
+          this.editorLoaded.promise
+            .then(() => {
+              this.editor.setMarkdown(this.content = '')
+            })
+          this.files = []
+          this.uploadingFile = []
         }
       },
       uploadStart (uploadingFile) {

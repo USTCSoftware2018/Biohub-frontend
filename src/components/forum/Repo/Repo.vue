@@ -6,7 +6,9 @@
           <div class="col-md-6">
             <div class="repo-type">{{ brick.part_type }}</div>
             <div class="repo-info-name">
-              {{ brick.part_name }}
+              <router-link :to="{name: 'Brick', params: {repo: brick.part_name}}" tag="span" class="part-name">
+                {{ brick.part_name }}
+              </router-link>
               <star :initial="brick.rate_score"></star>
             </div>
             <div class="repo-info-addon">{{ brick.author }}@{{ brick.group_name }}</div>
@@ -47,10 +49,14 @@
   </div>
 </template>
 
-<style>
+<style scoped>
   .document-toggler {
     cursor: pointer;
     font-size: 20px;
+  }
+
+  .repo-info-name .part-name {
+    cursor: pointer;
   }
 </style>
 
@@ -69,12 +75,18 @@
         showRate: false
       }
     },
-    watch: {
-      $route (to, from) {
-        if (to.params.repo !== this.part_name) {
-          this.loadBrick(to.params.repo)
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        if (to.params.repo !== vm.part_name) {
+          vm.loadBrick(to.params.repo)
         }
+      })
+    },
+    beforeRouteUpdate (to, from, next) {
+      if (to.params.repo !== this.part_name) {
+        this.loadBrick(to.params.repo)
       }
+      next()
     },
     computed: {
       documentHTML () {
@@ -83,6 +95,9 @@
     },
     methods: {
       loadBrick (partName) {
+        const oldBrick = this.brick
+        this.brick = null
+
         axios.get(`/api/forum/bricks/${partName}/`)
           .then(response => {
             this.part_name = partName
@@ -94,6 +109,7 @@
             if (error.response.status === 404) {
               this.$router.push({ name: 'NotFound' })
             }
+            this.$set(this, 'brick', oldBrick)
           }).then(response => {
             if (!response) return
             this.$set(this, 'stats', response.data)
@@ -121,9 +137,6 @@
             this.brick.stars += delta
           })
       }
-    },
-    mounted () {
-      this.loadBrick(this.$route.params.repo)
     }
   }
 </script>

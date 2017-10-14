@@ -12,7 +12,11 @@
         </p>
         <p v-if="user.site_url">
           <i class="fa fa-link"></i>&nbsp;
-          {{ user.site_url }}
+          <a :href="user.site_url" target="_blank">{{ user.site_url }}</a>
+        </p>
+        <p v-if="user.address">
+          <i class="fa fa-home"></i>&nbsp;
+          {{ user.address }}
         </p>
       </div>
       <follow-button :user="user" v-if="!isSelf"></follow-button>

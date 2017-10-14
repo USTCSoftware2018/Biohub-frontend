@@ -24,9 +24,7 @@
         v-for="author in authors" v-if="author" v-html="author">
         </span>
     </div>
-    <p class="brick-content">
-      {{ brick.short_desc }}
-    </p>
+    <p class="brick-content" v-html="brick.short_desc"></p>
     <div class="brick-footer">
       <span class="data-group" data-toggle="tooltip" title="Stars">
         <i class="fa fa-star-o"></i>

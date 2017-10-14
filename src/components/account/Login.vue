@@ -24,6 +24,9 @@
               <button type="button" class="close"></button>
               <strong>Error: </strong> {{ errorMessage }}
             </div>
+            <router-link :to="{ name: 'Reset' }" class="pull-right" style="margin-bottom: 15px;">
+              Forgot password?
+            </router-link>
             <button type="submit" class="btn btn-biohub btn-biohub-blue full-width" v-on:click.self.prevent="login">
               Sign in
             </button>

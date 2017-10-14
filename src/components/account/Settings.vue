@@ -14,20 +14,6 @@
                    style="opacity:0; width:0; height: 0;" @change.prevent="uploadNewAvatar">
             <button class="btn btn-default">Upload new avatar</button>
           </div>
-          <div class="settings-plugins">
-            <div class="settings-plugins-plugin" title="plugins">
-              <a href="/plugins">
-                <img src="https://www.gravatar.com/avatar/d8cc2fe518e0df9a75316d124c2fc057?s=200&r=g&d=identicon">
-              </a>
-            </div>
-            <div class="settings-plugins-add">
-              <div>
-                <a href="#">
-                  <i class="fa fa-plus"></i>
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="col-md-6 settings-right">
           <div class="settings-text-info">
@@ -36,7 +22,7 @@
               <input v-model="userMail" class="form-control" id="settingInputEmail" placeholder="Your E-mail Address">
             </div>
             <div class="settings-option">
-              <h4>Public Locating:</h4>
+              <h4>Location:</h4>
               <input v-model="userLoc" class="form-control" id="settingInputLocation" placeholder="Your Location">
             </div>
             <div class="settings-option">
@@ -68,8 +54,7 @@
             <div class="form-group" v-bind:class="{'has-error':newPwdError}">
               <label class="control-label" for="newPassword">New Password</label>
               <input v-model.lazy="newPassword" type="password" class="form-control has-error"
-                     placeholder="Input your new password" id="newPassword" aria-describedby="newPasswordHB"
-                     @change="checkPwd" @focus="checkPwd">
+                     placeholder="Input your new password" id="newPassword" aria-describedby="newPasswordHB">
               <span id="newPasswordHB" class="help-block" v-if="newPwdError">
                 Password should at least contain a number and  a character, and its length should be between 6 and 20
               </span>
@@ -78,8 +63,11 @@
               <label class="control-label" for="newPasswordRepeat">Repeat New Password</label>
               <input v-model.lazy="newPasswordRepeat" type="password" class="form-control has-error"
                      placeholder="Repeat your new password" id="newPasswordRepeat"
-                     aria-describedby="newPasswordRepeatHB" @change="checkPwd" @focus="checkPwd">
-              <span id="newPasswordRepeatHB" class="help-block" v-if="newPwdReError">Different from last one</span>
+                     aria-describedby="newPasswordRepeatHB">
+              <span id="newPasswordRepeatHB" class="help-block" v-if="newPwdReError">Different from the previous one</span>
+            </div>
+            <div class="alert alert-danger" v-if="passwordError">
+              {{ passwordError }}
             </div>
           </div>
           <div class="col-md-12 settings-buttons">
@@ -101,7 +89,14 @@
   }
 </style>
 <script>
+  import authController from '@/utils/authController'
+
   export default {
+    computed: {
+      newPwdReError () {
+        return this.newPassword && this.newPasswordRepeat && this.newPassword !== this.newPasswordRepeat
+      }
+    },
     methods: {
       UpdateProfile () {
         axios.patch('/api/users/me/', {
@@ -111,13 +106,13 @@
           address: this.userLoc,
           description: this.userBio
         }).then((response) => {
-          window.location.href = '/user/' + this.userName
+          this.$router.push({ name: 'profile', params: { user: this.userName } })
         }).catch((e) => {
           console.log(e)
         })
       },
       Cancel () {
-        window.location.href = '/user/' + this.userName
+        this.$router.push({ name: 'profile', params: { user: this.userName } })
       },
       UpdatePassword () {
         axios.post('/api/users/change_password/', {
@@ -126,7 +121,8 @@
           new2: this.newPasswordRepeat
         }).then((response) => {
           alert('Password changed!\nplease relogin')
-          window.location.href = '/login'
+          authController.logout()
+          this.$router.push({ name: 'login' })
         }).catch((e) => {
           console.log(e.response)
           if (e.response.data.old !== undefined) {
@@ -135,11 +131,10 @@
             this.newPwdError = true
           } else if (e.response.data.new2 !== undefined) {
             this.newPwdReError = true
+          } else if (e.response.data.non_field_errors) {
+            this.passwordError = e.response.data.non_field_errors.join('\n')
           }
         })
-      },
-      checkPwd () {
-        this.newPwdReError = this.newPassword !== this.newPasswordRepeat
       },
       uploadClick () {
         this.$refs.uploadNewAvatar.click()
@@ -155,7 +150,7 @@
               'Content-Type': 'multipart/form-data'
             }
           }).then((_) => {
-            window.location.href = '/settings'
+            this.$router.push({ name: 'settings' })
           }).catch((e) => {
             console.log(e)
           })
@@ -174,7 +169,7 @@
         newPasswordRepeat: '',
         oldPwdError: false,
         newPwdError: false,
-        newPwdReError: false
+        passwordError: ''
       }
     },
     mounted () {
@@ -186,7 +181,7 @@
         this.userLoc = response.data.address
         this.userBio = response.data.description
       }).catch((e) => {
-        window.location.href = '/notfound'
+        this.$router.push({ name: 'NotFound' })
       })
     }
   }
