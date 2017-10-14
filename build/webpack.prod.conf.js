@@ -31,8 +31,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       DEBUG: 'false',
       'process.env': env,
-      'axiosBaseURL': JSON.stringify('http://120.25.250.211:8080'),
-      'wsURL': JSON.stringify('ws://120.25.250.211:8080/ws/'),
+      'axiosBaseURL': JSON.stringify('http://biohub.technology'),
+      'wsURL': JSON.stringify('ws://biohub.technology/ws/'),
       'staticBase': '"https://ustc-software2017-frontend.github.io/Biohub-frontend/dist/assets/"'
     }),
     new webpack.optimize.UglifyJsPlugin({
