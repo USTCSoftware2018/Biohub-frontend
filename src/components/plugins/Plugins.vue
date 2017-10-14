@@ -39,19 +39,16 @@
         resolve(null)
         return
       }
-
       if (this._cache[name]) {
         this.activate(this._cache[name])
         resolve(this._cache[name])
         return
       }
-
       if (window._plugins[name]) {
         const component = window._plugins[name]
         const instance = new Vue(component)
         instance.$mount()
         this.activate(instance)
-
         resolve(this._cache[name] = instance)
       }
 
@@ -59,6 +56,7 @@
       link.src = `/plugins/${name}/plugin.js`
       link.type = 'text/javascript'
       link.onload = () => {
+        console.log(window._plugins)
         const component = window._plugins[name]
         const instance = new Vue(component)
         instance.$mount()
@@ -130,7 +128,6 @@
         this.readyEvent.promise
           .then(() => {
             if (name && !_.find(this.plugins, o => o.name === name)) return
-
             this.loader.load(name)
               .then(instance => {
                 instance && instance.activated && instance.activated(this.$route)
