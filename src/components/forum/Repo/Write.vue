@@ -79,10 +79,11 @@
       })
     },
     mounted () {
-      console.log(this.currentSrc)
+      /* eslint-disable no-undef */
+      const staticPath = staticBase
       this.editor = editormd('editormd', {
-        path: '/static/lib/',
-        pluginPath: '/static/plugins/',
+        path: `${staticPath}lib/`,
+        pluginPath: `${staticPath}plugins/`,
         height: '500px',
         autoFocus: false,
         toolbarAutoFixed: false,

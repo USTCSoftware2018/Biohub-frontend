@@ -25,7 +25,8 @@ module.exports = merge(baseWebpackConfig, {
       'process.env': config.dev.env,
       DEBUG: 'true',
       'axiosBaseURL': JSON.stringify('http://120.25.250.211:8080'),
-      'wsURL': JSON.stringify('ws://120.25.250.211:8080/ws/')
+      'wsURL': JSON.stringify('ws://120.25.250.211:8080/ws/'),
+      'staticBase': '"/assets/"'
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
