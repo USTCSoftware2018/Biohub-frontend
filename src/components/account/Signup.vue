@@ -1,6 +1,8 @@
 <template>
   <div>
-    <img src="../../assets/img/bioLogo.png" width="530px" style="padding-top: 10em;">
+    <div style="text-align:center">
+      <img src="../../assets/img/bioLogo.png" width="530px" style="padding-top: 10em;">
+    </div>
     <div class="container signup">
       <div class="row">
         <div class="col-md-3"></div>
