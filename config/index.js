@@ -14,7 +14,7 @@ module.exports = {
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: 'assets',
     assetsPublicPath: 'https://ustc-software2017-frontend.github.io/Biohub-frontend/dist/',
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
@@ -34,7 +34,7 @@ module.exports = {
     port: 8080,
     assetsRoot: path.resolve(__dirname, '../_tmp'),
     autoOpenBrowser: true,
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: 'assets',
     assetsPublicPath: '/',
     proxyTable: Object.assign(extraProxy, {
       '/api': {
