@@ -8,6 +8,9 @@
         Load more
       </div>
     </div>
+    <div v-else style="text-align: center;padding: 20px 0;font-size: 20px;background-color: white;">
+      Please Wait <i class="fa fa-spinner fa-pulse fa-fw"></i>
+    </div>
   </transition>
 </template>
 
