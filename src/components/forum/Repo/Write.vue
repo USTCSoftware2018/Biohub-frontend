@@ -13,12 +13,12 @@
     <div class="editor-files-list col-md-12" v-if="files.length || filesUploading.length">
       <div v-for="file in filesUploading" class="col-md-6">
         {{ file.name }} {{ file.progress * 100 + '%' }}
-        <button class="btn btn-link" @click="file.cancel" v-if="!file.done">Cancel</button>
+        <button class="btn btn-forum" @click="file.cancel" v-if="!file.done">Cancel</button>
       </div>
       <div v-for="(file, index) in files" class="editor-files-list-item col-md-6 clearfix">
         <a :href="file.file" target="_blank">{{ file.name }}</a>
-        <button class="btn btn-link pull-right" @click="files.splice(index, 1)">Remove</button>
-        <button class="btn btn-link pull-right" @click="insertImage(file)" v-if="file.mime_type.indexOf('image') >= 0">
+        <button class="btn btn-forum pull-right" @click="files.splice(index, 1)">Remove</button>
+        <button class="btn btn-forum pull-right" @click="insertImage(file)" v-if="file.mime_type.indexOf('image') >= 0">
           Insert
         </button>
       </div>

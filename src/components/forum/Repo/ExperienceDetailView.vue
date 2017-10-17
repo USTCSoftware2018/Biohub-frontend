@@ -23,6 +23,10 @@
         <div class="experience-content">
           <div v-html="content" class="content"></div>
         </div>
+        <div class="experience-attachments">
+          Attachments:
+          <a v-for="item in experience.content.files" :href="item.file">{{item.name}} </a>
+        </div>
       </div>
       <template v-else>
         <p key="warning" class="loading">Loading <i class="fa fa-pulse fa-spinner fa-fw"></i></p>
