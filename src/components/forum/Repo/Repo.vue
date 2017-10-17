@@ -58,6 +58,10 @@
   .repo-info-name .part-name {
     cursor: pointer;
   }
+  .collapse > img {
+    background-color: white;
+    padding: 10px 10px;
+  }
 </style>
 
 <script>
