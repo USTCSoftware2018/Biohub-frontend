@@ -548,3 +548,19 @@ form.upload-form {
     width: 100%;
   }
 }
+.collapse {
+  a {
+    &:hover, &:active, &:focus {
+      color: $color-blue-2;
+    }
+  }
+  img {
+    background-color: white;
+    padding: 10px 10px;
+  }
+}
+.experience-content {
+  img {
+    max-width: 100%;
+  }
+}
