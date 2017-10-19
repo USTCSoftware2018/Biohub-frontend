@@ -33,6 +33,25 @@ Promise.prototype.always = function (callback) {
 
 Vue.config.productionTip = false
 
+Vue.mixin({
+  methods: {
+    makeError (response) {
+      switch (response.status) {
+        case 400:
+          let errors = []
+          _.forEach(response.data, value => {
+            errors = errors.concat(value)
+          })
+          return errors.join('<br>')
+        case 429:
+          return 'Request too frequent.'
+        case 403:
+          return 'You have no enough access.'
+      }
+    }
+  }
+})
+
 Vue.directive('scroll', {
   bind: function (el, binding) {
     window.addEventListener('scroll', () => {

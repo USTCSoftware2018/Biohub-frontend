@@ -24,6 +24,9 @@
               <button type="button" class="close"></button>
               <strong>Error: </strong> {{ errorMessage }}
             </div>
+            <router-link :to="{ name: 'signup' }" class="pull-left" style="margin-bottom: 15px;">
+              No account? Join us now!
+            </router-link>
             <router-link :to="{ name: 'Reset' }" class="pull-right" style="margin-bottom: 15px;">
               Forgot password?
             </router-link>
@@ -85,13 +88,11 @@
           switch (e.response.status) {
             case 400:
               this.errorOccur = true
-              this.errorMessage = 'Wrong username or password'
+              this.errorMessage = this.makeError(e.response)
               break
             case 404:
               authController.fetch()
               this.$router.push({name: 'forum-home'})
-          }
-          if (e.response.status === 400) {
           }
         })
       }

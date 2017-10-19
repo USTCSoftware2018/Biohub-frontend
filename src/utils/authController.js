@@ -48,6 +48,7 @@ export default {
       if (user !== null) this.login(user)
     } catch (e) {
       console.log(e)
+      this.fetch()
     }
 
     axios.interceptors.response.use((response) => {

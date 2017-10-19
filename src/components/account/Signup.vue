@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6" style="padding-left:20px;padding-right:20px;">
-          <form style="margin-top:50px;" class="biohub-form" @submit.prevent="signUp">
+          <form style="margin-top:50px;" class="biohub-form" @submit.prevent="signUp" autocomplete="nope">
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-address-card fa-fw"></i></div>
@@ -26,8 +26,10 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
-                <input type="text" class="form-control" ref="usernameInput" id="usernameInput" placeholder="Username"
-                       v-model="username">
+                <input type="text" class="form-control" ref="usernameInput" id="usernameInput"
+                      placeholder="Username"
+                      v-model="username"
+                      autocomplete="off">
               </div>
             </div>
             <div class="form-group">
@@ -35,13 +37,18 @@
                 <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
                 <input type="password" class="form-control" ref="passwordInput" id="passwordInput"
                        placeholder="Password"
-                       v-model="password">
+                       v-model="password"
+                       autocomplete="off">
               </div>
+            </div>
+            <div class="form-group clearfix">
+              <router-link :to="{ name: 'login' }" class="pull-left">
+                Already have an account? Log in Now!
+              </router-link>
             </div>
             <div class="form-group">
               <div class="alert alert-danger form-error" v-if="errorOccur">
-                <button type="button" class="close"></button>
-                <strong>Error: </strong> {{ errorMessage }}
+                <span v-html="errorMessage"></span>
               </div>
               <button type="submit" class="btn btn-biohub btn-biohub-blue full-width">
                 Sign up
@@ -163,13 +170,12 @@
           authController.login(response.data)
           this.$router.push({ name: 'forum-home' })
         }).catch((e) => {
-          console.log(e.response.status)
           if (e.response.status === 404) {
             authController.fetch()
             this.$router.push({ name: 'forum-home' })
-          } else if (e.response.status === 400) {
+          } else {
             this.errorOccur = true
-            this.errorMessage = 'username has been used'
+            this.errorMessage = this.makeError(e.response)
           }
         })
       }

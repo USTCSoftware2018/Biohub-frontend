@@ -87,7 +87,6 @@
     watch: {
       '$route' (to) {
         if (to.name !== 'search') return
-        if ((parseInt(to.query.page) || 1) === this.pageNum && to.query.q === this.query) return
         this.load()
       }
     },

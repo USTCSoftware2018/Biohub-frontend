@@ -44,11 +44,13 @@
 <script>
   import topNavbar from '../Common/topNavbar.vue'
   import ActivityList from '@/components/forum/Activity/ActivityList'
+  import authController from '@/utils/authController'
 
   export default {
     data () {
       return {
-        watchedBricks: []
+        watchedBricks: [],
+        loadingWatching: false
       }
     },
     components: {
@@ -56,12 +58,25 @@
       ActivityList
     },
     mounted () {
-      axios.get(`/api/users/${this.$root.user.id}/bricks_watching/`).then((response) => {
-        this.watchedBricks = response.data
+      this.loadWatchingBricks()
+
+      authController.on('login', () => {
+        this.loadWatchingBricks()
       })
     },
     methods: {
-      search (name) {
+      loadWatchingBricks () {
+        if (this.loadingWatching || !this.$root.user) return
+
+        this.loadingWatching = true
+        axios.get(`/api/users/${this.$root.user.id}/bricks_watching/`)
+          .always(response => {
+            this.loadingWatching = false
+            return response
+          })
+          .then((response) => {
+            this.watchedBricks = response.data
+          })
       }
     }
   }
