@@ -99,7 +99,7 @@
       submit () {
         const data = {
           title: this.title,
-          brick_name: this.$route.params.repo,
+          brick_name: this.$route.params.brick,
           content_input: {
             text: this.editor.getMarkdown(),
             file_ids: this.files.map(o => o.id)
@@ -117,7 +117,7 @@
           this.$router.push({
             name: 'Exp',
             params: {
-              repo: response.data.brick,
+              brick: response.data.brick,
               id: response.data.id
             }
           })
@@ -131,7 +131,8 @@
           axios.get(`/api/forum/experiences/${expId}/`)
             .then(({ data }) => {
               if (!data.author || data.author.username !== this.$root.user.username) {
-                this.$router.replace({ name: 'NotFound' })
+                this.to404()
+                return
               }
               this.title = data.title
               this.files = data.content.files

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="postForm" @submit.prevent="submit">
+    <form class="post-form" @submit.prevent="submit">
       <input type="text" class="textarea" v-model="content">
       <button class="btn btn-forum">Comment</button>
     </form>

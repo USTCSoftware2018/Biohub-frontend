@@ -5,8 +5,8 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div class="featureList">
-        <p v-for='item in uniqData' class="featureListItem" :name='item.type'>{{item.type}}</p>
+      <div class="feature-list">
+        <p v-for='item in uniqData' class="feature-list-item" :name="item.type">{{item.type}}</p>
       </div>
     </div>
   </div>

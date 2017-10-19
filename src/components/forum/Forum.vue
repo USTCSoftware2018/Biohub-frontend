@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-navbar></top-navbar>
+    <top-nav-bar></top-nav-bar>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -8,12 +8,12 @@
   </div>
 </template>
 <script>
-  import topNavbar from '../Common/topNavbar.vue'
+  import TopNavBar from '../Common/TopNavBar.vue'
   import PageFooter from '../Common/PageFooter.vue'
 
   export default {
     components: {
-      topNavbar, PageFooter
+      TopNavBar, PageFooter
     }
   }
 </script>

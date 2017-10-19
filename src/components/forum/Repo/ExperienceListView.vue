@@ -20,10 +20,10 @@
       }
     },
     beforeRouteEnter (to, from, next) {
-      next(vm => vm.reload(to.params.repo))
+      next(vm => vm.reload(to.params.brick))
     },
     beforeRouteUpdate (to, from, next) {
-      this.reload(to.params.repo)
+      this.reload(to.params.brick)
       next()
     },
     methods: {

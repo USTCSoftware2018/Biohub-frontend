@@ -24,129 +24,6 @@
   }
 }
 
-// .profile {
-//   margin-top: 5%;
-// }
-
-// .profile-parting-line {
-//   width: 95%;
-//   height: 15px;
-//   margin-left: auto;
-//   margin-right: auto;
-//   border-bottom: 1px solid #ddd;
-// }
-
-// .profile-left {
-//   .profile-avatar-container {
-//     height: 200px;
-//     width: 200px;
-//     box-sizing: border-box;
-//     margin-left: auto;
-//     margin-right: auto;
-
-//     .profile-avatar {
-//       -webkit-box-sizing: border-box;
-//       -moz-box-sizing: border-box;
-//       height: 100%;
-//       background: transparent;
-
-//       img {
-//         -webkit-border-radius: 6px !important;
-//         -moz-border-radius: 6px !important;
-//         border-radius: 6px !important;
-//         height: 100%;
-//       }
-//     }
-//   }
-
-//   .user-info {
-//     text-align: left;
-//     word-wrap: break-word;
-//     overflow: hidden;
-//     white-space: nowrap;
-//     text-overflow: ellipsis !important;
-
-//     #user-name {
-//       font-size: 30px !important;
-//       padding-top: 10px;
-//     }
-
-//     #user-mail {
-//       color: gray;
-//       font-size: 14px !important;
-//     }
-
-//     #user-stars {
-//       margin-top: 5px;
-//       width: 100%;
-//       height: 30px;
-//       overflow: hidden;
-//       font-size: 22px;
-//       font-weight: 900;
-//       background-color: white;
-//       -webkit-border-radius: 4px;
-//       -moz-border-radius: 4px;
-//       border-radius: 4px;
-//       border: 1px solid #ddd;
-
-//       #user-stars-num {
-//         position: relative;
-//         float: left;
-//         top: 50%;
-//         left: 50%;
-//         transform: translate(-50%, -50%);
-//       }
-
-//       i {
-//         margin-top: 5px;
-//         margin-right: 10px;
-//         display: inline;
-//         float: right;
-//         font-size: 17px;
-//         color: darkorange;
-//       }
-
-//       div span p {
-//         overflow: hidden;
-//         white-space: nowrap;
-//         text-overflow: ellipsis !important;
-//         margin: 0;
-//       }
-//     }
-
-//     #personal-info {
-//       padding-top: 10px;
-
-//       .float-icon {
-//         font-size: 15px;
-//         width: 18px;
-//         height: 15px;
-//         float: left;
-//         margin-top: 3px;
-//       }
-
-//       .personal-info-line {
-//         width: 100%;
-//         height:20px;
-//       }
-
-//       div {
-//         padding-bottom: 5px;
-//       }
-//     }
-
-//     #edit-button {
-//       .follow-button {
-//         margin-top: 10px;
-//         width: 100%;
-//         font-weight: 500;
-//       }
-//     }
-
-//   }
-
-// }
-
 .profile-biography-frame {
   background: white;
   height: 100%;
@@ -193,23 +70,6 @@
 
   }
 }
-
-// .profile-nav {
-//   margin-top: 5%;
-// }
-
-// .profile-box {
-//   border-top: 0px;
-// }
-
-// .oneline-overflow {
-//   -ms-word-wrap: break-word;
-//   word-wrap: break-word;
-//   overflow: hidden;
-//   white-space: nowrap;
-//   text-overflow: ellipsis !important;
-//   margin: 0 auto;
-// }
 
 .profile-biography-folded {
   height: 0.7rem !important;
@@ -291,10 +151,3 @@
     }
   }
 }
-
-// .profile-repo-score {
-//   float: right;
-//   margin-right:0.4rem;
-//   color: $text-color-highlight;
-//   font-weight:bolder;
-// }

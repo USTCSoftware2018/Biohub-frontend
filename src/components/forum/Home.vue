@@ -25,7 +25,7 @@
               <template v-if="watchedBricks.results">
                 <li class="list-group-item" v-for="item in watchedBricks.results"
                     style="box-shadow: 0 0 3px #ccc;border:none;" :key="item.part_name">
-                  <router-link :to="{ name: 'Brick', params: { repo: item.part_name } }">{{ item.part_name }}</router-link>
+                  <router-link :to="{ name: 'Brick', params: { brick: item.part_name } }">{{ item.part_name }}</router-link>
                 </li>
               </template>
               <template v-else>
@@ -42,7 +42,6 @@
 </template>
 
 <script>
-  import topNavbar from '../Common/topNavbar.vue'
   import ActivityList from '@/components/forum/Activity/ActivityList'
   import authController from '@/utils/authController'
 
@@ -54,7 +53,6 @@
       }
     },
     components: {
-      topNavbar,
       ActivityList
     },
     mounted () {

@@ -25,7 +25,7 @@ export default {
             to: {
               name: 'Brick',
               params: {
-                repo: this.activity.params.partName
+                brick: this.activity.params.partName
               }
             }
           }
@@ -49,7 +49,7 @@ export default {
             to: {
               name: 'Exp',
               params: {
-                repo: this.activity.params.partName,
+                brick: this.activity.params.partName,
                 id: this.activity.params.expId
               }
             }

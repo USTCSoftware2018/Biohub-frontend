@@ -1,7 +1,7 @@
 <template>
   <div class="brick-item">
     <div class="brick-header">
-      <router-link :to="{ name: 'Brick', params: { repo: brick.part_name } }">
+      <router-link :to="{ name: 'Brick', params: { brick: brick.part_name } }">
         {{ brick.part_name }}
       </router-link>
       <span

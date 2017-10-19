@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
 import Login from '@/components/account/Login'
 import Home from '@/components/Home'
 import Signup from '@/components/account/Signup'
 import NotFound from '@/components/NotFound'
 import Forum from '@/components/forum/Forum'
-import forumHome from '@/components/forum/Home'
+import ForumHome from '@/components/forum/Home'
 import Repo from '@/components/forum/Repo/Repo'
 import ExperienceListView from '@/components/forum/Repo/ExperienceListView'
 import ExperienceDetailView from '@/components/forum/Repo/ExperienceDetailView'
@@ -29,11 +28,6 @@ export default new Router({
       component: Home
     },
     {
-      path: '/dev',
-      name: 'Hello',
-      component: Hello
-    },
-    {
       path: '/reset',
       name: 'Reset',
       component: Reset
@@ -50,7 +44,7 @@ export default new Router({
       children: [
         {
           path: '',
-          component: forumHome,
+          component: ForumHome,
           name: 'forum-home'
         },
         {
@@ -69,7 +63,7 @@ export default new Router({
           name: 'search'
         },
         {
-          path: 'brick/:repo',
+          path: 'brick/:brick',
           component: Repo,
           children: [
             {
@@ -108,7 +102,7 @@ export default new Router({
     },
     {
       path: '*',
-      name: 'NotFound',
+      name: 'not-found',
       component: NotFound
     }
   ]

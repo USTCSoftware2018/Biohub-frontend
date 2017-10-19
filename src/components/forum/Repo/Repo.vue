@@ -6,7 +6,7 @@
           <div class="col-md-6">
             <div class="repo-type">{{ brick.part_type }}</div>
             <div class="repo-info-name">
-              <router-link :to="{name: 'Brick', params: {repo: brick.part_name}}" tag="span" class="part-name">
+              <router-link :to="{name: 'Brick', params: {brick: brick.part_name}}" tag="span" class="part-name">
                 {{ brick.part_name }}
               </router-link>
               <star :initial="brick.rate_score"></star>
@@ -17,7 +17,7 @@
               <star :isEnable="true" v-show="showRate" v-if="!stats.rated" :brickName="brick.part_name"></star>
               <a id="watch" @click="watch">{{ stats.watched ? 'Unwatch' : 'Watch' }}</a><span class="number">{{ brick.watches }}</span>
               <a id="star" @click="star">{{ stats.starred ? 'Unstar' : 'Star' }}</a><span class="number">{{ brick.stars }}</span>
-              <router-link :to="{ name: 'Write-Exp', params: { repo: brick.part_name }}">
+              <router-link :to="{ name: 'Write-Exp', params: { brick: brick.part_name }}">
                 Post a new Experience
               </router-link>
             </div>
@@ -77,14 +77,14 @@
     },
     beforeRouteEnter (to, from, next) {
       next(vm => {
-        if (to.params.repo !== vm.part_name) {
-          vm.loadBrick(to.params.repo)
+        if (to.params.brick !== vm.part_name) {
+          vm.loadBrick(to.params.brick)
         }
       })
     },
     beforeRouteUpdate (to, from, next) {
-      if (to.params.repo !== this.part_name) {
-        this.loadBrick(to.params.repo)
+      if (to.params.brick !== this.part_name) {
+        this.loadBrick(to.params.brick)
       }
       next()
     },
@@ -107,7 +107,7 @@
             return axios.get(`/api/forum/bricks/${partName}/stats/`)
           }, error => {
             if (error.response.status === 404) {
-              this.$router.push({ name: 'NotFound' })
+              this.to404()
             }
             this.$set(this, 'brick', oldBrick)
           }).then(response => {

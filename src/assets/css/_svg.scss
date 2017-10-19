@@ -8,11 +8,11 @@
 .path-empty {
   @include transition(fill);
 }
-.featureListItem {
+.feature-list-item {
   cursor: pointer;
   margin: 0;
 }
-.featureList {
+.feature-list {
   margin-top: 20px;
   display: -webkit-flex;
   display: flex;

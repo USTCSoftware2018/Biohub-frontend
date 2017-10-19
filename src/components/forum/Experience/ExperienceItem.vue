@@ -77,7 +77,7 @@
         return {
           name: 'Exp',
           params: {
-            repo: this.experience.brick,
+            brick: this.experience.brick,
             id: this.experience.id
           }
         }

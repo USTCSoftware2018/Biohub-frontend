@@ -35,6 +35,9 @@ Vue.config.productionTip = false
 
 Vue.mixin({
   methods: {
+    to404 () {
+      this.$router.replace({ name: 'not-found' })
+    },
     makeError (response) {
       switch (response.status) {
         case 400:

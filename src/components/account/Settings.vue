@@ -181,7 +181,7 @@
         this.userLoc = response.data.address
         this.userBio = response.data.description
       }).catch((e) => {
-        this.$router.push({ name: 'NotFound' })
+        this.to404()
       })
     }
   }

@@ -42,7 +42,7 @@ export default {
           name: 'Exp',
           params: {
             id: pk,
-            repo: this.linkInfos.brick.pk
+            brick: this.linkInfos.brick.pk
           }
         }),
         user: () => ({
@@ -54,7 +54,7 @@ export default {
         brick: () => ({
           name: 'Brick',
           params: {
-            repo: pk
+            brick: pk
           }
         }),
         'plugin.abacus': () => ({

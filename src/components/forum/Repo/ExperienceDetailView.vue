@@ -1,13 +1,13 @@
 <template>
   <div class="col-md-9">
-    <div class="card" style="margin: 20px 0 10px 0;text-align: center;cursor: pointer;" @click="$router.push({name:'Brick',repo:$route.params.repo})">
+    <div class="card" style="margin: 20px 0 10px 0;text-align: center;cursor: pointer;" @click="$router.push({name:'Brick',brick:$route.params.brick})">
       View All Experiences
     </div>
     <transition name="fade">
       <div class="card experience-detail" v-if="experience">
         <div class="experience-title">
           <h2 style="display: inline-block;">{{ experience.title }}</h2>
-          <router-link style='display: inline-block;color: #666;' v-if='experience.author_name === $root.user.username' :to="{ name: 'Write-Exp', params: {repo: experience.brick}, query: {expId: experience.id}}">Edit</router-link>
+          <router-link style='display: inline-block;color: #666;' v-if='experience.author_name === $root.user.username' :to="{ name: 'Write-Exp', params: {brick: experience.brick}, query: {expId: experience.id}}">Edit</router-link>
         </div>
         <div class="experience-author">
           <template v-if="!experience.author">
@@ -81,15 +81,15 @@
         this.$refs.posts.prepend(item)
       },
       reload (id) {
-        const repo = this.$route.params.repo
+        const brick = this.$route.params.brick
 
-        axios.get(`/api/forum/bricks/${repo}/experiences/${id}/`)
+        axios.get(`/api/forum/bricks/${brick}/experiences/${id}/`)
           .then(response => {
             this.expId = id
             if (this.$refs.posts) this.$refs.posts.loadPosts()
             this.$set(this, 'experience', response.data)
           }, ({response: { status }}) => {
-            if (status === 404) this.$router.push({ name: 'NotFound' })
+            if (status === 404) this.to404()
           })
       }
     }
