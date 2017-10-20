@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="activities" v-if="!loading">
+    <div class="activities">
       <div class="activity-item" v-for="item in activities">
         <activity-item :activity="item"></activity-item>
       </div>
