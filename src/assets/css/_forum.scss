@@ -53,7 +53,7 @@
   a {
     text-decoration: none;
     display: inline-block;
-    color: $color-blue-3;
+    color: $color-orange;
     font-weight: 500;
     font-size: 0.16rem;
     cursor: pointer;
@@ -252,6 +252,12 @@
   .load-more {
     margin: .75em 0;
     text-align: center;
+    color: #666;
+    padding: 5px 5px;
+    border: 1px solid $border-color;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 0 3px $border-color;
   }
 }
 
@@ -449,4 +455,10 @@ form.upload-form {
   img {
     max-width: 100%;
   }
+}
+
+#starCollapse {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid $border-color;
 }
