@@ -6,13 +6,25 @@
     </div>
     <div class="col-md-6">
       <div class="feature-list">
-        <p v-for='item in uniqData' class="feature-list-item" :name="item.type">{{item.type}}</p>
+        <p v-for="item in uniqData" class="feature-list-item" :name="item.type">{{item.type}}</p>
       </div>
     </div>
   </div>
 </template>
 
 <style>
+  div.seq-tooltip {
+    position: absolute;
+    padding: 5px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    pointer-events: none;
+  }
+
+  div.seq-tooltip small {
+    font-size: 10px;
+  }
 </style>
 
 <script>
@@ -41,6 +53,13 @@
           return 0.02
         } else return r
       },
+      getTooltip () {
+        const $tooltip = $('div.seq-tooltip', 'body')
+
+        if ($tooltip.length) return $tooltip[0]
+
+        return $('<div>').addClass('seq-tooltip').css('opacity', 0).appendTo('body')[0]
+      },
       refresh () {
         document.querySelector('#fContainer').innerHTML = ''
 
@@ -61,6 +80,7 @@
           colorBase = colorBase.brighter(2 / this.uniqData.length)
         })
 
+        const tooltipDiv = d3.select(this.getTooltip())
         d3
           .transition()
           .duration(100)
@@ -92,7 +112,8 @@
           .append('path')
           .attr('d', arc)
           .attr('style', (d) => {
-            return 'fill:' + this.colorSpace[d.type + 'Color']
+            const cursor = d.type === 'brick' ? 'pointer' : 'default'
+            return `fill:${this.colorSpace[d.type + 'Color']}; cursor: ${cursor};`
           }).attr('name', (d) => d.type)
 
         d3
@@ -112,18 +133,45 @@
         this.$nextTick(() => {
           svg
             .selectAll('path')
-            .on('mouseover', function () {
+            .on('click', d => {
+              if (d.type === 'brick') {
+                this.$router.push({
+                  name: 'Brick',
+                  params: {
+                    brick: `BBa_${d.label}`
+                  }
+                })
+              }
+            })
+            .on('mouseover', function (d) {
               const selector = d3.select(this).attr('name')
-              svg.selectAll('path[name=' + selector + ']').attr('class', 'path-empty path-hover')
               d3.select('p[name=' + selector + ']').attr('style', 'text-decoration:underline;')
+
+              if (d) {
+                d3.select(this).attr('class', 'path-empty path-hover')
+
+                tooltipDiv.transition().duration(200)
+                  .style('opacity', 0.9)
+                tooltipDiv.html(`
+                  <b>${d.type}: ${d.label}</b>
+                  ${d.type === 'brick' ? '<small>(Click to view brick)</small>' : ''}<br>
+                  ${d.first} bp - ${d.last} bp`
+                )
+                  .style('left', (d3.event.pageX) + 'px')
+                  .style('top', (d3.event.pageY) + 'px')
+              }
             }).on('mouseout', function () {
               const selector = d3.select(this).attr('name')
               svg.selectAll('path[name=' + selector + ']').attr('class', 'path-empty')
               d3.select('p[name=' + selector + ']').attr('style', 'text-decoration:none;')
+
+              tooltipDiv.transition()
+                .duration(500)
+                .style('opacity', 0)
             })
 
           d3
-            .selectAll('.featureListItem')
+            .selectAll('.feature-list-item')
             .on('mouseover', function () {
               const selector = d3.select(this).attr('name')
               svg.selectAll('path[name=' + selector + ']').attr('class', 'path-empty path-hover')

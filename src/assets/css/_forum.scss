@@ -76,11 +76,79 @@
 
   color: #ccc;
   font-size: 0.16rem;
+  margin-top: 7px;
 }
 
 .repo-info-name {
   margin-top: 0.1rem;
   font-size: 0.4rem;
+}
+
+.meta-container {
+  #meta-div {
+
+    &.collapse {
+      display: block!important;
+
+      table.main > tbody > tr.collapsable {
+        display: none;
+      }
+    }
+
+    table.main {
+      background-color: darken($navbar-color, 5%);
+      height: 80px;
+
+      .td-fatal {
+        td {
+          color: lighten($color-fatal, 17%);
+        }
+      }
+
+      .td-success {
+        td {
+          color: $color-success;
+        }
+      }
+
+      .td-warning {
+        td {
+          color: $color-success;
+        }
+      }
+
+      a {
+        color: $color-info;
+      }
+
+      > tbody > tr {
+        > th {
+          width: 20%;
+        }
+
+        > td, > th {
+          border-top-width: 0!important;
+          border-left: 1px solid;
+          border-color: lighten($navbar-color, 3%);
+        }
+
+        + tr {
+          > td, > th {
+            border-top-width: 1px!important;
+          }
+        }
+      }
+
+      table {
+        width: 100%;
+
+        td, th {
+          padding: 2px;
+          border-width: 1px;
+        }
+      }
+    }
+  }
 }
 
 #document-div {
