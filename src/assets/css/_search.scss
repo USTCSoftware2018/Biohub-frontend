@@ -44,6 +44,14 @@
 }
 
 .brick-item {
+
+  &.short {
+    .brick-content {
+      height: 1em;
+      overflow: hidden;
+    }
+  }
+
   text-align: left;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
@@ -159,7 +167,7 @@
 }
 
 .brick-label-type {
-  background-color: $color-orange;
+  background-color: $color-orange-bk;
   color: $text-color;
 }
 .brick-label-forum {

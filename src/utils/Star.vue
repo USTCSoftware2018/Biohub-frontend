@@ -1,5 +1,5 @@
 <template>
-  <div class="star-container" @mousemove="calcMouse" v-if="initial !== null">
+  <div class="star-container" @mousemove="calcMouse">
     <div class="star-container-empty"  @click="submit">
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>

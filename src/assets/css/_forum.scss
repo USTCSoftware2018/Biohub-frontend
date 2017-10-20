@@ -296,7 +296,8 @@
 .card {
   background: white;
   padding: 16px 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  box-shadow: 0 0 3px #ccc;
+  word-break: break-all;
 }
 
 .post-item {
@@ -461,4 +462,59 @@ form.upload-form {
   margin-top: 5px;
   padding-top: 5px;
   border-top: 1px solid $border-color;
+}
+
+.gallery {
+  @extend .container-fluid;
+  position: relative;
+
+  height: 210px;
+  margin: 20px 0;
+  padding: auto 0;
+  max-width: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  .indicator {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background-color: darken(#f7f7f7, 3%);
+    color: #999;
+    text-align: center;
+    z-index: 100000;
+    cursor: pointer;
+    padding: 91px 0;
+    opacity: .7;
+
+    &.left {
+      left: 0;
+      padding-right: 7px;
+    }
+
+    &.right {
+      right: 0;
+      padding-left: 7px;
+    }
+
+    &:hover, &:focus {
+      opacity: .85;
+    }
+  }
+
+  .gallery-outer {
+
+    @extend .clearfix;
+    max-height: 100%;
+    position: relative;
+    // width: 100000px;
+
+    .card {
+      width: 500px;
+      display: inline-block;
+      float: left;
+      margin: 0 5px;
+    }
+  }
 }

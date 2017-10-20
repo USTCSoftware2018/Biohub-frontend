@@ -1,5 +1,5 @@
 <template>
-  <div class="brick-item">
+  <div :class="['brick-item', short ? 'short' : '']">
     <div class="brick-header">
       <router-link :to="{ name: 'Brick', params: { brick: brick.part_name } }">
         {{ brick.part_name }}
@@ -8,7 +8,6 @@
         class="brick-label brick-label-type"
         data-toggle="tooltip"
         title="Type">{{ brick.part_type }}</span>
-      <star :isEnable="false" :initial="brick.rate_score"></star>
       <span class="pull-right">
         <span
           :class="statusClasses"
@@ -21,8 +20,9 @@
       <br>
       <span
         class="brick-label brick-label-info"
-        v-for="author in authors" v-if="author" v-html="author">
-        </span>
+        v-for="author in authors" v-if="!short && author" v-html="author">
+      </span>
+      <star :isEnable="false" :initial="brick.rate_score"></star>
     </div>
     <p class="brick-content" v-html="brick.short_desc"></p>
     <div class="brick-footer">
@@ -49,7 +49,15 @@
   import Star from '../../../utils/Star.vue'
 
   export default {
-    props: ['brick'],
+    props: {
+      brick: {
+        type: Object
+      },
+      short: {
+        type: Boolean,
+        default: false
+      }
+    },
     components: {
       Star
     },

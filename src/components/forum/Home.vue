@@ -14,6 +14,16 @@
     </div>
     <div class="row">
       <div class="container">
+        <h3>
+          Popular Bricks
+          <button class="btn btn-link pull-right" @click="loadPopular">
+            <i class="fa fa-refresh"></i>
+            Try Another Group
+          </button>
+        </h3>
+      </div>
+      <brick-gallery :bricks="popularBricks" style="margin-left: 10%;"></brick-gallery>
+      <div class="container">
         <div class="col-md-8 less-padding">
           <div class="list-group-item list-group-header">Timeline</div>
           <activity-list api="/api/forum/activities/timeline/"></activity-list>
@@ -44,19 +54,22 @@
 <script>
   import ActivityList from '@/components/forum/Activity/ActivityList'
   import authController from '@/utils/authController'
+  import BrickGallery from '@/components/forum/Brick/BrickGallery'
 
   export default {
     data () {
       return {
         watchedBricks: [],
-        loadingWatching: false
+        loadingWatching: false,
+        popularBricks: []
       }
     },
     components: {
-      ActivityList
+      ActivityList, BrickGallery
     },
     mounted () {
       this.loadWatchingBricks()
+      this.loadPopular()
 
       authController.on('login', () => {
         this.loadWatchingBricks()
@@ -74,6 +87,12 @@
           })
           .then((response) => {
             this.watchedBricks = response.data
+          })
+      },
+      loadPopular () {
+        axios.get('/api/forum/bricks/popular/')
+          .then(response => {
+            this.popularBricks = response.data
           })
       }
     }

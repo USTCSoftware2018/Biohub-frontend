@@ -19,7 +19,7 @@
             </div>
             <div class="repo-info-addon">
               <a id="rate" v-if="!stats.rated" href="#starCollapse" data-toggle="collapse" aria-expanded="false">Rate</a>
-              
+
               <a id="watch" @click="watch">{{ stats.watched ? 'Unwatch' : 'Watch' }}</a><span class="number">{{ brick.watches }}</span>
               <a id="star" @click="star">{{ stats.starred ? 'Unstar' : 'Star' }}</a><span class="number">{{ brick.stars }}</span>
               <router-link :to="{ name: 'Write-Exp', params: { brick: brick.part_name }}">
@@ -71,6 +71,10 @@
         </div>
       </div>
     </div>
+    <div class="container-fluid" style="margin-left: 10%;" v-show="related_bricks.length">
+      <h3>Related Bricks</h3>
+      <brick-gallery :bricks="related_bricks"></brick-gallery>
+    </div>
     <div class="container">
       <router-view></router-view>
     </div>
@@ -92,10 +96,11 @@
 <script>
   import Star from '@/utils/Star'
   import Feature from './SeqFeature'
+  import BrickGallery from '@/components/forum/Brick/BrickGallery'
   import marked from 'marked'
 
   export default {
-    components: { Star, Feature },
+    components: { Star, Feature, BrickGallery },
     data () {
       return {
         part_name: '',
@@ -103,7 +108,8 @@
         stats: {},
         showRate: false,
         loadingText: 'Loading',
-        isMetaCollapsed: true
+        isMetaCollapsed: true,
+        related_bricks: []
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -205,6 +211,7 @@
           this.loadingText = 'Fetching from iGEM...'
         }, 700)
         this.brick = null
+        this.related_bricks = []
 
         axios.get(`/api/forum/bricks/${partName}/`)
           .then(response => {
@@ -223,6 +230,10 @@
           }).then(response => {
             if (!response) return
             this.$set(this, 'stats', response.data)
+
+            return axios.get(`/api/forum/bricks/${partName}/related/`)
+          }).then(response => {
+            this.$set(this, 'related_bricks', response.data)
           })
       },
       watch () {
