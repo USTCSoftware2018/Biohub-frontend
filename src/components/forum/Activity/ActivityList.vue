@@ -7,10 +7,10 @@
       <div class="load-more" v-if="(next !== null) && (!loading)" @click="loadNext">
         Load more
       </div>
-      <div v-else style="text-align: center;padding: 20px 0;font-size: 20px;background-color: white;">
+      <div v-if="loading" style="text-align: center;padding: 20px 0;font-size: 20px;background-color: white;">
       Please Wait <i class="fa fa-spinner fa-pulse fa-fw"></i>
       </div>
-    </div>   
+    </div>
   </transition>
 </template>
 
