@@ -109,10 +109,13 @@
           axios.post('/api/forum/bricks/' + this.brickName + '/rate/', {
             score: (this.wSize / 20).toFixed(1)
           }).then((response) => {
-            console.log(response)
+            this.canChange = false
+          }).catch(e => {
+            if (e.response.status === 429) {
+              alert('You rate too fast!\nTwo rating actions should have an interval of at least 15 seconds.')
+            }
           })
         }
-        this.canChange = false
       },
       changeValue (value) {
         this.wSize = value * 20

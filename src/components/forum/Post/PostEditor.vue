@@ -2,7 +2,7 @@
   <div>
     <form class="post-form" @submit.prevent="submit">
       <input type="text" class="textarea" v-model="content">
-      <button class="btn btn-forum">Comment</button>
+      <button class="btn btn-forum" type="submit" :disabled="!content">Comment</button>
     </form>
   </div>
 </template>
@@ -23,6 +23,10 @@
         }).then(response => {
           this.content = ''
           this.$emit('created', response.data)
+        }).catch(e => {
+          if (e.response.status === 429) {
+            alert('You comment too fast!\nTwo comments should have an interval of at least 15 seconds.')
+          }
         })
       }
     }

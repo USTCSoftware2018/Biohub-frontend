@@ -173,8 +173,9 @@
           if (e.response.status === 404) {
             authController.fetch()
             this.$router.push({ name: 'forum-home' })
+          } else if (e.response.status === 429) {
+            this.errorMessage = 'You can only register ONE account within 1 hour.'
           } else {
-            this.errorOccur = true
             this.errorMessage = this.makeError(e.response)
           }
         })

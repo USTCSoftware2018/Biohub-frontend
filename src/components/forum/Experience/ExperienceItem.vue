@@ -24,7 +24,7 @@
       </transition>
     </div>
     <div class="experience-footer clearfix">
-      <button :class="voteButtonClasses" @click="toggleVote" :diabled="!cannotVote">
+      <button :class="voteButtonClasses" @click="toggleVote" :disabled="!cannotVote">
         <i class="fa fa-thumbs-up"></i>
         {{ experience.votes }}
       </button>
@@ -59,10 +59,20 @@
         const action = voted ? 'unvote' : 'vote'
         const delta = voted ? -1 : 1
 
+        if (this.cannotVote) {
+          alert('You cannot vote your own experience.')
+          return
+        }
+
         axios.post(`/api/forum/experiences/${this.experience.id}/${action}/`)
           .then(() => {
             this.experience.voted = !voted
             this.experience.votes += delta
+          })
+          .catch(e => {
+            if (e.response.status === 429) {
+              alert('You vote too fast!\nTwo votes should have an interval of at least 15 seconds.')
+            }
           })
       },
       loadFullText () {

@@ -5,6 +5,9 @@
       <div id="editormd" style="margin-top: 10px;">
         <textarea v-model="content"></textarea>
       </div>
+      <div class="form-group" v-if="errorMessage">
+        <div class="alert alert-danger" v-html="errorMessage"></div>
+      </div>
       <div class="form-group clearfix">
         <button class="btn btn-forum pull-right">Post</button>
       </div>
@@ -54,6 +57,7 @@
         uploadStatus: 0,
         editor: null,
         expId: null,
+        errorMessage: '',
         editorLoaded: {
           promise: null,
           resolve: null
@@ -121,6 +125,25 @@
               id: response.data.id
             }
           })
+        }).catch(({ response }) => {
+          switch (response.status) {
+            case 429:
+              this.errorMessage = 'Each user can post only ONE experience under one brick per day.'
+              break
+            case 400:
+              const error = response.data
+              const results = []
+
+              if (error.title) results.push('<b>Title:</b><br>' + error.title.join('<br>'))
+              const content = response.data.content_input
+              if (content && content.text) {
+                results.push('<b>Content:</b><br>' + content.text.join('<br>'))
+              }
+
+              this.errorMessage = results.join('<br>')
+
+              break
+          }
         })
       },
       init (to) {
