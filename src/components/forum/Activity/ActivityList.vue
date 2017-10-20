@@ -4,13 +4,13 @@
       <div class="activity-item" v-for="item in activities">
         <activity-item :activity="item"></activity-item>
       </div>
-      <div class="load-more" v-if="next !== null" @click="loadNext">
+      <div class="load-more" v-if="(next !== null) && (!loading)" @click="loadNext">
         Load more
       </div>
-    </div>
-    <div v-else style="text-align: center;padding: 20px 0;font-size: 20px;background-color: white;">
+      <div v-else style="text-align: center;padding: 20px 0;font-size: 20px;background-color: white;">
       Please Wait <i class="fa fa-spinner fa-pulse fa-fw"></i>
-    </div>
+      </div>
+    </div>   
   </transition>
 </template>
 
