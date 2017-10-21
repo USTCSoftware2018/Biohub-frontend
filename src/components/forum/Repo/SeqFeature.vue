@@ -145,11 +145,11 @@
             })
             .on('mouseover', function (d) {
               const selector = d3.select(this).attr('name')
-              d3.select('p[name=' + selector + ']').attr('style', 'text-decoration:underline;')
-
+              const lb = d3.select('p[name=' + selector + ']')
+              lb.attr('style', 'text-decoration:underline;')
               if (d) {
                 d3.select(this).attr('class', 'path-empty path-hover')
-
+                // d3.select('g').insert('path').attr('d', d3.line())
                 tooltipDiv.transition().duration(200)
                   .style('opacity', 0.9)
                 tooltipDiv.html(`

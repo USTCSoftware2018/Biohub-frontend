@@ -1,5 +1,10 @@
 .profile-container {
   margin-top: 40px;
+  background-color: white;
+  .avatar_url {
+    border-radius: 5px;
+    box-shadow: 0 0 3px $border-color;
+  }
 
   img {
     max-width: 100%;
@@ -16,6 +21,7 @@
   }
 
   .profile-left {
+    padding: 10px;
     .btn-follow {
       @extend .btn-forum;
       font-weight: 500!important;

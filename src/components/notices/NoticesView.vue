@@ -2,6 +2,7 @@
   <div class="container">
     <div class="col-md-9 notice-view">
       <div class="notice-list" v-if="inited">
+        <p style="padding: 5px 5px;border-bottom: 1px solid #ccc;font-size: 18px">Notice List</p>
         <notice-item v-for="item in notices" :notice="item" :key="item.id"></notice-item>
         <pager
           :hasNext="hasNext"

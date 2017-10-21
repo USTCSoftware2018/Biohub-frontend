@@ -57,7 +57,7 @@
         padding: 10px 10px;
         color: $text-color-rev;
         border-bottom: 1px solid $border-color;
-        background-color: darken(white, 5%);
+        background-color: white;
         cursor: default;
         span.created {
           float: right;
@@ -65,7 +65,7 @@
         }
 
         &.notice-unread {
-          background: white!important;
+          background: $color-blue-4!important;
         }
 
         a {
