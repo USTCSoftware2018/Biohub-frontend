@@ -12,5 +12,12 @@
         "pathRewrite": {
             "^/plugins/biohub.biocircuit": "/"
         }
+    },
+    "/plugins/biohub.biomap": {
+        "target": "http://localhost:10002",
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/plugins/biohub.biomap": "/"
+        }
     }
 }

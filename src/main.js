@@ -6,10 +6,12 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 import authController from '@/utils/authController'
 import websocket from '@/utils/websocket'
 import axios from 'axios'
+import * as d3 from 'd3'
 
 window.$ = $
 window.axios = axios
 window.websocket = websocket
+window.d3 = d3
 
 /* eslint-disable no-undef */
 Vue.prototype.currentSrc = DEBUG ? '/app.js' : document.currentScript.src

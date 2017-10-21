@@ -3,18 +3,26 @@
     <div class='container' style='margin-top: 50px;'>
       <div class="col-md-3">
         <div class="list-group" style="text-align: center;">
-          <router-link :to="{ name: 'plugins' }" class="list-group-item">Index</router-link>
+          <router-link :to="{ name: 'plugins' }" :class="['list-group-item', activeName ? '' : 'active']">Index</router-link>
           <router-link v-for="plugin in plugins"
             :to="{ query: { name: plugin.name }}"
-            class="list-group-item"
+            :class="['list-group-item', activeName === plugin.name ? 'active' : '']"
             :key="plugin.name">
           {{ plugin.title }}
           </router-link>
         </div>
       </div>
       <div class="col-md-9">
-        <div v-if="!activeName">
+        <div v-if="showIndex">
           This is index.
+        </div>
+        <div class="card" v-if="activePlugin">
+          <dl style="margin: 0;">
+            <dt>Author</dt>
+            <dd>{{ activePlugin.author }}</dd>
+            <dt>Description</dt>
+            <dd>{{ activePlugin.description }}</dd>
+          </dl>
         </div>
         <div id="plugin-slot"></div>
       </div>
@@ -95,7 +103,8 @@
           promise: null,
           resolve: null
         },
-        activeName: ''
+        activeName: '',
+        showIndex: false
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -116,6 +125,12 @@
     },
     destroyed () {
       console.log('FUICL')
+    },
+    computed: {
+      activePlugin () {
+        console.log('hi')
+        return _.find(this.plugins, o => o.name === this.activeName)
+      }
     },
     methods: {
       loadPluginList () {
@@ -139,10 +154,12 @@
         this.readyEvent.promise
           .then(() => {
             if (name && !_.find(this.plugins, o => o.name === name)) return
+            this.showIndex = false
             this.loader.load(name, this.pluginUrl(name))
               .then(instance => {
                 instance && instance.activated && instance.activated(this.$route)
                 this.activeName = name
+                this.showIndex = !this.activeName
               })
           })
       }
