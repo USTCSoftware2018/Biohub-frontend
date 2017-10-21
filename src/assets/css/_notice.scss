@@ -4,9 +4,14 @@
   overflow-y: hidden;
 
   .notice-container {
-
+    border-radius: 5px;
+    .notice-head {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      text-align: center;
+    }
     .notice-head, .notice-footer {
-      background-color: #eee;
+      background-color: #fff;
       border-bottom: 1px solid $border-color;
       font-size: 16px;
       color: $text-color-rev;
@@ -21,6 +26,12 @@
         text-decoration: none !important;
         color: $color-blue-2 !important;
       }
+    }
+    .notice-footer {
+      border-top: 1px solid $border-color;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border-bottom-width: 0;
     }
 
     .notice-list {
@@ -46,7 +57,8 @@
         padding: 10px 10px;
         color: $text-color-rev;
         border-bottom: 1px solid $border-color;
-
+        background-color: white;
+        cursor: default;
         span.created {
           float: right;
           display: blo
@@ -54,10 +66,6 @@
 
         &.notice-unread {
           background: $color-blue-4!important;
-
-          &:focus, &:hover {
-            background-color: lighten($color-blue-4, 3%) !important;
-          }
         }
 
         a {
@@ -67,9 +75,10 @@
           word-break: break-all;
           color: $color-blue-2 !important;
           background: transparent !important;
-        }
-        &:focus, &:hover {
-          background-color: white !important;
+          border-bottom: none;
+          &:hover {
+            border-bottom: none;
+          }
         }
       }
     }

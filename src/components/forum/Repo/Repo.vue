@@ -49,6 +49,7 @@
             class="document-toggler"
             @click="isMetaCollapsed = !isMetaCollapsed"
             data-toggle="tooltip"
+            data-placement="right"
             title="Click to learn more">
             Meta
           </p>
@@ -64,7 +65,7 @@
           </div>
         </div>
         <div class="col-md-12">
-          <div data-toggle="tooltip" title="Click to view document" class="document-toggler">
+          <div data-toggle="tooltip" data-placement="right" title="Click to view document" class="document-toggler">
             <p data-toggle="collapse" href="#document-div" class="document-toggler">Documentation</p>
           </div>
           <div v-html="documentHTML" id="document-div" class="collapse"></div>

@@ -12,7 +12,7 @@
         <span
           :class="statusClasses"
           data-toggle="tooltip"
-          title="Status of this brick">{{ brick.status }}</span><span
+          title="Status of this brick" style="border-right: 1px solid white;">{{ brick.status }}</span><span
           :class="sampleStatusClasses"
           data-toggle="tooltip"
           title="Status of the sample">{{ brick.sample_status || 'Unknown' }}</span>

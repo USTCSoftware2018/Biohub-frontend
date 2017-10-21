@@ -2,19 +2,23 @@
   <li :class="menuClasses">
     <a href="javascript:;" class="dropdown-toggle"
        role="button"
-       style="padding-top: 17px;padding-bottom: 12px;" @click.stop="isOpened = !isOpened">
+       style="padding-top: 17px;padding-bottom: 12px;height: 52px;" @click.stop="isOpened = !isOpened">
       <i class="fa fa-bell-o" style="font-size: 1.2em;">
         <span class="red-dot" v-if="unreadCount"></span>
       </i>
     </a>
-    <ul class="dropdown-menu dropdown-notice" style="border: 0px;">
+    <ul class="dropdown-menu dropdown-notice" style="border: 0px;border-top-left-radius: 5px;
+      border-top-right-radius: 5px;">
       <div class="notice-container" ref="noticeContainer">
         <div class="notice-head clearfix">
+          <a href="javascript:;" class="pull-left" @click="viewAllClick">
+            <i class="fa fa-folder-o" data-toggle="tooltip" data-placement="right" title="View All"></i></a>
           <a href="javascript:;" @click="refresh">
-            Refresh
+            <i class="fa fa-refresh"></i>
           </a>
+          <span style="margin: 0;">Notice</span>
           <a class="pull-right" href="javascript:;" @click="markAllAsRead">
-            Mark All As Read
+            <i class="fa fa-envelope-open-o" data-toggle="tooltip" data-placement="left" title="Mark all as read"></i>
           </a>
         </div>
         <div class="notice-list top-nav">
@@ -22,10 +26,7 @@
           <div class="indicator load-more" v-if="next || loading" @click="loadNext">
             {{loading ? 'Loading...' : 'Click to Load More...'}}
           </div>
-          <div class="indicator" v-else>~~ No More Notices ~~</div>
-        </div>
-        <div class="notice-footer">
-          <a href="javascript:;" @click="viewAllClick">View All</a>
+          <div class="indicator" v-else>No More Notices</div>
         </div>
       </div>
     </ul>
@@ -125,6 +126,7 @@
     },
     mounted () {
       this.initEvents()
+      $('[data-toggle="tooltip"]').tooltip()
       websocket.on('message-notices', data => {
         this.unreadCount = data
         if (this.unreadCount) {
