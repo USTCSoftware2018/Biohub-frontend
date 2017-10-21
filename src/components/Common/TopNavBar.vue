@@ -37,7 +37,7 @@
              data-toggle="dropdown"
              role="button"
              aria-haspopup="true"
-             aria-expanded="false" style="">
+             aria-expanded="false" style="height: 52px;">
             <span class="navbar-avatar">
               <img :src="avatarURL">
             </span>
