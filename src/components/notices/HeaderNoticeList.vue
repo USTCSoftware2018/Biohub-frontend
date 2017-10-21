@@ -11,9 +11,12 @@
       border-top-right-radius: 5px;">
       <div class="notice-container" ref="noticeContainer">
         <div class="notice-head clearfix">
+          <a href="javascript:;" class="pull-left" @click="viewAllClick">
+            <i class="fa fa-folder-o" data-toggle="tooltip" data-placement="right" title="View All"></i></a>
           <a href="javascript:;" @click="refresh">
-            <i class="fa fa-refresh" data-toggle="tooltip" data-placement="right" title="Refresh"></i>
+            <i class="fa fa-refresh"></i>
           </a>
+          <span style="margin: 0;">Notice</span>
           <a class="pull-right" href="javascript:;" @click="markAllAsRead">
             <i class="fa fa-envelope-open-o" data-toggle="tooltip" data-placement="left" title="Mark all as read"></i>
           </a>
@@ -23,10 +26,7 @@
           <div class="indicator load-more" v-if="next || loading" @click="loadNext">
             {{loading ? 'Loading...' : 'Click to Load More...'}}
           </div>
-          <div class="indicator" v-else>~~ No More Notices ~~</div>
-        </div>
-        <div class="notice-footer">
-          <a href="javascript:;" @click="viewAllClick">View All</a>
+          <div class="indicator" v-else>No More Notices</div>
         </div>
       </div>
     </ul>

@@ -5,14 +5,17 @@
 
   .notice-container {
     border-radius: 5px;
+    .notice-head {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      text-align: center;
+    }
     .notice-head, .notice-footer {
       background-color: #fff;
       border-bottom: 1px solid $border-color;
       font-size: 16px;
       color: $text-color-rev;
       padding: 5px 10px;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
       > a {
         background: none !important;
         display: inline-block !important;
@@ -23,6 +26,12 @@
         text-decoration: none !important;
         color: $color-blue-2 !important;
       }
+    }
+    .notice-footer {
+      border-top: 1px solid $border-color;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border-bottom-width: 0;
     }
 
     .notice-list {
