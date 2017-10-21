@@ -14,15 +14,15 @@
     </div>
     <div class="row">
       <div class="container">
-        <h3>
+        <h3 style="margin-top: 0;">
           Popular Bricks
-          <button class="btn btn-link pull-right" @click="loadPopular">
+          <button class="btn btn-link pull-right biohub-a" @click="loadPopular">
             <i class="fa fa-refresh"></i>
             Try Another Group
           </button>
         </h3>
       </div>
-      <brick-gallery :bricks="popularBricks" style="margin-left: 10%;"></brick-gallery>
+      <brick-gallery :bricks="popularBricks" style="margin-left: 10%;margin-right: 10%"></brick-gallery>
       <div class="container">
         <div class="col-md-8 less-padding">
           <div class="list-group-item list-group-header">Timeline</div>

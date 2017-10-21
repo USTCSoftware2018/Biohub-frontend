@@ -4,13 +4,15 @@
   overflow-y: hidden;
 
   .notice-container {
-
+    border-radius: 5px;
     .notice-head, .notice-footer {
-      background-color: #eee;
+      background-color: #fff;
       border-bottom: 1px solid $border-color;
       font-size: 16px;
       color: $text-color-rev;
       padding: 5px 10px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
       > a {
         background: none !important;
         display: inline-block !important;
@@ -46,18 +48,15 @@
         padding: 10px 10px;
         color: $text-color-rev;
         border-bottom: 1px solid $border-color;
-
+        background-color: darken(white, 5%);
+        cursor: default;
         span.created {
           float: right;
           display: blo
         }
 
         &.notice-unread {
-          background: $color-blue-4!important;
-
-          &:focus, &:hover {
-            background-color: lighten($color-blue-4, 3%) !important;
-          }
+          background: white!important;
         }
 
         a {
@@ -67,9 +66,10 @@
           word-break: break-all;
           color: $color-blue-2 !important;
           background: transparent !important;
-        }
-        &:focus, &:hover {
-          background-color: white !important;
+          border-bottom: none;
+          &:hover {
+            border-bottom: none;
+          }
         }
       }
     }

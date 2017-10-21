@@ -7,14 +7,15 @@
         <span class="red-dot" v-if="unreadCount"></span>
       </i>
     </a>
-    <ul class="dropdown-menu dropdown-notice" style="border: 0px;">
+    <ul class="dropdown-menu dropdown-notice" style="border: 0px;border-top-left-radius: 5px;
+      border-top-right-radius: 5px;">
       <div class="notice-container" ref="noticeContainer">
         <div class="notice-head clearfix">
           <a href="javascript:;" @click="refresh">
-            Refresh
+            <i class="fa fa-refresh" data-toggle="tooltip" data-placement="right" title="Refresh"></i>
           </a>
           <a class="pull-right" href="javascript:;" @click="markAllAsRead">
-            Mark All As Read
+            <i class="fa fa-envelope-open-o" data-toggle="tooltip" data-placement="left" title="Mark all as read"></i>
           </a>
         </div>
         <div class="notice-list top-nav">
@@ -125,6 +126,7 @@
     },
     mounted () {
       this.initEvents()
+      $('[data-toggle="tooltip"]').tooltip()
       websocket.on('message-notices', data => {
         this.unreadCount = data
         if (this.unreadCount) {
