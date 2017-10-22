@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-pane active in fade">
+  <div class="tab-pane active in fade" style="">
     <brick-list :api="api"></brick-list>
   </div>
 </template>

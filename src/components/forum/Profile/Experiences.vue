@@ -1,6 +1,6 @@
 <template>
   <div class="tab-pane active in fade">
-    <experience-list :api="api" ref="list"></experience-list>
+    <experience-list :api="api" ref="list" :insideProfile='true'></experience-list>
   </div>
 </template>
 
