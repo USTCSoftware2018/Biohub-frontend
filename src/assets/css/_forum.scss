@@ -172,6 +172,7 @@
 
 .experience-list {
   margin-top: 40px;
+  box-shadow: 0 0 3px $border-color;
 }
 .experience-list-header {
   border-bottom: 1px solid $border-color;
@@ -270,11 +271,13 @@
 }
 
 .user-list {
+  margin-top: 10px;
+
   .user-item {
     display: flex;
     flex-direction: row;
-
-    margin: 2em 0;
+ 
+    padding: 1em 0;
 
     .user-left {
       width: 48px;
@@ -291,6 +294,9 @@
         background: white;
       }
     }
+  }
+  .user-item + .user-item {
+    border-top: 1px solid $border-color;
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
-  <div class="experience-list" style="box-shadow: 0 0 3px #ccc;">
-    <div class="experience-list-header">
+  <div class="experience-list" v-bind:class="{'experience-profile':insideProfile}">
+    <div class="experience-list-header" v-if="!insideProfile">
       Experiences
     </div>
     <transition-group name="fade">
@@ -20,7 +20,7 @@
   import ExperienceItem from './ExperienceItem'
 
   export default {
-    props: ['api'],
+    props: ['api', 'insideProfile'],
     components: { ExperienceItem },
     mixins: [PageMixin],
     data () {
