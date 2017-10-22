@@ -1,21 +1,25 @@
 <template>
   <div>
-    <div class="container" style="text-align: left;">
+    <div class="container" style="text-align: left;background-color: white;margin-top: 20px;box-shadow: 0 0 3px #ccc;">
       <div class="col-md-12">
         <div class="settings-title">
-          <h1>Profile</h1>
+          <h3>Profile</h3>
+          <div class="pull-right settings-button">
+            <button class="btn btn-forum settings-save" v-on:click="UpdateProfile">Save Profile</button>
+            <button class="btn btn-default settings-cancel" v-on:click="Cancel">Cancel</button>
+          </div>
         </div>
-        <div class="col-md-6 settings-left">
+        <div class="col-md-3 settings-left">
           <div class="settings-avatar-container">
             <img :src="avatarURL">
           </div>
           <div class="settings-upload-image-button" @click="uploadClick">
             <input type="file" ref="uploadNewAvatar" accept="image/png,image/jpeg"
                    style="opacity:0; width:0; height: 0;" @change.prevent="uploadNewAvatar">
-            <button class="btn btn-default">Upload new avatar</button>
+            <button class="btn btn-forum">Upload new avatar</button>
           </div>
         </div>
-        <div class="col-md-6 settings-right">
+        <div class="col-md-9 settings-right">
           <div class="settings-text-info">
             <div class="settings-option">
               <h4>Public Email Address:</h4>
@@ -35,13 +39,12 @@
             </div>
           </div>
         </div>
-        <div class="col-md-12 settings-buttons">
-          <button class="btn btn-primary settings-save" v-on:click="UpdateProfile">Save Profile</button>
-          <button class="btn btn-default settings-cancel" v-on:click="Cancel">Cancel</button>
-        </div>
       </div>
-      <div class="col-md-12" style="margin-top: 2em;">
-        <h1>Password</h1>
+      <div class="col-md-12" style="">
+        <div class="settings-title">
+          <h3>Password</h3>
+          </div>
+        </div>
         <div class="col-md-3"></div>
         <div class="col-md-6">
           <div class="settings-text-info">
@@ -70,8 +73,8 @@
               {{ passwordError }}
             </div>
           </div>
-          <div class="col-md-12 settings-buttons">
-            <button class="btn btn-primary settings-save" v-on:click="UpdatePassword">Update password</button>
+          <div class="col-md-12 settings-buttons" style="margin-bottom: 20px;">
+            <button class="btn btn-forum settings-save" v-on:click="UpdatePassword">Update password</button>
           </div>
         </div>
         <div class="col-md-3"></div>

@@ -1,6 +1,6 @@
 <template>
   <div class="tab-pane fade in active">
-    <activity-list :api="apiUrl" ref="list"></activity-list>
+    <activity-list :api="apiUrl" ref="list" :insideProfile='true'></activity-list>
   </div>
 </template>
 

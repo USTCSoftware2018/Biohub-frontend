@@ -164,11 +164,18 @@
 
 .experience-profile {
   margin-top: 0;
-  border-left: 1px solid $border-color;
+  box-shadow: none;
+  border-left: none
+}
+.activities-profile {
+  box-shadow: none;
 }
 
 .tab-pane {
   padding: 10px 10px;
-  box-shadow: 0 0 3px $border-color;
   border-left: 1px solid $border-color;
+  min-height: 400px;
+}
+.tab-pane:empty {
+  padding: 0;
 }

@@ -1,8 +1,10 @@
 <template>
-  <div class="user-list">
-    <user-item :user="user" v-for="user in users" :key="user.username"></user-item>
-    <pager :hasNext="hasNext" :hasPrevious="hasPrevious" :pageNum="pageNum"></pager>
-  </div>
+  <transition name="fade">
+    <div class="user-list" v-if="users.length > 0">
+      <user-item :user="user" v-for="user in users" :key="user.username"></user-item>
+      <pager :hasNext="hasNext" :hasPrevious="hasPrevious" :pageNum="pageNum"></pager>
+    </div>
+  </transition>
 </template>
 
 <script>

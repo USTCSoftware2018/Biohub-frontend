@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="activities">
+    <div class="activities" v-bind:class="{'activities-profile':insideProfile}">
       <div class="activity-item" v-for="item in activities">
         <activity-item :activity="item"></activity-item>
       </div>
@@ -18,7 +18,7 @@
   import ActivityItem from './ActivityItem'
 
   export default {
-    props: ['api'],
+    props: ['api', 'insideProfile'],
     components: { ActivityItem },
     data () {
       return {

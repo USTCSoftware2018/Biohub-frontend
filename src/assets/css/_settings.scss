@@ -1,16 +1,26 @@
 .settings-title {
-  margin-top: 5%;
+  margin-bottom: 20px;
+  h3 {
+    text-align: left !important;
+    margin: 10px 0;
+    padding: 10px 0;
+    display: inline-block;
+    font-weight: 400;
+  }
+  border-bottom: 1px solid $border-color;
 }
 
 .settings-right {
-  margin-top: 5%;
-  height: 440px;
-
+  margin-top: 20px;
+  height: 400px;
+}
+.settings-button {
+  margin-top: 15px;
 }
 
 .settings-left {
   text-align: center;
-  margin-top: 5%;
+  margin-top: 20px;
   height: 440px;
   .settings-avatar-container {
     margin-left: auto;
@@ -33,14 +43,21 @@
 
 .settings-text-info {
   .settings-option {
-    padding: 5px;
     h4 {
-      margin-top: 10px;
+      display: inline-block;
+      margin-bottom:0;
+      padding-bottom: 0;
+      font-size: 16px;
+      font-weight: 500;
+      margin-top: 0;
     }
     input {
-      margin-top: 10px;
+      display: inline-block;
     }
   }
+  .settings-option + .settings-option {
+      margin-top: 15px;
+    }
 
   input {
     @extend %input-biohub;
@@ -48,6 +65,8 @@
   }
 
   textarea {
+    resize: none;
+    border: 1px solid $border-color;
     &:focus {
       outline: none;
       border-color: $color-blue-2;

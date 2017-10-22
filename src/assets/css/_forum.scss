@@ -272,6 +272,7 @@
 
 .user-list {
   margin-top: 10px;
+  margin-left: 20px;
 
   .user-item {
     display: flex;
@@ -290,8 +291,7 @@
 
     .user-right {
       button {
-        border: 1px solid black;
-        background: white;
+        @extend .btn-forum;
       }
     }
   }
