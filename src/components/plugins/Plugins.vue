@@ -35,10 +35,11 @@
 
   window._plugins = window._plugins || {}
 
-  function Loader () {
+  function Loader (vm) {
     this._cache = {}
     this._active = null
     this.$pluginSlot = document.getElementById('plugin-slot')
+    this._vm = vm
   }
 
   Loader.prototype.load = function (name, url) {
@@ -65,9 +66,11 @@
       link.src = url
       link.type = 'text/javascript'
       link.onload = () => {
-        console.log(window._plugins)
         const component = window._plugins[name]
-        const instance = new Vue(component)
+        const instance = new Vue({
+          ...component,
+          router: this._vm.$router
+        })
         instance.$mount()
         this.activate(instance)
 
@@ -118,7 +121,7 @@
       this.loadPluginList()
     },
     created () {
-      this.loader = new Loader()
+      this.loader = new Loader(this)
       this.readyEvent.promise = new Promise(resolve => {
         this.readyEvent.resolve = resolve
       })
