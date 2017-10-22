@@ -21,7 +21,7 @@
       <div v-for="(file, index) in files" class="editor-files-list-item col-md-6 clearfix">
         <a :href="file.file" target="_blank">{{ file.name }}</a>
         <button class="btn btn-forum pull-right" @click="files.splice(index, 1)">Remove</button>
-        <button class="btn btn-forum pull-right" @click="insertImage(file)" v-if="file.mime_type.indexOf('image') >= 0">
+        <button class="btn btn-forum pull-right" style="margin-right: 5px;" @click="insertImage(file)" v-if="file.mime_type.indexOf('image') >= 0">
           Insert
         </button>
       </div>
