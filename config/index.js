@@ -7,7 +7,14 @@ try {
   var extraProxy = {}
 }
 
-console.log(extraProxy)
+try {
+  var domain = require('./proxyDomain.json').domain
+  if (!domain) throw Error()
+} catch (e) {
+  throw Error('Please specify `domain` field in `config/proxyDomain.json`, e.g. "120.25.250.211:8080".')
+}
+
+var baseProxy = `http://${domain}`
 
 module.exports = {
   build: {
@@ -30,6 +37,8 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
   dev: {
+    domain,
+    baseProxy,
     env: require('./dev.env'),
     port: 8080,
     assetsRoot: path.resolve(__dirname, '../_tmp'),
@@ -38,25 +47,25 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: Object.assign(extraProxy, {
       '/api': {
-        target: 'http://120.25.250.211:8080',
+        target: baseProxy,
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/api'
         }
       },
       '/media': {
-        target: 'http://120.25.250.211:8080',
+        target: baseProxy,
         changeOrigin: true,
         pathRewrite: {
           '^/media': '/media'
         }
       },
       '/ws': {
-        target: 'ws://120.25.250.211:8080/ws/',
+        target: `ws://${domain}/ws/`,
         ws: true
       },
       '/files': {
-        target: 'http://120.25.250.211:8080',
+        target: baseProxy,
         changeOrigin: true,
         pathRewrite: {
           '^/files': '/files'

@@ -3,7 +3,9 @@
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <router-link class="navbar-brand" :to="{ name: 'forum-home' }">Brand</router-link>
+        <router-link class="navbar-brand" :to="{ name: 'forum-home' }">
+          <img src="../../assets/img/icon.png" alt="" style="width: 24px;">
+        </router-link>
       </div>
       <ul class="nav navbar-nav">
         <li><router-link :to="{ name: 'plugins' }">Plugins</router-link></li>
