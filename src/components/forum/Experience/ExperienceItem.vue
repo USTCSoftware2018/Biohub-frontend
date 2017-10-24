@@ -1,7 +1,9 @@
 <template>
   <div class="experience-item">
     <h3 class="experience-title">
-      <router-link :to="expLink" style="font-weight: 200;font-size: 24px;">{{ experience.title }}</router-link>
+      <router-link :to="expLink" style="font-weight: 200;font-size: 24px;">
+        {{ experience.title || 'View Detail' }}
+      </router-link>
     </h3>
     <div class="experience-author" style="margin-top: 15px;">
       <template v-if="!experience.author">

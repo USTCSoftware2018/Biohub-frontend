@@ -73,7 +73,9 @@
       </div>
     </div>
     <div class="container">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </div>
     <div class="container-fluid" style="margin-left: 10%;" v-show="related_bricks.length">
       <h3>Related Bricks</h3>
@@ -99,6 +101,7 @@
   import Feature from './SeqFeature'
   import BrickGallery from '@/components/forum/Brick/BrickGallery'
   import marked from 'marked'
+  import bus from './brickEventBus'
 
   export default {
     components: { Star, Feature, BrickGallery },
@@ -114,6 +117,7 @@
       }
     },
     beforeRouteEnter (to, from, next) {
+      bus.clear()
       next(vm => {
         if (to.params.brick !== vm.part_name) {
           vm.loadBrick(to.params.brick)
@@ -121,6 +125,7 @@
       })
     },
     beforeRouteUpdate (to, from, next) {
+      bus.clear()
       if (to.params.brick !== this.part_name) {
         this.loadBrick(to.params.brick)
       }
@@ -214,28 +219,31 @@
         this.brick = null
         this.related_bricks = []
 
-        axios.get(`/api/forum/bricks/${partName}/`)
-          .then(response => {
-            clearTimeout(timerId)
-            this.part_name = partName
-            this.$set(this, 'brick', response.data)
-            this.part_name = partName
+        bus.fetching((resolve, reject) => {
+          axios.get(`/api/forum/bricks/${partName}/`)
+            .then(response => {
+              clearTimeout(timerId)
+              this.part_name = partName
+              this.$set(this, 'brick', response.data)
+              this.part_name = partName
+              resolve()
+              return axios.get(`/api/forum/bricks/${partName}/stats/`)
+            }, error => {
+              clearTimeout(timerId)
+              if (error.response.status === 404) {
+                this.to404()
+              }
+              this.$set(this, 'brick', oldBrick)
+              reject()
+            }).then(response => {
+              if (!response) return
+              this.$set(this, 'stats', response.data)
 
-            return axios.get(`/api/forum/bricks/${partName}/stats/`)
-          }, error => {
-            clearTimeout(timerId)
-            if (error.response.status === 404) {
-              this.to404()
-            }
-            this.$set(this, 'brick', oldBrick)
-          }).then(response => {
-            if (!response) return
-            this.$set(this, 'stats', response.data)
-
-            return axios.get(`/api/forum/bricks/${partName}/related/`)
-          }).then(response => {
-            this.$set(this, 'related_bricks', response.data)
-          })
+              return axios.get(`/api/forum/bricks/${partName}/related/`)
+            }).then(response => {
+              this.$set(this, 'related_bricks', response.data)
+            })
+        })
       },
       watch () {
         const cancel = this.stats.watched

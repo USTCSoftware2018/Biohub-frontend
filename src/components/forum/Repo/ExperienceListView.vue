@@ -6,6 +6,7 @@
 
 <script>
   import ExperienceList from '@/components/forum/Experience/ExperienceList.vue'
+  import bus from './brickEventBus'
 
   export default {
     components: { ExperienceList },
@@ -28,8 +29,9 @@
     },
     methods: {
       reload (partName) {
-        this.part_name = partName
-        this.$nextTick(() => this.$refs.list.loadExperiences())
+        bus.ready(() => {
+          this.part_name = partName
+        })
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-9">
-    <div class="card" style="margin: 20px 0 10px 0;text-align: center;cursor: pointer;" @click="$router.push({name:'Brick',brick:$route.params.brick})">
+    <div class="card" style="margin: 20px 0 10px 0;text-align: center;cursor: pointer;" @click="$router.push({name:'Brick',params: {brick:$route.params.brick}})">
       View All Experiences
     </div>
     <transition name="fade">
@@ -25,7 +25,7 @@
         </div>
         <div class="experience-attachments">
           Attachments:
-          <a v-for="item in experience.content.files" :href="item.file">{{item.name}} </a>
+          <a v-for="item in experience.content.files" :href="item.file" target="_blank">{{item.name}}</a>
         </div>
       </div>
       <template v-else>

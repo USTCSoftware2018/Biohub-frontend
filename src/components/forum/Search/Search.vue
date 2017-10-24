@@ -9,9 +9,13 @@
               type="search"
               placeholder="Type what you know about the target bricks..."
               class="search-input"
-              v-model="query"
-              @focus="showHint=true"
-              @blur="showHint=false">
+              v-model="query">
+            <a href="javascript:;" class="form-control-feedback"
+              :style="bulbStyle"
+              @click="showHint=!showHint"
+            >
+              <i class="fa fa-lightbulb-o" style="font-size: 1.8em;"></i>
+            </a>
             <a class="form-control-feedback"
                href="javascript:;" style="pointer-events: auto;top: .7em!important; right: 0.4em;"
                v-if="query"
@@ -74,6 +78,16 @@
         pageNum: 0,
         bricksCount: 0,
         showHint: false
+      }
+    },
+    computed: {
+      bulbStyle () {
+        return {
+          'pointer-events': 'auto',
+          'right': this.query ? '2.5em' : '.4em',
+          'top': '.7em!important',
+          'color': this.showHint ? 'yellow' : '#999'
+        }
       }
     },
     methods: {
