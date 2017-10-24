@@ -24,7 +24,7 @@
       </span>
       <star :isEnable="false" :initial="brick.rate_score"></star>
     </div>
-    <p class="brick-content" v-html="brick.short_desc"></p>
+    <p class="brick-content" v-html="brick.desc"></p>
     <div class="brick-footer">
       <span class="data-group" data-toggle="tooltip" title="Stars">
         <i class="fa fa-star-o"></i>
