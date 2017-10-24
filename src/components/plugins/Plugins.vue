@@ -3,18 +3,23 @@
     <div class='container' style='margin-top: 50px;'>
       <div class="col-md-3">
         <div class="list-group" style="text-align: center;">
-          <router-link :to="{ name: 'plugins' }" :class="['list-group-item', activeName ? '' : 'active']">Index</router-link>
+          <router-link :to="{ name: 'plugins' }" :class="['list-group-item', activeName ? '' : 'active']">Introduction &amp; FAQ</router-link>
           <router-link v-for="plugin in plugins"
             :to="{ query: { name: plugin.name }}"
             :class="['list-group-item', activeName === plugin.name ? 'active' : '']"
             :key="plugin.name">
-          {{ plugin.title }}
+          plugin&nbsp;/&nbsp;{{ plugin.title }}
           </router-link>
         </div>
       </div>
       <div class="col-md-9">
-        <div v-if="showIndex">
-          This is index.
+        <div v-if="showIndex" class="card" style="word-break: normal;">
+          <h4>What is Biohub 2.0 Plugin System?</h4>
+          <p>Biohub 2.0 owns the numerous biological parts, and organizes and displays them all with grace. But that's not enough, since we did not, and will never exploit all the protential of these great treasures. So we turn to you, experts in biological field, for assistance. Biohub 2.0 provides an open interface, where you can access the parts' information and embed your own code, which is known as the Plugin System. Once your plugin is verified by us, it will be shown here and be utilized by the users in this community.</p>
+          <h4>Must my plugin relate to Biobricks?</h4>
+          <p>Of course, there is no limitation on the subject of your plugin. You may also implement a new biological algorithm into a plugin, and deploy it onto here for promotion. After all, it is a faster way to make other peers acquainted with your latest achievement.</p>
+          <h4>How can I develop/deploy a plugin?</h4>
+          <p>Currently, there is no approach to upload and deploy the plugin by yourself, since it needs to be censored as a consideration of security, but we will improve it in the near future. We recommend you to host source code of the plugin on Github and mail us the address via ustcsoftware2017 [at] gmail [dot] com, in order to reduce the cost of frequent modification. All you want to know about developing a plugin can be found on <a href="http://2017.igem.org/Team:USTC-Software">our wiki</a>.</p>
         </div>
         <div class="card" v-if="activePlugin">
           <dl style="margin: 0;">
@@ -29,6 +34,12 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+  .list-group-item {
+    text-align: left;
+  }
+</style>
 
 <script>
   import Vue from 'vue'

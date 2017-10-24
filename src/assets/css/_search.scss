@@ -1,5 +1,4 @@
 .search-head {
-  text-align: center;
   background-color: $search-header-color;
 
   .snail-icon {
@@ -7,6 +6,20 @@
     height: 50px;
     // width: 50px;
     margin: 10px;
+    margin-left: 0
+  }
+
+  .biohub-form {
+    @extend .col-md-10;
+    @extend .col-md-offset-1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .form-group {
+    flex: auto;
+    margin-bottom: 0;
   }
 
   .btn-search {
@@ -16,16 +29,36 @@
     background-color: $color-blue-2;
     border-color: transparent;
     color: $text-color;
-    margin-left: 0;
+    margin-left: 10px;
+  }
+
+  .search-hint {
+    text-align: left;
+    border-radius: 0;
+    margin-top: -10px;
+    background-color: darken($search-header-color,5%);
+    border: none;
+    color: #ccc;
+
+    code {
+      background-color: darken($search-header-color, 2%);
+      color: lighten(#eee, 5%);
+      font-weight: 500;
+    }
+
+    b {
+      color: white;
+    }
   }
 
   .search-input {
     @extend %input-biohub;
-    width: 40em;
+    flex: auto;
+    width: 100%;
+    margin: 0;
     background-color: darken($search-header-color,5%);
     border-color: transparent;
     color: $text-color;
-    margin: 0.3rem 0 0.3rem 0;
     font-size: 0.2rem;
     padding: 0.07rem 0.1rem;
     vertical-align: middle;
