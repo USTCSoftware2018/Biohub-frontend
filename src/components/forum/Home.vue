@@ -2,7 +2,7 @@
   <div>
     <div class="forum-start">
       <div class="forum-description">
-        <p style="font-size: 20px; font-family: Roboto; font-weight: 300; line-height: 1.5;">
+        <p>
           Biohub 2.0 is a progressive community founded based on tens of thousands of standard biological bricks. From parts to ideas, you can get and share all about your experiments as easy as a pie.
         </p>
         <router-link tag="button" class="btn btn-biohub btn-biohub-forum-welcome-default" :to="{ name: 'search' }">

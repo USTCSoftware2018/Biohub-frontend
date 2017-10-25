@@ -48,10 +48,9 @@
           <p
             class="document-toggler"
             @click="isMetaCollapsed = !isMetaCollapsed"
-            data-toggle="tooltip"
-            data-placement="right"
-            title="Click to learn more">
+            data-placement="right">
             Meta
+            <i :class="['fa', isMetaCollapsed ? 'fa-angle-double-down' : 'fa-angle-double-up']"></i>
           </p>
           <div id="meta-div" :class="isMetaCollapsed ? 'collapse' : ''">
             <table class="table main">
@@ -64,10 +63,15 @@
             </table>
           </div>
         </div>
-        <div class="col-md-12">
-          <div data-toggle="tooltip" data-placement="right" title="Click to view document" class="document-toggler">
-            <p data-toggle="collapse" href="#document-div" class="document-toggler">Documentation</p>
-          </div>
+        <div class="col-md-12" style="margin-top: 10px;">
+          <p
+            href="#document-div"
+            class="document-toggler"
+            data-toggle="collapse"
+            @click="isDocumentCollapsed = !isDocumentCollapsed">
+            Documentation
+            <i :class="['fa', isDocumentCollapsed ? 'fa-angle-double-down' : 'fa-angle-double-up']"></i>
+          </p>
           <div v-html="documentHTML" id="document-div" class="collapse"></div>
         </div>
       </div>
@@ -113,6 +117,7 @@
         showRate: false,
         loadingText: 'Loading',
         isMetaCollapsed: true,
+        isDocumentCollapsed: true,
         related_bricks: []
       }
     },
@@ -175,6 +180,35 @@
       documentHTML () {
         return marked(this.brick.document.text)
       },
+      sequenceHTML () {
+        const colNum = 6
+        const parts = this.brick.sequence.match(/.{1,10}/g)
+        const rows = []
+
+        while (parts.length > 0) rows.push(parts.splice(0, colNum))
+
+        const components = rows.map((row, index) => {
+          return `
+          <div style="font-family: Courier; white-space: nowrap;">
+            <span style="width: 4em; display: inline-block; text-align: right;">${index * 10 * colNum + 1}</span>
+            <span>${row.join(' ')}</span>
+          </div>
+          `
+        }).join('')
+
+        return `
+        <div style="overflow-x: auto;">
+          <p>
+            Length: <b>${this.brick.sequence.length}</b> bp
+            <a href="http://parts.igem.org/sequencing/part_analysis.cgi?part=${this.brick.part_name}"
+            class="pull-right" target="_blank">
+              View Analysis
+            </a>
+          </p>
+          ${components}
+        </div>
+        `
+      },
       metas () {
         return [
           ['Part Status', this.brick.status, [`td-${this.statusClass}`]],
@@ -196,6 +230,29 @@
               .map(([name, value]) => `<tr><th>${name}</th><td>${value}</td></tr>`)
               .join('') + '</table>',
             ['collapsable']
+          ],
+          [
+            'Sequence',
+            this.sequenceHTML,
+            ['collapsable']
+          ],
+          [
+            'Assembly Compatibility',
+            _.keys(this.brick.ac)
+              .map(key => parseInt(key))
+              .map(key => {
+                const value = this.brick.ac[key]
+                const _class = value ? 'biohub-text-success' : 'biohub-text-fatal darker'
+                const icon = value ? 'fa-check' : 'fa-times'
+                const text = value ? `COMPATIBLE WITH RFC[${key}]` : `INCOMPATIBLE WITH RFC[${key}]`
+                return `
+                <p class="${_class}">
+                  ${text}&nbsp;
+                  <i class="fa ${icon}"></i>
+                </p>
+                `
+              }).join(''),
+            []
           ],
           [
             'Links',

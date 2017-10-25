@@ -21,6 +21,10 @@
   margin-right: auto;
   color: $text-color;
   margin-bottom: 0.2rem;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.5;
 }
 
 .forum-description h1 {
@@ -55,6 +59,18 @@
   border-top: 1px solid lighten($navbar-color, 5%);
   color: $text-color;
   padding-bottom: 0.2rem;
+}
+
+.biohub-text-success {
+  color: $color-success;
+}
+
+.biohub-text-fatal {
+  color: $color-fatal;
+
+  &.darker {
+    color: lighten($color-fatal, 17%);
+  }
 }
 
 .repo-info-addon {
@@ -95,6 +111,14 @@
 .meta-container {
   #meta-div {
 
+    overflow-x: auto;
+
+    min-width: 720px;
+
+    &::-webkit-scrollbar-track {
+      background-color: darken($navbar-color, 5%);
+    }
+
     &.collapse {
       display: block!important;
 
@@ -106,6 +130,9 @@
     table.main {
       background-color: darken($navbar-color, 5%);
       height: 80px;
+      max-width: 100%;
+      width: 100%;
+      margin-bottom: 0;
 
       .td-fatal {
         td {
