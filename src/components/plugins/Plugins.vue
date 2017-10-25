@@ -137,12 +137,8 @@
         this.readyEvent.resolve = resolve
       })
     },
-    destroyed () {
-      console.log('FUICL')
-    },
     computed: {
       activePlugin () {
-        console.log('hi')
         return _.find(this.plugins, o => o.name === this.activeName)
       }
     },
