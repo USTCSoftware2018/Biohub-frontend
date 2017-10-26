@@ -1,0 +1,39 @@
+#!/bin/bash
+
+export CHROME_BIN=/usr/bin/google-chrome
+export DISPLAY=:99.0
+sh -e /etc/init.d/xvfb start
+
+cat > domain.config.json << EOF
+{
+    "dev": {
+        "extra_proxy": {
+            "/plugins/biohub.abacus": {
+                "target": "http://localhost:10000",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "^/plugins/biohub.abacus": "/"
+                }
+            },
+            "/plugins/biohub.biocircuit": {
+                "target": "http://localhost:10001",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "^/plugins/biohub.biocircuit": "/"
+                }
+            },
+            "/plugins/biohub.biomap": {
+                "target": "http://localhost:10002",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "^/plugins/biohub.biomap": "/"
+                }
+            }
+        },
+        "proxy_domain": "120.25.250.211:8080"
+    },
+    "prod": {
+        "domain": "biohub.technology"
+    }
+}
+EOF
