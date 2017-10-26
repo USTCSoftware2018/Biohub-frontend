@@ -23,7 +23,7 @@
                 }
             }
         },
-        "proxy_domain": "me:8080"
+        "proxy_domain": "localhost:8080"
     },
     "prod": {
         "domain": "biohub.technology"

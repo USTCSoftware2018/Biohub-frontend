@@ -31,9 +31,9 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       DEBUG: 'false',
       'process.env': env,
-      'axiosBaseURL': JSON.stringify(`http://${env.prodDomain}`),
-      'wsURL': JSON.stringify(`ws://${env.domain}/ws/`),
-      'staticBase': JSON.stringify(`${env.static}`)
+      'axiosBaseURL': JSON.stringify(`http://${config.build}`),
+      'wsURL': JSON.stringify(`ws://${config.build.domain}/ws/`),
+      'staticBase': JSON.stringify(`${config.build.static}`)
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
