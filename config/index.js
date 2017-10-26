@@ -2,22 +2,56 @@
 var path = require('path')
 
 try {
-  var extraProxy = require('./extraProxy.json')
+  var domainConfig = require(path.resolve(__dirname, '../domain.config.json'))
 } catch (e) {
-  var extraProxy = {}
+  console.log(e)
+  throw Error('Please create domain.config.json under the root directory. You can refer to domain.config.example for guidance.')
 }
 
-try {
-  var domain = require('./proxyDomain.json').domain
-  if (!domain) throw Error()
-} catch (e) {
-  throw Error('Please specify `domain` field in `config/proxyDomain.json`, e.g. "120.25.250.211:8080".')
-}
+var devDomainConfig = domainConfig.dev || {}
+var prodDomainConfig = domainConfig.prod || {}
 
+var extraProxy = Object.assign({
+            "/plugins/biohub.abacus": {
+                "target": "http://localhost:10000",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "^/plugins/biohub.abacus": "/"
+                }
+            },
+            "/plugins/biohub.biocircuit": {
+                "target": "http://localhost:10001",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "^/plugins/biohub.biocircuit": "/"
+                }
+            },
+            "/plugins/biohub.biomap": {
+                "target": "http://localhost:10002",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "^/plugins/biohub.biomap": "/"
+                }
+            }
+        }, devDomainConfig.extraProxy)
+
+
+var domain = devDomainConfig.proxy_domain
 var baseProxy = `http://${domain}`
+
+console.log('Using extra proxies:', extraProxy)
+console.log('Proxy domain to:', baseProxy)
+
+var prodDomain = (domainConfig.prod || {}).domain || 'biohub.technology'
+var prodStatic = (domainConfig.prod || {}).static || 'https://ustc-software2017-frontend.github.io/Biohub-frontend/dist/assets/'
+
+console.log('Proxy production domain to:', prodDomain)
+console.log(`Use ${prodStatic} as static base path.`)
 
 module.exports = {
   build: {
+    domain: prodDomain,
+    static: prodStatic,
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),

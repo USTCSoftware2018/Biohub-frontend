@@ -1,0 +1,31 @@
+{
+    "dev": {
+        "extra_proxy": {
+            "/plugins/biohub.abacus": {
+                "target": "http://localhost:10000",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "^/plugins/biohub.abacus": "/"
+                }
+            },
+            "/plugins/biohub.biocircuit": {
+                "target": "http://localhost:10001",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "^/plugins/biohub.biocircuit": "/"
+                }
+            },
+            "/plugins/biohub.biomap": {
+                "target": "http://localhost:10002",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "^/plugins/biohub.biomap": "/"
+                }
+            }
+        },
+        "proxy_domain": "me:8080"
+    },
+    "prod": {
+        "domain": "biohub.technology"
+    }
+}
