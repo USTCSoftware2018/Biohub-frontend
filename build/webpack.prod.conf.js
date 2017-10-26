@@ -31,7 +31,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       DEBUG: 'false',
       'process.env': env,
-      'axiosBaseURL': JSON.stringify(`http://${config.build}`),
+      'axiosBaseURL': JSON.stringify(`http://${config.build.domain}`),
       'wsURL': JSON.stringify(`ws://${config.build.domain}/ws/`),
       'staticBase': JSON.stringify(`${config.build.static}`)
     }),
