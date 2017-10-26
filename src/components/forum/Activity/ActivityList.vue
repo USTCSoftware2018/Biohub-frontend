@@ -10,6 +10,13 @@
       <div v-if="loading" style="text-align: center;padding: 20px 0;font-size: 20px;background-color: white;">
       Please Wait <i class="fa fa-spinner fa-pulse fa-fw"></i>
       </div>
+      <div v-if="!loading && !activities.length" style="padding: 60px 30px; text-align: center;">
+        <i class="fa fa-3x fa-calendar" style="color: #aaa;"></i>
+        <h2 style="color: black; font-weight: 500;">
+          No activities.
+        </h2>
+        <p>Go to follow some users or watch some bricks, and all the related events will be displayed here.</p>
+      </div>
     </div>
   </transition>
 </template>

@@ -31,17 +31,23 @@
         </div>
         <div class="col-md-4 less-padding">
           <ul class="list-group list-home-bricks">
-            <li class="list-group-item list-group-header">Bricks Watching</li>
+            <li class="list-group-item list-group-header">Bricks you starred</li>
             <transition-group name="fade">
-              <template v-if="watchedBricks.results">
-                <li class="list-group-item" v-for="item in watchedBricks.results"
-                    style="box-shadow: 0 0 3px #ccc;border:none;" :key="item.part_name">
+              <template v-if="starredBricks.length">
+                <li v-for="item in starredBricks" :key="item.part_name">
                   <router-link :to="{ name: 'Brick', params: { brick: item.part_name } }">{{ item.part_name }}</router-link>
                 </li>
               </template>
               <template v-else>
-                <li class="list-group-item" style="box-shadow: 0 0 3px #ccc;border:none;" key="loading">
+                <li key="loading" v-if="loadingStars">
                   Loading <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                </li>
+                <li v-else class="empty" key="empty">
+                  <i class="fa fa-3x fa-star" style="color: #aaa;"></i>
+                  <h2 style="color: black; font-weight: 500;">
+                    No stars.
+                  </h2>
+                  <p>Go search some bricks and star them.</p>
                 </li>
               </template>
             </transition-group>
@@ -60,8 +66,8 @@
   export default {
     data () {
       return {
-        watchedBricks: [],
-        loadingWatching: false,
+        starredBricks: [],
+        loadingStars: false,
         popularBricks: []
       }
     },
@@ -78,16 +84,16 @@
     },
     methods: {
       loadWatchingBricks () {
-        if (this.loadingWatching || !this.$root.user) return
+        if (this.loadingStars || !this.$root.user) return
 
-        this.loadingWatching = true
-        axios.get(`/api/users/${this.$root.user.id}/bricks_watching/`)
+        this.loadingStars = true
+        axios.get(`/api/users/${this.$root.user.id}/bricks_starred/`)
           .always(response => {
-            this.loadingWatching = false
+            this.loadingStars = false
             return response
           })
           .then((response) => {
-            this.watchedBricks = response.data
+            this.starredBricks = response.data.results
           })
       },
       loadPopular () {

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <form class="post-form" @submit.prevent="submit">
-      <input type="text" class="textarea" v-model="content">
-      <button class="btn btn-forum" type="submit" :disabled="!content">Comment</button>
+    <form class="post-form" @submit.prevent="">
+      <textarea type="text" class="textarea" v-model="content" @keydown.enter.ctrl="submit"></textarea>
+      <button class="btn btn-forum" @click="submit" :disabled="!content">Comment</button>
     </form>
   </div>
 </template>

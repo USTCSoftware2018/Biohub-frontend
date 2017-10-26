@@ -106,11 +106,14 @@
       },
       submit () {
         if (this.canChange) {
+          const score = (this.wSize / 20).toFixed(1)
+          this.canChange = false
           axios.post('/api/forum/bricks/' + this.brickName + '/rate/', {
-            score: (this.wSize / 20).toFixed(1)
+            score
           }).then((response) => {
-            this.canChange = false
+            alert(`You've graded ${score} points for brick ${this.brickName} successfully!`)
           }).catch(e => {
+            this.canChange = true
             if (e.response.status === 429) {
               alert('You rate too fast!\nTwo rating actions should have an interval of at least 15 seconds.')
             }

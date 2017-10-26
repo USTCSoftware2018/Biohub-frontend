@@ -1,6 +1,5 @@
 <template>
   <ul class="p-nav p-nav-tabs">
-    <div class="p-nav-header">...</div>
     <li v-for="nav in navData" :class="nav.classes">
       <router-link :to="nav.to">
         {{ nav.text }}

@@ -15,12 +15,17 @@ export default {
     events.$on(name, cb)
     return this
   },
-
   login (data) {
     store(data)
     root.$set(root, 'user', data)
     events.$emit('login', data)
-
+  },
+  renew (field, value) {
+    if (field !== undefined) {
+      console.log(field)
+      root.$set(root, `user.${field}`, value)
+    }
+    store(root.data)
   },
   fetch () {
     return axios.get('/api/users/me/')

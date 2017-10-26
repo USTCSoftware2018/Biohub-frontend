@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-3 settings-left">
           <div class="settings-avatar-container">
-            <img :src="avatarURL">
+            <img :src="avatarURL" style="max-width: 100%;">
           </div>
           <div class="settings-upload-image-button" @click="uploadClick">
             <input type="file" ref="uploadNewAvatar" accept="image/png,image/jpeg"
@@ -152,11 +152,24 @@
             headers: {
               'Content-Type': 'multipart/form-data'
             }
-          }).then((_) => {
-            this.$router.push({ name: 'settings' })
+          }).then(r => {
+            this.avatarURL = r.data
+            authController.renew('avatar_url', r.data)
           }).catch((e) => {
             console.log(e)
           })
+      },
+      loadData () {
+        axios.get('/api/users/me/').then((response) => {
+          this.avatarURL = response.data.avatar_url
+          this.userName = response.data.username
+          this.userMail = response.data.email
+          this.userLink = response.data.site_url
+          this.userLoc = response.data.address
+          this.userBio = response.data.description
+        }).catch((e) => {
+          this.to404()
+        })
       }
     },
     data () {
@@ -176,16 +189,7 @@
       }
     },
     mounted () {
-      axios.get('/api/users/me/').then((response) => {
-        this.avatarURL = response.data.avatar_url
-        this.userName = response.data.username
-        this.userMail = response.data.email
-        this.userLink = response.data.site_url
-        this.userLoc = response.data.address
-        this.userBio = response.data.description
-      }).catch((e) => {
-        this.to404()
-      })
+      this.loadData()
     }
   }
 

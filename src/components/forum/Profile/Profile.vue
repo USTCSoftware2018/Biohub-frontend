@@ -81,6 +81,8 @@
     },
     methods: {
       loadUserData () {
+        if (!this.$route.params.user) return
+
         return axios.get(`/api/users/n:${this.$route.params.user}/`)
           .then(({ data }) => {
             this.user = data

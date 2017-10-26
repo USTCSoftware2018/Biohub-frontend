@@ -1,6 +1,6 @@
 <template>
   <div>
-    <post-item v-for="post in posts" :post="post" :key="post.id"></post-item>
+    <post-item v-for="(post, index) in posts" :post="post" :key="post.id" @deleted="deleted(index)"></post-item>
     <pager :hasNext="hasNext" :hasPrevious="hasPrevious" :pageNum="pageNum"></pager>
   </div>
 </template>
@@ -34,6 +34,9 @@
       },
       prepend (item) {
         this.posts.splice(0, 0, item)
+      },
+      deleted (index) {
+        this.posts.splice(index, 1)
       }
     },
     mounted () {

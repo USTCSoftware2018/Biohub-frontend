@@ -33,12 +33,29 @@
   font-size: 1rem;
 }
 
+.list-home-bricks {
+  li {
+    @extend .list-group-item;
+    box-shadow: 0 0 3px #ccc;
+    border: none;
+    border-radius: 0!important;
+  }
+
+  .empty {
+    height: 280px;
+    padding: 73px 40px;
+    text-align: center;
+  }
+}
+
 .list-group-header {
   @extend .disabled;
   box-shadow: 0 0 3px $border-color;
   cursor: default !important;
   border: none;
   border-bottom: 1px solid $border-color;
+  border-radius: 0!important;
+  height: 40px;
 }
 
 .list-group-header + .list-group-item {
@@ -217,15 +234,22 @@
 }
 
 .post-form {
+  display: flex;
+  flex-direction: row;
+
+  * {
+    border-radius: 0!important;
+  }
+
   .textarea {
     display: inline-block;
     font-size: 20px;
-    width: 85%;
-    resize: none;
+    flex: auto;
     line-height: 27px;
     border-style: none;
     border-radius: 5px;
     height: 33px;
+    min-height: 33px;
     padding-left: 5px;
     background-color: lighten($border-color, 10%);
     vertical-align: middle;
@@ -243,9 +267,9 @@
   button {
     display: inline-block;
     vertical-align: bottom;
+    margin-left: 5px;
+    max-height: 33px;
   }
-  border-top: 1px solid $border-color;
-  padding-top: 10px;
 }
 
 .post {
@@ -364,6 +388,14 @@
       &:focus, &:hover {
         text-decoration: none;
       }
+
+      &.tool {
+        @extend .pull-right;
+        color: #777!important;
+        font-size: 85%;
+        font-weight: normal;
+        margin-right: 4px;
+      }
     }
 
   }
@@ -377,6 +409,17 @@
   background-color: white;
   padding: 15px 20px;
 
+  .experience-tool {
+    @extend .clearfix;
+
+    padding: 10px 0;
+
+    a {
+      @extend .pull-right;
+      margin-left: 5px;
+    }
+  }
+
   .experience-title {
     margin: 0;
     a {
@@ -387,6 +430,7 @@
   }
 
   .experience-content {
+
     .digest {
       cursor: pointer;
 
@@ -404,6 +448,15 @@
     .content {
       margin: 3px 0;
       line-height: 1.67;
+      padding: 10px 0;
+    }
+  }
+
+  .experience-attachments {
+    box-shadow: 0 0 1px #ccc;
+    a {
+      display: block;
+      padding: 5px;
     }
   }
 
@@ -469,7 +522,7 @@ form.upload-form {
   float: right;
   margin-right: .2rem;
   top: -68px;
-  right: 60px;
+  right: 45px;
 
   input[type=file] {
     opacity: 0;

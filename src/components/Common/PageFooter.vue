@@ -6,14 +6,16 @@
           <router-link :to="{name: 'forum-home'}" class="footer-link">Forum</router-link>
           <router-link :to="{name: 'plugins'}" class="footer-link">Plugins</router-link>
           <a href="#" class="footer-link" target="_blank">Wiki</a>
+          <br>
+          <a class="github-button" href="https://github.com/igemsoftware2017/USTC-Software-2017" data-icon="octicon-star" data-show-count="true" aria-label="Star igemsoftware2017/USTC-Software-2017 on GitHub" v-show="showGithub">Star</a>
         </p>
-        <p>Welcome to the biohub. 2017 USTC-Software. All rights reserved.</p>
+        <p>Welcome to the Biohub 2.0. All rights reserved to USTC-Software-2017.</p>
       </div>
     </footer>
   </div>
 </template>
 
-<style scoped>
+<style>
   .footer-container {
     position: absolute;
     left: 0;
@@ -33,6 +35,10 @@
     height:100%;
   }
 
+  .footer-content iframe {
+    margin-top: 10px;
+  }
+
   .footer-content a {
     color: #333 !important;
     text-decoration: none;
@@ -43,3 +49,22 @@
     margin-right: 10px;
   }
 </style>
+
+<script>
+  export default {
+    data () {
+      return {
+        showGithub: false
+      }
+    },
+    mounted () {
+      const link = document.createElement('script')
+      link.src = 'https://buttons.github.io/buttons.js'
+      link.async = true
+      link.onload = () => {
+        this.showGithub = true
+      }
+      document.body.appendChild(link)
+    }
+  }
+</script>

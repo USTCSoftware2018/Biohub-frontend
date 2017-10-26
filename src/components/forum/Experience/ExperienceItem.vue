@@ -2,7 +2,7 @@
   <div class="experience-item">
     <h3 class="experience-title">
       <router-link :to="expLink" style="font-weight: 200;font-size: 24px;">
-        {{ experience.title || 'View Detail' }}
+        {{ experience.title }}
       </router-link>
     </h3>
     <div class="experience-author" style="margin-top: 15px;">
@@ -26,12 +26,13 @@
       </transition>
     </div>
     <div class="experience-footer clearfix">
-      <button :class="voteButtonClasses" @click="toggleVote" :disabled="!cannotVote">
-        <i class="fa fa-thumbs-up"></i>
-        {{ experience.votes }}
-      </button>
+      <vote-button :experience="experience"></vote-button>
       <router-link :to="expLink" class="text-muted">
         <i class="fa fa-comment-o"></i> {{ commentsText }}
+      </router-link>
+      &nbsp;&nbsp;
+      <router-link :to="expLink" class="text-muted">
+        View
       </router-link>
       <small class="timeago text-muted" :datetime="experience.pub_time" ref="pub_time"></small>
     </div>
@@ -44,9 +45,11 @@
 
 <script>
   import marked from 'marked'
+  import VoteButton from './VoteButton'
 
   export default {
     props: ['experience'],
+    components: { VoteButton },
     data () {
       return {
         fullText: null
@@ -56,27 +59,6 @@
       timeago().render(this.$refs.pub_time)
     },
     methods: {
-      toggleVote () {
-        const voted = this.experience.voted
-        const action = voted ? 'unvote' : 'vote'
-        const delta = voted ? -1 : 1
-
-        if (this.cannotVote) {
-          alert('You cannot vote your own experience.')
-          return
-        }
-
-        axios.post(`/api/forum/experiences/${this.experience.id}/${action}/`)
-          .then(() => {
-            this.experience.voted = !voted
-            this.experience.votes += delta
-          })
-          .catch(e => {
-            if (e.response.status === 429) {
-              alert('You vote too fast!\nTwo votes should have an interval of at least 15 seconds.')
-            }
-          })
-      },
       loadFullText () {
         axios.get(`/api/forum/experiences/${this.experience.id}/text/`)
           .then(({ data }) => {
@@ -96,16 +78,6 @@
       },
       contentHTML () {
         return marked(this.fullText)
-      },
-      cannotVote () {
-        return this.$root.user && this.experience.user &&
-          this.$root.user.username === this.experience.user.username
-      },
-      voteButtonClasses () {
-        let result = ['btn', 'btn-forum', 'btn-vote']
-        if (this.experience.voted) result.push('voted')
-
-        return result
       },
       commentsText () {
         const comments = this.experience.posts_num
