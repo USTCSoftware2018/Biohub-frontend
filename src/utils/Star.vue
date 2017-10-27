@@ -1,5 +1,5 @@
 <template>
-  <div class="star-container" @mousemove="calcMouse">
+  <div class="star-container" @mousemove="calcMouse" @mouseleave="release">
     <div class="star-container-empty"  @click="submit">
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
@@ -7,7 +7,7 @@
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
     </div>
-    <div class="star-container-full" @mousemove="calcMouse"  @click="submit" v-bind:style="{width: wSize + '%'}">
+    <div class="star-container-full" @mousemove="calcMouse"  @click="freeze" v-bind:style="{width: wSize + '%'}">
       <span class="full-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="full-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="full-star" v-bind:class="{cursorPointer: canChange}"></span>
@@ -84,6 +84,9 @@
       }
     },
     computed: {
+      score () {
+        return (this.wSize / 20).toFixed(1)
+      }
     },
     mounted () {
       if (this.initial === undefined) return
@@ -104,21 +107,11 @@
           this.wSize = Math.round(e.layerX / 12) / 2.0 * 20
         }
       },
-      submit () {
-        if (this.canChange) {
-          const score = (this.wSize / 20).toFixed(1)
-          this.canChange = false
-          axios.post('/api/forum/bricks/' + this.brickName + '/rate/', {
-            score
-          }).then((response) => {
-            alert(`You've graded ${score} points for brick ${this.brickName} successfully!`)
-          }).catch(e => {
-            this.canChange = true
-            if (e.response.status === 429) {
-              alert('You rate too fast!\nTwo rating actions should have an interval of at least 15 seconds.')
-            }
-          })
-        }
+      release() {
+        this.canChange = true
+      },
+      freeze () {
+        this.canChange = false
       },
       changeValue (value) {
         this.wSize = value * 20

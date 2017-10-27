@@ -27,7 +27,9 @@
               </router-link>
             </div>
             <div class="collapse" id="starCollapse">
-              <star :isEnable="true" v-if="!stats.rated" :brickName="brick.part_name"></star>
+              <star :isEnable="true" v-if="!stats.rated" :brickName="brick.part_name" ref='rate'></star>
+              <button style="background-color: #1695A3; outline: none; border: none; color: white; 
+              border-radius: 3px;" @click="rate">Rate</button>
             </div>
             <div class="divider" style="margin: 5px 0 5px 0"></div>
           </div>
@@ -323,6 +325,19 @@
             this.stats.starred = !cancel
             this.brick.stars += delta
           })
+      },
+      rate () {
+        axios.post('/api/forum/bricks/' + this.brick.part_name + '/rate/', {
+          score: this.$refs.rate.score
+        }).then((response) => {
+          alert(`You've graded ${this.$refs.rate.score} points for brick ${this.brick.part_name} successfully!`)
+          this.stats.rated = true
+          $('#starCollapse').collapse('hide')
+        }).catch(e => {
+          if (e.response.status === 429) {
+            alert('You rate too fast!\nTwo rating actions should have an interval of at least 15 seconds.')
+          }
+        })
       }
     }
   }
