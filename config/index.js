@@ -11,29 +11,23 @@ try {
 var devDomainConfig = domainConfig.dev || {}
 var prodDomainConfig = domainConfig.prod || {}
 
-var extraProxy = Object.assign({
-            "/plugins/biohub.abacus": {
-                "target": "http://localhost:10000",
-                "changeOrigin": true,
-                "pathRewrite": {
-                    "^/plugins/biohub.abacus": "/"
-                }
-            },
-            "/plugins/biohub.biocircuit": {
-                "target": "http://localhost:10001",
-                "changeOrigin": true,
-                "pathRewrite": {
-                    "^/plugins/biohub.biocircuit": "/"
-                }
-            },
-            "/plugins/biohub.biomap": {
-                "target": "http://localhost:10002",
-                "changeOrigin": true,
-                "pathRewrite": {
-                    "^/plugins/biohub.biomap": "/"
-                }
-            }
-        }, devDomainConfig.extraProxy)
+
+
+var extraProxy = (function () {
+  var plugins = devDomainConfig.plugins || {}
+  var result = {}
+  Object.keys(plugins).forEach(function (key) {
+    var port = plugins[key]
+    result['/plugins/' + key] = {
+      target: 'http://localhost:' + port,
+      changeOrigin: true,
+      pathRewrite: {
+        ['^/plugins/' + key]: '/'
+      }
+    }
+  })
+  return result
+})()
 
 
 var domain = devDomainConfig.proxy_domain
