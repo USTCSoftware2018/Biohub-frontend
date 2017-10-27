@@ -8,7 +8,7 @@
             :to="{ query: { name: plugin.name }}"
             :class="['list-group-item', activeName === plugin.name ? 'active' : '']"
             :key="plugin.name">
-          plugin&nbsp;/&nbsp;{{ plugin.title }}
+          plugin&nbsp;/&nbsp;{{ plugin.title }} 
           </router-link>
         </div>
       </div>
@@ -28,6 +28,10 @@
             <dt>Description</dt>
             <dd>{{ activePlugin.description }}</dd>
           </dl>
+        </div>
+        <div v-else>
+          <p style="text-align: center;font-size: 20px;padding: 30px 0;background-color: white;
+          border: 1px solid #ddd; border-radius: 5px;">Loading <i class="fa fa-pulse fa-spinner"></i></p>
         </div>
         <div id="plugin-slot"></div>
       </div>
