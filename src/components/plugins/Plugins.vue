@@ -30,7 +30,7 @@
           </dl>
         </div>
         <div v-else>
-          <p style="text-align: center;font-size: 20px;padding: 30px 0;background-color: white;
+          <p v-if="!showIndex" style="text-align: center;font-size: 20px;padding: 30px 0;background-color: white;
           border: 1px solid #ddd; border-radius: 5px;">Loading <i class="fa fa-pulse fa-spinner"></i></p>
         </div>
         <div id="plugin-slot"></div>

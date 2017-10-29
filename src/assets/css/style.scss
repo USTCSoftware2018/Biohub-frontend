@@ -83,7 +83,7 @@ a {
 .list-group-item.active {
   background-color: $color-blue-2;
   border-color: $color-blue-2;
-  &:hover {
+  &:hover, &:active, &:focus {
     background-color: $color-blue-2;
     border-color: $color-blue-2;
   }

@@ -244,6 +244,7 @@
   .textarea {
     display: inline-block;
     font-size: 20px;
+    resize: none;
     flex: auto;
     line-height: 27px;
     border-style: none;
@@ -251,7 +252,7 @@
     height: 33px;
     min-height: 33px;
     padding-left: 5px;
-    background-color: lighten($border-color, 10%);
+    background-color: lighten($border-color, 8%);
     vertical-align: middle;
     @include transition(border-color);
     @include transition(background-color);
