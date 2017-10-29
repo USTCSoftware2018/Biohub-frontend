@@ -1,6 +1,6 @@
 <template>
   <div class="star-container" @mousemove="calcMouse" @mouseleave="release">
-    <div class="star-container-empty"  @click="submit">
+    <div class="star-container-empty">
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
@@ -103,12 +103,13 @@
     },
     methods: {
       calcMouse (e) {
+        console.log(this.canChange)
         if (this.canChange) {
           this.wSize = Math.round(e.layerX / 12) / 2.0 * 20
         }
       },
       release() {
-        this.canChange = true
+        // this.canChange = true
       },
       freeze () {
         this.canChange = false
