@@ -16,7 +16,7 @@
     min-height:100%;
   }
   body {
-    margin: 0 0 150px !important;
+    margin: 0 !important;
   }
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
