@@ -104,8 +104,13 @@
     },
     methods: {
       calcMouse (e) {
-            this.wSize = Math.round(e.layerX / 12) / 2.0 * 20
-            console.log(e)      
+        if (e.layerX === e.offsetX) {
+          this.wSize = Math.round(e.layerX / 12) / 2.0 * 20
+          console.log(e)   
+        } else {
+        this.wSize = Math.round((e.layerX + e.offsetX) / 12) / 2.0 * 20
+          console.log(e)  
+        }
       },
       release() {
         // this.canChange = true
