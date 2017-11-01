@@ -52,7 +52,7 @@
             @click="isMetaCollapsed = !isMetaCollapsed"
             data-placement="right">
             Meta
-            <i :class="['fa', isMetaCollapsed ? 'fa-angle-double-down' : 'fa-angle-double-up']"></i>
+            <i class="fa fa-angle-double-down"></i>
           </p>
           <div id="meta-div" :class="isMetaCollapsed ? 'collapse' : ''">
             <table class="table main">
@@ -70,9 +70,9 @@
             href="#document-div"
             class="document-toggler"
             data-toggle="collapse"
-            @click="isDocumentCollapsed = !isDocumentCollapsed">
+            onclick="$('#document-div').collapse('toggle')">
             Documentation
-            <i :class="['fa', isDocumentCollapsed ? 'fa-angle-double-down' : 'fa-angle-double-up']"></i>
+            <i class="fa fa-angle-double-down"></i>
           </p>
           <div v-html="documentHTML" id="document-div" class="collapse"></div>
         </div>
@@ -137,6 +137,8 @@
         this.loadBrick(to.params.brick)
       }
       next()
+    },
+    mounted () {
     },
     computed: {
       statusClass () {
