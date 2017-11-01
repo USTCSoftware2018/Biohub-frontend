@@ -1,13 +1,13 @@
 <template>
-  <div class="star-container" @mouseleave="release">
-    <div class="star-container-empty" @mousemove="calcMouse">
+  <div class="star-container" @mouseleave="release" @mousemove="calcMouse">
+    <div class="star-container-empty">
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
     </div>
-    <div class="star-container-full" @mousemove="calcMouse"  @click="freeze" v-bind:style="{width: wSize + '%'}">
+    <div class="star-container-full" @click="freeze" v-bind:style="{width: wSize + '%'}">
       <span class="full-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="full-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="full-star" v-bind:class="{cursorPointer: canChange}"></span>
@@ -19,18 +19,19 @@
 
 <style scoped>
   .star-container {
+    z-index: 0;
     position: relative;
     display: inline-block;
     vertical-align: middle;
     font-size: 18px !important;
   }
   .star-container-empty {
-    z-index: -1;
+    z-index: -100;
     width: auto;
     height: auto;
   }
   .star-container-full {
-    z-index: 1;
+    z-index: -97;
     position: absolute;
     top: 0;
     margin: auto;
