@@ -104,9 +104,11 @@
     },
     methods: {
       calcMouse (e) {
-        if(e.path[0].className === 'star-container-empty') return
-        this.wSize = Math.round(e.layerX / 12) / 2.0 * 20
-        console.log(e.offsetX, e.layerX)   
+        if (this.canChange) {
+          if(e.path[0].className === 'star-container-empty') return
+          this.wSize = Math.round(e.layerX / 12) / 2.0 * 20
+          console.log(e.offsetX, e.layerX)   
+        }    
       },
       release() {
         // this.canChange = true
