@@ -109,7 +109,7 @@
         }
       },
       release() {
-        this.canChange = true
+        // this.canChange = true
       },
       freeze () {
         this.canChange = false

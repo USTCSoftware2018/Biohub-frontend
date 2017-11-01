@@ -8,7 +8,7 @@
             :to="{ query: { name: plugin.name }}"
             :class="['list-group-item', activeName === plugin.name ? 'active' : '']"
             :key="plugin.name">
-          plugin&nbsp;/&nbsp;{{ plugin.title }} 
+          plugin&nbsp;/&nbsp;{{ plugin.title }}
           </router-link>
         </div>
       </div>
@@ -19,7 +19,7 @@
           <h4>Must my plugin relate to Biobricks?</h4>
           <p>Of course, there is no limitation on the subject of your plugin. You may also implement a new biological algorithm into a plugin, and deploy it onto here for promotion. After all, it is a faster way to make other peers acquainted with your latest achievement.</p>
           <h4>How can I develop/deploy a plugin?</h4>
-          <p>Currently, there is no approach to upload and deploy the plugin by yourself, since it needs to be censored as a consideration of security, but we will improve it in the near future. We recommend you to host source code of the plugin on Github and mail us the address via ustcsoftware2017 [at] gmail [dot] com, in order to reduce the cost of frequent modification. All you want to know about developing a plugin can be found on <a href="http://2017.igem.org/Team:USTC-Software">our wiki</a>.</p>
+          <p>Currently, there is no approach to upload and deploy the plugin by yourself, since it needs to be censored as a consideration of security, but we will improve it in the near future. We recommend you to host source code of the plugin on Github and mail us the address via ustcsoftware2017 [at] gmail [dot] com, in order to reduce the cost of frequent modification. All you want to know about developing a plugin can be found on <a href="https://github.com/igemsoftware2017/USTC-Software-2017/blob/master/README.md#create-your-own-plugin" target="_blank">our documentation</a>.</p>
         </div>
         <div class="card" v-if="activePlugin">
           <dl style="margin: 0;">

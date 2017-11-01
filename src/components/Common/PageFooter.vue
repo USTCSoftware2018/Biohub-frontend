@@ -17,7 +17,7 @@
 
 <style>
   .footer-container {
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     bottom: 0;
     right: 0;
