@@ -104,7 +104,7 @@
     methods: {
       calcMouse (e) {
         if (this.canChange) {
-          this.wSize = Math.round(e.layerX / 12) / 2.0 * 20
+          this.wSize = Math.round(e.offsetX / 12) / 2.0 * 20
           console.log(e)
         }
       },
