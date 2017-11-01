@@ -104,6 +104,7 @@
     },
     methods: {
       calcMouse (e) {
+        console.log(e)
         if (this.canChange) {
           if(e.target.className === 'star-container-empty') return
           this.wSize = Math.round(e.layerX / 12) / 2.0 * 20
