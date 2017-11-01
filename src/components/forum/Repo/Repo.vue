@@ -26,7 +26,7 @@
                 Post a New Experience
               </router-link>
             </div>
-            <div class="collapse" id="starCollapse">
+            <div class="collapse" id="starCollapse" style="position:relative;">
               <star :isEnable="true" v-if="!stats.rated" :brickName="brick.part_name" ref='rate'></star>
               <button style="background-color: #1695A3; outline: none; border: none; color: white; 
               border-radius: 3px;" @click="rate">Rate</button>

@@ -53,7 +53,7 @@
     border: none;
   }
   .empty-star:first-child, .full-star:first-child {
-    margin-left: 2px;
+    margin-left: 3px;
   }
   .empty-star:last-child, .full-star:last-child {
     margin-right: 2px;
@@ -105,7 +105,6 @@
       calcMouse (e) {
         if (this.canChange) {
           this.wSize = Math.round(e.layerX / 12) / 2.0 * 20
-          console.log(e)
         }
       },
       release() {
