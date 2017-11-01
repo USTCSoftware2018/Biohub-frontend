@@ -1,6 +1,6 @@
 <template>
-  <div class="star-container" @mousemove="calcMouse" @mouseleave="release">
-    <div class="star-container-empty">
+  <div class="star-container" @mouseleave="release">
+    <div class="star-container-empty" @mousemove="calcMouse">
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
