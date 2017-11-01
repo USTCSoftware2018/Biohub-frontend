@@ -1,5 +1,5 @@
 <template>
-  <div style="text-align: center;">
+  <div style="text-align: center;" class="home-container">
     <img src="../../assets/img/bioLogo.png" width="530px" style="padding-top: 10em">
     <div class="container login">
       <div class="row">

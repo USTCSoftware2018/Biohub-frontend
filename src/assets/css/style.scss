@@ -16,6 +16,7 @@
 html{
   overflow-x: hidden;
   font-size: 625%;
+  height: 100%;
 }
 
 .container {
@@ -25,6 +26,7 @@ html{
 body {
   background-color: darken(#fafafa, 1%);
   min-width: 1020px;
+  height: 100%;
 }
 
 .less-padding {
