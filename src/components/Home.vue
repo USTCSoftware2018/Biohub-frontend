@@ -1,5 +1,6 @@
 <template>
   <div class='home-container' style="text-align: center;">
+    <div class="background"></div>
     <img src="../assets/img/bioLogo.png" width="530px" style="padding-top: 15%">
     <div class="container home">
       <div class="row">
@@ -21,14 +22,6 @@
     </div>
   </div>
 </template>
-<style>
-.home-container {
-  background: url('../assets/img/ALL.svg') no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  height: 100%;
-}
-</style>
 <script>
   export default {
     name: 'home',

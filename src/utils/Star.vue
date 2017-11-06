@@ -1,6 +1,6 @@
 <template>
-  <div class="star-container" @click="canChange = false" @mousemove="calcMouse">
-    <div class="star-container-empty" ref="stars">
+  <div class="star-container" @click="calcMouse">
+    <div class="star-container-empty" ref="stars" :data-toggle="!isEnable || 'tooltip'" data-title="click to rate">
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
@@ -80,8 +80,7 @@
     data () {
       return {
         canChange: this.isEnable,
-        wSize: 0,
-        disabled: false
+        wSize: 0
       }
     },
     computed: {
@@ -92,9 +91,6 @@
     mounted () {
       if (this.initial === undefined) return
 
-      if (this.initial === null) {
-        this.disabled = true
-      }
       let initialScore = parseFloat(this.initial)
 
       if (!isNaN(initialScore)) {

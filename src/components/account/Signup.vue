@@ -1,5 +1,6 @@
 <template>
   <div class="home-container">
+    <div class="background"></div>
     <div style="text-align:center" >
       <img src="../../assets/img/bioLogo.png" width="530px" style="padding-top: 10em;">
     </div>

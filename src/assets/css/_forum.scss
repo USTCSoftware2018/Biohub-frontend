@@ -613,3 +613,21 @@ form.upload-form {
     }
   }
 }
+
+.home-container {
+  position: relative;
+  height: 100%;
+
+  .background {
+    background: url('assets/img/ALL.svg') no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -100;
+    opacity: .15;
+  }
+}
