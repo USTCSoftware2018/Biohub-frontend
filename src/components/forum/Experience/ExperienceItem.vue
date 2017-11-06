@@ -77,7 +77,7 @@
         }
       },
       contentHTML () {
-        return marked(this.fullText)
+        return marked(this.fullText.replace('<', '&lt;').replace('>', '&gt;'))
       },
       commentsText () {
         const comments = this.experience.posts_num

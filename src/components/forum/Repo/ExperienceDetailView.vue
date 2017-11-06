@@ -88,7 +88,11 @@
     },
     computed: {
       content () {
-        return marked(this.experience.content.text)
+        return marked(
+          this.experience.content.text
+            .replace('<', '&lt;')
+            .replace('>', '&gt;')
+        )
       },
       isMine () {
         return this.$root.user && this.experience.author &&
