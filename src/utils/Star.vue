@@ -1,6 +1,6 @@
 <template>
-  <div class="star-container" @click="calcMouse">
-    <div class="star-container-empty" id="sce">
+  <div class="star-container" @click="canChange = false" @mousemove="calcMouse">
+    <div class="star-container-empty" ref="stars">
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
       <span class="empty-star" v-bind:class="{cursorPointer: canChange}"></span>
@@ -104,9 +104,12 @@
     },
     methods: {
       calcMouse (e) {
+        const stars = $(this.$refs.stars)
         if (this.canChange) {
-          this.wSize = Math.round((e.screenX - $('#sce').offset().top - 26) / 12) / 2.0 * 20
-        } 
+          this.wSize = Math.round(
+            (e.pageX - stars.offset().left) * 1.0 / stars.width() * 100
+          )
+        }
       },
       release() {
         // this.canChange = true
