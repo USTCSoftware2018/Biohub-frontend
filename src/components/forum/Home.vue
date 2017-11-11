@@ -88,12 +88,11 @@
 
         this.loadingStars = true
         axios.get(`/api/users/${this.$root.user.id}/bricks_starred/`)
-          .always(response => {
-            this.loadingStars = false
-            return response
-          })
           .then((response) => {
+            this.loadingStars = false
             this.starredBricks = response.data.results
+          }, e => {
+            this.loadingStars = false
           })
       },
       loadPopular () {

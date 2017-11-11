@@ -41,11 +41,12 @@
         this.loading = true
         return axios.get(url)
           .then(response => {
+            this.loading = false
             this.activities = this.activities.concat(response.data.results)
             this.next = response.data.next
 
             return response
-          }).always(() => {
+          }, e => {
             this.loading = false
           })
       },

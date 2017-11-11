@@ -6,13 +6,12 @@ export default {
       this.loading = true
       return axios.get(url)
         .then(response => {
+          this.loading = false
           this.next = response.data.next
           this._handleNewNotices(response.data.results)
           return response
-        })
-        .always(r => {
+        }, e => {
           this.loading = false
-          return r
         })
     },
     _handleNewNotices (notices) {

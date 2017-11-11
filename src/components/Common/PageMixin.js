@@ -22,18 +22,19 @@ export default {
           ...this.getQueryParams(),
           page
         }
-      }).always(response => {
+      }).then(response => {
         this.loading = false
         this.cancel = null
 
-        return response
-      }).then(response => {
         this.pageNum = normalizedPageNum(response)
         this.hasNext = response.data.next !== null
         this.hasPrevious = response.data.previous !== null
         this.processResponse(response)
 
         return response
+      }, e => {
+        this.loading = false
+        this.cancel = null
       })
     }
   }

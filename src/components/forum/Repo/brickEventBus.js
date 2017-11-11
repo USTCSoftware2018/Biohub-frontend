@@ -14,10 +14,12 @@ export default {
     if (solved) {
       cb()
     } else {
-      promise.always(r => {
+      promise.then(() => {
         solved = true
-        return r
-      }).then(cb)
+        cb()
+      }, () => {
+        solved = true
+      })
     }
   },
   fetching (factory) {
