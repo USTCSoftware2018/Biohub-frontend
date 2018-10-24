@@ -281,14 +281,14 @@
         this.related_bricks = []
 
         bus.fetching((resolve, reject) => {
-          axios.get(`/api/forum/bricks/${partName}/`)
+          axios.get(`https://api-us.biohub.tech/api/forum/bricks/${partName}/`)
             .then(response => {
               clearTimeout(timerId)
               this.part_name = partName
               this.$set(this, 'brick', response.data)
               this.part_name = partName
               resolve()
-              return axios.get(`/api/forum/bricks/${partName}/stats/`)
+              return axios.get(`https://api-us.biohub.tech/api/forum/bricks/${partName}/stats/`)
             }, error => {
               clearTimeout(timerId)
               if (error.response.status === 404) {
@@ -300,7 +300,7 @@
               if (!response) return
               this.$set(this, 'stats', response.data)
 
-              return axios.get(`/api/forum/bricks/${partName}/related/`)
+              return axios.get(`https://api-us.biohub.tech/api/forum/bricks/${partName}/related/`)
             }).then(response => {
               this.$set(this, 'related_bricks', response.data)
             })
@@ -311,7 +311,7 @@
         const action = cancel ? 'unwatch' : 'watch'
         const delta = cancel ? -1 : 1
 
-        axios.post(`/api/forum/bricks/${this.part_name}/${action}/`)
+        axios.post(`https://api-us.biohub.tech/api/forum/bricks/${this.part_name}/${action}/`)
           .then(response => {
             this.stats.watched = !cancel
             this.brick.watches += delta
@@ -322,14 +322,14 @@
         const action = cancel ? 'unstar' : 'star'
         const delta = cancel ? -1 : 1
 
-        axios.post(`/api/forum/bricks/${this.part_name}/${action}/`)
+        axios.post(`https://api-us.biohub.tech/api/forum/bricks/${this.part_name}/${action}/`)
           .then(response => {
             this.stats.starred = !cancel
             this.brick.stars += delta
           })
       },
       rate () {
-        axios.post('/api/forum/bricks/' + this.brick.part_name + '/rate/', {
+        axios.post('https://api-us.biohub.tech/api/forum/bricks/' + this.brick.part_name + '/rate/', {
           score: this.$refs.rate.score
         }).then((response) => {
           alert(`You've graded ${this.$refs.rate.score} points for brick ${this.brick.part_name} successfully!`)

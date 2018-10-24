@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack --config build/webpack.dev.conf.js && node build/dev-server.js",
+    "dev-build": "webpack --config build/webpack.dev.conf.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
@@ -79,7 +80,7 @@
     "lolex": "^1.5.2",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.12",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.9.4",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "ora": "^1.2.0",

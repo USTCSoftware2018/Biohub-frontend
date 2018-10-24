@@ -14,7 +14,7 @@ export default {
       this.pageNum = page
 
       this.loading = true
-      return axios.get(url, {
+      return axios.get('https://api-us.biohub.tech' + url, {
         cancelToken: new axios.CancelToken(c => {
           this.cancel = c
         }),

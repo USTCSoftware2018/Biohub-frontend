@@ -36,7 +36,7 @@ var baseProxy = `http://${domain}`
 console.log('Using extra proxies:', extraProxy)
 console.log('Proxy domain to:', baseProxy)
 
-var prodDomain = (domainConfig.prod || {}).domain || 'biohub.technology'
+var prodDomain = (domainConfig.prod || {}).domain || 'api-us.biohub.tech'
 var prodStatic = (domainConfig.prod || {}).static || 'https://ustc-software2017-frontend.github.io/Biohub-frontend/dist/assets/'
 
 console.log('Proxy production domain to:', prodDomain)
@@ -68,7 +68,7 @@ module.exports = {
     domain,
     baseProxy,
     env: require('./dev.env'),
-    port: 8080,
+    port: 8081,
     assetsRoot: path.resolve(__dirname, '../_tmp'),
     autoOpenBrowser: true,
     assetsSubDirectory: 'assets',
@@ -78,14 +78,14 @@ module.exports = {
         target: baseProxy,
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/api'
+          '^/api': 'https://api-us.biohub.tech/api'
         }
       },
       '/media': {
         target: baseProxy,
         changeOrigin: true,
         pathRewrite: {
-          '^/media': '/media'
+          '^/media': 'https://api-us.biohub.tech/media'
         }
       },
       '/ws': {
@@ -96,7 +96,7 @@ module.exports = {
         target: baseProxy,
         changeOrigin: true,
         pathRewrite: {
-          '^/files': '/files'
+          '^/files': 'https://api-us.biohub.tech/files'
         }
       }
     }),
