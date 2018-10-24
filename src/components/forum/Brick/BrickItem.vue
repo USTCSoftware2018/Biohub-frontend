@@ -22,11 +22,12 @@
         class="brick-label brick-label-info"
         v-for="author in authors" v-if="!short && author" v-html="author">
       </span>
-      <star :isEnable="false" :initial="brick.rate_score"></star>
+      <br>
+      <!-- <star :isEnable="false" :initial="brick.rate_score"></star> -->
     </div>
     <p class="brick-content" v-html="brick.desc"></p>
     <div class="brick-footer">
-      <span class="data-group" data-toggle="tooltip" title="Stars">
+      <!-- <span class="data-group" data-toggle="tooltip" title="Stars">
         <i class="fa fa-star-o"></i>
         <span>{{ brick.stars || 0 }}</span>
       </span>
@@ -37,7 +38,7 @@
       <span class="data-group" data-toggle="tooltip" title="Uses">
         <i class="fa fa-magnet"></i>
         <span>{{ brick.uses }}</span>
-      </span>
+      </span> -->
       <div class="progress progress-matches" data-toggle="tooltip" title="Weight">
         <div :class="progressClasses" :style="progressStyle"></div>
         <span class="text">{{ (brick.weight * 100).toFixed(2) + '%' }}</span>

@@ -12,26 +12,24 @@
               <star :initial="brick.rate_score"></star>
             </div>
             <div class="repo-info-addon">
-              <p
-                class="brick-label brick-label-forum"
+              <p class="brick-label brick-label-forum"
                 v-for="author in authors" v-if="author" v-html="author">
-                </p>
+              </p>
             </div>
-            <div class="repo-info-addon">
-              <a id="rate" v-if="!stats.rated" href="#starCollapse" data-toggle="collapse" aria-expanded="false">Rate</a>
-
-              <a id="watch" @click="watch">{{ stats.watched ? 'Unwatch' : 'Watch' }}</a><span class="number">{{ brick.watches }}</span>
-              <a id="star" @click="star">{{ stats.starred ? 'Unstar' : 'Star' }}</a><span class="number">{{ brick.stars }}</span>
-              <router-link :to="{ name: 'Write-Exp', params: { brick: brick.part_name }}">
-                Post a New Experience
-              </router-link>
-            </div>
-            <div class="collapse" id="starCollapse" style="position:relative;">
-              <star :isEnable="true" v-if="!stats.rated" :brickName="brick.part_name" ref='rate'></star>
-              <button style="background-color: #1695A3; outline: none; border: none; color: white; 
-              border-radius: 3px;" @click="rate">Rate</button>
-            </div>
-            <div class="divider" style="margin: 5px 0 5px 0"></div>
+            <!-- <div class="repo-info-addon"> -->
+              <!-- <a id="rate" v-if="!stats.rated" href="#starCollapse" data-toggle="collapse" aria-expanded="false">Rate</a> --> 
+              <!-- <a id="watch" @click="watch">{{ stats.watched ? 'Unwatch' : 'Watch' }}</a><span class="number">{{ brick.watches }}</span> -->
+              <!-- <a id="star" @click="star">{{ stats.starred ? 'Unstar' : 'Star' }}</a><span class="number">{{ brick.stars }}</span> -->
+              <!-- <router-link :to="{ name: 'Write-Exp', params: { brick: brick.part_name }}"> -->
+                <!-- Post a New Experience -->
+              <!-- </router-link> -->
+            <!-- </div> -->
+            <!-- <div class="collapse" id="starCollapse" style="position:relative;"> -->
+              <!-- <star :isEnable="true" v-if="!stats.rated" :brickName="brick.part_name" ref='rate'></star> -->
+              <!-- <button style="background-color: #1695A3; outline: none; border: none; color: white;  -->
+              <!-- border-radius: 3px;" @click="rate">Rate</button> -->
+            <!-- </div> -->
+            <!-- <div class="divider" style="margin: 5px 0 5px 0"></div> -->
           </div>
           <div class="col-md-6">
             <feature :feaData="brick.ruler.seq_features" :seqLength="brick.sequence.length"></feature>
@@ -78,11 +76,11 @@
         </div>
       </div>
     </div>
-    <div class="container">
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
-    </div>
+    <!-- <div class="container"> -->
+      <!-- <keep-alive> -->
+        <!-- <router-view></router-view> -->
+      <!-- </keep-alive> -->
+    <!-- </div> -->
     <div class="container-fluid" style="margin-left: 10%;" v-show="related_bricks.length">
       <h3>Related Bricks</h3>
       <brick-gallery :bricks="related_bricks"></brick-gallery>
