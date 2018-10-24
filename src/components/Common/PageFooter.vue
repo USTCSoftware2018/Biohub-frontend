@@ -2,14 +2,14 @@
   <div class="footer-container">
     <footer>
       <div class="footer-content">
-        <p>
-          <router-link :to="{name: 'forum-home'}" class="footer-link">Forum</router-link>
-          <router-link :to="{name: 'plugins'}" class="footer-link">Plugins</router-link>
-          <a href="#" class="footer-link" target="_blank">Wiki</a>
-          <br>
-          <a class="github-button" href="https://github.com/igemsoftware2017/USTC-Software-2017" data-icon="octicon-star" data-show-count="true" aria-label="Star igemsoftware2017/USTC-Software-2017 on GitHub" v-show="showGithub">Star</a>
-        </p>
-        <p>Welcome to the Biohub 2.0. All rights reserved to USTC-Software-2017.</p>
+        <!-- <p> -->
+          <!-- <router-link :to="{name: 'forum-home'}" class="footer-link">Forum</router-link> -->
+          <!-- <router-link :to="{name: 'plugins'}" class="footer-link">Plugins</router-link> -->
+          <!-- <a href="#" class="footer-link" target="_blank">Wiki</a> -->
+          <!-- <br> -->
+          <!-- <a class="github-button" href="https://github.com/igemsoftware2017/USTC-Software-2017" data-icon="octicon-star" data-show-count="true" aria-label="Star igemsoftware2017/USTC-Software-2017 on GitHub" v-show="showGithub">Star</a> -->
+        <!-- </p> -->
+        <p>Welcome to the Biohub 3.0. All rights reserved to USTC-Software 2018.</p>
       </div>
     </footer>
   </div>

@@ -23,7 +23,7 @@
           <div v-html="content" class="content"></div>
         </div>
         <div class="card experience-attachments" v-if="experience.content.files.length">
-          <a v-for="item in experience.content.files" :href="item.file" target="_blank">
+          <a v-for="item of experience.content.files" :href="item.file" target="_blank">
             {{item.name}}
           </a>
         </div>
